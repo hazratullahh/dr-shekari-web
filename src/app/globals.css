@@ -1,26 +1,266 @@
+/* app/globals.css - Refined styles */
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-coral: #E9756D;
+  --color-peach: #F6CA97;
+  --color-bg-light: #FDF5EE;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+  color: #333;
+  background: white;
+  overflow-x: hidden;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Better focus styles */
+:focus-visible {
+  outline: 2px solid var(--color-coral);
+  outline-offset: 2px;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* Selection color */
+::selection {
+  background-color: rgba(233, 117, 109, 0.3);
+  color: #333;
+}
+
+/* Custom utilities */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* Smooth transitions */
+.smooth-transition {
+  transition: all 0.3s ease-in-out;
+}
+
+/* Animation keyframes */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-out;
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, var(--color-coral), var(--color-peach));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Responsive typography */
+@media (max-width: 768px) {
+  .text-responsive {
+    font-size: calc(1rem + 0.5vw);
+  }
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none;
+  }
+}
+
+/* app/globals.css - Add these animations */
+@keyframes progress {
+  0% {
+    width: 0%;
+    transform: translateX(-100%);
+  }
+  50% {
+    width: 100%;
+    transform: translateX(0%);
+  }
+  100% {
+    width: 0%;
+    transform: translateX(100%);
+  }
+}
+
+@keyframes flow {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(400%);
+    opacity: 0;
+  }
+}
+
+@keyframes urine-flow {
+  0% {
+    transform: translateY(-100%) translateX(-50%);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(400%) translateX(-50%);
+    opacity: 0;
+  }
+}
+
+@keyframes stent-flow {
+  0% {
+    transform: translateY(-100%) translateX(-50%);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.8;
+  }
+  80% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(300%) translateX(-50%);
+    opacity: 0;
+  }
+}
+
+@keyframes filter {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+    transform: translate(var(--tx, 20px), var(--ty, -20px)) scale(1.5);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(40px, -40px) scale(0.5);
+  }
+}
+
+@keyframes peristalsis {
+  0%, 100% {
+    width: 8px;
+    height: 2px;
+  }
+  50% {
+    width: 12px;
+    height: 4px;
+  }
+}
+
+@keyframes fill {
+  0% {
+    height: 0;
+  }
+  70% {
+    height: 80%;
+  }
+  85% {
+    height: 75%;
+  }
+  100% {
+    height: 80%;
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.5;
+    box-shadow: 0 0 10px rgba(233, 117, 109, 0.3);
+  }
+  50% {
+    opacity: 1;
+    box-shadow: 0 0 20px rgba(233, 117, 109, 0.6);
+  }
+}
+
+/* Animation Classes */
+.animate-progress {
+  animation: progress 2s ease-in-out infinite;
+}
+
+.animate-flow {
+  animation: flow 3s linear infinite;
+}
+
+.animate-urine-flow {
+  animation: urine-flow 4s linear infinite;
+}
+
+.animate-stent-flow {
+  animation: stent-flow 6s linear infinite;
+}
+
+.animate-filter {
+  animation: filter 2s ease-in-out infinite;
+}
+
+.animate-peristalsis {
+  animation: peristalsis 2s ease-in-out infinite;
+}
+
+.animate-fill {
+  animation: fill 4s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Custom Properties for Filter Animation */
+.filter-1 {
+  --tx: 15px;
+  --ty: -15px;
+}
+
+.filter-2 {
+  --tx: -15px;
+  --ty: -15px;
+}
+
+.filter-3 {
+  --tx: 15px;
+  --ty: 15px;
+}
+
+.filter-4 {
+  --tx: -15px;
+  --ty: 15px;
 }
