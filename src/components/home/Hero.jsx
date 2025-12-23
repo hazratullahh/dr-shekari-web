@@ -15,11 +15,11 @@ export default function Hero() {
                     backgroundPosition: 'center',
                     backgroundRepeat: 'no-repeat',
                 }}
-                aria-hidden="true"
+                aria-hidden="true" 
             />
 
             {/* Dark overlay for better text readability */}
-            {/* <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-black/30 to-transparent" aria-hidden="true" /> */}
+            {/* <div className="absolute inset-0 bg-linear-to-r from-black/50 via-black/30 to-transparent" aria-hidden="true" /> */}
 
             {/* Content Container */}
             <div className="relative z-10 w-full max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between min-h-[85vh]">
@@ -32,7 +32,7 @@ export default function Hero() {
                 >
                     <header className="
                         relative
-                        bg-gradient-to-br from-[#FDF5EE]/70 via-white/60 to-[#F9F0E8]/70
+                        bg-linear-to-br from-[#FDF5EE]/70 via-white/60 to-[#F9F0E8]/70
                         backdrop-blur-xl
                         p-8 pt-32 md:pt-0 md:p-10
                         rounded-3xl
@@ -40,7 +40,7 @@ export default function Hero() {
                         mx-auto md:mx-0
                     ">
                         {/* Specialist Badge */}
-                        <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-[#E9756D] to-[#F6CA97] rounded-full mb-6">
+                        <div className="inline-flex items-center px-4 py-2 bg-linear-to-r from-[#E9756D] to-[#F6CA97] rounded-full mb-6">
                             <div className="w-2 h-2 bg-white rounded-full mr-2" aria-hidden="true"></div>
                             <span className="text-white text-sm font-semibold flex items-center gap-2">
                                 Leading Urology
@@ -64,7 +64,7 @@ export default function Hero() {
                         {/* Main Heading */}
                         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
                             Dr. Nazir Ahmad
-                            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#E9756D] to-[#F6CA97]">
+                            <span className="block text-transparent bg-clip-text bg-linear-to-r from-[#E9756D] to-[#F6CA97]">
                                 Shekari
                             </span>
                         </h1>
@@ -81,7 +81,7 @@ export default function Hero() {
                             <motion.button
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
-                                className="px-8 py-4 bg-gradient-to-r from-[#E9756D] to-[#F6CA97] text-white font-semibold rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 group"
+                                className="px-8 py-4 bg-linear-to-r from-[#E9756D] to-[#F6CA97] text-white font-semibold rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 group"
                                 aria-label="Book an appointment with Dr. Nazir Ahmad Shekari"
                             >
                                 <span className="flex items-center">
@@ -107,12 +107,12 @@ export default function Hero() {
                                 <div className="text-3xl font-bold text-[#E9756D]">20+</div>
                                 <p className="text-white font-medium">Years Experience</p>
                             </div>
-                            <div className="h-12 w-px bg-gradient-to-b from-transparent via-[#F6CA97] to-transparent hidden sm:block" aria-hidden="true"></div>
+                            <div className="h-12 w-px bg-linear-to-b from-transparent via-[#F6CA97] to-transparent hidden sm:block" aria-hidden="true"></div>
                             <div className="text-center sm:text-left">
                                 <div className="text-3xl font-bold text-[#E9756D]">5000+</div>
                                 <p className="text-white font-medium">Successful Surgeries</p>
                             </div>
-                            <div className="h-12 w-px bg-gradient-to-b from-transparent via-[#F6CA97] to-transparent hidden sm:block" aria-hidden="true"></div>
+                            <div className="h-12 w-px bg-linear-to-b from-transparent via-[#F6CA97] to-transparent hidden sm:block" aria-hidden="true"></div>
                             <div className="text-center sm:text-left">
                                 <div className="text-3xl font-bold text-[#E9756D]">98%</div>
                                 <p className="text-white font-medium">Patient Satisfaction</p>
@@ -164,8 +164,8 @@ export default function Hero() {
                 </motion.figure>
             </div>
 
-            {/* Bottom Decorative Gradient */}
-            <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-black/40 to-transparent pointer-events-none" aria-hidden="true"></div>
+            {/* Bottom Decorative linear */}
+            <div className="absolute bottom-0 left-0 right-0 h-24 bg-linear-to-t from-black/40 to-transparent pointer-events-none" aria-hidden="true"></div>
         </section>
     );
 }
