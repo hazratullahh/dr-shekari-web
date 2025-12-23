@@ -108,7 +108,7 @@ const Header = () => {
         initial={{ y: -50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.3 }}
-        className="fixed top-0 left-0 right-0 z-50 bg-linear-to-r from-[#E9756D] via-[#FF9A8B] to-[#F6CA97] text-white py-2 shadow-lg"
+        className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-[#E9756D] via-[#FF9A8B] to-[#F6CA97] text-white py-2 shadow-lg"
         style={{
           clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%, 0% 50%)'
         }}
@@ -157,7 +157,7 @@ const Header = () => {
           {[...Array(15)].map((_, i) => (
             <motion.div
               key={i}
-              className="absolute w-1 h-1 rounded-full bg-linear-to-r from-[#E9756D] to-[#F6CA97]"
+              className="absolute w-1 h-1 rounded-full bg-gradient-to-r from-[#E9756D] to-[#F6CA97]"
               style={{
                 left: `${Math.random() * 100}%`,
                 top: `${Math.random() * 100}%`,
@@ -201,7 +201,7 @@ const Header = () => {
                 >
                   {/* Glow effect */}
                   <motion.div
-                    className="absolute -inset-2 bg-linear-to-r from-[#E9756D] to-[#F6CA97] rounded-2xl blur opacity-20 group-hover:opacity-40"
+                    className="absolute -inset-2 bg-gradient-to-r from-[#E9756D] to-[#F6CA97] rounded-2xl blur opacity-20 group-hover:opacity-40"
                     animate={{
                       rotate: [0, 180, 360],
                       scale: [1, 1.1, 1]
@@ -214,7 +214,7 @@ const Header = () => {
                   />
 
                   {/* Logo Image */}
-                  <div className="relative w-16 h-16 rounded-xl bg-linear-to-br from-[#E9756D] to-[#F6CA97] flex items-center justify-center shadow-2xl overflow-hidden border-2 border-white">
+                  <div className="relative w-16 h-16 rounded-xl bg-gradient-to-br from-[#E9756D] to-[#F6CA97] flex items-center justify-center shadow-2xl overflow-hidden border-2 border-white">
                     <Image
                       src="/logo.png"
                       alt="Dr. Shekari Logo"
@@ -236,7 +236,7 @@ const Header = () => {
                   {[...Array(3)].map((_, i) => (
                     <motion.div
                       key={i}
-                      className="absolute w-2 h-2 rounded-full bg-linear-to-r from-[#E9756D] to-[#F6CA97]"
+                      className="absolute w-2 h-2 rounded-full bg-gradient-to-r from-[#E9756D] to-[#F6CA97]"
                       animate={{
                         x: [0, Math.sin(i) * 20, 0],
                         y: [0, Math.cos(i) * 20, 0],
@@ -276,7 +276,7 @@ const Header = () => {
                     </motion.span>
                   </motion.h1>
                   <motion.p
-                    className="text-xs md:text-sm font-medium text-transparent bg-clip-text bg-linear-to-r from-[#E9756D] to-[#F6CA97]"
+                    className="text-xs md:text-sm font-medium text-transparent bg-clip-text bg-gradient-to-r from-[#E9756D] to-[#F6CA97]"
                     animate={isScrolled ? { opacity: 0.8 } : { opacity: 1 }}
                   >
                     Urology · Andrology · Endourology Specialist
@@ -325,7 +325,7 @@ const Header = () => {
                       }}
                       transition={{ type: "spring", stiffness: 400, damping: 30 }}
                     >
-                      <div className="absolute inset-0 bg-linear-to-r from-[#E9756D] to-[#F6CA97] rounded-xl shadow-lg" />
+                      <div className="absolute inset-0 bg-gradient-to-r from-[#E9756D] to-[#F6CA97] rounded-xl shadow-lg" />
                     </motion.div>
 
                     {/* Active Arrow */}
@@ -346,7 +346,7 @@ const Header = () => {
                       initial={{ scale: 0, opacity: 0 }}
                       animate={{ scale: 1, opacity: 0.3 }}
                       exit={{ scale: 0, opacity: 0 }}
-                      className="absolute inset-0 bg-linear-to-r from-[#E9756D] to-[#F6CA97] blur-xl rounded-xl"
+                      className="absolute inset-0 bg-gradient-to-r from-[#E9756D] to-[#F6CA97] blur-xl rounded-xl"
                     />
                   )}
                 </motion.div>
@@ -361,7 +361,7 @@ const Header = () => {
               >
                 {/* Button background with sexy effects */}
                 <motion.div
-                  className="absolute inset-0 bg-linear-to-r from-[#E9756D] to-[#F6CA97] rounded-xl shadow-xl"
+                  className="absolute inset-0 bg-gradient-to-r from-[#E9756D] to-[#F6CA97] rounded-xl shadow-xl"
                   animate={{
                     boxShadow: [
                       '0 10px 30px rgba(233, 117, 109, 0.3)',
@@ -373,7 +373,7 @@ const Header = () => {
                 />
 
                 {/* Button content */}
-                <div className="relative px-6 py-3 rounded-xl bg-linear-to-r from-[#E9756D] to-[#F6CA97] flex items-center">
+                <div className="relative px-6 py-3 rounded-xl bg-gradient-to-r from-[#E9756D] to-[#F6CA97] flex items-center">
                   <Calendar size={18} className="mr-2 text-white" />
                   <span className="font-bold text-white">Book Now</span>
 
@@ -398,7 +398,7 @@ const Header = () => {
 
                 {/* Glow effect */}
                 <motion.div
-                  className="absolute -inset-1 bg-linear-to-r from-[#E9756D] to-[#F6CA97] blur opacity-30 rounded-xl"
+                  className="absolute -inset-1 bg-gradient-to-r from-[#E9756D] to-[#F6CA97] blur opacity-30 rounded-xl"
                   animate={{ opacity: [0.2, 0.4, 0.2] }}
                   transition={{ duration: 2, repeat: Infinity }}
                 />
@@ -412,7 +412,7 @@ const Header = () => {
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="lg:hidden relative"
             >
-              <div className="w-12 h-12 rounded-xl bg-linear-to-r from-[#E9756D]/10 to-[#F6CA97]/10 flex items-center justify-center">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-r from-[#E9756D]/10 to-[#F6CA97]/10 flex items-center justify-center">
                 {isMobileMenuOpen ? (
                   <motion.div
                     initial={{ rotate: -180 }}
@@ -433,7 +433,7 @@ const Header = () => {
               {/* Pulsing dot */}
               {!isMobileMenuOpen && (
                 <motion.div
-                  className="hidden md:absolute -top-1 -right-1 w-3 h-3 rounded-full bg-linear-to-r from-[#E9756D] to-[#F6CA97]"
+                  className="hidden md:absolute -top-1 -right-1 w-3 h-3 rounded-full bg-gradient-to-r from-[#E9756D] to-[#F6CA97]"
                   animate={{ scale: [1, 1.5, 1] }}
                   transition={{ duration: 1.5, repeat: Infinity }}
                 />
@@ -463,8 +463,8 @@ const Header = () => {
                   <Link
                     href={item.href}
                     className={`flex items-center p-4 rounded-xl ${isActive(item.href)
-                      ? 'bg-linear-to-r from-[#E9756D] to-[#F6CA97] text-white shadow-lg'
-                      : 'hover:bg-linear-to-r hover:from-[#E9756D]/10 hover:to-[#F6CA97]/10'
+                      ? 'bg-gradient-to-r from-[#E9756D] to-[#F6CA97] text-white shadow-lg'
+                      : 'hover:bg-gradient-to-r hover:from-[#E9756D]/10 hover:to-[#F6CA97]/10'
                       }`}
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
@@ -490,7 +490,7 @@ const Header = () => {
                   window.location.href = 'tel:+93792453030';
                   setIsMobileMenuOpen(false);
                 }}
-                className="w-full mt-6 p-4 bg-linear-to-r from-[#E9756D] to-[#F6CA97] text-white font-bold rounded-xl shadow-xl flex items-center justify-center"
+                className="w-full mt-6 p-4 bg-gradient-to-r from-[#E9756D] to-[#F6CA97] text-white font-bold rounded-xl shadow-xl flex items-center justify-center"
               >
                 <Calendar size={20} className="mr-3" />
                 Book Appointment Now
@@ -504,7 +504,7 @@ const Header = () => {
               </motion.button>
 
               {/* Emergency Contact in Mobile Menu */}
-              <div className="mt-6 p-4 bg-linear-to-r from-[#E9756D]/10 to-[#F6CA97]/10 rounded-xl">
+              <div className="mt-6 p-4 bg-gradient-to-r from-[#E9756D]/10 to-[#F6CA97]/10 rounded-xl">
                 <div className="flex items-center text-sm text-gray-700">
                   <Phone size={16} className="text-[#E9756D] mr-2" />
                   <span>Emergency: </span>

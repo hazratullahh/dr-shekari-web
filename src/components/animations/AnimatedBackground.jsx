@@ -154,7 +154,7 @@ export default function AnimatedBackground() {
         className="fixed inset-0 w-full h-full"
       />
       {/* Gradient overlay */}
-      <div className="absolute inset-0 bg-linear-to-br from-[#F9F0E8]/20 via-white/5 to-[#FDF5EE]/10" />
+      <div className="absolute inset-0 bg-gradient-to-br from-[#F9F0E8]/20 via-white/5 to-[#FDF5EE]/10" />
     </>
   );
 }

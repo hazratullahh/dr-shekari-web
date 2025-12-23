@@ -70,7 +70,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-linear-to-b from-white to-gray-50 border-t border-gray-100">
+    <footer className="bg-gradient-to-b from-white to-gray-50 border-t border-gray-100">
       <div className="max-w-360 mx-auto px-4 py-12">
 
         {/* Main Footer Content */}
@@ -80,7 +80,7 @@ const Footer = () => {
           <div className="lg:col-span-2">
             <div className="mb-8">
               <Link href="/" className="flex items-start mb-6">
-                <div className="relative w-20 h-2w-20 rounded-xl bg-linear-to-br from-[#E9756D] to-[#F6CA97] flex items-center justify-center shadow-xl mr-4 overflow-hidden">
+                <div className="relative w-20 h-2w-20 rounded-xl bg-gradient-to-br from-[#E9756D] to-[#F6CA97] flex items-center justify-center shadow-xl mr-4 overflow-hidden">
                   {/* Logo Image */}
                   <Image
                     src={clinicInfo.logoSrc}
@@ -116,7 +116,7 @@ const Footer = () => {
                 {certifications.map((cert, index) => (
                   <div
                     key={index}
-                    className="flex items-center px-3 py-2 bg-linear-to-r from-[#E9756D]/5 to-[#F6CA97]/5 rounded-lg border border-[#F6CA97]/20"
+                    className="flex items-center px-3 py-2 bg-gradient-to-r from-[#E9756D]/5 to-[#F6CA97]/5 rounded-lg border border-[#F6CA97]/20"
                   >
                     <span className="text-[#E9756D] mr-2">{cert.icon}</span>
                     <span className="text-sm font-medium text-gray-700">{cert.label}</span>
@@ -230,7 +230,7 @@ const Footer = () => {
                 />
                 <button
                   type="submit"
-                  className="absolute right-2 top-2 w-8 h-8 rounded-md bg-linear-to-r from-[#E9756D] to-[#F6CA97] flex items-center justify-center"
+                  className="absolute right-2 top-2 w-8 h-8 rounded-md bg-gradient-to-r from-[#E9756D] to-[#F6CA97] flex items-center justify-center"
                 >
                   <ArrowUp size={16} className="text-white rotate-45" />
                 </button>
@@ -270,7 +270,7 @@ const Footer = () => {
                     href={social.href}
                     whileHover={{ y: -3, scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
-                    className="w-10 h-10 rounded-xl bg-linear-to-br from-white to-gray-50 border border-gray-200 text-gray-600 hover:text-white hover:from-[#E9756D] hover:to-[#F6CA97] flex items-center justify-center shadow-sm hover:shadow-md transition-all duration-300"
+                    className="w-10 h-10 rounded-xl bg-gradient-to-br from-white to-gray-50 border border-gray-200 text-gray-600 hover:text-white hover:from-[#E9756D] hover:to-[#F6CA97] flex items-center justify-center shadow-sm hover:shadow-md transition-all duration-300"
                     aria-label={social.label}
                   >
                     {social.icon}
@@ -321,7 +321,7 @@ const Footer = () => {
         href="tel:+93792453030"
         whileHover={{ scale: 1.1, rotate: 5 }}
         whileTap={{ scale: 0.9 }}
-        className="fixed bottom-6 right-6 w-16 h-16 rounded-full bg-linear-to-r from-[#E9756D] to-[#F6CA97] shadow-xl flex items-center justify-center z-40 group"
+        className="fixed bottom-6 right-6 w-16 h-16 rounded-full bg-gradient-to-r from-[#E9756D] to-[#F6CA97] shadow-xl flex items-center justify-center z-40 group"
         aria-label="Emergency Call"
       >
         <Phone size={24} className="text-white" />

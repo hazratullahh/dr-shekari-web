@@ -1,7 +1,7 @@
 export default function Loading() {
   
   return (
-    <div className="min-h-screen bg-linear-to-br from-[#FDF5EE] via-white to-[#F9F0E8] flex flex-col items-center justify-center px-4">
+    <div className="min-h-screen bg-gradient-to-br from-[#FDF5EE] via-white to-[#F9F0E8] flex flex-col items-center justify-center px-4">
       {/* Main Loader Container */}
       <div className="relative w-full max-w-2xl mx-auto">
 
@@ -56,7 +56,7 @@ export default function Loading() {
               {[...Array(3)].map((_, i) => (
                 <div
                   key={i}
-                  className="w-3 h-3 rounded-full bg-linear-to-r from-[#E9756D] to-[#F6CA97] animate-pulse"
+                  className="w-3 h-3 rounded-full bg-gradient-to-r from-[#E9756D] to-[#F6CA97] animate-pulse"
                   style={{ animationDelay: `${i * 0.2}s` }}
                 />
               ))}
@@ -64,7 +64,7 @@ export default function Loading() {
           </div>
 
           <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
-            Loading <span className="text-transparent bg-clip-text bg-linear-to-r from-[#E9756D] to-[#F6CA97]">Medical Excellence</span>
+            Loading <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#E9756D] to-[#F6CA97]">Medical Excellence</span>
           </h2>
 
           <p className="text-gray-600 mb-8 max-w-md mx-auto">
@@ -74,7 +74,7 @@ export default function Loading() {
           {/* Progress Bar */}
           <div className="w-full max-w-md mx-auto">
             <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
-              <div className="h-full bg-linear-to-r from-[#E9756D] via-[#FF9A8B] to-[#F6CA97] rounded-full animate-progress" />
+              <div className="h-full bg-gradient-to-r from-[#E9756D] via-[#FF9A8B] to-[#F6CA97] rounded-full animate-progress" />
             </div>
             <div className="flex justify-between mt-2">
               <span className="text-sm text-gray-500">Initializing</span>
@@ -119,7 +119,7 @@ function KidneyAnimation({ side = 'left' }) {
         {[...Array(8)].map((_, i) => (
           <div
             key={i}
-            className="absolute w-2 h-2 rounded-full bg-linear-to-r from-[#E9756D] to-[#F6CA97] animate-pulse"
+            className="absolute w-2 h-2 rounded-full bg-gradient-to-r from-[#E9756D] to-[#F6CA97] animate-pulse"
             style={{
               left: `${30 + Math.sin(i * 0.8) * 20}%`,
               top: `${30 + Math.cos(i * 0.8) * 20}%`,
@@ -133,7 +133,7 @@ function KidneyAnimation({ side = 'left' }) {
           {[...Array(6)].map((_, i) => (
             <div
               key={i}
-              className="absolute w-4 h-1 bg-linear-to-r from-[#E9756D] to-[#FF9A8B] rounded-full animate-flow"
+              className="absolute w-4 h-1 bg-gradient-to-r from-[#E9756D] to-[#FF9A8B] rounded-full animate-flow"
               style={{
                 left: `${-20}%`,
                 top: `${15 + i * 15}%`,
@@ -161,7 +161,7 @@ function KidneyAnimation({ side = 'left' }) {
 
       {/* Renal Artery/Vein */}
       <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-        <div className="w-8 h-4 bg-linear-to-r from-[#E9756D] to-[#FF9A8B] rounded-t-full animate-pulse" />
+        <div className="w-8 h-4 bg-gradient-to-r from-[#E9756D] to-[#FF9A8B] rounded-t-full animate-pulse" />
       </div>
     </div>
   );
@@ -174,17 +174,17 @@ function UreterAnimation({ direction = 'down' }) {
       {/* Ureter Tube */}
       <div className="absolute left-1/2 transform -translate-x-1/2 w-6 h-full">
         {/* Outer Wall */}
-        <div className="absolute inset-0 bg-linear-to-b from-[#F6CA97]/20 to-transparent rounded-lg" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#F6CA97]/20 to-transparent rounded-lg" />
 
         {/* Inner Lining */}
-        <div className="absolute inset-1 bg-linear-to-b from-[#E9756D]/10 to-transparent rounded" />
+        <div className="absolute inset-1 bg-gradient-to-b from-[#E9756D]/10 to-transparent rounded" />
 
         {/* Urine Flow */}
         <div className="absolute inset-0 overflow-hidden rounded">
           {[...Array(8)].map((_, i) => (
             <div
               key={i}
-              className="absolute left-1/2 transform -translate-x-1/2 w-3 h-6 bg-linear-to-b from-yellow-400/40 to-amber-300/60 rounded-full animate-urine-flow"
+              className="absolute left-1/2 transform -translate-x-1/2 w-3 h-6 bg-gradient-to-b from-yellow-400/40 to-amber-300/60 rounded-full animate-urine-flow"
               style={{
                 top: `${i * -30}%`,
                 animationDelay: `${i * 0.4}s`
@@ -198,7 +198,7 @@ function UreterAnimation({ direction = 'down' }) {
           {[...Array(3)].map((_, i) => (
             <div
               key={i}
-              className="absolute left-1/2 transform -translate-x-1/2 w-8 h-2 bg-linear-to-r from-[#E9756D]/30 to-transparent rounded-full animate-peristalsis"
+              className="absolute left-1/2 transform -translate-x-1/2 w-8 h-2 bg-gradient-to-r from-[#E9756D]/30 to-transparent rounded-full animate-peristalsis"
               style={{
                 top: `${20 + i * 30}%`,
                 animationDelay: `${i * 0.6}s`
@@ -223,14 +223,14 @@ function BladderAnimation() {
 
         {/* Filling Animation */}
         <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-36 h-0 animate-fill">
-          <div className="absolute inset-0 bg-linear-to-t from-yellow-400/30 to-amber-300/20 rounded-t-full" />
+          <div className="absolute inset-0 bg-gradient-to-t from-yellow-400/30 to-amber-300/20 rounded-t-full" />
         </div>
 
         {/* Detrusor Muscle Fibers */}
         {[...Array(12)].map((_, i) => (
           <div
             key={i}
-            className="absolute w-1 h-8 bg-linear-to-b from-[#E9756D]/20 to-[#F6CA97]/20 rounded-full"
+            className="absolute w-1 h-8 bg-gradient-to-b from-[#E9756D]/20 to-[#F6CA97]/20 rounded-full"
             style={{
               left: `${10 + (i * 7)}%`,
               top: '20%',
@@ -242,10 +242,10 @@ function BladderAnimation() {
 
       {/* Ureter Connections */}
       <div className="absolute -top-8 left-1/4 transform -translate-x-1/2">
-        <div className="w-4 h-8 bg-linear-to-b from-[#E9756D]/20 to-transparent rounded-t-lg" />
+        <div className="w-4 h-8 bg-gradient-to-b from-[#E9756D]/20 to-transparent rounded-t-lg" />
       </div>
       <div className="absolute -top-8 right-1/4 transform translate-x-1/2">
-        <div className="w-4 h-8 bg-linear-to-b from-[#E9756D]/20 to-transparent rounded-t-lg" />
+        <div className="w-4 h-8 bg-gradient-to-b from-[#E9756D]/20 to-transparent rounded-t-lg" />
       </div>
     </div>
   );
@@ -258,21 +258,21 @@ function StentAnimation() {
       {/* Urethra Tube */}
       <div className="relative w-4 h-48 mx-auto">
         {/* Tube Outer */}
-        <div className="absolute inset-0 bg-linear-to-b from-[#F6CA97]/10 to-transparent rounded" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#F6CA97]/10 to-transparent rounded" />
 
         {/* Tube Inner */}
-        <div className="absolute inset-1 bg-linear-to-b from-[#E9756D]/5 to-transparent rounded" />
+        <div className="absolute inset-1 bg-gradient-to-b from-[#E9756D]/5 to-transparent rounded" />
 
         {/* Stent */}
         <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-6 h-40">
           {/* Stent Body */}
-          <div className="absolute inset-0 bg-linear-to-b from-blue-400/30 to-cyan-300/20 rounded-lg" />
+          <div className="absolute inset-0 bg-gradient-to-b from-blue-400/30 to-cyan-300/20 rounded-lg" />
 
           {/* Stent Coils */}
           {[...Array(6)].map((_, i) => (
             <div
               key={i}
-              className="absolute left-1/2 transform -translate-x-1/2 w-8 h-1 bg-linear-to-r from-blue-400/40 to-cyan-300/30 rounded-full"
+              className="absolute left-1/2 transform -translate-x-1/2 w-8 h-1 bg-gradient-to-r from-blue-400/40 to-cyan-300/30 rounded-full"
               style={{
                 top: `${10 + i * 16}%`,
                 transform: `translateX(-50%) rotate(${i % 2 === 0 ? '45deg' : '-45deg'})`
@@ -297,7 +297,7 @@ function StentAnimation() {
             {[...Array(4)].map((_, i) => (
               <div
                 key={i}
-                className="absolute left-1/2 transform -translate-x-1/2 w-2 h-12 bg-linear-to-b from-yellow-300/30 to-amber-200/20 rounded-full animate-stent-flow"
+                className="absolute left-1/2 transform -translate-x-1/2 w-2 h-12 bg-gradient-to-b from-yellow-300/30 to-amber-200/20 rounded-full animate-stent-flow"
                 style={{
                   top: `${i * -40}%`,
                   animationDelay: `${i * 0.5}s`
@@ -312,7 +312,7 @@ function StentAnimation() {
           {[...Array(6)].map((_, i) => (
             <div
               key={i}
-              className="absolute left-1/2 transform -translate-x-1/2 w-2 h-8 bg-linear-to-b from-yellow-400/30 to-amber-300/20 rounded-full animate-urine-flow"
+              className="absolute left-1/2 transform -translate-x-1/2 w-2 h-8 bg-gradient-to-b from-yellow-400/30 to-amber-300/20 rounded-full animate-urine-flow"
               style={{
                 top: `${i * -30}%`,
                 animationDelay: `${i * 0.3}s`
@@ -324,10 +324,10 @@ function StentAnimation() {
 
       {/* Stent Anchors */}
       <div className="absolute -top-2 left-1/2 transform -translate-x-1/2">
-        <div className="w-8 h-4 bg-linear-to-b from-blue-400/30 to-transparent rounded-t-full" />
+        <div className="w-8 h-4 bg-gradient-to-b from-blue-400/30 to-transparent rounded-t-full" />
       </div>
       <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2">
-        <div className="w-8 h-4 bg-linear-to-t from-blue-400/30 to-transparent rounded-b-full" />
+        <div className="w-8 h-4 bg-gradient-to-t from-blue-400/30 to-transparent rounded-b-full" />
       </div>
     </div>
   );
