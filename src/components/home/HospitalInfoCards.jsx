@@ -60,7 +60,7 @@ const HospitalInfoCards = () => {
   return (
     <section className="py-24 px-4 md:px-8 lg:px-16 relative overflow-hidden">
       {/* Animated Background based on mode */}
-      <div className={`absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 transition-all duration-1000`}>
+      <div className={`absolute inset-0 bg-gradient-to-br from-gray-50 to-white transition-all duration-1000`}>
         {/* Animated particles */}
         {[...Array(15)].map((_, i) => (
           <motion.div
