@@ -28,13 +28,13 @@ export default function Hero() {
                     initial={{ opacity: 0, x: -30 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.8 }}
-                    className="w-full md:w-7/12 lg:w-3/5 flex flex-col justify-center"
+                    className="w-full md:max-w-7/12 flex flex-col justify-center"
                 >
                     <header className="
                         relative
                         bg-linear-to-br from-[#FDF5EE]/70 via-white/60 to-[#F9F0E8]/70
                         backdrop-blur-xl
-                        p-8 pt-32 md:pt-0 md:p-10
+                        p-8 pt-32 md:p-10
                         rounded-3xl
                         shadow-2xl
                         mx-auto md:mx-0
