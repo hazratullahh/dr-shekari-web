@@ -5,7 +5,7 @@ import Image from 'next/image';
 
 export default function Hero() {
     return (
-        <section className="relative min-h-screen flex items-center px-4 md:px-8 lg:px-16 mx-auto overflow-hidden">
+        <section className="relative min-h-screen flex items-center px-1 md:px-8 lg:px-16 mx-auto overflow-hidden">
             {/* Background Image with semantic markup */}
             <div
                 className="absolute inset-0"
@@ -15,7 +15,7 @@ export default function Hero() {
                     backgroundPosition: 'center',
                     backgroundRepeat: 'no-repeat',
                 }}
-                aria-hidden="true" 
+                aria-hidden="true"
             />
 
             {/* Dark overlay for better text readability */}
@@ -28,23 +28,23 @@ export default function Hero() {
                     initial={{ opacity: 0, x: -30 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.8 }}
-                    className="w-full max-w-2/4 flex flex-col justify-center"
+                    className="w-full md:max-w-2/4 flex flex-col justify-center"
                 >
                     <header className="
                         relative 
 bg-white/10
 
                         backdrop-blur-xl
-                        p-8 pt-32 md:p-10
+                        p-2 pt-24 md:p-10
                         rounded-3xl
-                        shadow-2xl
-                        mx-auto md:mx-0
+                        shadow-2xl 
                     ">
                         {/* Specialist Badge */}
                         <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-[#E9756D] to-[#F6CA97] rounded-full mb-6">
                             <div className="w-2 h-2 bg-white rounded-full mr-2" aria-hidden="true"></div>
                             <span className="text-white text-sm font-semibold flex items-center gap-2">
-                                Leading Urology
+                                <span className='hidden md:flex'>Leading</span>
+                                 Urology
 
                                 <span
                                     className="inline-block w-1.5 h-1.5 bg-white rounded-full animate-pulse"
@@ -58,7 +58,7 @@ bg-white/10
                                     aria-hidden="true"
                                 />
 
-                                Endourology 
+                                Endourology
                             </span>
                         </div>
 
@@ -146,7 +146,7 @@ bg-white/10
                         <div className="absolute -bottom-4 -left-4 w-20 h-20 border-b-2 border-l-2 border-[#F6CA97]/30 rounded-bl-3xl sr-only" aria-hidden="true"></div> */}
                     </div>
 
-                    <div className="w-52 max-w-full h-52 flex items-end md:hidden pt-6 md:pt-0">
+                    <div className="w-72 max-w-full h-52 flex items-end md:hidden pt-6 md:pt-0">
                         <Image
                             src="/images/hero-doctorss.png"
                             alt="Dr. Nazir Ahmad Shekari - Urology and Andrology Specialist"
