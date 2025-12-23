@@ -147,7 +147,7 @@ export default function Hero() {
 
                     <div className="w-52 max-w-full h-52 flex items-end md:hidden pt-6 md:pt-0">
                         <Image
-                            src="/images/hero-doctors.png"
+                            src="/images/hero-doctorss.png"
                             alt="Dr. Nazir Ahmad Shekari - Urology and Andrology Specialist"
                             width={400}
                             height={500}
