@@ -263,8 +263,8 @@ const Header = () => {
                   }}
                 >
                   <motion.h1
-                    className="text-xs md:text-sm font-black text-gray-900 leading-tight"
-                    animate={isScrolled ? { fontSize: "1.5rem" } : { fontSize: "1.7rem" }}
+                    className="text-sm md:text-lg font-black text-gray-900 leading-tight"
+                    // animate={isScrolled ? { fontSize: "1.5rem" } : { fontSize: "1.7rem" }}
                   >
                     Dr. Nazir Ahmad Shekari
                     <motion.span
