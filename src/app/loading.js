@@ -1,5 +1,5 @@
-// app/loading.js - Medical themed loader with kidney flow animation
 export default function Loading() {
+  
   return (
     <div className="min-h-screen bg-linear-to-br from-[#FDF5EE] via-white to-[#F9F0E8] flex flex-col items-center justify-center px-4">
       {/* Main Loader Container */}

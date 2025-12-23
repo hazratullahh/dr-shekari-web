@@ -130,7 +130,7 @@ export default function Hero() {
                 >
                     <div className="hidden md:flex absolute w-80 max-w-full h-auto" style={{ top: "-9rem" }}>
                         <Image
-                            src="/images/hero-doctors.png"
+                            src="/images/hero-doctorss.png"
                             alt="Dr. Nazir Ahmad Shekari - Urology and Andrology Specialist"
                             width={400}
                             height={500}
