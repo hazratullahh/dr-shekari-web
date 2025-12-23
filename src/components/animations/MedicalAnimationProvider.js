@@ -1,382 +1,525 @@
-// components/animations/MedicalAnimationProvider.js - Specialized medical animations
 'use client';
 
-import { useEffect, useRef, useMemo } from 'react';
-import { motion } from 'framer-motion';
+import { useEffect, useRef, useState } from 'react';
+import * as THREE from 'three';
+import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer';
+import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass';
+import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass';
+import { FilmPass } from 'three/examples/jsm/postprocessing/FilmPass';
 
-const MedicalAnimationProvider = ({ type = 'home' }) => {
+const MedicalHeroBackground = ({
+  children,
+  width = '100%',
+  height = '100%',
+  className = '',
+  showTorso = false,
+  showLeftKidney = true,
+  showRightKidney = true,
+  bloodIntensity = 1.0,
+  animationSpeed = 1.0,
+  overlayDarkness = 0.3,
+  positionVertical = 'center', // 'top', 'center', 'bottom'
+  positionHorizontal = 'center' // 'left', 'center', 'right'
+}) => {
   const canvasRef = useRef(null);
+  const containerRef = useRef(null);
   const animationRef = useRef(null);
-
-  const animations = useMemo(() => {
-    const configs = {
-      home: {
-        kidneyCount: 6,
-        spermCount: 15,
-        endoscopeCount: 3,
-        cellCount: 25,
-        dnaCount: 4,
-      },
-      urology: {
-        kidneyCount: 10,
-        spermCount: 5,
-        endoscopeCount: 2,
-        cellCount: 20,
-        dnaCount: 3,
-      },
-      andrology: {
-        kidneyCount: 3,
-        spermCount: 20,
-        endoscopeCount: 1,
-        cellCount: 15,
-        dnaCount: 5,
-      },
-      endourology: {
-        kidneyCount: 5,
-        spermCount: 3,
-        endoscopeCount: 8,
-        cellCount: 10,
-        dnaCount: 2,
-      },
-    };
-    return configs[type] || configs.home;
-  }, [type]);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    if (!canvasRef.current) return;
+    if (!canvasRef.current || !containerRef.current) return;
 
-    const canvas = canvasRef.current;
-    const ctx = canvas.getContext('2d');
-    let animationId;
-
-    const resizeCanvas = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
-
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
-
-    // Animation Classes
-    class KidneyAnimation {
-      constructor() {
-        this.reset();
-      }
-
-      reset() {
-        this.x = Math.random() * canvas.width;
-        this.y = -50;
-        this.size = 30 + Math.random() * 40;
-        this.speed = 0.5 + Math.random() * 0.8;
-        this.rotation = Math.random() * Math.PI * 2;
-        this.rotationSpeed = (Math.random() - 0.5) * 0.01;
-        this.pulse = 0;
-        this.pulseSpeed = 0.03 + Math.random() * 0.02;
-        this.color = Math.random() > 0.5 ? '#E9756D' : '#F6CA97';
-      }
-
-      update() {
-        this.y += this.speed;
-        this.rotation += this.rotationSpeed;
-        this.pulse += this.pulseSpeed;
-        if (this.y > canvas.height + this.size) this.reset();
-      }
-
-      draw() {
-        ctx.save();
-        ctx.translate(this.x, this.y);
-        ctx.rotate(this.rotation);
-        
-        const pulseFactor = 1 + Math.sin(this.pulse) * 0.1;
-        
-        // Kidney shape
-        ctx.beginPath();
-        ctx.fillStyle = `${this.color}${Math.floor((0.1 + Math.sin(this.pulse) * 0.05) * 255).toString(16).padStart(2, '0')}`;
-        
-        for (let i = 0; i < Math.PI * 2; i += 0.05) {
-          const radius = this.size * pulseFactor * (0.8 + 0.2 * Math.sin(i * 2));
-          const x = Math.cos(i) * radius;
-          const y = Math.sin(i) * radius * 0.6;
-          
-          if (i === 0) ctx.moveTo(x, y);
-          else ctx.lineTo(x, y);
-        }
-        ctx.closePath();
-        ctx.fill();
-
-        // Inner structure (ureter)
-        ctx.beginPath();
-        ctx.strokeStyle = `${this.color}${Math.floor((0.3 + Math.sin(this.pulse) * 0.1) * 255).toString(16).padStart(2, '0')}`;
-        ctx.lineWidth = 2;
-        ctx.moveTo(0, -this.size * 0.3);
-        ctx.lineTo(0, -this.size * 0.8);
-        ctx.stroke();
-
-        ctx.restore();
-      }
+    if (animationRef.current) {
+      cancelAnimationFrame(animationRef.current);
     }
 
-    class SpermAnimation {
-      constructor() {
-        this.reset();
-      }
+    const container = containerRef.current;
+    const width = container.clientWidth;
+    const height = container.clientHeight;
 
-      reset() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.size = 4 + Math.random() * 6;
-        this.speedX = (Math.random() - 0.5) * 2;
-        this.speedY = (Math.random() - 0.5) * 2;
-        this.angle = Math.random() * Math.PI * 2;
-        this.wiggle = 0;
-        this.wiggleSpeed = 0.1 + Math.random() * 0.1;
-        this.tailLength = 10 + Math.random() * 15;
-      }
+    // Scene with transparent background
+    const scene = new THREE.Scene();
+    scene.background = null;
 
-      update() {
-        this.x += this.speedX + Math.sin(this.wiggle) * 0.5;
-        this.y += this.speedY;
-        this.wiggle += this.wiggleSpeed;
-        this.angle = Math.atan2(this.speedY, this.speedX);
+    // Camera setup - positioned to show kidneys at top
+    const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
+    camera.position.set(0, 8, 25); // Increased Y to show kidneys higher
+    camera.lookAt(0, 8, 0); // Look at higher position
 
-        // Boundary check
-        if (this.x > canvas.width + 20) this.x = -20;
-        if (this.x < -20) this.x = canvas.width + 20;
-        if (this.y > canvas.height + 20) this.y = -20;
-        if (this.y < -20) this.y = canvas.height + 20;
-      }
+    // Renderer with transparency
+    const renderer = new THREE.WebGLRenderer({
+      canvas: canvasRef.current,
+      alpha: true,
+      antialias: true,
+      powerPreference: "high-performance"
+    });
+    renderer.setSize(width, height);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.2;
 
-      draw() {
-        ctx.save();
-        ctx.translate(this.x, this.y);
-        ctx.rotate(this.angle);
+    // Post-processing
+    const composer = new EffectComposer(renderer);
+    const renderPass = new RenderPass(scene, camera);
+    composer.addPass(renderPass);
 
-        // Head
-        ctx.beginPath();
-        ctx.fillStyle = 'rgba(233, 117, 109, 0.8)';
-        ctx.arc(0, 0, this.size, 0, Math.PI * 2);
-        ctx.fill();
+    const bloomPass = new UnrealBloomPass(
+      new THREE.Vector2(width, height),
+      0.8 * bloodIntensity,
+      0.6,
+      0.9
+    );
+    composer.addPass(bloomPass);
 
-        // Tail
-        ctx.beginPath();
-        ctx.strokeStyle = 'rgba(246, 202, 151, 0.6)';
-        ctx.lineWidth = 1;
-        ctx.lineCap = 'round';
-        
-        let prevX = 0;
-        let prevY = 0;
-        
-        for (let i = 0; i < this.tailLength; i++) {
-          const segmentX = -i * 2;
-          const segmentY = Math.sin(this.wiggle + i * 0.3) * 3;
-          
-          if (i === 0) {
-            ctx.moveTo(segmentX, segmentY);
-          } else {
-            ctx.lineTo(segmentX, segmentY);
-          }
-          
-          prevX = segmentX;
-          prevY = segmentY;
-        }
-        ctx.stroke();
+    const filmPass = new FilmPass(0.08, 0.2, 2048, false);
+    composer.addPass(filmPass);
 
-        ctx.restore();
-      }
-    }
+    // Lighting
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+    scene.add(ambientLight);
 
-    class EndoscopeAnimation {
-      constructor() {
-        this.reset();
-      }
+    const keyLight = new THREE.DirectionalLight(0xffeedd, 1.2);
+    keyLight.position.set(10, 20, 10);
+    keyLight.castShadow = true;
+    scene.add(keyLight);
 
-      reset() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.length = 60 + Math.random() * 90;
-        this.angle = Math.random() * Math.PI * 2;
-        this.speed = 0.01 + Math.random() * 0.02;
-        this.segments = 6;
-        this.progress = 0;
-      }
+    const rimLight = new THREE.DirectionalLight(0x4466ff, 0.5);
+    rimLight.position.set(-10, 15, -10);
+    scene.add(rimLight);
 
-      update() {
-        this.angle += this.speed;
-        this.progress += 0.02;
-        
-        // Follow a circular path
-        this.x = canvas.width / 2 + Math.cos(this.angle) * (canvas.width / 4);
-        this.y = canvas.height / 2 + Math.sin(this.angle) * (canvas.height / 4);
-      }
+    const bloodLight = new THREE.PointLight(0xff0000, 2.0 * bloodIntensity, 30);
+    bloodLight.position.set(5, 8, 5);
+    scene.add(bloodLight);
 
-      draw() {
-        ctx.save();
-        ctx.translate(this.x, this.y);
-        ctx.rotate(this.angle);
+    // Create kidney at higher position
+    const createKidney = (side = 'right') => {
+      const kidneyGroup = new THREE.Group();
+      const sideMultiplier = side === 'right' ? 1 : -1;
+      const verticalOffset = 11; // Position kidneys higher
 
-        // Main tube
-        ctx.beginPath();
-        ctx.strokeStyle = 'rgba(233, 117, 109, 0.4)';
-        ctx.lineWidth = 3;
-        ctx.lineCap = 'round';
-        ctx.moveTo(0, 0);
-        ctx.lineTo(this.length, 0);
-        ctx.stroke();
-
-        // Segments
-        ctx.strokeStyle = 'rgba(246, 202, 151, 0.6)';
-        ctx.lineWidth = 1.5;
-        for (let i = 0; i < this.segments; i++) {
-          const pos = (i / this.segments) * this.length;
-          ctx.beginPath();
-          ctx.moveTo(pos, -2);
-          ctx.lineTo(pos, 2);
-          ctx.stroke();
-        }
-
-        // Camera tip with light
-        ctx.fillStyle = '#E9756D';
-        ctx.beginPath();
-        ctx.arc(this.length, 0, 5, 0, Math.PI * 2);
-        ctx.fill();
-
-        // Light glow
-        ctx.beginPath();
-        ctx.fillStyle = `rgba(246, 202, 151, ${0.3 + Math.sin(this.progress) * 0.2})`;
-        ctx.arc(this.length, 0, 8, 0, Math.PI * 2);
-        ctx.fill();
-
-        ctx.restore();
-      }
-    }
-
-    class DNAHelix {
-      constructor() {
-        this.reset();
-      }
-
-      reset() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.height = 80 + Math.random() * 120;
-        this.width = 20;
-        this.speed = 0.02 + Math.random() * 0.03;
-        this.rotation = 0;
-        this.basePairs = 8;
-      }
-
-      update() {
-        this.rotation += this.speed;
-      }
-
-      draw() {
-        ctx.save();
-        ctx.translate(this.x, this.y);
-        ctx.rotate(this.rotation);
-
-        // Draw DNA double helix
-        ctx.strokeStyle = 'rgba(233, 117, 109, 0.2)';
-        ctx.lineWidth = 1;
-
-        // Backbone strands
-        for (let strand = 0; strand < 2; strand++) {
-          ctx.beginPath();
-          const offset = strand * Math.PI;
-          
-          for (let i = 0; i < this.basePairs; i++) {
-            const y = (i / (this.basePairs - 1)) * this.height - this.height / 2;
-            const x = Math.cos((i * 2 + this.rotation * 10 + offset) * 2) * this.width;
-            
-            if (i === 0) ctx.moveTo(x, y);
-            else ctx.lineTo(x, y);
-          }
-          ctx.stroke();
-        }
-
-        // Base pairs (rungs)
-        for (let i = 0; i < this.basePairs; i++) {
-          const y = (i / (this.basePairs - 1)) * this.height - this.height / 2;
-          const x1 = Math.cos((i * 2 + this.rotation * 10) * 2) * this.width;
-          const x2 = Math.cos((i * 2 + this.rotation * 10 + Math.PI) * 2) * this.width;
-          
-          ctx.beginPath();
-          ctx.strokeStyle = `rgba(246, 202, 151, ${0.3 + Math.sin(i + this.rotation) * 0.2})`;
-          ctx.lineWidth = 1.5;
-          ctx.moveTo(x1, y);
-          ctx.lineTo(x2, y);
-          ctx.stroke();
-        }
-
-        ctx.restore();
-      }
-    }
-
-    // Create animation instances
-    const kidneyAnimations = Array.from({ length: animations.kidneyCount }, () => new KidneyAnimation());
-    const spermAnimations = Array.from({ length: animations.spermCount }, () => new SpermAnimation());
-    const endoscopeAnimations = Array.from({ length: animations.endoscopeCount }, () => new EndoscopeAnimation());
-    const dnaAnimations = Array.from({ length: animations.dnaCount }, () => new DNAHelix());
-
-    const allAnimations = [
-      ...kidneyAnimations,
-      ...spermAnimations,
-      ...endoscopeAnimations,
-      ...dnaAnimations,
-    ];
-
-    const animate = () => {
-      // Clear with subtle gradient
-      const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-      gradient.addColorStop(0, 'rgba(253, 245, 238, 0.02)');
-      gradient.addColorStop(1, 'rgba(249, 240, 232, 0.02)');
-      ctx.fillStyle = gradient;
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      // Draw connecting network (micro-level interactions)
-      ctx.strokeStyle = 'rgba(233, 117, 109, 0.02)';
-      ctx.lineWidth = 0.3;
+      // Main kidney shape
+      const geometry = new THREE.SphereGeometry(1.5, 64, 64);
+      geometry.scale(1.2, 1.8, 0.8);
       
-      for (let i = 0; i < allAnimations.length; i++) {
-        for (let j = i + 1; j < allAnimations.length; j++) {
-          const a1 = allAnimations[i];
-          const a2 = allAnimations[j];
-          const dx = a1.x - a2.x;
-          const dy = a1.y - a2.y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-          
-          if (distance < 100) {
-            ctx.beginPath();
-            ctx.moveTo(a1.x, a1.y);
-            ctx.lineTo(a2.x, a2.y);
-            ctx.stroke();
-          }
+      const positions = geometry.attributes.position;
+      for (let i = 0; i < positions.count; i++) {
+        const x = positions.getX(i) / 1.2;
+        const y = positions.getY(i) / 1.8;
+        const z = positions.getZ(i) / 0.8;
+
+        if (x > 0.4 && Math.abs(y) < 0.8) {
+          const indent = 0.6 * Math.exp(-(y * y) / 0.4);
+          positions.setX(i, (x - indent) * 1.2);
+        }
+        
+        if (x < -0.4) {
+          const bulge = 0.25 * Math.exp(-(y * y) / 0.6);
+          positions.setX(i, (x - bulge) * 1.2);
         }
       }
+      geometry.computeVertexNormals();
 
-      // Update and draw all animations
-      allAnimations.forEach(anim => {
-        anim.update();
-        anim.draw();
+      const material = new THREE.MeshPhysicalMaterial({
+        color: 0xff88aa,
+        transmission: 0.9,
+        roughness: 0.15,
+        metalness: 0,
+        ior: 1.5,
+        thickness: 1.0,
+        transparent: true,
+        opacity: 0.7,
       });
 
-      animationId = requestAnimationFrame(animate);
+      const kidney = new THREE.Mesh(geometry, material);
+      kidney.position.set(sideMultiplier * 6, verticalOffset, 0);
+      kidney.castShadow = true;
+      kidneyGroup.add(kidney);
+
+      return kidneyGroup;
     };
 
+    // Create blood vessels at higher position
+    const createBloodVessels = (side = 'right') => {
+      const vesselsGroup = new THREE.Group();
+      const sideMultiplier = side === 'right' ? 1 : -1;
+      const verticalOffset = 11; // Match kidney vertical position
+
+      // ARTERY
+      const arteryCurve = new THREE.CatmullRomCurve3([
+        new THREE.Vector3(sideMultiplier * -10, verticalOffset + 4, 0.5),
+        new THREE.Vector3(sideMultiplier * -8, verticalOffset + 2, 0),
+        new THREE.Vector3(sideMultiplier * -6, verticalOffset + 1, -0.3),
+        new THREE.Vector3(sideMultiplier * -4, verticalOffset, 0),
+      ]);
+
+      const arteryGeometry = new THREE.TubeGeometry(arteryCurve, 32, 0.25, 12, false);
+      const arteryMaterial = new THREE.MeshPhysicalMaterial({
+        color: 0xff0000,
+        emissive: 0xff4444,
+        emissiveIntensity: 1.5 * bloodIntensity,
+        roughness: 0.1,
+        metalness: 0.2,
+        transparent: true,
+        opacity: 0.95 * bloodIntensity,
+      });
+
+      const artery = new THREE.Mesh(arteryGeometry, arteryMaterial);
+      vesselsGroup.add(artery);
+
+      // VEIN
+      const veinCurve = new THREE.CatmullRomCurve3([
+        new THREE.Vector3(sideMultiplier * -4, verticalOffset, 0),
+        new THREE.Vector3(sideMultiplier * -6, verticalOffset - 1, 0.3),
+        new THREE.Vector3(sideMultiplier * -8, verticalOffset - 2, 0),
+        new THREE.Vector3(sideMultiplier * -10, verticalOffset - 4, -0.5),
+      ]);
+
+      const veinGeometry = new THREE.TubeGeometry(veinCurve, 32, 0.3, 12, false);
+      const veinMaterial = new THREE.MeshPhysicalMaterial({
+        color: 0x1e88e5,
+        emissive: 0x1565c0,
+        emissiveIntensity: 1.2 * bloodIntensity,
+        roughness: 0.1,
+        metalness: 0.2,
+        transparent: true,
+        opacity: 0.9 * bloodIntensity,
+      });
+
+      const vein = new THREE.Mesh(veinGeometry, veinMaterial);
+      vesselsGroup.add(vein);
+
+      // Blood particles
+      const createBloodParticles = (count) => {
+        const geometry = new THREE.BufferGeometry();
+        const positions = new Float32Array(count * 3);
+        const colors = new Float32Array(count * 3);
+
+        for (let i = 0; i < count; i++) {
+          const t = Math.random();
+          const curve = Math.random() > 0.3 ? arteryCurve : veinCurve;
+          const point = curve.getPoint(t);
+          const offset = new THREE.Vector3(
+            (Math.random() - 0.5) * 0.8,
+            (Math.random() - 0.5) * 0.8,
+            (Math.random() - 0.5) * 0.8
+          );
+
+          positions[i * 3] = point.x + offset.x;
+          positions[i * 3 + 1] = point.y + offset.y;
+          positions[i * 3 + 2] = point.z + offset.z;
+
+          colors[i * 3] = 0.9 + Math.random() * 0.1;
+          colors[i * 3 + 1] = Math.random() * 0.2;
+          colors[i * 3 + 2] = Math.random() * 0.2;
+        }
+
+        geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+        geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+
+        const material = new THREE.PointsMaterial({
+          size: 0.15 * bloodIntensity,
+          vertexColors: true,
+          transparent: true,
+          opacity: 0.9 * bloodIntensity,
+          sizeAttenuation: true,
+        });
+
+        const particles = new THREE.Points(geometry, material);
+        particles.userData = { flowSpeed: 0.03 };
+        return particles;
+      };
+
+      vesselsGroup.add(createBloodParticles(200));
+
+      return vesselsGroup;
+    };
+
+    // Create medical stent at higher position
+    const createStent = (side = 'right') => {
+      const stentGroup = new THREE.Group();
+      const sideMultiplier = side === 'right' ? 1 : -1;
+      const verticalOffset = 11;
+
+      const ureterCurve = new THREE.CatmullRomCurve3([
+        new THREE.Vector3(sideMultiplier * 4, verticalOffset, 0),
+        new THREE.Vector3(sideMultiplier * 2, verticalOffset - 3, 0.3),
+        new THREE.Vector3(sideMultiplier * 1, verticalOffset - 6, 0),
+        new THREE.Vector3(0, verticalOffset - 9, -0.2),
+      ]);
+
+      // Stent coils
+      for (let i = 0; i < 30; i++) {
+        const t = i / 30;
+        const point = ureterCurve.getPoint(t);
+        const tangent = ureterCurve.getTangent(t);
+
+        const coilGeometry = new THREE.TorusGeometry(0.18, 0.03, 8, 16);
+        const coilMaterial = new THREE.MeshPhysicalMaterial({
+          color: 0x29b6f6,
+          metalness: 1.0,
+          roughness: 0.05,
+          emissive: 0x0277bd,
+          emissiveIntensity: 0.6,
+        });
+
+        const coil = new THREE.Mesh(coilGeometry, coilMaterial);
+        
+        const offset = new THREE.Vector3(
+          Math.cos(i * 0.8) * 0.06,
+          Math.sin(i * 0.8) * 0.06,
+          0
+        );
+
+        coil.position.copy(point).add(offset);
+        coil.lookAt(point.clone().add(tangent));
+        coil.rotateX(Math.PI / 2);
+        coil.rotateZ(i * 0.5);
+
+        coil.userData = { rotationSpeed: 0.002 };
+        stentGroup.add(coil);
+      }
+
+      return stentGroup;
+    };
+
+    // Create torso at higher position
+    const createTorso = () => {
+      const torsoGroup = new THREE.Group();
+
+      const geometry = new THREE.CylinderGeometry(3.5, 3, 12, 32);
+      const material = new THREE.MeshPhysicalMaterial({
+        color: 0xffffff,
+        transmission: 0.98,
+        roughness: 0.05,
+        ior: 1.5,
+        transparent: true,
+        opacity: 0.05,
+      });
+
+      const torso = new THREE.Mesh(geometry, material);
+      torso.position.y = 11; // Position torso higher
+      torsoGroup.add(torso);
+
+      return torsoGroup;
+    };
+
+    // Create floating blood cells at higher position
+    const createBloodCells = () => {
+      const cellsGroup = new THREE.Group();
+      const cellCount = 150;
+      const verticalOffset = 11;
+      
+      for (let i = 0; i < cellCount; i++) {
+        const size = 0.04 + Math.random() * 0.06;
+        const geometry = new THREE.SphereGeometry(size, 8, 8);
+        const material = new THREE.MeshBasicMaterial({
+          color: new THREE.Color().setHSL(0, 0.9, 0.6),
+          transparent: true,
+          opacity: 0.5 * bloodIntensity,
+        });
+        
+        const cell = new THREE.Mesh(geometry, material);
+        
+        cell.position.set(
+          (Math.random() - 0.5) * 25,
+          verticalOffset + (Math.random() - 0.5) * 10,
+          (Math.random() - 0.5) * 8
+        );
+        
+        cell.userData = { speed: 0.001 + Math.random() * 0.002 };
+        cellsGroup.add(cell);
+      }
+      
+      return cellsGroup;
+    };
+
+    // Build scene
+    const bloodCells = createBloodCells();
+    scene.add(bloodCells);
+
+    if (showTorso) {
+      const torso = createTorso();
+      scene.add(torso);
+    }
+
+    if (showRightKidney) {
+      const rightKidney = createKidney('right');
+      const rightVessels = createBloodVessels('right');
+      const rightStent = createStent('right');
+      scene.add(rightKidney);
+      scene.add(rightVessels);
+      scene.add(rightStent);
+    }
+
+    if (showLeftKidney) {
+      const leftKidney = createKidney('left');
+      const leftVessels = createBloodVessels('left');
+      const leftStent = createStent('left');
+      scene.add(leftKidney);
+      scene.add(leftVessels);
+      scene.add(leftStent);
+    }
+
+    // Create main rotation group for circular motion
+    const rotationGroup = new THREE.Group();
+    scene.add(rotationGroup);
+
+    // Add all visible objects to rotation group
+    scene.children.forEach(child => {
+      if (child.type !== 'Group' || child !== rotationGroup) {
+        // rotationGroup.add(child.clone());
+      }
+    });
+
+    // Animation
+    const clock = new THREE.Clock();
+
+    const animate = () => {
+      const delta = clock.getDelta();
+      const time = clock.getElapsedTime() * animationSpeed;
+
+      // SLOW CIRCULAR ROTATION - Everything rotates together
+      rotationGroup.rotation.y += 0.003 * animationSpeed;
+      rotationGroup.rotation.x += 0.001 * animationSpeed;
+
+      // Animate individual elements
+      scene.traverse((object) => {
+        if (object.userData) {
+          // Blood particles flow
+          if (object.userData.flowSpeed) {
+            const positions = object.geometry?.attributes?.position?.array;
+            if (positions) {
+              for (let i = 0; i < positions.length; i += 3) {
+                positions[i + 1] -= object.userData.flowSpeed;
+                if (positions[i + 1] < 2) positions[i + 1] = 12;
+              }
+              object.geometry.attributes.position.needsUpdate = true;
+            }
+          }
+
+          // Stent coil rotation
+          if (object.userData.rotationSpeed) {
+            object.rotation.z += object.userData.rotationSpeed;
+          }
+
+          // Floating blood cells
+          if (object.userData.speed) {
+            object.position.x += object.userData.speed;
+            object.rotation.x += object.userData.speed * 0.5;
+            object.rotation.y += object.userData.speed * 0.3;
+            
+            if (object.position.x > 15) object.position.x = -15;
+          }
+        }
+
+        // Pulsing glow for arteries/veins
+        if (object.material && object.material.emissive) {
+          if (object.material.color.getHex() === 0xff0000) {
+            object.material.emissiveIntensity = (0.8 + Math.sin(time * 4) * 0.2) * bloodIntensity;
+          } else if (object.material.color.getHex() === 0x1e88e5) {
+            object.material.emissiveIntensity = (0.6 + Math.cos(time * 3.5) * 0.2) * bloodIntensity;
+          }
+        }
+      });
+
+      // Animate point light
+      bloodLight.intensity = 2.0 * bloodIntensity * (0.7 + Math.sin(time * 2) * 0.3);
+
+      // Fixed camera looking at the elevated position
+      camera.lookAt(0, 8, 0);
+
+      // Render
+      composer.render();
+      animationRef.current = requestAnimationFrame(animate);
+    };
+
+    // Handle resize
+    const handleResize = () => {
+      if (!containerRef.current) return;
+      
+      const newWidth = containerRef.current.clientWidth;
+      const newHeight = containerRef.current.clientHeight;
+      
+      camera.aspect = newWidth / newHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(newWidth, newHeight);
+      composer.setSize(newWidth, newHeight);
+    };
+
+    window.addEventListener('resize', handleResize);
+    
+    setIsLoaded(true);
     animate();
 
     return () => {
-      window.removeEventListener('resize', resizeCanvas);
-      cancelAnimationFrame(animationId);
+      window.removeEventListener('resize', handleResize);
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+      renderer.dispose();
     };
-  }, [animations]);
+  }, [showTorso, showLeftKidney, showRightKidney, bloodIntensity, animationSpeed]);
 
   return (
-    <canvas
-      ref={canvasRef}
-      className="fixed inset-0 -z-10 pointer-events-none"
-      style={{ opacity: type === 'home' ? 1 : 0.5 }}
-    />
+    <div
+      ref={containerRef}
+      className={`relative overflow-hidden ${className}`}
+      style={{
+        width,
+        height,
+        minHeight: '600px',
+      }}
+    >
+      {/* Gradient background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[#FDF5EE] via-white to-[#F9F0E8]" />
+      
+      {/* Canvas Background */}
+      <canvas
+        ref={canvasRef}
+        className="absolute inset-0 w-full h-full"
+      />
+
+      {/* Loading State */}
+      {!isLoaded && (
+        <div className="absolute inset-0 z-20 flex items-center justify-center bg-black/10">
+          <div className="text-center">
+            <div className="w-16 h-16 border-4 border-t-transparent border-red-500 rounded-full animate-spin mx-auto mb-4"></div>
+            <p className="text-gray-700 font-light">
+              Loading Medical Visualization...
+            </p>
+          </div>
+        </div>
+      )}
+
+      {/* 🎨 Configurable Dark Overlay */}
+      <div 
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundColor: `rgba(0, 0, 0, ${"s"})`,
+          // backgroundImage: `linear-gradient(to bottom, 
+          //   rgba(0, 0, 0, ${overlayDarkness * 0.8}), 
+          //   rgba(0, 0, 0, ${overlayDarkness * 0.4}), 
+          //   rgba(0, 0, 0, ${overlayDarkness * 0.8})
+          // )`
+        }}
+      />
+
+      {/* 🧩 Children / Content Layer */}
+      <div className="relative h-full min-h-screen">
+        {children}
+      </div>
+
+      {/* ✨ Accent Gradient Blobs */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-red-500/5 to-transparent rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-tr from-blue-500/5 to-transparent rounded-full blur-3xl"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-r from-cyan-500/3 to-pink-500/3 rounded-full blur-3xl"></div>
+      </div>
+    </div>
   );
 };
 
-export default MedicalAnimationProvider;
+export default MedicalHeroBackground;

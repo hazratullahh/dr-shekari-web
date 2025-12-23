@@ -1,12 +1,10 @@
-// app/about/page.js - Main about page with SEO
 import { Suspense } from 'react';
 import AboutHero from '@/components/about/AboutHero';
 import VisionMission from '@/components/about/VisionMission';
 import History from '@/components/about/History';
 import Philosophy from '@/components/about/Philosophy';
-import Facilities from '@/components/about/Facilities';
 import Equipment from '@/components/about/Equipment';
-import Staff from '@/components/about/Staff';
+// import Staff from '@/components/about/Staff';
 import LoadingFallback from '@/components/ui/LoadingFallback';
 
 export const metadata = {
@@ -62,16 +60,13 @@ export default function AboutPage() {
       </Suspense>
       <Suspense fallback={<LoadingFallback type="section" />}>
         <Philosophy />
-      </Suspense>
-      <Suspense fallback={<LoadingFallback type="section" />}>
-        <Facilities />
-      </Suspense>
+      </Suspense> 
       <Suspense fallback={<LoadingFallback type="section" />}>
         <Equipment />
       </Suspense>
-      <Suspense fallback={<LoadingFallback type="section" />}>
+      {/* <Suspense fallback={<LoadingFallback type="section" />}>
         <Staff />
-      </Suspense>
+      </Suspense> */}
       
       {/* Schema.org markup for SEO */}
       <script

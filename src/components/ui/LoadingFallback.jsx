@@ -1,4 +1,3 @@
-// components/ui/LoadingFallback.js - Reusable loading skeletons
 const LoadingFallback = ({ type = 'section' }) => {
   const loaders = {
     'full-page': (

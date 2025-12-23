@@ -1,9 +1,7 @@
-// app/team/page.js - Team page with international doctors
 import { Suspense } from 'react';
 import TeamHero from '@/components/team/TeamHero';
 import InternationalTeam from '@/components/team/InternationalTeam';
 import MedicalDirectors from '@/components/team/MedicalDirectors';
-import SpecialtiesGrid from '@/components/team/SpecialtiesGrid';
 import ConsultationCTA from '@/components/team/ConsultationCTA';
 import LoadingFallback from '@/components/ui/LoadingFallback';
 
@@ -57,9 +55,6 @@ export default function TeamPage() {
       </Suspense>
       <Suspense fallback={<LoadingFallback type="section" />}>
         <InternationalTeam />
-      </Suspense>
-      <Suspense fallback={<LoadingFallback type="section" />}>
-        <SpecialtiesGrid />
       </Suspense>
       <Suspense fallback={<LoadingFallback type="section" />}>
         <ConsultationCTA />

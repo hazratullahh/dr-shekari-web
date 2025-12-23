@@ -13,7 +13,7 @@ const Staff = () => {
       specialty: "Urology, Andrology & Endourology",
       experience: "22+ Years",
       education: "MD, PhD in Urology, Fellowship in Endourology",
-      image: "/images/staff/dr-shekari.jpg",
+      image: "/images/dr-shekari.jpg",
       achievements: [
         "Pioneer of Endourology in Afghanistan",
         "Published 15+ Research Papers",
@@ -27,7 +27,7 @@ const Staff = () => {
       specialty: "Urology & Andrology",
       experience: "15+ Years",
       education: "MD, MSc in Urology",
-      image: "/images/staff/dr-wayar.jpg",
+      image: "/images/dr-wayar.jpg",
       achievements: [
         "Expert in Robotic Surgery",
         "University Professor",
@@ -79,7 +79,7 @@ const Staff = () => {
             <Users className="text-[#E9756D] mr-3" size={24} />
             <span className="text-[#E9756D] font-semibold text-lg">Medical Experts</span>
           </div>
-          
+
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
             Meet Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#E9756D] to-[#F6CA97]">Medical Team</span>
           </h2>
@@ -128,7 +128,7 @@ const Staff = () => {
                           <Star size={14} className="text-[#E9756D] mr-2" />
                           <span className="text-sm font-medium text-[#E9756D]">{member.experience} Experience</span>
                         </div>
-                        
+
                         <h3 className="text-2xl font-bold text-gray-900 mb-2">
                           {member.name}
                         </h3>
@@ -191,7 +191,7 @@ const Staff = () => {
                 Ready to Consult with Our Experts?
               </h3>
               <p className="text-gray-700 mb-8">
-                Schedule a consultation with our specialist doctors and take the first step 
+                Schedule a consultation with our specialist doctors and take the first step
                 towards better urological health.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">

@@ -1,4 +1,3 @@
-// components/about/AboutHero.js - Stunning hero section
 'use client';
 
 import { motion } from 'framer-motion';

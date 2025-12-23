@@ -10,7 +10,7 @@ const Equipment = () => {
     {
       name: "Robotic Surgery System",
       description: "Advanced robotic-assisted surgical system for precision minimally invasive procedures.",
-      image: "/images/equipment/robotic-surgery.jpg",
+      image: "/images/about/robotic-surgery.jpg",
       icon: <Cpu className="text-[#E9756D]" size={28} />,
       benefits: ["Precision Surgery", "Minimal Scarring", "Quick Recovery"],
       specs: ["3D HD Vision", "7-DOF Arms", "Tremor Filtering"]
@@ -18,7 +18,7 @@ const Equipment = () => {
     {
       name: "Laser Treatment Unit",
       description: "State-of-the-art laser systems for kidney stones and prostate treatments.",
-      image: "/images/equipment/laser-unit.jpg",
+      image: "/images/about/laser-unit.jpg",
       icon: <Zap className="text-[#F6CA97]" size={28} />,
       benefits: ["Pain-Free", "No Incisions", "Outpatient Procedure"],
       specs: ["Holmium Laser", "Dual Wavelength", "Real-time Monitoring"]
@@ -26,7 +26,7 @@ const Equipment = () => {
     {
       name: "Digital Endoscopy Suite",
       description: "High-definition endoscopic systems for diagnostic and therapeutic procedures.",
-      image: "/images/equipment/endoscopy.jpg",
+      image: "/images/about/endoscopy.jpg",
       icon: <Brain className="text-[#E9756D]" size={28} />,
       benefits: ["High Resolution", "Minimal Discomfort", "Accurate Diagnosis"],
       specs: ["4K Resolution", "Narrow Band Imaging", "Digital Recording"]
@@ -34,7 +34,7 @@ const Equipment = () => {
     {
       name: "Ultrasound Systems",
       description: "Advanced ultrasound with Doppler for comprehensive urological imaging.",
-      image: "/images/equipment/ultrasound.jpg",
+      image: "/images/about/ultrasound.jpg",
       icon: <Settings className="text-[#F6CA97]" size={28} />,
       benefits: ["Real-time Imaging", "No Radiation", "Immediate Results"],
       specs: ["3D/4D Imaging", "Doppler Function", "Portable Units"]

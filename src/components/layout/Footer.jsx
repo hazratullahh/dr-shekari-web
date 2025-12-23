@@ -1,4 +1,3 @@
-// components/layout/Footer.js - Beautiful professional footer
 'use client';
 
 import { useState } from 'react';
@@ -34,9 +33,9 @@ const Footer = () => {
     clinicTagline: "Accurate diagnosis · Effective treatment",
     address: "Afghanistan, Herat, Chahar-e-rahi- Badmorghan, Jami Hospital",
     phone1: "+93792453030",
-    phone2: "0704453030",
-    email: "info@drshekari.com",
-    website: "www.hospital.jami.edu.af",
+    phone2: "+93704453030",
+    email: "contact@drshekari.com",
+    website: "www.dr-shekari.com",
     hours: "Mon - Sat: 8:00 AM - 8:00 PM | Sun: Emergency Only"
   };
 

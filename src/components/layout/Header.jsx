@@ -50,11 +50,11 @@ const Header = () => {
       href: '/about',
       icon: '👨‍⚕️'
     },
-    {
-      label: 'Services',
-      href: '/services',
-      icon: '🩺'
-    },
+    // {
+    //   label: 'Services',
+    //   href: '/services',
+    //   icon: '🩺'
+    // },
     {
       label: 'Team',
       href: '/team',

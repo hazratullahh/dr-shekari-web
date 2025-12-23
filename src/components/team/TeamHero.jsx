@@ -1,4 +1,3 @@
-// components/team/TeamHero.js
 'use client';
 
 import { motion } from 'framer-motion';

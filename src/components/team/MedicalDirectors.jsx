@@ -15,7 +15,7 @@ const MedicalDirectors = () => {
       experience: "22+ Years",
       specialty: "Urology, Andrology & Endourology",
       education: "MD, PhD in Urology - Fellowship in Endourology (USA)",
-      image: "/images/team/dr-shekari-director.jpg",
+      image: "/images/dr-shekari.jpg",
       achievements: [
         "Pioneer of Modern Urology in Afghanistan",
         "Trained at Johns Hopkins Hospital, USA",
@@ -32,12 +32,13 @@ const MedicalDirectors = () => {
       experience: "15+ Years",
       specialty: "Urology & Academic Medicine",
       education: "MD, MSc in Urology - Teaching Fellowship",
-      image: "/images/team/dr-wayar-director.jpg",
+      image: "/images/dr-wayar.jpg",
       achievements: [
         "University Professor of Urology",
-        "Medical Education Specialist",
+        "Medical Education Specialist in AFG",
         "Robotic Surgery Certified",
-        "International Conference Speaker"
+        "International Conference Speaker",
+        "Peer-Reviewed Research Author"
       ],
       availability: "Mon-Fri: 10AM-6PM"
     }
@@ -92,7 +93,7 @@ const MedicalDirectors = () => {
                           </div>
                         </div>
                       </div>
-                      
+
                       {/* Quick Stats */}
                       <div className="mt-4 grid grid-cols-2 gap-3">
                         <div className="text-center p-3 bg-gradient-to-r from-[#E9756D]/5 to-[#F6CA97]/5 rounded-xl">
@@ -121,7 +122,7 @@ const MedicalDirectors = () => {
                             ))}
                           </div>
                         </div>
-                        
+
                         <h3 className="text-2xl font-bold text-gray-900 mb-2">
                           {director.name}
                         </h3>
@@ -162,22 +163,24 @@ const MedicalDirectors = () => {
                       </div>
 
                       {/* Availability & Contact */}
-                      <div className="flex items-center justify-between p-4 bg-white rounded-xl border border-gray-100">
+                      <div className="w-full fle items-center justify-center p-4 bg-white rounded-xl border border-gray-100">
                         <div className="flex items-center">
                           <Calendar size={18} className="text-[#E9756D] mr-2" />
                           <div>
                             <span className="font-medium text-gray-900">Available: </span>
-                            <span className="text-gray-700">{director.availability}</span>
+                            <p className="text-gray-700">{director.availability}</p>
                           </div>
                         </div>
-                        <motion.button
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.95 }}
-                          className="px-4 py-2 bg-gradient-to-r from-[#E9756D] to-[#F6CA97] text-white text-sm font-medium rounded-lg flex items-center"
-                        >
-                          <MessageSquare size={16} className="mr-2" />
-                          Consult Now
-                        </motion.button>
+                        <div className='w-full flex items-center justify-center'>
+                          <motion.button
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            className="w-full text-center m-auto mt-2 px-4 py-2 cursor-pointer bg-gradient-to-r from-[#E9756D] to-[#F6CA97] text-white text-sm font-medium rounded-lg flex items-center"
+                          >
+                            <MessageSquare size={16} className="mr-2" />
+                            Consult Now
+                          </motion.button>
+                        </div>
                       </div>
                     </div>
                   </div>

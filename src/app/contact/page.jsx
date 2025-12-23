@@ -1,10 +1,9 @@
-// app/contact/page.js - Contact page with best form
 import { Suspense } from 'react';
 import ContactHero from '@/components/contact/ContactHero';
 import ContactForm from '@/components/contact/ContactForm';
 import ContactInfo from '@/components/contact/ContactInfo';
 import MapSection from '@/components/contact/MapSection';
-import EmergencySection from '@/components/contact/EmergencySection';
+// import EmergencySection from '@/components/contact/EmergencySection';
 import FAQSection from '@/components/contact/FAQSection';
 import LoadingFallback from '@/components/ui/LoadingFallback';
 
@@ -54,26 +53,21 @@ export default function ContactPage() {
       </Suspense>
       <Suspense fallback={<LoadingFallback type="section" />}>
         <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-16 py-20">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-            <div className="lg:col-span-2">
-              <ContactForm />
-            </div>
-            <div>
-              <ContactInfo />
-            </div>
+          <div className="grid grid-cols-1 lg:grid-cols-1 gap-1">
+            <ContactForm />
           </div>
         </div>
       </Suspense>
       <Suspense fallback={<LoadingFallback type="section" />}>
         <MapSection />
       </Suspense>
-      <Suspense fallback={<LoadingFallback type="section" />}>
+      {/* <Suspense fallback={<LoadingFallback type="section" />}>
         <EmergencySection />
-      </Suspense>
+      </Suspense> */}
       <Suspense fallback={<LoadingFallback type="section" />}>
         <FAQSection />
       </Suspense>
-      
+
       {/* Schema.org markup for SEO */}
       <script
         type="application/ld+json"

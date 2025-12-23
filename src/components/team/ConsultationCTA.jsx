@@ -56,11 +56,11 @@ const ConsultationCTA = () => {
             </div>
             
             <div className="mt-8 flex flex-wrap justify-center gap-6">
-              <div className="flex items-center text-gray-600">
+              <div className="flex items-center text-gray-600 mt-2">
                 <MessageSquare size={16} className="text-[#E9756D] mr-2" />
                 <span className="text-sm">Multilingual Support Available</span>
               </div>
-              <div className="flex items-center text-gray-600">
+              <div className="flex items-center text-gray-600 mt-2">
                 <span className="text-sm">🇦🇫 Dari & Pashto</span>
                 <span className="mx-2">•</span>
                 <span className="text-sm">🇮🇳 Hindi & English</span>

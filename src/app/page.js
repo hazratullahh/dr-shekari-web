@@ -1,6 +1,9 @@
-import MedicalAnimationProvider from '@/components/animations/MedicalAnimationProvider';
+import MedicalHeroBackground from '@/components/animations/MedicalAnimationProvider';
+import Facilities from '@/components/home/Facilities';
 import HeroSection from '@/components/home/Hero';
+import HospitalInfoCards from '@/components/home/HospitalInfoCards';
 import Specialties from '@/components/home/Specialties';
+import SpecialtiesGrid from '@/components/home/SpecialtiesGrid';
 import StatsSection from '@/components/home/StatsSection';
 import Testimonials from '@/components/home/Testimonials';
 import LoadingFallback from '@/components/ui/LoadingFallback';
@@ -73,19 +76,28 @@ export const metadata = {
 export default function Home() {
   return (
     <>
-      <MedicalAnimationProvider type="homes" />
+      {/* <MedicalHeroBackground type="homes" /> */}
       <Suspense fallback={<LoadingFallback type="hero" />}>
         <HeroSection />
+        <MedicalHeroBackground
+          overlayDarkness={0.4} // Darker overlay
+          bloodIntensity={1.5} // More intense blood
+          animationSpeed={1.2} // Faster rotation
+          positionVertical="top" // Force top position
+        />
       </Suspense>
-      {/* <Suspense fallback={<LoadingFallback type="section" />}>
+      <Suspense fallback={<LoadingFallback type="card" />}>
         <StatsSection />
       </Suspense>
       <Suspense fallback={<LoadingFallback type="section" />}>
-        <Specialties />
+        <SpecialtiesGrid />
       </Suspense>
       <Suspense fallback={<LoadingFallback type="section" />}>
-        <Testimonials />
-      </Suspense> */}
+        <Facilities />
+      </Suspense>
+      <Suspense fallback={<LoadingFallback type="section" />}>
+        <HospitalInfoCards />
+      </Suspense>
     </>
   );
 }

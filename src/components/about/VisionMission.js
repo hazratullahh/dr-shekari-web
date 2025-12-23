@@ -9,12 +9,13 @@ const VisionMission = () => {
     {
       title: "Our Vision",
       icon: <Eye className="text-[#E9756D]" size={32} />,
-      description: "To be Afghanistan's leading center for urological excellence, setting new standards in patient care and medical innovation.",
+      description: "To be Afghanistan's leading center for urological excellence, setting new standards in patient care and medical innovation through advanced technology.",
       color: "from-[#E9756D] to-[#FF9A8B]",
       points: [
         "Center of Excellence in Urology",
         "Regional Medical Innovation Hub",
-        "International Standards of Care"
+        "International Standards of Care",
+        "Patient-Centered, Compassionate Healthcare"
       ]
     },
     {
@@ -45,9 +46,9 @@ const VisionMission = () => {
             <Rocket className="text-[#E9756D] mr-3" size={24} />
             <span className="text-[#E9756D] font-semibold text-lg">Vision & Mission</span>
           </div>
-          
+
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            Guiding Principles for 
+            Guiding Principles for
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#E9756D] to-[#F6CA97]">
               Excellence
             </span>
@@ -70,7 +71,7 @@ const VisionMission = () => {
             >
               {/* Glow Effect */}
               <div className={`absolute inset-0 bg-gradient-to-r ${item.color} opacity-0 group-hover:opacity-10 blur-xl rounded-3xl transition-opacity duration-300`} />
-              
+
               <div className="glass-card p-8 rounded-3xl shadow-xl border border-white/20 relative z-10">
                 <div className="flex items-start mb-6">
                   <div className={`p-4 rounded-2xl bg-gradient-to-r ${item.color} bg-opacity-10 mr-4`}>
@@ -81,11 +82,11 @@ const VisionMission = () => {
                     <div className={`w-16 h-1 bg-gradient-to-r ${item.color} rounded-full`} />
                   </div>
                 </div>
-                
+
                 <p className="text-gray-700 text-lg mb-6 leading-relaxed">
                   {item.description}
                 </p>
-                
+
                 <ul className="space-y-3">
                   {item.points.map((point, idx) => (
                     <motion.li
@@ -101,7 +102,7 @@ const VisionMission = () => {
                     </motion.li>
                   ))}
                 </ul>
-                
+
                 {/* Animated Border */}
                 <motion.div
                   className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${item.color} rounded-b-3xl`}

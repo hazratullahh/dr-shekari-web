@@ -1,4 +1,3 @@
-// components/team/SpecialtiesGrid.js
 'use client';
 
 import { motion } from 'framer-motion';
