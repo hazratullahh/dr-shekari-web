@@ -35,7 +35,7 @@ const History = () => {
       color: "bg-[#F6CA97]"
     },
     {
-      year: "2024",
+      year: new Date().getFullYear(),
       title: "Present Day",
       description: "Recognized as Afghanistan's leading urology center with 20+ years of excellence and 8500+ successful treatments.",
       icon: <Calendar size={24} />,
