@@ -9,7 +9,7 @@ const History = () => {
     {
       year: "2003",
       title: "Establishment",
-      description: "Dr. Nazir Ahmad Shekari established his urology practice at Jami Hospital, becoming one of Herat's first specialized urologists.",
+      description: "Dr. Nazir Ahmad Shekari established his urology practice at Jami Hospital, becoming one of Afghanistan's first specialized urologists.",
       icon: <Building size={24} />,
       color: "bg-[#E9756D]"
     },

@@ -17,7 +17,7 @@ export const metadata = {
     'Endourology expert',
     'Jami Hospital urology department',
     'medical staff Afghanistan',
-    'urology facilities Herat'
+    'urology facilities Afghanistan'
   ],
   openGraph: {
     title: 'About Dr. Nazir Ahmad Shekari - Urology Specialist',
