@@ -90,7 +90,7 @@ const History = () => {
                 </div>
                 
                 {/* Content Card */}
-                <div className={`glass-card p-6 rounded-2xl shadow-lg border border-white/20 ${index % 2 === 0 ? 'lg:text-right' : ''}`}>
+                <div className={`glass-card p-6 rounded-2xl shadow-lg border border-white/20 ${index % 2 === 0 ? 'lg:text-rights' : ''}`}>
                   <div className="flex items-center justify-between mb-4">
                     <div className={`px-4 py-1 ${item.color} text-white font-bold rounded-full text-sm`}>
                       {item.year}
