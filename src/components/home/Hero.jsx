@@ -44,7 +44,7 @@ bg-white/10
                             <div className="w-2 h-2 bg-white rounded-full mr-2" aria-hidden="true"></div>
                             <span className="text-white text-sm font-semibold flex items-center gap-2">
                                 <span className='hidden md:flex'>Leading</span>
-                                 Urology
+                                Urology
 
                                 <span
                                     className="inline-block w-1.5 h-1.5 bg-white rounded-full animate-pulse"
@@ -80,9 +80,10 @@ bg-white/10
                         {/* Call to Action Buttons */}
                         <div className="flex flex-wrap gap-4 mb-10">
                             <motion.button
+                                type='button'
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
-                                className="px-8 py-4 bg-gradient-to-r from-[#E9756D] to-[#F6CA97] text-white font-semibold rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 group"
+                                className="px-8 py-4 cursor-pointer bg-gradient-to-r from-[#E9756D] to-[#F6CA97] text-white font-semibold rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 group"
                                 aria-label="Book an appointment with Dr. Nazir Ahmad Shekari"
                             >
                                 <span className="flex items-center">
@@ -93,9 +94,10 @@ bg-white/10
                                 </span>
                             </motion.button>
                             <motion.button
+                                type='button'
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
-                                className="px-8 py-4 bg-white/20 backdrop-blur-sm border border-white/30 text-white font-semibold rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300"
+                                className="px-8 py-4 cursor-pointer bg-white/20 backdrop-blur-sm border border-white/30 text-white font-semibold rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300"
                                 aria-label="View medical services offered by Dr. Nazir Ahmad Shekari"
                             >
                                 View Services

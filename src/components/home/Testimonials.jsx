@@ -3,8 +3,8 @@
 
 import { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  Quote, Star, ChevronLeft, ChevronRight, 
+import {
+  Quote, Star, ChevronLeft, ChevronRight,
   ThumbsUp, Award, Shield, Heart
 } from 'lucide-react';
 
@@ -156,7 +156,7 @@ const Testimonials = () => {
               ))}
             </div>
           </div>
-          
+
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
             Patient <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#E9756D] to-[#F6CA97]">Testimonials</span>
           </h2>
@@ -189,11 +189,11 @@ const Testimonials = () => {
                       <div className="flex flex-col items-center lg:items-start">
                         <motion.div
                           className={`w-32 h-32 rounded-full bg-gradient-to-r ${testimonials[activeIndex].avatarColor} flex items-center justify-center mb-6 shadow-2xl`}
-                          animate={{ 
+                          animate={{
                             rotate: [0, 10, -10, 0],
                             scale: [1, 1.05, 1]
                           }}
-                          transition={{ 
+                          transition={{
                             duration: 4,
                             repeat: Infinity,
                             repeatDelay: 3
@@ -244,7 +244,7 @@ const Testimonials = () => {
                         className="mb-6"
                         initial={{ rotate: -10 }}
                         animate={{ rotate: 10 }}
-                        transition={{ 
+                        transition={{
                           duration: 3,
                           repeat: Infinity,
                           repeatType: "reverse"
@@ -282,20 +282,22 @@ const Testimonials = () => {
 
           {/* Navigation Buttons */}
           <motion.button
+            type='button'
             onClick={prevTestimonial}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
-            className="absolute left-4 top-1/2 -translate-y-1/2 w-14 h-14 rounded-full glass-card shadow-xl flex items-center justify-center z-20"
+            className="absolute left-4 top-1/2 -translate-y-1/2 cursor-pointer w-14 h-14 rounded-full glass-card shadow-xl flex items-center justify-center z-20"
             aria-label="Previous testimonial"
           >
             <ChevronLeft size={24} className="text-[#E9756D]" />
           </motion.button>
 
           <motion.button
+            type='button'
             onClick={nextTestimonial}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
-            className="absolute right-4 top-1/2 -translate-y-1/2 w-14 h-14 rounded-full glass-card shadow-xl flex items-center justify-center z-20"
+            className="absolute right-4 top-1/2 -translate-y-1/2 cursor-pointer w-14 h-14 rounded-full glass-card shadow-xl flex items-center justify-center z-20"
             aria-label="Next testimonial"
           >
             <ChevronRight size={24} className="text-[#E9756D]" />
@@ -305,21 +307,21 @@ const Testimonials = () => {
           <div className="flex justify-center mt-12 space-x-3">
             {testimonials.map((_, index) => (
               <motion.button
+              type='button'
                 key={index}
                 onClick={() => {
                   setDirection(index > activeIndex ? 1 : -1);
                   setActiveIndex(index);
                 }}
-                className="relative"
+                className="relative cursor-pointer"
                 whileHover={{ scale: 1.2 }}
                 whileTap={{ scale: 0.9 }}
               >
                 <div
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                    index === activeIndex
-                      ? 'bg-gradient-to-r from-[#E9756D] to-[#F6CA97]'
-                      : 'bg-gray-300'
-                  }`}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${index === activeIndex
+                    ? 'bg-gradient-to-r from-[#E9756D] to-[#F6CA97]'
+                    : 'bg-gray-300'
+                    }`}
                 />
                 {index === activeIndex && (
                   <motion.div
@@ -346,7 +348,7 @@ const Testimonials = () => {
               Trusted by Medical Associations
             </h3>
           </div>
-          
+
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {[
               { name: 'American Urological Association', color: 'from-[#E9756D] to-[#FF9A8B]' },

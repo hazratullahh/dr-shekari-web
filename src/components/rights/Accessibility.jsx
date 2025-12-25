@@ -51,12 +51,13 @@ const ClientAccessibility = () => {
             </span>
           </div>
           <button
+          type='button'
             onClick={() => setHighContrast(!highContrast)}
             className={`w-12 h-6 rounded-full transition-colors ${
               highContrast
                 ? 'bg-[#E9756D] justify-end'
-                : 'bg-gray-300 justify-start'
-            } flex items-center p-1`}
+                : 'bg-gray-300 justify-start '
+            } flex items-center p-1 cursor-pointer`}
           >
             <div className="w-4 h-4 bg-white rounded-full"></div>
           </button>
@@ -70,9 +71,10 @@ const ClientAccessibility = () => {
           </div>
           <div className="flex items-center justify-between">
             <button
+            type='button'
               onClick={decreaseFontSize}
               disabled={fontSize <= 80}
-              className={`p-2 rounded ${
+              className={`p-2 rounded cursor-pointer ${
                 fontSize <= 80
                   ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
                   : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
@@ -82,9 +84,10 @@ const ClientAccessibility = () => {
             </button>
             <span className="text-sm font-medium">{fontSize}%</span>
             <button
+            type='button'
               onClick={increaseFontSize}
               disabled={fontSize >= 150}
-              className={`p-2 rounded ${
+              className={`p-2 rounded cursor-pointer ${
                 fontSize >= 150
                   ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
                   : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
@@ -106,8 +109,9 @@ const ClientAccessibility = () => {
             </span>
           </div>
           <button
+          type='button'
             onClick={() => setReducedMotion(!reducedMotion)}
-            className={`px-3 py-1 rounded text-sm font-medium ${
+            className={`px-3 py-1 rounded text-sm font-medium cursor-pointer ${
               reducedMotion
                 ? 'bg-[#E9756D] text-white'
                 : 'bg-gray-100 text-gray-700 hover:bg-gray-200'

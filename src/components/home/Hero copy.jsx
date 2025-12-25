@@ -34,9 +34,10 @@ export default function Hero() {
 
                             <div className="flex flex-wrap gap-4">
                                 <motion.button
+                                    type='button'
                                     whileHover={{ scale: 1.05 }}
                                     whileTap={{ scale: 0.95 }}
-                                    className="px-8 py-4 bg-gradient-to-r from-[#E9756D] to-[#F6CA97] text-white font-semibold rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 group"
+                                    className="px-8 py-4 cursor-pointer bg-gradient-to-r from-[#E9756D] to-[#F6CA97] text-white font-semibold rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 group"
                                 >
                                     <span className="flex items-center">
                                         Book Appointment
@@ -46,9 +47,10 @@ export default function Hero() {
                                     </span>
                                 </motion.button>
                                 <motion.button
+                                    type='button'
                                     whileHover={{ scale: 1.05 }}
                                     whileTap={{ scale: 0.95 }}
-                                    className="px-8 py-4 glass-card text-[#E9756D] font-semibold rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-[#F6CA97]/30"
+                                    className="px-8 py-4 cursor-pointer glass-card text-[#E9756D] font-semibold rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-[#F6CA97]/30"
                                 >
                                     View Services
                                 </motion.button>

@@ -264,7 +264,7 @@ const Header = () => {
                 >
                   <motion.h1
                     className="text-sm md:text-lg font-black text-gray-900 leading-tight"
-                    // animate={isScrolled ? { fontSize: "1.5rem" } : { fontSize: "1.7rem" }}
+                  // animate={isScrolled ? { fontSize: "1.5rem" } : { fontSize: "1.7rem" }}
                   >
                     Dr. Nazir Ahmad Shekari
                     <motion.span
@@ -352,16 +352,18 @@ const Header = () => {
                 </motion.div>
               ))}
 
-              {/* Sexy Appointment Button */}
+              {/*  Appointment Button */}
               <motion.button
+                type='button'
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => window.location.href = 'tel:+93792453030'}
-                className="ml-4 relative group"
+                className="ml-4 relative group cursor-pointer"
               >
-                {/* Button background with sexy effects */}
+                {/* Button background with  effects */}
                 <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-[#E9756D] to-[#F6CA97] rounded-xl shadow-xl"
+                  type="button"
+                  className="absolute inset-0 cursor-pointer bg-gradient-to-r  from-[#E9756D] to-[#F6CA97] rounded-xl shadow-xl"
                   animate={{
                     boxShadow: [
                       '0 10px 30px rgba(233, 117, 109, 0.3)',
@@ -373,7 +375,7 @@ const Header = () => {
                 />
 
                 {/* Button content */}
-                <div className="relative px-6 py-3 rounded-xl bg-gradient-to-r from-[#E9756D] to-[#F6CA97] flex items-center">
+                <div className="relative px-6 py-3 rounded-xl cursor-pointer bg-gradient-to-r from-[#E9756D] to-[#F6CA97] flex items-center">
                   <Calendar size={18} className="mr-2 text-white" />
                   <span className="font-bold text-white">Book Now</span>
 
@@ -407,10 +409,11 @@ const Header = () => {
 
             {/* Mobile Menu Button - Sexy animation */}
             <motion.button
+              type='button'
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden relative"
+              className="lg:hidden relative cursor-pointer"
             >
               <div className="w-12 h-12 rounded-xl bg-gradient-to-r from-[#E9756D]/10 to-[#F6CA97]/10 flex items-center justify-center">
                 {isMobileMenuOpen ? (
@@ -485,12 +488,13 @@ const Header = () => {
 
               {/* Mobile Appointment Button */}
               <motion.button
+              type='button'
                 whileTap={{ scale: 0.95 }}
                 onClick={() => {
                   window.location.href = 'tel:+93792453030';
                   setIsMobileMenuOpen(false);
                 }}
-                className="w-full mt-6 p-4 bg-gradient-to-r from-[#E9756D] to-[#F6CA97] text-white font-bold rounded-xl shadow-xl flex items-center justify-center"
+                className="w-full mt-6 p-4 cursor-pointer bg-gradient-to-r from-[#E9756D] to-[#F6CA97] text-white font-bold rounded-xl shadow-xl flex items-center justify-center"
               >
                 <Calendar size={20} className="mr-3" />
                 Book Appointment Now

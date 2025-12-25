@@ -173,6 +173,7 @@ const MedicalDirectors = () => {
                         </div>
                         <div className='w-full flex items-center justify-center'>
                           <motion.button
+                          type='button'
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                             className="w-full text-center m-auto mt-2 px-4 py-2 cursor-pointer bg-gradient-to-r from-[#E9756D] to-[#F6CA97] text-white text-sm font-medium rounded-lg flex items-center"

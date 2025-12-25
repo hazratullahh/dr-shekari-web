@@ -142,11 +142,12 @@ const InternationalTeam = () => {
         <div className="flex flex-wrap justify-center gap-3 mb-12">
           {tabs.map((tab) => (
             <motion.button
+            type='button'
               key={tab.id}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => setActiveTab(tab.id)}
-              className={`px-5 py-2.5 rounded-full font-medium transition-all ${
+              className={`px-5 py-2.5 cursor-pointer rounded-full font-medium transition-all ${
                 activeTab === tab.id
                   ? 'bg-gradient-to-r from-[#E9756D] to-[#F6CA97] text-white shadow-lg'
                   : 'bg-white text-gray-700 hover:bg-gray-50 border border-gray-200'
@@ -261,9 +262,10 @@ const InternationalTeam = () => {
                 {/* Action Button */}
                 <div className="p-6 pt-0">
                   <motion.button
+                  type='button'
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className="w-full py-3 bg-gradient-to-r from-[#E9756D]/5 to-[#F6CA97]/5 text-[#E9756D] font-medium rounded-xl border border-[#F6CA97]/30 hover:border-[#E9756D] transition-all group-hover:from-[#E9756D]/10 group-hover:to-[#F6CA97]/10"
+                    className="w-full py-3 cursor-pointer bg-gradient-to-r from-[#E9756D]/5 to-[#F6CA97]/5 text-[#E9756D] font-medium rounded-xl border border-[#F6CA97]/30 hover:border-[#E9756D] transition-all group-hover:from-[#E9756D]/10 group-hover:to-[#F6CA97]/10"
                   >
                     Schedule Consultation with {doctor.name.split(' ')[1]}
                   </motion.button>

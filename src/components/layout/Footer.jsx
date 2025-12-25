@@ -42,7 +42,7 @@ const Footer = () => {
   const quickLinks = [
     { label: 'Home', href: '/' },
     { label: 'About', href: '/about' },
-    { label: 'Services', href: '/services' },
+    // { label: 'Services', href: '/services' },
     { label: 'Team', href: '/team' },
     { label: 'Contact', href: '/contact' },
   ];
@@ -230,7 +230,7 @@ const Footer = () => {
                 />
                 <button
                   type="submit"
-                  className="absolute right-2 top-2 w-8 h-8 rounded-md bg-gradient-to-r from-[#E9756D] to-[#F6CA97] flex items-center justify-center"
+                  className="absolute right-2 top-2 w-8 h-8 cursor-pointer rounded-md bg-gradient-to-r from-[#E9756D] to-[#F6CA97] flex items-center justify-center"
                 >
                   <ArrowUp size={16} className="text-white rotate-45" />
                 </button>
@@ -307,6 +307,7 @@ const Footer = () => {
 
             {/* Back to Top */}
             <motion.button
+              type='button'
               onClick={scrollToTop}
               whileHover={{ y: -3 }}
               whileTap={{ scale: 0.95 }}

@@ -214,13 +214,14 @@ const FAQSection = () => {
           <div className="flex flex-wrap gap-3 justify-center">
             {faqCategories.map((category) => (
               <motion.button
+                type='button'
                 key={category.id}
                 onClick={() => setActiveCategory(category.id)}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className={`px-6 py-3 cursor-pointer rounded-xl font-semibold transition-all duration-300 flex items-center gap-2 ${activeCategory === category.id
-                    ? 'text-white shadow-lg shadow-[#E9756D]/20 bg-gradient-to-r from-[#E9756D] to-[#F6CA97]'
-                    : 'text-gray-700 bg-white/80 border border-gray-200 hover:border-[#E9756D]/30'
+                  ? 'text-white shadow-lg shadow-[#E9756D]/20 bg-gradient-to-r from-[#E9756D] to-[#F6CA97]'
+                  : 'text-gray-700 bg-white/80 border border-gray-200 hover:border-[#E9756D]/30'
                   }`}
                 style={{
                   background: activeCategory === category.id
@@ -292,14 +293,15 @@ const FAQSection = () => {
                   >
                     <div className="glass-card rounded-2xl border border-white/30 shadow-sm hover:shadow-md transition-all duration-300 h-full">
                       <button
+                        type='button'
                         onClick={() => toggleFAQ(faq.id)}
-                        className="w-full p-6 text-left flex items-start justify-between hover:bg-gradient-to-r hover:from-white/50 hover:to-[#F6CA97]/5 transition-all duration-300"
+                        className="w-full p-6 cursor-pointer text-left flex items-start justify-between hover:bg-gradient-to-r hover:from-white/50 hover:to-[#F6CA97]/5 transition-all duration-300"
                       >
                         <div className="flex-1">
                           <div className="flex items-center gap-3 mb-3">
                             <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${faq.category === 'emergency'
-                                ? 'bg-gradient-to-r from-red-500/10 to-rose-500/10 text-red-600'
-                                : 'bg-gradient-to-r from-[#E9756D]/10 to-[#F6CA97]/10 text-[#E9756D]'
+                              ? 'bg-gradient-to-r from-red-500/10 to-rose-500/10 text-red-600'
+                              : 'bg-gradient-to-r from-[#E9756D]/10 to-[#F6CA97]/10 text-[#E9756D]'
                               }`}>
                               {getCategoryIcon(faq.category)}
                             </div>
@@ -428,9 +430,10 @@ const FAQSection = () => {
                 </motion.a>
 
                 <motion.button
+                type='button'
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="px-8 py-4 glass-card text-[#E9756D] font-semibold rounded-xl border border-[#F6CA97]/50 hover:border-[#E9756D] transition-all duration-300 flex items-center"
+                  className="px-8 py-4 glass-card cursor-pointer text-[#E9756D] font-semibold rounded-xl border border-[#F6CA97]/50 hover:border-[#E9756D] transition-all duration-300 flex items-center"
                 >
                   <MessageSquare size={20} className="mr-3" />
                   Ask a Question Online

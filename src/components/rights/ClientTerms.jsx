@@ -30,9 +30,10 @@ const ClientTerms = () => {
         
         <div className="flex flex-col items-center gap-3">
           <button
+          type='button'
             onClick={handleAgreement}
             disabled={agreed}
-            className={`px-6 py-3 rounded-lg font-medium transition-all ${
+            className={`px-6 py-3 cursor-pointer rounded-lg font-medium transition-all ${
               agreed
                 ? 'bg-green-100 text-green-700 cursor-not-allowed'
                 : 'bg-gradient-to-r from-[#E9756D] to-[#F6CA97] text-white hover:shadow-md'
