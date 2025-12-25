@@ -264,3 +264,83 @@ html {
   --tx: -15px;
   --ty: 15px;
 }
+
+/* Animation for disclaimer reminder */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Print styles for medical disclaimer */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  .print-only {
+    display: block !important;
+  }
+}
+
+/* Accessibility Features */
+.high-contrast {
+  --text-color: #000000;
+  --bg-color: #FFFFFF;
+  --primary-color: #000000;
+  --secondary-color: #000000;
+  filter: contrast(1.5);
+}
+
+.high-contrast body {
+  color: var(--text-color);
+  background-color: var(--bg-color);
+}
+
+.high-contrast a {
+  color: var(--primary-color);
+  text-decoration: underline;
+}
+
+.high-contrast button {
+  border: 2px solid var(--primary-color);
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Screen Reader Only */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Focus Styles */
+:focus-visible {
+  outline: 3px solid #E9756D;
+  outline-offset: 2px;
+}

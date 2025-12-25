@@ -293,11 +293,14 @@ const Footer = () => {
                 <Link href="/terms" className="hover:text-[#E9756D] transition-colors">
                   Terms of Service
                 </Link>
-                <Link href="/sitemap" className="hover:text-[#E9756D] transition-colors">
+                {/* <Link href="/sitemap" className="hover:text-[#E9756D] transition-colors">
                   Sitemap
-                </Link>
+                </Link> */}
                 <Link href="/accessibility" className="hover:text-[#E9756D] transition-colors">
                   Accessibility
+                </Link>
+                <Link href="/disclaimer" className="hover:text-[#E9756D] transition-colors">
+                  Medical Disclaimer
                 </Link>
               </div>
             </div>
@@ -307,7 +310,7 @@ const Footer = () => {
               onClick={scrollToTop}
               whileHover={{ y: -3 }}
               whileTap={{ scale: 0.95 }}
-              className="flex items-center text-sm text-gray-600 hover:text-[#E9756D] transition-colors"
+              className="flex items-center cursor-pointer text-sm text-gray-600 hover:text-[#E9756D] transition-colors"
             >
               <ArrowUp size={16} className="mr-2" />
               Back to Top
@@ -371,4 +374,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default Footer; 
