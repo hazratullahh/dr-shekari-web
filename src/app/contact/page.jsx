@@ -88,7 +88,7 @@ export default function ContactPage() {
               "postalCode": "3001"
             },
             "telephone": "+93792453030",
-            "email": "contact@drshekari.com",
+            "email": "urology@drshekari.com",
             "openingHours": [
               "Mo-Sa 08:00-20:00",
               "Su 09:00-14:00"
