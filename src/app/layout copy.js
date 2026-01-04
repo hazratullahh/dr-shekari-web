@@ -5,8 +5,6 @@ import { Inter } from 'next/font/google';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import LoadingFallback from '@/components/ui/LoadingFallback';
-import InstallAppBanner from '@/components/InstallAppBanner';
-import MedicalSchema from '@/components/MedicalSchema';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -118,8 +116,8 @@ export const metadata = {
   other: {
     'dc:creator': 'Dr. Nazir Ahmad Shekari Medical Center',
     'application-name': 'Afghanistan Urology Excellence',
-    'msapplication-TileColor': '#E9756D',
-    'theme-color': '#E9756D',
+    'msapplication-TileColor': '#0066cc',
+    'theme-color': '#0066cc',
   }
 };
 
@@ -132,21 +130,8 @@ export default function RootLayout({ children }) {
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-        
-        {/* PWA meta tags */}
-        <meta name="apple-mobile-web-app-title" content="Urology Center" />
-        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#E9756D" />
-        <meta name="msapplication-TileImage" content="/icons/icon-144x144.png" />
-        <meta name="msapplication-TileColor" content="#E9756D" />
-        <meta name="application-name" content="Urology Center" />
-        
-        {/* iOS specific */}
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-        <link rel="apple-touch-startup-image" href="/apple-splash-2048-2732.jpg" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" />
       </head>
       <body className={`${inter.className} bg-[#FDF5EE]`}>
-        <MedicalSchema />
         <Suspense fallback={<LoadingFallback type="full-page" />}>
           <Header />
           <main className="min-h-screen">
@@ -154,29 +139,6 @@ export default function RootLayout({ children }) {
           </main>
           <Footer />
         </Suspense>
-        
-        {/* Mobile Install App Banner */}
-        <InstallAppBanner />
-        
-        {/* Register service worker script */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              if ('serviceWorker' in navigator && window.location.hostname !== 'localhost') {
-                window.addEventListener('load', function() {
-                  navigator.serviceWorker.register('/sw.js').then(
-                    function(registration) {
-                      console.log('ServiceWorker registration successful with scope: ', registration.scope);
-                    },
-                    function(err) {
-                      console.log('ServiceWorker registration failed: ', err);
-                    }
-                  );
-                });
-              }
-            `
-          }}
-        />
       </body>
     </html>
   );

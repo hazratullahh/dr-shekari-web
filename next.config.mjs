@@ -1,5 +1,4 @@
 /** @type {import('next').NextConfig} */
-
 const nextConfig = {
   reactStrictMode: true,
   
@@ -26,21 +25,7 @@ const nextConfig = {
   compress: true,
   poweredByHeader: false,
   
-  async redirects() {
-    return [
-      {
-        source: '/index',
-        destination: '/',
-        permanent: true,
-      },
-      {
-        source: '/home',
-        destination: '/',
-        permanent: true,
-      },
-    ];
-  },
-  
+  // PWA headers
   async headers() {
     return [
       {
@@ -73,56 +58,40 @@ const nextConfig = {
           {
             key: 'Permissions-Policy',
             value: 'camera=(), microphone=(), geolocation=()'
+          },
+          // PWA headers
+          {
+            key: 'Content-Security-Policy',
+            value: "script-src 'self' 'unsafe-inline' 'unsafe-eval'"
+          }
+        ]
+      },
+      {
+        source: '/manifest.json',
+        headers: [
+          {
+            key: 'Content-Type',
+            value: 'application/manifest+json'
           }
         ]
       }
     ];
-  }
+  },
+  
+  async redirects() {
+    return [
+      {
+        source: '/index',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/home',
+        destination: '/',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
-
-// /** @type {import('next').NextConfig} */
-// const nextConfig = {
-//   reactStrictMode: true,
-  
-//   images: {
-//     remotePatterns: [
-//       {
-//         protocol: 'https',
-//         hostname: 'dr-shekari.com',
-//         pathname: '/**',
-//       },
-//       {
-//         protocol: 'http',
-//         hostname: 'localhost',
-//         pathname: '/**',
-//       },
-//       {
-//         protocol: 'http',
-//         hostname: '192.168.56.1',
-//         pathname: '/**',
-//       },
-//     ],
-//   },
-  
-//   compress: true,
-//   poweredByHeader: false,
-  
-//   async redirects() {
-//     return [
-//       {
-//         source: '/index',
-//         destination: '/',
-//         permanent: true,
-//       },
-//       {
-//         source: '/home',
-//         destination: '/',
-//         permanent: true,
-//       },
-//     ];
-//   },
-// };
-
-// export default nextConfig;

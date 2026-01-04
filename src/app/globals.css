@@ -344,3 +344,80 @@ html {
   outline: 3px solid #E9756D;
   outline-offset: 2px;
 }
+/* Add to globals.css */
+
+/* Banner animations */
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  15%, 85% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
+.animate-slideUp {
+  animation: slideUp 0.4s ease-out forwards;
+}
+
+.animate-fadeInOut {
+  animation: fadeInOut 3s ease-in-out forwards;
+}
+
+/* Prevent body scroll when modal is open */
+body.modal-open {
+  overflow: hidden;
+}
+
+/* Banner responsive adjustments */
+@media (max-width: 640px) {
+  .animate-slideUp {
+    animation: slideUp 0.3s ease-out forwards;
+  }
+}
+
+/* Installation success badge */
+.installed-badge {
+  position: fixed;
+  top: 70px;
+  right: 20px;
+  background: #10B981;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  z-index: 9999;
+  animation: slideInRight 0.3s ease-out;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
