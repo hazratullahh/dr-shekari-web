@@ -170,14 +170,14 @@ const nextConfig = {
       },
       {
         source: '/team',
-        destination: '/doctors',
+        destination: '/team',
         permanent: true,
       },
-      {
-        source: '/treatments',
-        destination: '/services',
-        permanent: true,
-      },
+      // {
+      //   source: '/treatments',
+      //   destination: '/services',
+      //   permanent: true,
+      // },
     ];
   },
   

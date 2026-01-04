@@ -7,7 +7,6 @@ import Footer from '@/components/layout/Footer';
 import LoadingFallback from '@/components/ui/LoadingFallback';
 import InstallAppBanner from '@/components/InstallAppBanner';
 import MedicalSchema from '@/components/MedicalSchema';
-import InstallButton from '@/components/InstallButton';
 
 const inter = Inter({ subsets: ['latin'] });
 

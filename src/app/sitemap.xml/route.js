@@ -13,8 +13,8 @@ export async function GET() {
     { url: '/contact', priority: '0.9', changefreq: 'monthly' },
     
     // Doctor profiles
-    { url: '/doctors/dr-nazir-shekari', priority: '0.9', changefreq: 'weekly' },
-    { url: '/doctors/dr-mansour-wayar', priority: '0.9', changefreq: 'weekly' },
+    { url: '/team', priority: '0.9', changefreq: 'weekly' },
+    { url: '/team', priority: '0.9', changefreq: 'weekly' },
     
     // // Services
     // { url: '/services/kidney-stones', priority: '0.8', changefreq: 'weekly' },
