@@ -181,7 +181,7 @@ export default function RootLayout({ children }) {
         
         {/* Mobile Install App Banner */}
         <InstallAppBanner />
-        <InstallButton />
+        {/* <InstallButton /> */}
         
         {/* Service Worker Registration - UPDATED */}
         <script

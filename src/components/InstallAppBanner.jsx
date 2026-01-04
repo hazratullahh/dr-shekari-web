@@ -23,15 +23,15 @@ export default function InstallBanner() {
     const handleBeforeInstallPrompt = (e) => {
       e.preventDefault();
       setDeferredPrompt(e);
-      // Show banner after 10 seconds
-      setTimeout(() => setShowBanner(true), 10000);
+      // Show banner after 3 seconds
+      setTimeout(() => setShowBanner(true), 3000);
     };
 
     window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
 
-    // Show banner for iOS after 10 seconds
+    // Show banner for iOS after 3 seconds
     if (isIOSDevice) {
-      setTimeout(() => setShowBanner(true), 10000);
+      setTimeout(() => setShowBanner(true), 3000);
     }
 
     return () => {
