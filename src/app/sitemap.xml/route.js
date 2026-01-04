@@ -1,27 +1,28 @@
-import { APP_CONFIG } from '@/config/app-config';
+import APP_CONFIG from "../config/app-config";
 
 export async function GET() {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://dr-shekari.com';
   const today = new Date().toISOString().split('T')[0];
-  
+  APP_CONFIG
   // Generate all dynamic URLs
   const urls = [
     // Main pages
     { url: '', priority: '1.0', changefreq: 'daily' },
     { url: '/about', priority: '0.9', changefreq: 'weekly' },
+    { url: '/team', priority: '0.9', changefreq: 'weekly' },
     { url: '/contact', priority: '0.9', changefreq: 'monthly' },
     
     // Doctor profiles
     { url: '/doctors/dr-nazir-shekari', priority: '0.9', changefreq: 'weekly' },
     { url: '/doctors/dr-mansour-wayar', priority: '0.9', changefreq: 'weekly' },
     
-    // Services
-    { url: '/services/kidney-stones', priority: '0.8', changefreq: 'weekly' },
-    { url: '/services/prostate-cancer', priority: '0.8', changefreq: 'weekly' },
-    { url: '/services/male-infertility', priority: '0.8', changefreq: 'weekly' },
-    { url: '/services/erectile-dysfunction', priority: '0.8', changefreq: 'weekly' },
-    { url: '/services/circumcision', priority: '0.7', changefreq: 'monthly' },
-    { url: '/services/vasectomy', priority: '0.7', changefreq: 'monthly' },
+    // // Services
+    // { url: '/services/kidney-stones', priority: '0.8', changefreq: 'weekly' },
+    // { url: '/services/prostate-cancer', priority: '0.8', changefreq: 'weekly' },
+    // { url: '/services/male-infertility', priority: '0.8', changefreq: 'weekly' },
+    // { url: '/services/erectile-dysfunction', priority: '0.8', changefreq: 'weekly' },
+    // { url: '/services/circumcision', priority: '0.7', changefreq: 'monthly' },
+    // { url: '/services/vasectomy', priority: '0.7', changefreq: 'monthly' },
     
     // Locations
     { url: '/location/kabul', priority: '0.8', changefreq: 'monthly' },
