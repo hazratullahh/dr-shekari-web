@@ -7,6 +7,7 @@ import Footer from '@/components/layout/Footer';
 import LoadingFallback from '@/components/ui/LoadingFallback';
 import InstallAppBanner from '@/components/InstallAppBanner';
 import MedicalSchema from '@/components/MedicalSchema';
+import InstallButton from '@/components/InstallButton';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -180,85 +181,31 @@ export default function RootLayout({ children }) {
         
         {/* Mobile Install App Banner */}
         <InstallAppBanner />
+        <InstallButton />
         
         {/* Service Worker Registration - UPDATED */}
         <script
           dangerouslySetInnerHTML={{
             __html: `
-              (function() {
-                // Check if we're in a browser
-                if (typeof window === 'undefined') return;
-                
-                // Register Service Worker
-                if ('serviceWorker' in navigator) {
-                  // Only register in production AND on HTTPS
-                  const isLocalhost = window.location.hostname === 'localhost' || 
-                                     window.location.hostname === '127.0.0.1';
-                  const isHttps = window.location.protocol === 'https:';
-                  
-                  if (!isLocalhost && isHttps) {
-                    window.addEventListener('load', function() {
-                      navigator.serviceWorker.register('/sw.js')
-                        .then(function(registration) {
-                          console.log('✅ Service Worker registered:', registration.scope);
-                          
-                          // Check for updates
-                          registration.addEventListener('updatefound', () => {
-                            console.log('🔄 New Service Worker version found');
-                          });
-                        })
-                        .catch(function(error) {
-                          console.log('❌ Service Worker registration failed:', error);
-                        });
+              if ('serviceWorker' in navigator && window.location.protocol === 'https:') {
+                window.addEventListener('load', function() {
+                  navigator.serviceWorker.register('/sw.js')
+                    .then(function(registration) {
+                      console.log('✅ Service Worker registered');
+                    })
+                    .catch(function(error) {
+                      console.log('❌ Service Worker failed:', error);
                     });
-                  }
+                });
+              }
+              
+              // Force show install button after 3 seconds
+              setTimeout(() => {
+                const installBtn = document.querySelector('[data-install-button]');
+                if (installBtn) {
+                  installBtn.style.display = 'flex';
                 }
-                
-                // PWA Install Prompt Handler
-                let deferredPrompt;
-                window.addEventListener('beforeinstallprompt', (e) => {
-                  e.preventDefault();
-                  deferredPrompt = e;
-                  console.log('📱 PWA install prompt available');
-                  
-                  // Store the event for later use
-                  window.deferredPrompt = deferredPrompt;
-                  
-                  // Show custom install button if exists
-                  setTimeout(() => {
-                    const installBtn = document.getElementById('installPWA');
-                    if (installBtn) {
-                      installBtn.style.display = 'flex';
-                      installBtn.addEventListener('click', async () => {
-                        if (!deferredPrompt) return;
-                        
-                        deferredPrompt.prompt();
-                        const { outcome } = await deferredPrompt.userChoice;
-                        
-                        console.log('User response to install prompt:', outcome);
-                        
-                        if (outcome === 'accepted') {
-                          console.log('🎉 PWA installed successfully');
-                          // Hide install button
-                          if (installBtn) installBtn.style.display = 'none';
-                        }
-                        
-                        deferredPrompt = null;
-                        window.deferredPrompt = null;
-                      });
-                    }
-                  }, 3000); // Show after 3 seconds
-                });
-                
-                // Track PWA installation
-                window.addEventListener('appinstalled', (evt) => {
-                  console.log('🏠 PWA was installed');
-                  // Send to analytics
-                  if (window.gtag) {
-                    gtag('event', 'pwa_installed');
-                  }
-                });
-              })();
+              }, 3000);
             `
           }}
         />
