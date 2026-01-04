@@ -1,45 +1,9 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useEffect } from 'react';
 import Image from 'next/image';
 
-export default function Hero() {
-    useEffect(() => {
-        // Force show install prompt after 3 seconds
-        setTimeout(() => {
-            if (window.deferredPrompt) {
-                window.deferredPrompt.prompt();
-            } else {
-                // Show custom install button
-                const installBtn = document.createElement('button');
-                installBtn.innerHTML = '📱 INSTALL APP';
-                installBtn.style.cssText = `
-          position: fixed;
-          bottom: 20px;
-          right: 20px;
-          background: #E9756D;
-          color: white;
-          padding: 15px 25px;
-          border-radius: 50px;
-          font-weight: bold;
-          box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-          z-index: 1000;
-          border: none;
-          cursor: pointer;
-        `;
-                installBtn.onclick = () => {
-                    if (window.deferredPrompt) {
-                        window.deferredPrompt.prompt();
-                    } else {
-                        alert('To install: Menu → "Install App" or Share → "Add to Home Screen"');
-                    }
-                };
-                document.body.appendChild(installBtn);
-            }
-        }, 3000);
-    }, []);
-
+export default function Hero() { 
     return (
         <section className="relative min-h-screen flex items-center px-1 md:px-8 lg:px-16 mx-auto overflow-hidden">
             {/* Background Image with semantic markup */}
