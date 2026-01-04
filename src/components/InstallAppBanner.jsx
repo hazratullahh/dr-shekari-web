@@ -71,7 +71,7 @@ export default function InstallBanner() {
             <button
               type="button"
               onClick={handleInstall}
-              className="bg-white text-[#E9756D] text-xs px-4 py-2 rounded-lg font-semibold hover:bg-gray-100 transition flex items-center gap-2"
+              className="bg-white cursor-pointer text-[#E9756D] text-xs px-4 py-2 rounded-lg font-semibold hover:bg-gray-100 transition flex items-center gap-2"
             >
               <FaDownload /> Install Now
             </button>
@@ -82,7 +82,7 @@ export default function InstallBanner() {
       <button
         type="button"
         onClick={handleClose}
-        className="absolute top-1 right-1 text-red-500 hover:bg-white/20 rounded-full"
+        className="absolute top-1 cursor-pointer right-1 text-red-500 hover:bg-white/20 rounded-full"
         title="Close"
       >
         <FaTimes size={16} color='red' />
@@ -90,4 +90,3 @@ export default function InstallBanner() {
     </div>
   );
 }
- 
