@@ -70,6 +70,7 @@ export default function ContactPage() {
 
       {/* Schema.org markup for SEO */}
       <script
+      defer
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({

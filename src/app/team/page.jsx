@@ -71,6 +71,7 @@ export default function TeamPage() {
 
       {/* ================= STRUCTURED DATA (SEO + AI) ================= */}
       <script
+      defer
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({

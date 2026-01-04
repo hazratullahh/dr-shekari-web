@@ -348,6 +348,7 @@ const Footer = () => {
 
       {/* Schema Markup for SEO */}
       <script
+      defer
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({

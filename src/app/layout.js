@@ -138,6 +138,7 @@ export default function RootLayout({ children }) {
 
         {/* ===== FIX 1: BRAND + SITELINKS SCHEMA IN HEAD ===== */}
         <script
+        defer
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
@@ -156,6 +157,7 @@ export default function RootLayout({ children }) {
 
         {/* ===== FIX 2: MEDICAL ORGANIZATION ENTITY ===== */}
         <script
+        defer
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
@@ -207,7 +209,7 @@ export default function RootLayout({ children }) {
 
         {/* EXISTING SCRIPTS (UNCHANGED) */}
         {/* Service Worker */}
-        <script dangerouslySetInnerHTML={{
+        <script defer dangerouslySetInnerHTML={{
           __html: `
           if ('serviceWorker' in navigator && window.location.protocol === 'https:') {
             navigator.serviceWorker.register('/sw.js');

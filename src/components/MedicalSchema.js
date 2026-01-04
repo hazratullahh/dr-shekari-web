@@ -53,6 +53,7 @@ export default function MedicalSchema() {
 
   return (
     <Script
+    defer
       id="medical-schema"
       type="application/ld+json"
       dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}

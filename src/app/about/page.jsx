@@ -75,6 +75,7 @@ export default function AboutPage() {
 
       {/* ================= STRUCTURED DATA (BEST PRACTICE) ================= */}
       <script
+      defer
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify([
