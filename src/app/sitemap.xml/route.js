@@ -5,14 +5,14 @@ export async function GET() {
   const pages = [
     { url: '/', priority: 1.0, changefreq: 'daily' },
     { url: '/about', priority: 0.9, changefreq: 'weekly' },
-    { url: '/services', priority: 0.9, changefreq: 'weekly' },
-    { url: '/services/urology', priority: 0.8 },
-    { url: '/services/andrology', priority: 0.8 },
-    { url: '/services/endourology', priority: 0.8 },
+    // { url: '/services', priority: 0.9, changefreq: 'weekly' },
+    // { url: '/services/urology', priority: 0.8 },
+    // { url: '/services/andrology', priority: 0.8 },
+    // { url: '/services/endourology', priority: 0.8 },
     { url: '/team', priority: 0.7 },
     { url: '/contact', priority: 0.9, changefreq: 'monthly' },
     { url: '/privacy-policy', priority: 0.3 },
-    { url: '/terms-of-service', priority: 0.3 },
+    { url: '/terms', priority: 0.3 },
   ];
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
