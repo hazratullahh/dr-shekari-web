@@ -9,27 +9,20 @@ export default function InstallBanner() {
   const [isIOS, setIsIOS] = useState(false);
 
   useEffect(() => {
-    // Don't show if already installed
-    if (window.matchMedia('(display-mode: standalone)').matches) {
-      return;
-    }
+    if (window.matchMedia('(display-mode: standalone)').matches) return;
 
-    // Check iOS
     const userAgent = navigator.userAgent.toLowerCase();
     const isIOSDevice = /iphone|ipad|ipod/.test(userAgent);
     setIsIOS(isIOSDevice);
 
-    // Listen for install prompt
     const handleBeforeInstallPrompt = (e) => {
       e.preventDefault();
       setDeferredPrompt(e);
-      // Show banner after 3 seconds
       setTimeout(() => setShowBanner(true), 3000);
     };
 
     window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
 
-    // Show banner for iOS after 3 seconds
     if (isIOSDevice) {
       setTimeout(() => setShowBanner(true), 3000);
     }
@@ -39,14 +32,16 @@ export default function InstallBanner() {
     };
   }, []);
 
+  useEffect(() => {
+    if (localStorage.getItem('hidePwaBanner') === 'true') setShowBanner(false);
+  }, []);
+
   const handleInstall = async () => {
     if (deferredPrompt) {
       deferredPrompt.prompt();
       const { outcome } = await deferredPrompt.userChoice;
-      if (outcome === 'accepted') {
-        console.log('PWA installed successfully');
-        setShowBanner(false);
-      }
+      if (outcome === 'accepted') console.log('PWA installed successfully');
+      setShowBanner(false);
       setDeferredPrompt(null);
     } else if (isIOS) {
       alert('For iOS: Tap Share → Add to Home Screen');
@@ -55,46 +50,43 @@ export default function InstallBanner() {
 
   const handleClose = () => {
     setShowBanner(false);
-    // Don't show again for 30 days
     localStorage.setItem('hidePwaBanner', 'true');
   };
-
-  // Check if user dismissed before
-  useEffect(() => {
-    if (localStorage.getItem('hidePwaBanner') === 'true') {
-      setShowBanner(false);
-    }
-  }, []);
 
   if (!showBanner) return null;
 
   return (
     <div className="fixed bottom-0 left-0 right-0 bg-gradient-to-r from-[#E9756D] to-[#FF8A80] text-white p-4 z-50 shadow-lg animate-slideUp">
-      <div className="container mx-auto flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <FaMobileAlt className="text-2xl" />
-          <div>
-            <h3 className="font-semibold">Install Dr. Shekari App</h3>
-            <p className="text-xs opacity-90">Get quick access to medical services</p>
+      <div className="container mx-auto relative">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <FaMobileAlt className="text-2xl" />
+            <div>
+              <h3 className="font-semibold">Install Dr. Shekari App</h3>
+              <p className="text-xs opacity-90">Get quick access to medical services</p>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-1">
+            <button
+              type="button"
+              onClick={handleInstall}
+              className="bg-white text-[#E9756D] text-xs px-4 py-2 rounded-lg font-semibold hover:bg-gray-100 transition flex items-center gap-2"
+            >
+              <FaDownload /> Install Now
+            </button>
           </div>
         </div>
-
-        <div className="flex items-center gap-2">
-          <button
-            onClick={handleInstall}
-            className="bg-white text-[#E9756D] text-xs px-4 py-2 rounded-lg font-semibold hover:bg-gray-100 transition flex items-center gap-2"
-          >
-            <FaDownload /> Install Now
-          </button>
-          <button
-            onClick={handleClose}
-            className="text-white hover:bg-white/20 p-2 rounded-full"
-            title="Close"
-          >
-            <FaTimes />
-          </button>
-        </div>
       </div>
+      {/* Close button fixed in top-right corner */}
+      <button
+        type="button"
+        onClick={handleClose}
+        className="absolute top-1 right-1 text-red-500 hover:bg-white/20 rounded-full"
+        title="Close"
+      >
+        <FaTimes size={16} color='red' />
+      </button>
     </div>
   );
 }
