@@ -27,7 +27,7 @@ export const metadata = {
       'Assistant Professor urologists and international specialists providing world-class urology, andrology, and endourology care in Afghanistan.',
     images: [
       {
-        url: '/images/team/team-hero.jpg',
+        url: '/images/android-chrome-512x512.png',
         width: 1200,
         height: 630,
         alt: 'Medical Team – Dr. Shekari Urology Clinic',

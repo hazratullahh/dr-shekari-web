@@ -28,7 +28,7 @@ export const metadata = {
       '20+ years of excellence in urology, andrology, and endourology care in Afghanistan.',
     images: [
       {
-        url: '/images/about/hero.jpg',
+        url: '/images/about/clinic-exterior.jpg',
         width: 1200,
         height: 630,
         alt: 'Dr. Nazir Ahmad Shekari and Dr. Mansour Ahmad Wayar - Assistant Professor & Urologist',

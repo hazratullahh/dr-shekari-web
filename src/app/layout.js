@@ -114,7 +114,7 @@ export const metadata = {
     url: 'https://dr-shekari.com',
     siteName: 'Dr Shekari',
     title: 'Dr Shekari | Urology Clinic in Afghanistan',
-    images: ['/images/og/og-premium.jpg']
+    images: ['/images/og-premium.jpg']
   },
   alternates: {
     canonical: 'https://dr-shekari.com'
