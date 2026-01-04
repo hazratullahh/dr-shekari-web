@@ -65,32 +65,18 @@ export const metadata = {
     description: 'Experience world-class urological care from Afghanistan\'s most distinguished doctors. Advanced treatments for kidney, prostate, and male reproductive health.',
     images: [
       {
-        url: '/og-premium.jpg',
+        url: '/images/og/og-premium.jpg',
         width: 1200,
         height: 630,
         alt: 'Dr. Nazir Ahmad Shekari and Dr. Mansour Wayar - Afghanistan\'s Top Urologists',
       },
-      {
-        url: '/og-premium.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'Advanced Urology Center Kabul - Best Medical Facility in Afghanistan',
-      }
     ],
-    videos: [
-      {
-        url: '/videos/clinic-tour.mp4',
-        width: 1920,
-        height: 1080,
-        type: 'video/mp4',
-      }
-    ]
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Afghanistan\'s #1 Urologists - Dr. Shekari & Dr. Wayar',
     description: 'Premier urological care with unmatched expertise in kidney stones, prostate health, and male fertility',
-    images: ['/twitter-premium.jpg'],
+    images: ['/images/twitter/twitter-premium.jpg'],
     creator: '@AfghanTopDoctors',
     site: '@AfghanTopDoctors',
   },
@@ -117,7 +103,7 @@ export const metadata = {
   },
   other: {
     'dc:creator': 'Dr. Nazir Ahmad Shekari Medical Center',
-    'application-name': 'Afghanistan Urology Excellence',
+    'application-name': 'Dr. Shekari Urology Clinic',
     'msapplication-TileColor': '#E9756D',
     'theme-color': '#E9756D',
   }
@@ -127,29 +113,66 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className="scroll-smooth">
       <head>
+        {/* ===== PWA REQUIRED TAGS ===== */}
+        {/* Manifest */}
         <link rel="manifest" href="/manifest.json" />
+        
+        {/* Theme Color */}
         <meta name="theme-color" content="#E9756D" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-        
-        {/* PWA meta tags */}
-        <meta name="apple-mobile-web-app-title" content="Urology Center" />
-        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#E9756D" />
-        <meta name="msapplication-TileImage" content="/icons/icon-144x144.png" />
         <meta name="msapplication-TileColor" content="#E9756D" />
-        <meta name="application-name" content="Urology Center" />
         
-        {/* iOS specific */}
+        {/* Apple Specific */}
         <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-        <link rel="apple-touch-startup-image" href="/apple-splash-2048-2732.jpg" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" /> {/* Changed from black-translucent */}
+        <meta name="apple-mobile-web-app-title" content="Dr. Shekari Clinic" />
+        <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+        
+        {/* Icon Definitions - ALL REQUIRED */}
+        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/icons/icon-16x16.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/icons/icon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192x192.png" />
+        <link rel="icon" type="image/png" sizes="512x512" href="/icons/icon-512x512.png" />
+        
+        {/* Android Chrome Icons */}
+        <link rel="icon" type="image/png" sizes="192x192" href="/icons/android-chrome-192x192.png" />
+        <link rel="icon" type="image/png" sizes="512x512" href="/icons/android-chrome-512x512.png" />
+        
+        {/* Safari Pinned Tab */}
+        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#E9756D" />
+        
+        {/* Microsoft Tiles */}
+        <meta name="msapplication-TileImage" content="/icons/mstile-144x144.png" />
+        <meta name="msapplication-config" content="/browserconfig.xml" />
+        
+        {/* Viewport - IMPORTANT FOR MOBILE */}
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover" />
+        
+        {/* Mobile Web App Capable */}
+        <meta name="mobile-web-app-capable" content="yes" />
+        
+        {/* ===== PERFORMANCE & SEO ===== */}
+        {/* Preconnect to important domains */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        
+        {/* Preload critical resources */}
+        <link rel="preload" href="/fonts/inter-var.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+        
+        {/* Disable automatic phone number detection */}
+        <meta name="format-detection" content="telephone=no" />
+        
+        {/* ===== SECURITY HEADERS ===== */}
+        <meta httpEquiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline';" />
       </head>
-      <body className={`${inter.className} bg-[#FDF5EE]`}>
+      <body className={`${inter.className} bg-[#FDF5EE] antialiased`}>
+        {/* Structured Data for SEO */}
         <MedicalSchema />
+        
+        {/* Main Content with Suspense */}
         <Suspense fallback={<LoadingFallback type="full-page" />}>
           <Header />
-          <main className="min-h-screen">
+          <main className="min-h-screen pt-16"> {/* Added pt-16 for fixed header */}
             {children}
           </main>
           <Footer />
@@ -158,21 +181,104 @@ export default function RootLayout({ children }) {
         {/* Mobile Install App Banner */}
         <InstallAppBanner />
         
-        {/* Register service worker script */}
+        {/* Service Worker Registration - UPDATED */}
         <script
           dangerouslySetInnerHTML={{
             __html: `
-              if ('serviceWorker' in navigator && window.location.hostname !== 'localhost') {
-                window.addEventListener('load', function() {
-                  navigator.serviceWorker.register('/sw.js').then(
-                    function(registration) {
-                      console.log('ServiceWorker registration successful with scope: ', registration.scope);
-                    },
-                    function(err) {
-                      console.log('ServiceWorker registration failed: ', err);
+              (function() {
+                // Check if we're in a browser
+                if (typeof window === 'undefined') return;
+                
+                // Register Service Worker
+                if ('serviceWorker' in navigator) {
+                  // Only register in production AND on HTTPS
+                  const isLocalhost = window.location.hostname === 'localhost' || 
+                                     window.location.hostname === '127.0.0.1';
+                  const isHttps = window.location.protocol === 'https:';
+                  
+                  if (!isLocalhost && isHttps) {
+                    window.addEventListener('load', function() {
+                      navigator.serviceWorker.register('/sw.js')
+                        .then(function(registration) {
+                          console.log('✅ Service Worker registered:', registration.scope);
+                          
+                          // Check for updates
+                          registration.addEventListener('updatefound', () => {
+                            console.log('🔄 New Service Worker version found');
+                          });
+                        })
+                        .catch(function(error) {
+                          console.log('❌ Service Worker registration failed:', error);
+                        });
+                    });
+                  }
+                }
+                
+                // PWA Install Prompt Handler
+                let deferredPrompt;
+                window.addEventListener('beforeinstallprompt', (e) => {
+                  e.preventDefault();
+                  deferredPrompt = e;
+                  console.log('📱 PWA install prompt available');
+                  
+                  // Store the event for later use
+                  window.deferredPrompt = deferredPrompt;
+                  
+                  // Show custom install button if exists
+                  setTimeout(() => {
+                    const installBtn = document.getElementById('installPWA');
+                    if (installBtn) {
+                      installBtn.style.display = 'flex';
+                      installBtn.addEventListener('click', async () => {
+                        if (!deferredPrompt) return;
+                        
+                        deferredPrompt.prompt();
+                        const { outcome } = await deferredPrompt.userChoice;
+                        
+                        console.log('User response to install prompt:', outcome);
+                        
+                        if (outcome === 'accepted') {
+                          console.log('🎉 PWA installed successfully');
+                          // Hide install button
+                          if (installBtn) installBtn.style.display = 'none';
+                        }
+                        
+                        deferredPrompt = null;
+                        window.deferredPrompt = null;
+                      });
                     }
-                  );
+                  }, 3000); // Show after 3 seconds
                 });
+                
+                // Track PWA installation
+                window.addEventListener('appinstalled', (evt) => {
+                  console.log('🏠 PWA was installed');
+                  // Send to analytics
+                  if (window.gtag) {
+                    gtag('event', 'pwa_installed');
+                  }
+                });
+              })();
+            `
+          }}
+        />
+        
+        {/* PWA Detection Script */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              // Check if app is already installed
+              window.isPWAInstalled = false;
+              
+              if (window.matchMedia('(display-mode: standalone)').matches || 
+                  window.navigator.standalone === true) {
+                window.isPWAInstalled = true;
+                console.log('📱 App is running in standalone mode');
+              }
+              
+              // Check for iOS standalone mode
+              if (window.navigator.standalone) {
+                window.isPWAInstalled = true;
               }
             `
           }}
