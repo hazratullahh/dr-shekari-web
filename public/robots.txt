@@ -1,0 +1,63 @@
+# ===============================
+# Robots.txt for dr-shekari.com
+# Optimized for Search Engines & AI Crawlers
+# ===============================
+
+User-agent: *
+Allow: /
+
+# Block internal / technical paths
+Disallow: /api/
+Disallow: /_next/
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /login/
+Disallow: /register/
+Disallow: /private/
+Disallow: /temp/
+Disallow: /preview/
+
+# Prevent duplicate content
+Disallow: /*?*
+Disallow: /*&*
+
+# Allow important assets
+Allow: /images/
+Allow: /assets/
+Allow: /uploads/
+
+# ===============================
+# AI & LLM Crawlers (Explicit Allow)
+# ===============================
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Anthropic
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+# ===============================
+# Sitemaps
+# ===============================
+
+Sitemap: https://dr-shekari.com/sitemap-index.xml
+Sitemap: https://dr-shekari.com/sitemap.xml
+Sitemap: https://dr-shekari.com/sitemap-doctors.xml
+Sitemap: https://dr-shekari.com/sitemap-services.xml
+Sitemap: https://dr-shekari.com/sitemap-locations.xml
+Sitemap: https://dr-shekari.com/sitemap-blog.xml
