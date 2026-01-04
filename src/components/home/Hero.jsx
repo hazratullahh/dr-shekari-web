@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 
-export default function Hero() { 
+export default function Hero() {
     return (
         <section className="relative min-h-screen flex items-center px-1 md:px-8 lg:px-16 mx-auto overflow-hidden">
             {/* Background Image with semantic markup */}
@@ -63,18 +63,26 @@ bg-white/10
                         </div>
 
                         {/* Main Heading */}
-                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
                             Dr. Nazir Ahmad
                             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#E9756D] to-[#F6CA97]">
                                 Shekari
                             </span>
                         </h1>
 
+                        <h2 className="text-lg md:text-xl font-semibold text-white/90 mb-6">
+                            Specialist of Urology, Andrology & Endourology
+                            <span className="block text-white/80 mt-1">
+                                And Professor Assistant Dr. Mansour Ahmad Wayar
+                            </span>
+                        </h2>
+
+
                         {/* Description */}
                         <p className="text-lg md:text-xl text-white mb-8 leading-relaxed">
-                            Professor Assistant & Specialist in Urology, Andrology, and Endourology.
-                            Providing advanced medical care with cutting-edge technology and
-                            compassionate patient-centered approach.
+                            Assistant Professors and Specialists in Urology, Andrology, and Endourology.
+                            Dr. Nazir Ahmad Shekari and Dr. Mansour Ahmad Wayar provide advanced medical care
+                            using cutting-edge technology with a compassionate, patient-centered approach.
                         </p>
 
                         {/* Call to Action Buttons */}

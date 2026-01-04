@@ -17,8 +17,8 @@ import { Suspense } from 'react';
 export const metadata = {
   metadataBase: new URL('https://dr-shekari.com'),
   title: {
-    default: 'Dr. Nazir Ahmad Shekari | Urologist, Andrologist and Endouroiogist, Andrology & EndoUrologist, Andrologist and Endouroiogist Specialist',
-    template: '%s | Assistant Dr. Mansour Ahmad Wayar'
+    default: 'Dr. Nazir Ahmad Shekari & Dr. Mansour Ahmad Wayar | Top Urologists in Afghanistan',
+    template: '%s | Dr Shekari Clinic'
   },
   description: 'Dr. Nazir Ahmad Shekari and Professor Assistant Dr. Mansour Ahmad Wayar provides advanced urological care, andrology, and endoUrologist, Andrologist and Endouroiogist treatments. Expert in kidney stones, prostate health, and male fertility.',
   keywords: ['Urologist, Andrologist and Endouroiogist specialist', 'andrology', 'endoUrologist, Andrologist and Endouroiogist', 'kidney stones', 'prostate treatment', 'male fertility', 'Dr. Nazir Ahmad Shekari', 'urologist near me'],
