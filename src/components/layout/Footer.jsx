@@ -34,7 +34,7 @@ const Footer = () => {
     address: "Afghanistan, Herat, Chahar-e-rahi- Badmorghan, Jami Hospital",
     phone1: "+93792453030",
     phone2: "+93704453030",
-    email: "urology@drshekari.com",
+    email: "urology@dr-shekari.com",
     website: "www.dr-shekari.com",
     hours: "Mon - Sat: 8:00 AM - 8:00 PM | Sun: Emergency Only"
   };

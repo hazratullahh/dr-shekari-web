@@ -37,7 +37,7 @@ export const metadata = {
     description: 'Advanced urological care in Herat, Afghanistan',
   },
   alternates: {
-    canonical: 'https://drshekari.com/about',
+    canonical: 'https://dr-shekari.com/about',
   },
   robots: {
     index: true,
@@ -76,8 +76,8 @@ export default function AboutPage() {
             "@context": "https://schema.org",
             "@type": "MedicalOrganization",
             "name": "Dr. Nazir Ahmad Shekari Urology Clinic",
-            "url": "https://drshekari.com",
-            "logo": "https://drshekari.com/logo.png",
+            "url": "https://dr-shekari.com",
+            "logo": "https://dr-shekari.com/logo.png",
             "description": "Specialized urology, andrology, and endourology services in Herat, Afghanistan",
             "address": {
               "@type": "PostalAddress",

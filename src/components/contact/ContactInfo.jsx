@@ -18,9 +18,9 @@ const ContactInfo = () => {
       icon: <Mail className="text-[#F6CA97]" size={24} />,
       title: "Email Addresses",
       items: [
-        { label: "Medical Inquiries", value: "urology@drshekari.com", type: "mailto" },
-        { label: "Appointments", value: "urology@drshekari.com", type: "mailto" },
-        { label: "General Info", value: "urology@drshekari.com", type: "mailto" }
+        { label: "Medical Inquiries", value: "urology@dr-shekari.com", type: "mailto" },
+        { label: "Appointments", value: "urology@dr-shekari.com", type: "mailto" },
+        { label: "General Info", value: "urology@dr-shekari.com", type: "mailto" }
       ]
     },
     {

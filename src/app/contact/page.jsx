@@ -36,7 +36,7 @@ export const metadata = {
     description: 'Book appointments and contact our medical team in Herat, Afghanistan',
   },
   alternates: {
-    canonical: 'https://drshekari.com/contact',
+    canonical: 'https://dr-shekari.com/contact',
   },
   robots: {
     index: true,
@@ -76,8 +76,8 @@ export default function ContactPage() {
             "@context": "https://schema.org",
             "@type": "MedicalOrganization",
             "name": "Dr. Shekari Urology Clinic",
-            "url": "https://drshekari.com/contact",
-            "logo": "https://drshekari.com/logo.png",
+            "url": "https://dr-shekari.com/contact",
+            "logo": "https://dr-shekari.com/logo.png",
             "description": "Urology clinic in Herat, Afghanistan",
             "address": {
               "@type": "PostalAddress",
@@ -88,7 +88,7 @@ export default function ContactPage() {
               "postalCode": "3001"
             },
             "telephone": "+93792453030",
-            "email": "urology@drshekari.com",
+            "email": "urology@dr-shekari.com",
             "openingHours": [
               "Mo-Sa 08:00-20:00",
               "Su 09:00-14:00"
