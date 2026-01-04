@@ -209,12 +209,12 @@ export default function RootLayout({ children }) {
 
         {/* EXISTING SCRIPTS (UNCHANGED) */}
         {/* Service Worker */}
-        <script defer dangerouslySetInnerHTML={{
+        {/* <script defer dangerouslySetInnerHTML={{
           __html: `
           if ('serviceWorker' in navigator && window.location.protocol === 'https:') {
             navigator.serviceWorker.register('/sw.js');
           }
-        `}} />
+        `}} /> */}
       </body>
     </html>
   );

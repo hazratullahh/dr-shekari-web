@@ -243,8 +243,7 @@ const nextConfig = {
           }
         ]
       },
-      {
-        source: '/sw.js',
+      { 
         headers: [
           {
             key: 'Content-Type',
