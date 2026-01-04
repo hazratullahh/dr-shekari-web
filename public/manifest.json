@@ -7,11 +7,14 @@
   "background_color": "#FDF5EE",
   "theme_color": "#E9756D",
   "orientation": "portrait-primary",
-  "categories": ["medical", "health"],
+  "categories": [
+    "medical",
+    "health"
+  ],
   "icons": [
     {
       "src": "/favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
+      "sizes": "any",
       "type": "image/x-icon"
     },
     {
@@ -69,14 +72,24 @@
       "short_name": "Appointment",
       "description": "Schedule a consultation",
       "url": "/appointment",
-      "icons": [{ "src": "/icons/calendar-icon.png", "sizes": "96x96" }]
+      "icons": [
+        {
+          "src": "/icons/calendar-icon.png",
+          "sizes": "96x96"
+        }
+      ]
     },
     {
       "name": "About Us",
       "short_name": "About",
       "description": "Read more about us",
       "url": "/about",
-      "icons": [{ "src": "/icons/about-icon.png", "sizes": "96x96" }]
+      "icons": [
+        {
+          "src": "/icons/about-icon.png",
+          "sizes": "96x96"
+        }
+      ]
     }
   ],
   "screenshots": [
