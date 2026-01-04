@@ -74,15 +74,15 @@ export default function InstallBanner() {
         <div className="flex items-center gap-3">
           <FaMobileAlt className="text-2xl" />
           <div>
-            <h3 className="font-bold">Install Dr. Shekari Clinic App</h3>
-            <p className="text-sm opacity-90">Get quick access to medical services</p>
+            <h3 className="font-semibold">Install Dr. Shekari App</h3>
+            <p className="text-xs opacity-90">Get quick access to medical services</p>
           </div>
         </div>
-        
+
         <div className="flex items-center gap-2">
           <button
             onClick={handleInstall}
-            className="bg-white text-[#E9756D] px-4 py-2 rounded-lg font-semibold hover:bg-gray-100 transition flex items-center gap-2"
+            className="bg-white text-[#E9756D] text-xs px-4 py-2 rounded-lg font-semibold hover:bg-gray-100 transition flex items-center gap-2"
           >
             <FaDownload /> Install Now
           </button>
