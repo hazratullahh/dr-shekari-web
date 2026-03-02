@@ -7,9 +7,9 @@ import { useLocale } from 'next-intl';
 import { ChevronDownIcon } from 'lucide-react';
 
 const languages = [
-    { code: 'en', label: 'English', flag: '🇺🇸', dir: 'ltr' },
+    { code: 'ps', label: 'پښتو', flag: '🇦🇫', dir: 'rtl' },
     { code: 'fa', label: 'فارسی', flag: '🇮🇷', dir: 'rtl' },
-    { code: 'ps', label: 'پښتو', flag: '🇦🇫', dir: 'rtl' }
+    { code: 'en', label: 'English', flag: '🇺🇸', dir: 'ltr' },
 ];
 
 export default function LocaleSwitcher() {

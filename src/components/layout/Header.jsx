@@ -186,7 +186,7 @@ const Header = () => {
               whileHover={{ scale: 1.05 }}
               className="flex items-center relative group"
             >
-              <Link href="/" className="flex items-center">
+              <Link href="/" className="flex items-center gap-4">
                 {/* Logo Container with sexy effects */}
                 <motion.div
                   animate={{
@@ -384,13 +384,13 @@ const Header = () => {
                   <span className="font-bold text-white">Book Now</span>
 
                   {/* Animated arrow */}
-                  <motion.div
+                  {/* <motion.div
                     animate={{ x: [0, 5, 0] }}
                     transition={{ duration: 1.5, repeat: Infinity }}
                     className="ml-2"
                   >
                     <ArrowRight size={18} className="text-white" />
-                  </motion.div>
+                  </motion.div> */}
 
                   {/* Floating hearts on hover */}
                   <motion.div
@@ -511,7 +511,7 @@ const Header = () => {
                   transition={{ duration: 1.5, repeat: Infinity }}
                   className="ml-3"
                 >
-                  <ArrowRight size={20} />
+                  {/* <ArrowRight size={20} /> */}
                 </motion.div>
               </motion.button>
 
