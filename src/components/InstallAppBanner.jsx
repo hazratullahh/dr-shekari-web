@@ -56,7 +56,7 @@ export default function InstallBanner() {
   if (!showBanner) return null;
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-linear-to-r from-[#E9756D] to-[#FF8A80] text-white p-4 z-50 shadow-lg animate-slideUp">
+    <div className="fixed bottom-0 left-0 right-0 bg-gradient-to-r from-[#E9756D] to-[#FF8A80] text-white p-4 z-50 shadow-lg animate-slideUp">
       <div className="container mx-auto relative">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
