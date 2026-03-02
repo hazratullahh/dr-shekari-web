@@ -10,6 +10,7 @@ import {
   Stethoscope, ChevronRight, Sparkles,
   Zap, Heart, ArrowRight, User
 } from 'lucide-react';
+import LocaleSwitcher from './LocaleSwitcher';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -351,6 +352,9 @@ const Header = () => {
                   )}
                 </motion.div>
               ))}
+              <div className="ml-3">
+                <LocaleSwitcher />
+              </div>
 
               {/*  Appointment Button */}
               <motion.button
@@ -457,6 +461,10 @@ const Header = () => {
             }}
           >
             <div className="max-w-7xl mx-auto px-4 py-6">
+              <div className="mb-6 flex justify-center">
+                <LocaleSwitcher />
+              </div>
+
               {navItems.map((item) => (
                 <motion.div
                   key={item.label}
@@ -488,7 +496,7 @@ const Header = () => {
 
               {/* Mobile Appointment Button */}
               <motion.button
-              type='button'
+                type='button'
                 whileTap={{ scale: 0.95 }}
                 onClick={() => {
                   window.location.href = 'tel:+93792453030';

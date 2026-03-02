@@ -1,9 +1,12 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 
 export default function Hero() {
+    const t = useTranslations("home");
+
     return (
         <section className="relative min-h-screen flex items-center px-1 md:px-8 lg:px-16 mx-auto overflow-hidden">
             {/* Background Image with semantic markup */}
@@ -71,18 +74,12 @@ bg-white/10
                         </h1>
 
                         <h2 className="text-lg md:text-xl font-semibold text-white/90 mb-6">
-                            Specialist of Urology, Andrology & Endourology
-                            <span className="block text-white/80 mt-1">
-                                And Professor Assistant Dr. Mansour Ahmad Wayar
-                            </span>
+                            {t("pro")}
                         </h2>
-
 
                         {/* Description */}
                         <p className="text-lg md:text-xl text-white mb-8 leading-relaxed">
-                            Assistant Professors and Specialists in Urology, Andrology, and Endourology.
-                            Dr. Nazir Ahmad Shekari and Dr. Mansour Ahmad Wayar provide advanced medical care
-                            using cutting-edge technology with a compassionate, patient-centered approach.
+                            Providing advanced, patient-centered care with cutting-edge technology.
                         </p>
 
                         {/* Call to Action Buttons */}

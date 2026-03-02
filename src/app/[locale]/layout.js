@@ -8,6 +8,15 @@ import LoadingFallback from '@/components/ui/LoadingFallback';
 import InstallAppBanner from '@/components/InstallAppBanner';
 import MedicalSchema from '@/components/MedicalSchema';
 
+import { NextIntlClientProvider, hasLocale } from 'next-intl';
+import { notFound } from 'next/navigation';
+import { routing } from '@/i18n/routing';
+// import Navbar from '@/components/Navbar';
+
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
+
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
@@ -121,9 +130,16 @@ export const metadata = {
   }
 };
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children, params }) {
+  const { locale } = await params;
+  if (!hasLocale(routing.locales, locale)) {
+    notFound();
+  }
+
+  const isRTL = locale === 'fa' || locale === 'ps';
+
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang={locale} dir={isRTL ? 'rtl' : 'ltr'} className="scroll-smooth">
       <head>
         {/* ===== PWA REQUIRED TAGS ===== */}
         <link rel="manifest" href="/manifest.json" />
@@ -138,7 +154,7 @@ export default function RootLayout({ children }) {
 
         {/* ===== FIX 1: BRAND + SITELINKS SCHEMA IN HEAD ===== */}
         <script
-        defer
+          defer
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
@@ -157,7 +173,7 @@ export default function RootLayout({ children }) {
 
         {/* ===== FIX 2: MEDICAL ORGANIZATION ENTITY ===== */}
         <script
-        defer
+          defer
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
@@ -194,18 +210,20 @@ export default function RootLayout({ children }) {
       </head>
 
       <body className={`${inter.className} bg-[#FDF5EE] antialiased`}>
-        {/* Existing structured data (kept) */}
-        <MedicalSchema />
+        <NextIntlClientProvider locale={locale}>
+          {/* Existing structured data (kept) */}
+          <MedicalSchema />
 
-        <Suspense fallback={<LoadingFallback type="full-page" />}>
-          <Header />
-          <main className="min-h-screen pt-16">
-            {children}
-          </main>
-          <Footer />
-        </Suspense>
+          <Suspense fallback={<LoadingFallback type="full-page" />}>
+            <Header />
+            <main className="min-h-screen">
+              {children}
+            </main>
+            <Footer />
+          </Suspense>
 
-        <InstallAppBanner />
+          <InstallAppBanner />
+        </NextIntlClientProvider>
       </body>
     </html>
   );

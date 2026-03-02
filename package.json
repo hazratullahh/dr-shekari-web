@@ -3,16 +3,20 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint"
+    "dev": "concurrently --raw \"next dev --turbo\" \"i18nexus listen\"",
+    "build": "i18nexus pull && next build",
+    "start": "i18nexus pull && next start",
+    "lint": "next lint"
   },
   "dependencies": {
+    "@headlessui/react": "^2.2.9",
     "@hookform/resolvers": "^5.2.2",
+    "concurrently": "^9.2.1",
     "framer-motion": "^12.23.26",
+    "i18nexus-cli": "^3.8.2",
     "lucide-react": "^0.562.0",
     "next": "16.1.0",
+    "next-intl": "^4.8.3",
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "react-hook-form": "^7.69.0",

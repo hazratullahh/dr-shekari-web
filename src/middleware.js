@@ -1,9 +1,15 @@
 import { NextResponse } from 'next/server';
+import createMiddleware from 'next-intl/middleware';
+import { routing } from './i18n/routing';
 
-export function middleware(request) {
+// ===== Create next-intl middleware =====
+const nextIntlMiddleware = createMiddleware(routing);
+
+// ===== Custom middleware logic =====
+export async function middleware(request) {
   const { pathname } = request.nextUrl;
-  
-  // Redirect common misspellings
+
+  // ----- Redirect common misspellings -----
   const misspellings = {
     '/urohlogist': '/urologist',
     '/androlagy': '/andrology',
@@ -14,25 +20,31 @@ export function middleware(request) {
     '/dr-mansoor': '/doctors/dr-mansour-wayar',
     '/kabul-urologist': '/location/kabul',
   };
-  
+
   for (const [wrong, correct] of Object.entries(misspellings)) {
     if (pathname.startsWith(wrong)) {
-      return NextResponse.redirect(new URL(correct, request.url));
+      return NextResponse.redirect(new URL(correct, request.url), 301);
     }
   }
-  
-  // Force HTTPS in production
-  if (process.env.NODE_ENV === 'production' && 
-      request.headers.get('x-forwarded-proto') !== 'https') {
+
+  // ----- Force HTTPS in production -----
+  if (
+    process.env.NODE_ENV === 'production' &&
+    request.headers.get('x-forwarded-proto') !== 'https'
+  ) {
     return NextResponse.redirect(
       `https://${request.headers.get('host')}${request.nextUrl.pathname}`,
       301
     );
   }
-  
-  // Add security headers
+
+  // ----- Apply next-intl middleware first -----
+  const intlResponse = await nextIntlMiddleware(request);
+  if (intlResponse) return intlResponse;
+
+  // ----- Default response with security headers -----
   const response = NextResponse.next();
-  
+
   // Security headers
   response.headers.set('X-Content-Type-Options', 'nosniff');
   response.headers.set('X-Frame-Options', 'SAMEORIGIN');
@@ -42,15 +54,14 @@ export function middleware(request) {
     'Permissions-Policy',
     'camera=(), microphone=(), geolocation=(), interest-cohort=()'
   );
-  
-  // SEO headers
+
+  // SEO header
   response.headers.set('Content-Language', 'en');
-  
+
   return response;
 }
 
+// ----- Matcher for Next.js middleware -----
 export const config = {
-  matcher: [
-    '/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt).*)',
-  ],
+  matcher: '/((?!api|trpc|_next|_vercel|.*\\..*).*)', 
 };
