@@ -8,7 +8,7 @@ const ContactHero = () => {
   return (
     <section className="relative pt-32 pb-20 px-4 md:px-8 lg:px-16 overflow-hidden">
       {/* Animated Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#FDF5EE] via-white to-[#F9F0E8]" />
+      <div className="absolute inset-0 bg-linear-to-br from-[#FDF5EE] via-white to-[#F9F0E8]" />
       
       {/* Floating Contact Icons */}
       <div className="absolute inset-0 overflow-hidden">
@@ -41,9 +41,9 @@ const ContactHero = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-[#E9756D]/10 to-[#F6CA97]/10 rounded-full mb-6"
+            className="inline-flex items-center px-4 py-2 bg-linear-to-r from-[#E9756D]/10 to-[#F6CA97]/10 rounded-full mb-6"
           >
-            <MessageSquare className="text-[#E9756D] mr-2" size={20} />
+            <MessageSquare className="text-[#E9756D] mx-2" size={20} />
             <span className="text-[#E9756D] font-semibold">Get in Touch</span>
           </motion.div>
           
@@ -54,7 +54,7 @@ const ContactHero = () => {
             className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6"
           >
             We're Here to
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#E9756D] to-[#F6CA97]">
+            <span className="block text-transparent bg-clip-text bg-linear-to-r from-[#E9756D] to-[#F6CA97]">
               Help You
             </span>
           </motion.h1>
@@ -105,7 +105,7 @@ const ContactHero = () => {
                 whileHover={{ y: -5, scale: 1.02 }}
                 className="glass-card p-6 rounded-2xl text-center group"
               >
-                <div className="inline-flex p-3 rounded-xl bg-gradient-to-r from-[#E9756D]/10 to-[#F6CA97]/10 mb-4 group-hover:from-[#E9756D]/20 group-hover:to-[#F6CA97]/20">
+                <div className="inline-flex p-3 rounded-xl bg-linear-to-r from-[#E9756D]/10 to-[#F6CA97]/10 mb-4 group-hover:from-[#E9756D]/20 group-hover:to-[#F6CA97]/20">
                   {stat.icon}
                 </div>
                 <h3 className="font-semibold text-gray-900 mb-1">{stat.title}</h3>

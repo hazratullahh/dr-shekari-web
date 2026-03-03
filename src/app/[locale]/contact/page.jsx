@@ -58,9 +58,9 @@ export default function ContactPage() {
           </div>
         </div>
       </Suspense>
-      <Suspense fallback={<LoadingFallback type="section" />}>
+      {/* <Suspense fallback={<LoadingFallback type="section" />}>
         <MapSection />
-      </Suspense>
+      </Suspense> */}
       {/* <Suspense fallback={<LoadingFallback type="section" />}>
         <EmergencySection />
       </Suspense> */}
