@@ -1,4 +1,11 @@
 {
+  "about": {
+    "about_doctor": "About Doctor",
+    "bio": "I am Dr. Nazir Ahmad Shekari, a urological surgeon specializing in endourology and andrology. Over the past five years, I have been working in the diagnosis and treatment of a wide range of urological diseases, and I always strive to choose the best scientific and minimally invasive methods for each patient.",
+    "specialized_fields": "Specialized fields",
+    "stone_disease": "Stone Disease",
+    "prostate_disorder": "Prostate Disorder"
+  },
   "footer": {
     "certified_urologist": "Certified Urologist",
     "facebook": "FaceBook",

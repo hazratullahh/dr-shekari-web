@@ -57,21 +57,21 @@ export default function AboutPage() {
         <AboutHero />
       </Suspense>
 
-      <Suspense fallback={<LoadingFallback type="section" />}>
+      {/* <Suspense fallback={<LoadingFallback type="section" />}>
         <VisionMission />
-      </Suspense>
+      </Suspense> */}
 
-      <Suspense fallback={<LoadingFallback type="section" />}>
+      {/* <Suspense fallback={<LoadingFallback type="section" />}>
         <History />
-      </Suspense>
+      </Suspense> */}
 
-      <Suspense fallback={<LoadingFallback type="section" />}>
+      {/* <Suspense fallback={<LoadingFallback type="section" />}>
         <Philosophy />
-      </Suspense>
+      </Suspense> */}
 
-      <Suspense fallback={<LoadingFallback type="section" />}>
+      {/* <Suspense fallback={<LoadingFallback type="section" />}>
         <Equipment />
-      </Suspense>
+      </Suspense> */}
 
       {/* ================= STRUCTURED DATA (BEST PRACTICE) ================= */}
       <script
