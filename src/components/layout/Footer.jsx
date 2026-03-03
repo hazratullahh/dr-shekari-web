@@ -6,11 +6,14 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import {
   Phone, Mail, MapPin, Calendar, Clock,
-  Facebook, Twitter, Instagram, Youtube,
+  Facebook, Twitter, Instagram,
   Award, Shield, ArrowUp, Stethoscope, Heart
 } from 'lucide-react';
+import { useTranslations } from 'use-intl';
 
 const Footer = () => {
+  const t = useTranslations();
+
   const [email, setEmail] = useState('');
 
   const handleSubscribe = (e) => {
@@ -28,23 +31,23 @@ const Footer = () => {
   // Footer data
   const clinicInfo = {
     logoSrc: "/logo.png",
-    hospitalName: "Dr. Nazir Ahmad Shekari",
-    clinicSpecialty: "Urologist, Andrologist and Endourologist",
-    clinicTagline: "Accurate diagnosis · Effective treatment",
-    address: "Afghanistan, Herat, Chahar-e-rahi- Badmorghan, Jami Hospital",
+    hospitalName: t("home.dr_name"),
+    clinicSpecialty: t("home.slogan"),
+    clinicTagline: t("footer.accurate_effective"),
+    address: t("footer.address"),
     phone1: "+93792453030",
     phone2: "+93704453030",
     email: "urology@dr-shekari.com",
     website: "www.dr-shekari.com",
-    hours: "Mon - Sat: 8:00 AM - 8:00 PM | Sun: Emergency Only"
+    hours: t("footer.hours")
   };
 
   const quickLinks = [
-    { label: 'Home', href: '/' },
-    { label: 'About', href: '/about' },
+    { label: t('header.home'), href: '/' },
+    { label: t('header.about'), href: '/about' },
     // { label: 'Services', href: '/services' },
-    { label: 'Team', href: '/team' },
-    { label: 'Contact', href: '/contact' },
+    { label: t('header.team'), href: '/team' },
+    { label: t('header.contact'), href: '/contact' },
   ];
 
   const services = [
@@ -57,20 +60,17 @@ const Footer = () => {
   ];
 
   const socialLinks = [
-    { icon: <Facebook size={20} />, href: '#', label: 'Facebook' },
-    { icon: <Twitter size={20} />, href: '#', label: 'Twitter' },
-    { icon: <Instagram size={20} />, href: '#', label: 'Instagram' },
-    { icon: <Youtube size={20} />, href: '#', label: 'YouTube' },
+    { icon: <Facebook size={20} />, href: '#', label: t('footer.facebook'), },
+    { icon: <Twitter size={20} />, href: '#', label: t('footer.twitter'), },
+    { icon: <Instagram size={20} />, href: '#', label: t('footer.instagram'), },
   ];
 
   const certifications = [
-    { label: 'Certified Urologist', icon: <Award size={16} /> },
-    { label: 'ISO Certified Clinic', icon: <Shield size={16} /> },
-    { label: '20+ Years Experience', icon: <Clock size={16} /> },
+    { label: t("footer.certified_urologist"), icon: <Award size={16} /> },
   ];
 
   return (
-    <footer className="bg-gradient-to-b from-white to-gray-50 border-t border-gray-100">
+    <footer className="bg-linear-to-b from-white to-gray-50 border-t border-gray-100">
       <div className="max-w-360 mx-auto px-4 py-12">
 
         {/* Main Footer Content */}
@@ -80,7 +80,7 @@ const Footer = () => {
           <div className="lg:col-span-2">
             <div className="mb-8">
               <Link href="/" className="flex items-start mb-6">
-                <div className="relative w-20 h-2w-20 rounded-xl bg-gradient-to-br from-[#E9756D] to-[#F6CA97] flex items-center justify-center shadow-xl mr-4 overflow-hidden">
+                <div className="relative w-20 h-2w-20 rounded-xl bg-linear-to-br from-[#E9756D] to-[#F6CA97] flex items-center justify-center shadow-xl mr-4 overflow-hidden">
                   {/* Logo Image */}
                   <Image
                     src={clinicInfo.logoSrc}
@@ -99,13 +99,13 @@ const Footer = () => {
                   </div>
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold text-gray-900 leading-tight">
+                  <h3 className="text-2xl mx-1 font-bold text-gray-900 leading-tight">
                     {clinicInfo.hospitalName}
                   </h3>
-                  <p className="text-[#E9756D] font-medium mt-1">
+                  <p className="text-[#E9756D] font-medium mt-1 mx-1">
                     {clinicInfo.clinicSpecialty}
                   </p>
-                  <p className="text-gray-600 text-sm mt-2">
+                  <p className="text-gray-600 text-sm mt-2 mx-1">
                     {clinicInfo.clinicTagline}
                   </p>
                 </div>
@@ -116,7 +116,7 @@ const Footer = () => {
                 {certifications.map((cert, index) => (
                   <div
                     key={index}
-                    className="flex items-center px-3 py-2 bg-gradient-to-r from-[#E9756D]/5 to-[#F6CA97]/5 rounded-lg border border-[#F6CA97]/20"
+                    className="flex items-center px-3 py-2 bg-linear-to-r from-[#E9756D]/5 to-[#F6CA97]/5 rounded-lg border border-[#F6CA97]/20"
                   >
                     <span className="text-[#E9756D] mr-2">{cert.icon}</span>
                     <span className="text-sm font-medium text-gray-700">{cert.label}</span>
@@ -129,9 +129,9 @@ const Footer = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-4">
                 <div className="flex items-start">
-                  <MapPin size={20} className="text-[#E9756D] mt-1 mr-3 flex-shrink-0" />
+                  <MapPin size={20} className="mx-1 text-[#E9756D] mt-1 mr-3 shrink-0" />
                   <div>
-                    <h4 className="font-semibold text-gray-900 mb-1">Our Location</h4>
+                    <h4 className="font-semibold text-gray-900 mb-1">{t("footer.location")}</h4>
                     <p className="text-gray-600 text-sm leading-relaxed">
                       {clinicInfo.address}
                     </p>
@@ -139,9 +139,9 @@ const Footer = () => {
                 </div>
 
                 <div className="flex items-start">
-                  <Clock size={20} className="text-[#E9756D] mt-1 mr-3 flex-shrink-0" />
+                  <Clock size={20} className="mx-1 text-[#E9756D] mt-1 mr-3 shrink-0" />
                   <div>
-                    <h4 className="font-semibold text-gray-900 mb-1">Working Hours</h4>
+                    <h4 className="font-semibold text-gray-900 mb-1">{t("footer.working_hours")}</h4>
                     <p className="text-gray-600 text-sm">
                       {clinicInfo.hours}
                     </p>
@@ -151,10 +151,10 @@ const Footer = () => {
 
               <div className="space-y-4">
                 <div className="flex items-center">
-                  <Phone size={20} className="text-[#E9756D] mr-3 flex-shrink-0" />
+                  <Phone size={20} className="mx-1 text-[#E9756D] mr-3 shrink-0" />
                   <div>
-                    <h4 className="font-semibold text-gray-900 mb-1">Contact Numbers</h4>
-                    <div className="space-y-1">
+                    <h4 className="font-semibold text-gray-900 mb-1">{t("footer.contact_numbers")}</h4>
+                    <div className="space-y-1" dir='ltr'>
                       <a
                         href={`tel:${clinicInfo.phone1}`}
                         className="block text-gray-700 hover:text-[#E9756D] text-sm transition-colors"
@@ -172,9 +172,9 @@ const Footer = () => {
                 </div>
 
                 <div className="flex items-center">
-                  <Mail size={20} className="text-[#E9756D] mr-3 flex-shrink-0" />
+                  <Mail size={20} className="mx-1 text-[#E9756D] mr-3 shrink-0" />
                   <div>
-                    <h4 className="font-semibold text-gray-900 mb-1">Email & Website</h4>
+                    <h4 className="font-semibold text-gray-900 mb-1">{t("footer.email_website")}</h4>
                     <div className="space-y-1">
                       <a
                         href={`mailto:${clinicInfo.email}`}
@@ -200,7 +200,7 @@ const Footer = () => {
           {/* Quick Links */}
           <div>
             <h4 className="text-lg font-bold text-gray-900 mb-6 pb-2 border-b border-gray-200">
-              Quick Links
+              {t("footer.quick_links")}
             </h4>
             <ul className="space-y-3">
               {quickLinks.map((link) => (
@@ -218,25 +218,25 @@ const Footer = () => {
 
             {/* Newsletter Subscription */}
             <div className="mt-10">
-              <h4 className="text-lg font-bold text-gray-900 mb-4">Stay Updated</h4>
+              <h4 className="text-lg font-bold text-gray-900 mb-4">{t("footer.stay_updated")}</h4>
               <form onSubmit={handleSubscribe} className="relative">
                 <input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Enter your email"
+                  placeholder={t("footer.enter_email")}
                   className="w-full px-4 py-3 pr-12 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#E9756D]/20 focus:border-[#E9756D]"
                   required
                 />
                 <button
                   type="submit"
-                  className="absolute right-2 top-2 w-8 h-8 cursor-pointer rounded-md bg-gradient-to-r from-[#E9756D] to-[#F6CA97] flex items-center justify-center"
+                  className="absolute right-2 top-2 w-8 h-8 cursor-pointer rounded-md bg-linear-to-r from-[#E9756D] to-[#F6CA97] flex items-center justify-center"
                 >
                   <ArrowUp size={16} className="text-white rotate-45" />
                 </button>
               </form>
               <p className="text-xs text-gray-500 mt-2">
-                Subscribe for health tips and updates
+                {t("footer.subscribe_text")}
               </p>
             </div>
           </div>
@@ -244,7 +244,7 @@ const Footer = () => {
           {/* Services & Social */}
           <div>
             <h4 className="text-lg font-bold text-gray-900 mb-6 pb-2 border-b border-gray-200">
-              Our Services
+              {t("footer.our_services")}
             </h4>
             <ul className="space-y-3 mb-10">
               {services.map((service) => (
@@ -262,7 +262,7 @@ const Footer = () => {
 
             {/* Social Links */}
             <div>
-              <h4 className="text-lg font-bold text-gray-900 mb-4">Connect With Us</h4>
+              <h4 className="text-lg font-bold text-gray-900 mb-4">{t("footer.connect_with_us")}</h4>
               <div className="flex space-x-3">
                 {socialLinks.map((social) => (
                   <motion.a
@@ -270,7 +270,7 @@ const Footer = () => {
                     href={social.href}
                     whileHover={{ y: -3, scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
-                    className="w-10 h-10 rounded-xl bg-gradient-to-br from-white to-gray-50 border border-gray-200 text-gray-600 hover:text-white hover:from-[#E9756D] hover:to-[#F6CA97] flex items-center justify-center shadow-sm hover:shadow-md transition-all duration-300"
+                    className="w-10 h-10 rounded-xl bg-linear-to-br from-white to-gray-50 border border-gray-200 text-gray-600 hover:text-white hover:from-[#E9756D] hover:to-[#F6CA97] flex items-center justify-center shadow-sm hover:shadow-md transition-all duration-300"
                     aria-label={social.label}
                   >
                     {social.icon}
@@ -288,19 +288,19 @@ const Footer = () => {
               <p>© {new Date().getFullYear()} {clinicInfo.hospitalName}. All rights reserved.</p>
               <div className="flex flex-wrap justify-center md:justify-start gap-4 mt-2">
                 <Link href="/privacy-policy" className="hover:text-[#E9756D] transition-colors">
-                  Privacy Policy
+                  {t("footer.privacy_policy")}
                 </Link>
                 <Link href="/terms" className="hover:text-[#E9756D] transition-colors">
-                  Terms of Service
+                  {t("footer.terms")}
                 </Link>
                 {/* <Link href="/sitemap" className="hover:text-[#E9756D] transition-colors">
                   Sitemap
                 </Link> */}
                 <Link href="/accessibility" className="hover:text-[#E9756D] transition-colors">
-                  Accessibility
+                  {t("footer.accessibility")}
                 </Link>
                 <Link href="/disclaimer" className="hover:text-[#E9756D] transition-colors">
-                  Medical Disclaimer
+                  {t("footer.medical_disclaimer")}
                 </Link>
               </div>
             </div>
@@ -314,7 +314,7 @@ const Footer = () => {
               className="flex items-center cursor-pointer text-sm text-gray-600 hover:text-[#E9756D] transition-colors"
             >
               <ArrowUp size={16} className="mr-2" />
-              Back to Top
+             {t("footer.back_to_top")}
             </motion.button>
           </div>
         </div>
@@ -325,7 +325,7 @@ const Footer = () => {
         href="tel:+93792453030"
         whileHover={{ scale: 1.1, rotate: 5 }}
         whileTap={{ scale: 0.9 }}
-        className="fixed bottom-6 right-6 w-16 h-16 rounded-full bg-gradient-to-r from-[#E9756D] to-[#F6CA97] shadow-xl flex items-center justify-center z-40 group"
+        className="fixed bottom-6 right-6 w-16 h-16 rounded-full bg-linear-to-r from-[#E9756D] to-[#F6CA97] shadow-xl flex items-center justify-center z-40 group"
         aria-label="Emergency Call"
       >
         <Phone size={24} className="text-white" />
@@ -342,13 +342,13 @@ const Footer = () => {
           }}
         />
         <div className="absolute -top-12 right-0 bg-gray-900 text-white text-xs px-3 py-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-          Emergency: {clinicInfo.phone1}
+          {t("footer.emergency")}: {clinicInfo.phone1}
         </div>
       </motion.a>
 
       {/* Schema Markup for SEO */}
       <script
-      defer
+        defer
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({

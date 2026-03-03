@@ -89,9 +89,6 @@ bg-white/10
                             >
                                 <span className="flex items-center">
                                     {t("book_appointment")}
-                                    <svg className="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                                    </svg>
                                 </span>
                             </motion.button>
                             <motion.button
@@ -113,7 +110,7 @@ bg-white/10
                             </div>
                             <div className="h-12 w-px bg-linear-to-b from-transparent via-[#F6CA97] to-transparent hidden sm:block" aria-hidden="true"></div>
                             <div className="text-center sm:text-left">
-                                <div className="text-3xl font-bold text-[#E9756D]">5000+</div>
+                                <div className="text-3xl font-bold text-[#E9756D]">1000+</div>
                                 <p className="text-white font-medium">{t("successful_surgeries")}</p>
                             </div>
                             <div className="h-12 w-px bg-linear-to-b from-transparent via-[#F6CA97] to-transparent hidden sm:block" aria-hidden="true"></div>

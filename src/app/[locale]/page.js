@@ -89,15 +89,15 @@ export default function Home() {
       <Suspense fallback={<LoadingFallback type="card" />}>
         <StatsSection />
       </Suspense>
-      <Suspense fallback={<LoadingFallback type="section" />}>
+      {/* <Suspense fallback={<LoadingFallback type="section" />}>
         <SpecialtiesGrid />
-      </Suspense>
-      <Suspense fallback={<LoadingFallback type="section" />}>
+      </Suspense> */}
+      {/* <Suspense fallback={<LoadingFallback type="section" />}>
         <Facilities />
-      </Suspense>
-      <Suspense fallback={<LoadingFallback type="section" />}>
+      </Suspense> */}
+      {/* <Suspense fallback={<LoadingFallback type="section" />}>
         <HospitalInfoCards />
-      </Suspense>
+      </Suspense> */}
     </>
   );
 }
