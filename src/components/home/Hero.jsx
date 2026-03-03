@@ -22,7 +22,7 @@ export default function Hero() {
             />
 
             {/* Dark overlay for better text readability */}
-            {/* <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-black/30 to-transparent" aria-hidden="true" /> */}
+            {/* <div className="absolute inset-0 bg-linear-to-r from-black/50 via-black/30 to-transparent" aria-hidden="true" /> */}
 
             {/* Content Container */}
             <div className="relative z-10 w-full max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between min-h-[85vh]">
@@ -43,43 +43,39 @@ bg-white/10
                         shadow-2xl 
                     ">
                         {/* Specialist Badge */}
-                        <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-[#E9756D] to-[#F6CA97] rounded-full mb-6">
+                        <div className="inline-flex items-center px-4 py-2 bg-linear-to-r from-[#E9756D] to-[#F6CA97] rounded-full mb-6">
                             <div className="w-2 h-2 bg-white rounded-full mr-2" aria-hidden="true"></div>
                             <span className="text-white text-sm font-semibold flex items-center gap-2">
-                                <span className='hidden md:flex'>Leading</span>
-                                Urology
-
+                                <span className='hidden md:flex'>{t("leading")}</span>
+                                {t("urology")}
                                 <span
                                     className="inline-block w-1.5 h-1.5 bg-white rounded-full animate-pulse"
                                     aria-hidden="true"
                                 />
-
-                                Andrology
-
+                                {t("andrology")}
                                 <span
                                     className="inline-block w-1.5 h-1.5 bg-white rounded-full animate-pulse"
                                     aria-hidden="true"
                                 />
-
-                                Endourology
+                                {t("endourology")}
                             </span>
                         </div>
 
                         {/* Main Heading */}
                         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
-                            Dr. Nazir Ahmad
-                            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#E9756D] to-[#F6CA97]">
+                            {t("dr_name")}
+                            {/* <span className="block text-transparent bg-clip-text bg-linear-to-r from-[#E9756D] to-[#F6CA97]">
                                 Shekari
-                            </span>
+                            </span> */}
                         </h1>
 
                         <h2 className="text-lg md:text-xl font-semibold text-white/90 mb-6">
-                            {t("pro")}
+                            {t("slogan")}
                         </h2>
 
                         {/* Description */}
                         <p className="text-lg md:text-xl text-white mb-8 leading-relaxed">
-                            Providing advanced, patient-centered care with cutting-edge technology.
+                            {t("intro")}
                         </p>
 
                         {/* Call to Action Buttons */}
@@ -88,11 +84,11 @@ bg-white/10
                                 type='button'
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
-                                className="px-8 py-4 cursor-pointer bg-gradient-to-r from-[#E9756D] to-[#F6CA97] text-white font-semibold rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 group"
+                                className="px-8 py-4 cursor-pointer bg-linear-to-r from-[#E9756D] to-[#F6CA97] text-white font-semibold rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 group"
                                 aria-label="Book an appointment with Dr. Nazir Ahmad Shekari"
                             >
                                 <span className="flex items-center">
-                                    Book Appointment
+                                    {t("book_appointment")}
                                     <svg className="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                                     </svg>
@@ -105,25 +101,25 @@ bg-white/10
                                 className="px-8 py-4 cursor-pointer bg-white/20 backdrop-blur-sm border border-white/30 text-white font-semibold rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300"
                                 aria-label="View medical services offered by Dr. Nazir Ahmad Shekari"
                             >
-                                View Services
+                                {t("call")}
                             </motion.button>
                         </div>
 
                         {/* Statistics */}
                         <div className="flex flex-col sm:flex-row items-center justify-between space-y-6 sm:space-y-0">
                             <div className="text-center sm:text-left">
-                                <div className="text-3xl font-bold text-[#E9756D]">20+</div>
-                                <p className="text-white font-medium">Years Experience</p>
+                                <div className="text-3xl font-bold text-[#E9756D]">15+</div>
+                                <p className="text-white font-medium">{t("year_expr")}</p>
                             </div>
-                            <div className="h-12 w-px bg-gradient-to-b from-transparent via-[#F6CA97] to-transparent hidden sm:block" aria-hidden="true"></div>
+                            <div className="h-12 w-px bg-linear-to-b from-transparent via-[#F6CA97] to-transparent hidden sm:block" aria-hidden="true"></div>
                             <div className="text-center sm:text-left">
                                 <div className="text-3xl font-bold text-[#E9756D]">5000+</div>
-                                <p className="text-white font-medium">Successful Surgeries</p>
+                                <p className="text-white font-medium">{t("successful_surgeries")}</p>
                             </div>
-                            <div className="h-12 w-px bg-gradient-to-b from-transparent via-[#F6CA97] to-transparent hidden sm:block" aria-hidden="true"></div>
+                            <div className="h-12 w-px bg-linear-to-b from-transparent via-[#F6CA97] to-transparent hidden sm:block" aria-hidden="true"></div>
                             <div className="text-center sm:text-left">
                                 <div className="text-3xl font-bold text-[#E9756D]">98%</div>
-                                <p className="text-white font-medium">Patient Satisfaction</p>
+                                <p className="text-white font-medium">{t("patient_satisfaction")}</p>
                             </div>
                         </div>
                     </header>
@@ -134,7 +130,7 @@ bg-white/10
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.2 }}
-                    className="relative w-full md:w-5/12 lg:w-2/5 flex items-end justify-center md:justify-end mt-8 md:mt-0 h-[300px] md:h-auto"
+                    className="relative w-full md:w-5/12 lg:w-2/5 flex items-end justify-center md:justify-end mt-8 md:mt-0 h-75 md:h-auto"
                 >
                     <div className="hidden md:flex absolute w-80 max-w-full h-auto" style={{ top: "-9rem" }}>
                         <Image
@@ -172,8 +168,8 @@ bg-white/10
                 </motion.figure>
             </div>
 
-            {/* Bottom Decorative gradient */}
-            <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-black/40 to-transparent pointer-events-none" aria-hidden="true"></div>
+            {/* Bottom Decorative linear */}
+            <div className="absolute bottom-0 left-0 right-0 h-24 bg-linear-to-t from-black/40 to-transparent pointer-events-none" aria-hidden="true"></div>
         </section>
     );
 }

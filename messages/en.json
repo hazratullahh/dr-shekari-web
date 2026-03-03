@@ -1,5 +1,16 @@
 {
   "home": {
-    "pro": "Specialist of Urology, Andrology & Endourology"
+    "andrology": "Andrology",
+    "bookـappointment": "Book Appointment",
+    "call": "Direct Call",
+    "dr_name": "Dr. Nazir Ahmad Shekari",
+    "endourology": "endourology",
+    "intro": "Urological surgeon with over 15 years of experience in diagnosing and treating diseases of the urinary tract and kidneys. Focusing on minimally invasive surgeries and modern medical standards.",
+    "leading": "Leading",
+    "patient_satisfaction": "Patient Satisfaction",
+    "slogan": "Urological surgeon | Endourology | Andrology",
+    "successful_surgeries": "Successful Surgeries",
+    "urology": "Urology",
+    "year_expr": "Years Experience"
   }
 }
