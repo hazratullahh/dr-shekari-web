@@ -3,13 +3,15 @@
 
 import { motion } from 'framer-motion';
 import { MessageSquare, Phone, Calendar, MapPin } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 const ContactHero = () => {
+  const t = useTranslations('contact');
   return (
     <section className="relative pt-32 pb-20 px-4 md:px-8 lg:px-16 overflow-hidden">
       {/* Animated Background */}
       <div className="absolute inset-0 bg-linear-to-br from-[#FDF5EE] via-white to-[#F9F0E8]" />
-      
+
       {/* Floating Contact Icons */}
       <div className="absolute inset-0 overflow-hidden">
         {[MessageSquare, Phone, Calendar, MapPin].map((Icon, index) => (
@@ -44,31 +46,27 @@ const ContactHero = () => {
             className="inline-flex items-center px-4 py-2 bg-linear-to-r from-[#E9756D]/10 to-[#F6CA97]/10 rounded-full mb-6"
           >
             <MessageSquare className="text-[#E9756D] mx-2" size={20} />
-            <span className="text-[#E9756D] font-semibold">Get in Touch</span>
+            <span className="text-[#E9756D] font-semibold">{t('get_in_touch')}</span>
           </motion.div>
-          
+
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6"
           >
-            We're Here to
-            <span className="block text-transparent bg-clip-text bg-linear-to-r from-[#E9756D] to-[#F6CA97]">
-              Help You
-            </span>
+            {t('we_are_here_to_help')}
           </motion.h1>
-          
+
           <motion.p
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-xl text-gray-700 mb-12 max-w-3xl mx-auto leading-relaxed"
           >
-            Contact our urology clinic in Herat, Afghanistan. Book appointments, 
-            emergency consultations, or get answers to your medical questions.
+            {t('contact_description')}
           </motion.p>
-          
+
           {/* Quick Contact Stats */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -79,20 +77,21 @@ const ContactHero = () => {
             {[
               {
                 icon: <Phone className="text-[#E9756D]" size={24} />,
-                title: "Emergency Line",
+                title: t('emergency_line'),
                 value: "+93 79 245 3030",
-                action: "tel:+93792453030"
+                action: "tel:+93792453030",
+                dir: "ltr"
               },
               {
                 icon: <Calendar className="text-[#F6CA97]" size={24} />,
-                title: "Response Time",
-                value: "Within 2 Hours",
+                title: t('response_time'),
+                value: t('within_2_hours'),
                 action: "#form"
               },
               {
                 icon: <MapPin className="text-[#E9756D]" size={24} />,
-                title: "Clinic Location",
-                value: "Jami Hospital, Herat",
+                title: t('clinic_location'),
+                value: t('jami_hospital_herat'),
                 action: "#map"
               }
             ].map((stat, index) => (
@@ -109,7 +108,7 @@ const ContactHero = () => {
                   {stat.icon}
                 </div>
                 <h3 className="font-semibold text-gray-900 mb-1">{stat.title}</h3>
-                <p className="text-[#E9756D] font-medium">{stat.value}</p>
+                <p dir={stat.dir} className="text-[#E9756D] font-medium">{stat.value}</p>
               </motion.a>
             ))}
           </motion.div>

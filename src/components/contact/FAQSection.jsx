@@ -7,8 +7,10 @@ import {
   Calendar, Clock, Shield, Zap, Filter, X,
   Eye
 } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 const FAQSection = () => {
+  const t = useTranslations('contact');
   const [activeIndex, setActiveIndex] = useState(null);
   const [activeCategory, setActiveCategory] = useState('all');
 
@@ -19,31 +21,31 @@ const FAQSection = () => {
   const faqCategories = [
     {
       id: 'all',
-      title: 'All Questions',
+      title: t('all_questions'),
       icon: <HelpCircle className="text-white" size={20} />,
       color: 'from-[#E9756D] to-[#F6CA97]'
     },
     {
       id: 'appointments',
-      title: 'Appointments',
+      title: t('faq_appointments'),
       icon: <Calendar className="text-white" size={20} />,
       color: 'from-[#E9756D] to-[#FF9A8B]'
     },
     {
       id: 'emergency',
-      title: 'Emergency',
+      title: t('faq_emergency'),
       icon: <Zap className="text-white" size={20} />,
       color: 'from-[#FF6B6B] to-[#FF9A8B]'
     },
     {
       id: 'services',
-      title: 'Services',
+      title: t('faq_services'),
       icon: <Shield className="text-white" size={20} />,
       color: 'from-[#E9756D] to-[#F6CA97]'
     },
     {
       id: 'practical',
-      title: 'Practical',
+      title: t('faq_practical'),
       icon: <Clock className="text-white" size={20} />,
       color: 'from-[#F6CA97] to-[#FFB347]'
     }
@@ -53,98 +55,98 @@ const FAQSection = () => {
     {
       id: 1,
       category: 'appointments',
-      question: 'How do I book an appointment with Dr. Shekari?',
-      answer: 'You can book appointments in three ways: 1) Call our appointment line at 070 445 3030, 2) Use the online form on this page, or 3) Visit our clinic at Jami Hospital during working hours. New patients should arrive 15 minutes early for registration.'
+      question: t('faq_q1'),
+      answer: t('faq_a1')
     },
     {
       id: 2,
       category: 'appointments',
-      question: 'What should I bring to my first appointment?',
-      answer: 'Please bring: 1) National ID or passport, 2) Previous medical records and test results, 3) Current medications list, 4) Insurance information if applicable, 5) Referral letter from your doctor (if any).'
+      question: t('faq_q2'),
+      answer: t('faq_a2')
     },
     {
       id: 3,
       category: 'appointments',
-      question: 'How long does a typical consultation last?',
-      answer: 'Initial consultations typically last 30-45 minutes to allow thorough evaluation. Follow-up visits are usually 15-20 minutes. Complex cases may require more time.'
+      question: t('faq_q3'),
+      answer: t('faq_a3')
     },
     {
       id: 4,
       category: 'appointments',
-      question: 'Can I get a same-day emergency appointment?',
-      answer: 'Yes, we reserve slots for emergencies daily. Call +93 79 245 3030 for immediate assistance. Urgent cases are prioritized.'
+      question: t('faq_q4'),
+      answer: t('faq_a4')
     },
     {
       id: 5,
       category: 'emergency',
-      question: 'What constitutes a urological emergency?',
-      answer: 'Seek immediate care for: 1) Severe kidney pain with fever, 2) Inability to urinate, 3) Heavy blood in urine with clots, 4) Testicular torsion symptoms (sudden severe pain), 5) Post-operative complications like excessive bleeding.'
+      question: t('faq_q5'),
+      answer: t('faq_a5')
     },
     {
       id: 6,
       category: 'emergency',
-      question: 'Is your emergency service available 24/7?',
-      answer: 'Yes, our emergency urology service operates 24 hours a day, 7 days a week. Call +93 79 245 3030 at any time for emergencies. An on-call urologist is always available.'
+      question: t('faq_q6'),
+      answer: t('faq_a6')
     },
     {
       id: 7,
       category: 'emergency',
-      question: 'Do I need to call before coming for emergency?',
-      answer: 'While not required, calling ahead helps us prepare for your arrival. For critical emergencies, come directly and our staff will assist immediately upon arrival.'
+      question: t('faq_q7'),
+      answer: t('faq_a7')
     },
     {
       id: 8,
       category: 'emergency',
-      question: 'What emergency equipment do you have available?',
-      answer: 'We have complete emergency facilities including: ultrasound machines, emergency surgery theater, dialysis equipment, blood bank access, and critical care monitoring systems.'
+      question: t('faq_q8'),
+      answer: t('faq_a8')
     },
     {
       id: 9,
       category: 'services',
-      question: 'What urological conditions do you treat?',
-      answer: 'We specialize in: kidney stones, prostate disorders, male infertility, urinary tract infections, bladder cancer, pediatric urology, erectile dysfunction, and minimally invasive surgeries including robotic and laser procedures.'
+      question: t('faq_q9'),
+      answer: t('faq_a9')
     },
     {
       id: 10,
       category: 'services',
-      question: 'Do you perform robotic surgery?',
-      answer: 'Yes, we have a state-of-the-art robotic surgery system. Dr. Rajesh Kumar (our Indian specialist) performs robotic prostatectomies, kidney surgeries, and reconstructive procedures with minimal invasiveness.'
+      question: t('faq_q10'),
+      answer: t('faq_a10')
     },
     {
       id: 11,
       category: 'services',
-      question: 'What diagnostic tests are available at your clinic?',
-      answer: 'We offer comprehensive diagnostics: ultrasound, CT scans, urodynamic testing, cystoscopy, PSA testing, semen analysis, 24-hour urine collection, and advanced blood work. Most results are available within 24 hours.'
+      question: t('faq_q11'),
+      answer: t('faq_a11')
     },
     {
       id: 12,
       category: 'services',
-      question: 'Do you offer second opinions?',
-      answer: 'Absolutely. We provide second opinion consultations where our international team reviews your case. Bring all medical records for comprehensive evaluation.'
+      question: t('faq_q12'),
+      answer: t('faq_a12')
     },
     {
       id: 13,
       category: 'practical',
-      question: 'What are your clinic hours?',
-      answer: 'Regular hours: Monday-Saturday 8:00 AM - 8:00 PM, Sunday 9:00 AM - 2:00 PM. Emergency services: 24/7. Administrative office: 8:00 AM - 5:00 PM weekdays.'
+      question: t('faq_q13'),
+      answer: t('faq_a13')
     },
     {
       id: 14,
       category: 'practical',
-      question: 'What languages are spoken at your clinic?',
-      answer: 'Our team is multilingual: Dari, Pashto, English, Hindi, and Urdu. International patients can request an English-speaking doctor or interpreter services.'
+      question: t('faq_q14'),
+      answer: t('faq_a14')
     },
     {
       id: 15,
       category: 'practical',
-      question: 'Is parking available at your facility?',
-      answer: 'Yes, we have ample free parking for patients and visitors. Valet service is available for patients with mobility issues. The parking area is monitored 24/7 for security.'
+      question: t('faq_q15'),
+      answer: t('faq_a15')
     },
     {
       id: 16,
       category: 'practical',
-      question: 'Do you accept insurance plans?',
-      answer: 'We accept most major insurance providers. Please bring your insurance card. For international patients, we provide detailed invoices for insurance claims. Cash and credit cards are also accepted.'
+      question: t('faq_q16'),
+      answer: t('faq_a16')
     }
   ];
 
@@ -190,17 +192,17 @@ const FAQSection = () => {
 
           <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-[#E9756D]/10 to-[#F6CA97]/10 rounded-full mb-4">
             <span className="text-[#E9756D] font-semibold text-sm">
-              Patient Information Center
+              {t('patient_information_center')}
             </span>
           </div>
 
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            Frequently Asked <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#E9756D] to-[#F6CA97]">Questions</span>
+            {t('frequently_asked_questions')}
           </h1>
 
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          {/* <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Quick answers to common questions about appointments, services, and procedures
-          </p>
+          </p> */}
         </motion.div>
 
         {/* Category Filter Tabs */}
@@ -255,13 +257,13 @@ const FAQSection = () => {
               >
                 <span className="inline-flex items-center cursor-pointer px-4 py-2 bg-gradient-to-r from-[#E9756D]/5 to-[#F6CA97]/5 rounded-lg text-gray-700">
                   <Filter size={16} className="mr-2 text-[#E9756D]" />
-                  Showing questions about: <span className="font-semibold ml-1 text-[#E9756D]">
+                  Showing questions about: <span className="font-semibold mx-1 text-[#E9756D]">
                     {faqCategories.find(c => c.id === activeCategory)?.title}
                   </span>
                   <button
                     type='button'
                     onClick={() => setActiveCategory('all')}
-                    className="ml-3 cursor-pointer text-sm text-gray-500 hover:text-[#E9756D]"
+                    className="mx-3 cursor-pointer text-sm text-gray-500 hover:text-[#E9756D]"
                   >
                     Clear filter
                   </button>
@@ -297,7 +299,7 @@ const FAQSection = () => {
                         onClick={() => toggleFAQ(faq.id)}
                         className="w-full p-6 cursor-pointer text-left flex items-start justify-between hover:bg-gradient-to-r hover:from-white/50 hover:to-[#F6CA97]/5 transition-all duration-300"
                       >
-                        <div className="flex-1">
+                        <div className="flex flex-col">
                           <div className="flex items-center gap-3 mb-3">
                             <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${faq.category === 'emergency'
                               ? 'bg-gradient-to-r from-red-500/10 to-rose-500/10 text-red-600'
@@ -310,7 +312,7 @@ const FAQSection = () => {
                             </span>
                           </div>
 
-                          <h3 className="text-lg font-semibold text-gray-900 mb-3 pr-8">
+                          <h3 dir='rtls' className="text-lg font-semibold text-gray-900 mb-3pr-8">
                             {faq.question}
                           </h3>
 
@@ -328,7 +330,7 @@ const FAQSection = () => {
                                   </p>
 
                                   {/* Emergency specific CTA */}
-                                  {faq.category === 'emergency' && (
+                                  {/* {faq.category === 'emergency' && (
                                     <div className="mt-4 p-4 bg-gradient-to-r from-red-50 to-rose-50 rounded-xl border border-red-100">
                                       <div className="flex items-center justify-between">
                                         <div className="flex items-center">
@@ -345,7 +347,7 @@ const FAQSection = () => {
                                         </a>
                                       </div>
                                     </div>
-                                  )}
+                                  )} */}
                                 </div>
                               </motion.div>
                             )}
@@ -362,7 +364,7 @@ const FAQSection = () => {
                       </button>
 
                       {/* Quick action for emergency */}
-                      {faq.category === 'emergency' && activeIndex !== faq.id && (
+                      {/* {faq.category === 'emergency' && activeIndex !== faq.id && (
                         <div className="px-6 pb-6 pt-2">
                           <a
                             href="tel:+93792453030"
@@ -372,7 +374,7 @@ const FAQSection = () => {
                             Call immediately for emergencies
                           </a>
                         </div>
-                      )}
+                      )} */}
                     </div>
                   </motion.div>
                 ))}

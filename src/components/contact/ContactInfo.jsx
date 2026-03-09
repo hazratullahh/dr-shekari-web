@@ -2,42 +2,44 @@
 
 import { motion } from 'framer-motion';
 import { Phone, Mail, MapPin, Clock, Users, Globe } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 const ContactInfo = () => {
+  const t = useTranslations('contact');
   const contactDetails = [
     {
       icon: <Phone className="text-[#E9756D]" size={24} />,
-      title: "Phone Numbers",
+      title: t('phone_numbers'),
       items: [
-        { label: "Emergency", value: "+93 79 245 3030", type: "tel" },
-        { label: "Appointments", value: "070 445 3030", type: "tel" },
-        { label: "Administration", value: "070 445 3031", type: "tel" }
+        { label: t('emergency'), value: "+93 79 245 3030", type: "tel" },
+        { label: t('appointments'), value: "070 445 3030", type: "tel" },
+        { label: t('administration'), value: "070 445 3031", type: "tel" }
       ]
     },
     {
       icon: <Mail className="text-[#F6CA97]" size={24} />,
-      title: "Email Addresses",
+      title: t('email_addresses'),
       items: [
-        { label: "Medical Inquiries", value: "urology@dr-shekari.com", type: "mailto" },
-        { label: "Appointments", value: "urology@dr-shekari.com", type: "mailto" },
-        { label: "General Info", value: "urology@dr-shekari.com", type: "mailto" }
+        { label: t('medical_inquiries'), value: "urology@dr-shekari.com", type: "mailto" },
+        { label: t('appointments'), value: "urology@dr-shekari.com", type: "mailto" },
+        { label: t('general_info'), value: "urology@dr-shekari.com", type: "mailto" }
       ]
     },
     {
       icon: <MapPin className="text-[#E9756D]" size={24} />,
-      title: "Clinic Address",
+      title: t('clinic_address'),
       items: [
-        { label: "Main Address", value: "Jami Hospital, Chahar-e-rahi- Badmorghan, Herat, Afghanistan", type: "text" },
-        { label: "Landmark", value: "Near Herat University Medical Campus", type: "text" }
+        { label: t('main_address'), value: t('full_address'), type: "text" },
+        { label: t('landmark'), value: t('near_university'), type: "text" }
       ]
     },
     {
       icon: <Clock className="text-[#F6CA97]" size={24} />,
-      title: "Working Hours",
+      title: t('working_hours'),
       items: [
-        { label: "Monday - Saturday", value: "8:00 AM - 8:00 PM", type: "text" },
-        { label: "Sunday", value: "9:00 AM - 2:00 PM", type: "text" },
-        { label: "Emergency", value: "24/7 Available", type: "text" }
+        { label: t('monday_saturday'), value: t('regular_hours'), type: "text" },
+        { label: t('sunday'), value: t('sunday_hours'), type: "text" },
+        { label: t('emergency'), value: t('emergency_24_7'), type: "text" }
       ]
     }
   ];
@@ -51,7 +53,7 @@ const ContactInfo = () => {
         transition={{ delay: 0.1 }}
         className="glass-card p-6 rounded-2xl shadow-lg border border-white/20"
       >
-        <h3 className="text-xl font-bold text-gray-900 mb-6">Quick Contact</h3>
+        <h3 className="text-xl font-bold text-gray-900 mb-6">{t('quick_contact')}</h3>
         
         <div className="space-y-6">
           {contactDetails.map((section, index) => (

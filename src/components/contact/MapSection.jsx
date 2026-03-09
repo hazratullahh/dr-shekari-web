@@ -3,12 +3,14 @@
 
 import { motion } from 'framer-motion';
 import { MapPin, Navigation, Car } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 const MapSection = () => {
+  const t = useTranslations('contact');
   const directions = [
-    { icon: <Car size={20} />, text: "15 min from Herat International Airport" },
-    { icon: <Navigation size={20} />, text: "Near Herat University Medical Campus" },
-    { icon: <MapPin size={20} />, text: "Ample parking available" }
+    { icon: <Car size={20} />, text: t('airport_distance') },
+    { icon: <Navigation size={20} />, text: t('near_medical_campus') },
+    { icon: <MapPin size={20} />, text: t('parking_available') }
   ];
 
   return (
@@ -22,10 +24,10 @@ const MapSection = () => {
           className="text-center mb-12"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            Find Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#E9756D] to-[#F6CA97]">Location</span>
+            {t('find_our_location')}
           </h2>
           <p className="text-xl text-gray-700 max-w-3xl mx-auto">
-            Easily accessible location at Jami Hospital in Herat, Afghanistan
+            {t('location_description')}
           </p>
         </motion.div>
 
@@ -46,16 +48,16 @@ const MapSection = () => {
                     <div className="w-16 h-16 rounded-full bg-gradient-to-r from-[#E9756D] to-[#F6CA97] flex items-center justify-center mx-auto mb-4 shadow-xl">
                       <MapPin className="text-white" size={32} />
                     </div>
-                    <h3 className="text-2xl font-bold text-gray-900 mb-2">Jami Hospital, Herat</h3>
-                    <p className="text-gray-600">Interactive map would be embedded here</p>
+                    <h3 className="text-2xl font-bold text-gray-900 mb-2">{t('jami_hospital_herat')}</h3>
+                    <p className="text-gray-600">{t('interactive_map')}</p>
                   </div>
                 </div>
               </div>
               
               <div className="p-6">
-                <h4 className="font-bold text-gray-900 mb-4">Exact Location</h4>
+                <h4 className="font-bold text-gray-900 mb-4">{t('exact_location')}</h4>
                 <p className="text-gray-700 mb-4">
-                  Jami Hospital, Chahar-e-rahi- Badmorghan, Herat, Afghanistan
+                  {t('full_address')}
                 </p>
                 <motion.a
                   href="https://maps.google.com/?q=Jami+Hospital+Herat+Afghanistan"
@@ -66,7 +68,7 @@ const MapSection = () => {
                   className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-[#E9756D] to-[#F6CA97] text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
                 >
                   <Navigation className="mr-2" size={20} />
-                  Open in Google Maps
+                  {t('open_in_google_maps')}
                 </motion.a>
               </div>
             </div>
@@ -81,7 +83,7 @@ const MapSection = () => {
             className="space-y-6"
           >
             <div className="glass-card p-6 rounded-2xl shadow-lg border border-white/20">
-              <h3 className="font-bold text-gray-900 mb-6">Getting Here</h3>
+              <h3 className="font-bold text-gray-900 mb-6">{t('getting_here')}</h3>
               <div className="space-y-4">
                 {directions.map((dir, index) => (
                   <motion.div
