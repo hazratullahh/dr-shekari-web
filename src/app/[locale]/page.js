@@ -18,13 +18,13 @@ export const metadata = {
   metadataBase: new URL('https://dr-shekari.com'),
   title: {
     default: 'Dr. Nazir Ahmad Shekari Top Urologist, Andrologist and Endouroiogist in Afghanistan',
-    template: '%s | Dr Shekari Clinic'
+    template: '%s | Dr Shekari Urologist, Andrologist and Endouroiogist '
   },
   description: 'Dr. Nazir Ahmad Shekari and Professor Assistant Dr. Mansour Ahmad Wayar provides advanced urological care, andrology, and endoUrologist, Andrologist and Endouroiogist treatments. Expert in kidney stones, prostate health, and male fertility.',
   keywords: ['Urologist, Andrologist and Endouroiogist specialist', 'andrology', 'endoUrologist, Andrologist and Endouroiogist', 'kidney stones', 'prostate treatment', 'male fertility', 'Dr. Nazir Ahmad Shekari', 'urologist near me'],
   authors: [{ name: 'Dr. Nazir Ahmad Shekari' }],
-  creator: 'Dr. Nazir Ahmad Shekari Clinic',
-  publisher: 'Dr. Nazir Ahmad Shekari Clinic',
+  creator: 'Dr. Nazir Ahmad Shekari Urologist, Andrologist and Endouroiogist',
+  publisher: 'Dr. Nazir Ahmad Shekari Urologist, Andrologist and Endouroiogist',
   robots: {
     index: true,
     follow: true,
