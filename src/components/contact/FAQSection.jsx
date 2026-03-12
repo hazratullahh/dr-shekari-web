@@ -184,11 +184,11 @@ const FAQSection = () => {
   };
 
   return (
-    <section className="py-24 px-4 md:px-8 lg:px-16 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden">
+    <section className="py-24 px-4 md:px-8 lg:px-16 bg-linear-to-b from-gray-50 to-white relative overflow-hidden">
       {/* Decorative Background */}
       <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-gradient-to-r from-[#E9756D] to-[#F6CA97] blur-3xl" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full bg-gradient-to-r from-[#F6CA97] to-[#E9756D] blur-3xl" />
+        <div className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-linear-to-r from-[#E9756D] to-[#F6CA97] blur-3xl" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full bg-linear-to-r from-[#F6CA97] to-[#E9756D] blur-3xl" />
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
@@ -204,12 +204,12 @@ const FAQSection = () => {
             initial={{ scale: 0 }}
             whileInView={{ scale: 1 }}
             transition={{ duration: 0.5, type: "spring" }}
-            className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-r from-[#E9756D] to-[#F6CA97] mb-6"
+            className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-linear-to-r from-[#E9756D] to-[#F6CA97] mb-6"
           >
             <HelpCircle className="text-white" size={28} />
           </motion.div>
 
-          <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-[#E9756D]/10 to-[#F6CA97]/10 rounded-full mb-4">
+          <div className="inline-flex items-center px-4 py-2 bg-linear-to-r from-[#E9756D]/10 to-[#F6CA97]/10 rounded-full mb-4">
             <span className="text-[#E9756D] font-semibold text-sm">
               {t('patient_information_center')}
             </span>
@@ -241,7 +241,7 @@ const FAQSection = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className={`px-6 py-3 cursor-pointer rounded-xl font-semibold transition-all duration-300 flex items-center gap-2 ${activeCategory === category.id
-                  ? 'text-white shadow-lg shadow-[#E9756D]/20 bg-gradient-to-r from-[#E9756D] to-[#F6CA97]'
+                  ? 'text-white shadow-lg shadow-[#E9756D]/20 bg-linear-to-r from-[#E9756D] to-[#F6CA97]'
                   : 'text-gray-700 bg-white/80 border border-gray-200 hover:border-[#E9756D]/30'
                   }`}
                 style={{
@@ -274,7 +274,7 @@ const FAQSection = () => {
                 exit={{ opacity: 0, height: 0 }}
                 className="mt-6 text-center"
               >
-                <span className="inline-flex items-center cursor-pointer px-4 py-2 bg-gradient-to-r from-[#E9756D]/5 to-[#F6CA97]/5 rounded-lg text-gray-700">
+                <span className="inline-flex items-center cursor-pointer px-4 py-2 bg-linear-to-r from-[#E9756D]/5 to-[#F6CA97]/5 rounded-lg text-gray-700">
                   <Filter size={16} className="mr-2 text-[#E9756D]" />
                   Showing questions about: <span className="font-semibold mx-1 text-[#E9756D]">
                     {faqCategories.find(c => c.id === activeCategory)?.title}
@@ -316,13 +316,13 @@ const FAQSection = () => {
                       <button
                         type='button'
                         onClick={() => toggleFAQ(faq.id)}
-                        className="w-full p-6 cursor-pointer text-left flex items-start justify-between hover:bg-gradient-to-r hover:from-white/50 hover:to-[#F6CA97]/5 transition-all duration-300"
+                        className="w-full p-6 cursor-pointer text-left flex items-start justify-between hover:bg-linear-to-r hover:from-white/50 hover:to-[#F6CA97]/5 transition-all duration-300"
                       >
                         <div className="flex flex-col">
                           <div className="flex items-center gap-3 mb-3">
                             <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${faq.category === 'emergency'
-                              ? 'bg-gradient-to-r from-red-500/10 to-rose-500/10 text-red-600'
-                              : 'bg-gradient-to-r from-[#E9756D]/10 to-[#F6CA97]/10 text-[#E9756D]'
+                              ? 'bg-linear-to-r from-red-500/10 to-rose-500/10 text-red-600'
+                              : 'bg-linear-to-r from-[#E9756D]/10 to-[#F6CA97]/10 text-[#E9756D]'
                               }`}>
                               {getCategoryIcon(faq.category)}
                             </div>
@@ -350,7 +350,7 @@ const FAQSection = () => {
 
                                   {/* Emergency specific CTA */}
                                   {/* {faq.category === 'emergency' && (
-                                    <div className="mt-4 p-4 bg-gradient-to-r from-red-50 to-rose-50 rounded-xl border border-red-100">
+                                    <div className="mt-4 p-4 bg-linear-to-r from-red-50 to-rose-50 rounded-xl border border-red-100">
                                       <div className="flex items-center justify-between">
                                         <div className="flex items-center">
                                           <Phone size={18} className="text-red-600 mr-2" />
@@ -376,7 +376,7 @@ const FAQSection = () => {
                         <motion.div
                           animate={{ rotate: activeIndex === faq.id ? 180 : 0 }}
                           transition={{ duration: 0.3 }}
-                          className="w-10 h-10 rounded-xl bg-gradient-to-r from-[#E9756D]/10 to-[#F6CA97]/10 flex items-center justify-center flex-shrink-0 ml-4"
+                          className="w-10 h-10 rounded-xl bg-linear-to-r from-[#E9756D]/10 to-[#F6CA97]/10 flex items-center justify-center flex-shrink-0 ml-4"
                         >
                           <ChevronDown size={20} className="text-[#E9756D]" />
                         </motion.div>
@@ -410,7 +410,7 @@ const FAQSection = () => {
           viewport={{ once: true }}
           className="mt-20"
         >
-          <div className="glass-card rounded-3xl p-10 shadow-2xl border border-white/30 bg-gradient-to-r from-white/80 via-white/60 to-[#FDF5EE]/80">
+          <div className="glass-card rounded-3xl p-10 shadow-2xl border border-white/30 bg-linear-to-r from-white/80 via-white/60 to-[#FDF5EE]/80">
             <div className="text-center max-w-3xl mx-auto">
               <motion.div
                 animate={{
@@ -422,7 +422,7 @@ const FAQSection = () => {
                   repeat: Infinity,
                   repeatDelay: 2
                 }}
-                className="inline-flex p-4 rounded-2xl bg-gradient-to-r from-[#E9756D]/10 to-[#F6CA97]/10 mb-6"
+                className="inline-flex p-4 rounded-2xl bg-linear-to-r from-[#E9756D]/10 to-[#F6CA97]/10 mb-6"
               >
                 <MessageSquare className="text-[#E9756D]" size={36} />
               </motion.div>
@@ -441,7 +441,7 @@ const FAQSection = () => {
                   href="tel:+93792453030"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="px-8 py-4 bg-gradient-to-r from-[#E9756D] to-[#F6CA97] text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 flex items-center"
+                  className="px-8 py-4 bg-linear-to-r from-[#E9756D] to-[#F6CA97] text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 flex items-center"
                 >
                   <Phone size={20} className="mr-3" />
                   <div className="text-left">
