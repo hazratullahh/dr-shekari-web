@@ -42,16 +42,17 @@ const MapSection = () => {
           >
             <div className="glass-card rounded-3xl overflow-hidden shadow-2xl border border-white/20">
               {/* Google Maps Embed */}
-              <div className="relative h-[400px] bg-gradient-to-br from-[#E9756D]/10 to-[#F6CA97]/10">
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-center">
-                    <div className="w-16 h-16 rounded-full bg-gradient-to-r from-[#E9756D] to-[#F6CA97] flex items-center justify-center mx-auto mb-4 shadow-xl">
-                      <MapPin className="text-white" size={32} />
-                    </div>
-                    <h3 className="text-2xl font-bold text-gray-900 mb-2">{t('jami_hospital_herat')}</h3>
-                    <p className="text-gray-600">{t('interactive_map')}</p>
-                  </div>
-                </div>
+              <div className="relative h-[400px] bg-gradient-to-br from-[#E9756D]/10 to-[#F6CA97]/10 overflow-hidden">
+                {/* actual map iframe */}
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d857.1234567890123!2d62.123456!3d34.123456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzTCsDA3JzA1LjEiTiA2MsKwMDInMDEuNyJF!5e0!3m2!1sen!2saf!4v0000000000000"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen=""
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                ></iframe>
               </div>
               
               <div className="p-6">

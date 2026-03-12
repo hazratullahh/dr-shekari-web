@@ -7,6 +7,7 @@ import Footer from '@/components/layout/Footer';
 import LoadingFallback from '@/components/ui/LoadingFallback';
 import InstallAppBanner from '@/components/InstallAppBanner';
 import MedicalSchema from '@/components/MedicalSchema';
+import { AppointmentModalProvider } from '@/components/appointment/AppointmentModal';
 
 import { NextIntlClientProvider, hasLocale } from 'next-intl';
 import { notFound } from 'next/navigation';
@@ -214,13 +215,15 @@ export default async function RootLayout({ children, params }) {
           {/* Existing structured data (kept) */}
           <MedicalSchema />
 
-          <Suspense fallback={<LoadingFallback type="full-page" />}>
-            <Header />
-            <main className="min-h-screen">
-              {children}
-            </main>
-            <Footer />
-          </Suspense>
+          <AppointmentModalProvider>
+            <Suspense fallback={<LoadingFallback type="full-page" />}>
+              <Header />
+              <main className="min-h-screen">
+                {children}
+              </main>
+              <Footer />
+            </Suspense>
+          </AppointmentModalProvider>
 
           <InstallAppBanner />
         </NextIntlClientProvider>

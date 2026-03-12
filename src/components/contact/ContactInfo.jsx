@@ -13,9 +13,11 @@ const ContactInfo = () => {
       items: [
         { label: t('emergency'), value: "+93 79 245 3030", type: "tel" },
         { label: t('appointments'), value: "070 445 3030", type: "tel" },
-        { label: t('administration'), value: "070 445 3031", type: "tel" }
+        { label: t('administration'), value: "070 445 3031", type: "tel" },
+        { label: "WhatsApp", value: "+93 79 245 3030", type: "wa" }
       ]
     },
+
     {
       icon: <Mail className="text-[#F6CA97]" size={24} />,
       title: t('email_addresses'),
@@ -73,10 +75,16 @@ const ContactInfo = () => {
                     {section.items.map((item, idx) => (
                       <div key={idx} className="flex items-center">
                         <span className="text-sm text-gray-600 w-24">{item.label}:</span>
-                        {item.type === 'tel' || item.type === 'mailto' ? (
+                        {item.type === 'tel' || item.type === 'mailto' || item.type === 'wa' ? (
                           <a
-                            href={`${item.type}:${item.value.replace(/\s/g, '')}`}
+                            href={
+                              item.type === 'wa'
+                                ? `https://wa.me/${item.value.replace(/[^0-9]/g, '')}`
+                                : `${item.type}:${item.value.replace(/\s/g, '')}`
+                            }
                             className="text-sm font-medium text-[#E9756D] hover:underline"
+                            target={item.type === 'wa' ? '_blank' : undefined}
+                            rel={item.type === 'wa' ? 'noopener noreferrer' : undefined}
                           >
                             {item.value}
                           </a>

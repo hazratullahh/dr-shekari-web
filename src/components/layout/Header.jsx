@@ -12,6 +12,7 @@ import {
 } from 'lucide-react';
 import LocaleSwitcher from './LocaleSwitcher';
 import { useLocale, useTranslations } from 'next-intl';
+import { useAppointmentModal } from '@/components/appointment/AppointmentModal';
 
 const Header = () => {
   const t = useTranslations();
@@ -19,6 +20,7 @@ const Header = () => {
   const locale = useLocale();
   const isRTL = locale !== 'en';
 
+  const { setIsOpen } = useAppointmentModal();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeHover, setActiveHover] = useState(null);
@@ -57,11 +59,26 @@ const Header = () => {
       href: '/about',
       icon: '👨‍⚕️'
     },
-    // {
-    //   label: 'Services',
-    //   href: '/services',
-    //   icon: '🩺'
-    // },
+    {
+      label: t("header.services"),
+      href: '/services',
+      icon: '🩺'
+    },
+    {
+      label: t("header.research"),
+      href: '/research',
+      icon: '📚'
+    },
+    {
+      label: t("header.faq"),
+      href: '/faq',
+      icon: '❓'
+    },
+    {
+      label: t("header.appointment"),
+      href: '/appointment',
+      icon: '📅'
+    },
     {
       label: t("header.team"),
       href: '/team',
@@ -371,7 +388,7 @@ const Header = () => {
                 type='button'
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                onClick={() => window.location.href = 'tel:+93792453030'}
+                onClick={() => setIsOpen(true)}
                 className="ml-4 relative group cursor-pointer"
               >
                 {/* Button background with  effects */}
@@ -509,7 +526,7 @@ const Header = () => {
                 type='button'
                 whileTap={{ scale: 0.95 }}
                 onClick={() => {
-                  window.location.href = 'tel:+93792453030';
+                  setIsOpen(true);
                   setIsMobileMenuOpen(false);
                 }}
                 className="w-full mt-6 p-4 cursor-pointer bg-linear-to-r from-[#E9756D] to-[#F6CA97] text-white font-bold rounded-xl shadow-xl flex items-center justify-center"

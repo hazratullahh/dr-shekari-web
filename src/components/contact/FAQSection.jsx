@@ -147,6 +147,25 @@ const FAQSection = () => {
       category: 'practical',
       question: t('faq_q16'),
       answer: t('faq_a16')
+    },
+    // additional site-wide FAQs
+    {
+      id: 17,
+      category: 'services',
+      question: t('faq_page.q_kidney_stone'),
+      answer: t('faq_page.a_kidney_stone')
+    },
+    {
+      id: 18,
+      category: 'services',
+      question: t('faq_page.q_prostate_care'),
+      answer: t('faq_page.a_prostate_care')
+    },
+    {
+      id: 19,
+      category: 'services',
+      question: t('faq_page.q_male_infertility'),
+      answer: t('faq_page.a_male_infertility')
     }
   ];
 
