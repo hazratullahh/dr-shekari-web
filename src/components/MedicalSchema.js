@@ -1,61 +1,90 @@
 import Script from 'next/script';
 
 export default function MedicalSchema() {
+  const SITE = 'https://dr-shekari.com';
+
   const schemaData = {
-    "@context": "https://schema.org",
-    "@graph": [
+    '@context': 'https://schema.org',
+    '@graph': [
       {
-        "@type": "MedicalClinic",
-        "name": "Afghanistan Premier Urology Center",
-        "medicalSpecialty": [
-          "Urology", 
-          "Andrology", 
-          "Nephrology", 
-          "Endourology"
+        '@type': 'Physician',
+        '@id': `${SITE}/#dr-shekari`,
+        name: 'Dr. Nazir Ahmad Shekari',
+        alternateName: ['Dr. Nazir Shekari', 'Dr. Shekari', 'Nazir Ahmad Shekari'],
+        honorificPrefix: 'Dr.',
+        jobTitle: 'Urological Surgeon · Endourology Specialist · Andrology Specialist',
+        description:
+          "Dr. Nazir Ahmad Shekari is one of Afghanistan's leading urological surgeons, specializing in endourology and andrology. He provides advanced minimally invasive treatment for kidney stones, prostate disease, urinary tract conditions and male infertility.",
+        image: `${SITE}/images/dr-shekari.jpg`,
+        url: SITE,
+        medicalSpecialty: ['Urology', 'Endourology', 'Andrology'],
+        knowsAbout: [
+          'Kidney Stone Treatment',
+          'Endourology',
+          'Andrology',
+          'Prostate Surgery',
+          'Male Infertility',
+          'Laser Stone Surgery',
+          'Minimally Invasive Urology',
+          'Erectile Dysfunction Treatment',
         ],
-        "award": [
-          "Best Urology Center Afghanistan 2024",
-          "Top Medical Excellence Award",
-          "Patient Choice Award"
+        worksFor: { '@id': `${SITE}/#clinic` },
+        availableService: [
+          { '@type': 'MedicalProcedure', name: 'Kidney Stone Surgery' },
+          { '@type': 'MedicalProcedure', name: 'Endourological Procedures' },
+          { '@type': 'MedicalProcedure', name: 'Prostate Treatment' },
+          { '@type': 'MedicalProcedure', name: 'Male Infertility Evaluation' },
+          { '@type': 'MedicalProcedure', name: 'Andrological Care' },
         ],
-        "description": "Home to Afghanistan's most celebrated urologists and andrologists...",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "Your Clinic Address",
-          "addressLocality": "Kabul",
-          "addressRegion": "Kabul",
-          "postalCode": "1001",
-          "addressCountry": "AF"
+      },
+      {
+        '@type': 'MedicalClinic',
+        '@id': `${SITE}/#clinic`,
+        name: 'Dr. Shekari Urology Clinic',
+        url: SITE,
+        logo: `${SITE}/logo.png`,
+        image: `${SITE}/images/og-premium.jpg`,
+        medicalSpecialty: ['Urology', 'Andrology', 'Endourology'],
+        priceRange: '$$',
+        telephone: '+93792453030',
+        email: 'urology@dr-shekari.com',
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress: 'Chahar-e-rahi-Badmorghan, Jami Hospital',
+          addressLocality: 'Herat',
+          addressRegion: 'Herat',
+          addressCountry: 'AF',
         },
-        "telephone": "+93-XXX-XXX-XXX",
-        "openingHours": "Mo-Fr 08:00-20:00",
-        "priceRange": "$$",
-        "image": ["https://dr-shekari.com/og-premium.jpg"]
+        openingHoursSpecification: [
+          {
+            '@type': 'OpeningHoursSpecification',
+            dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+            opens: '08:00',
+            closes: '20:00',
+          },
+          {
+            '@type': 'OpeningHoursSpecification',
+            dayOfWeek: 'Sunday',
+            opens: '09:00',
+            closes: '14:00',
+          },
+        ],
+        physician: { '@id': `${SITE}/#dr-shekari` },
+        contactPoint: {
+          '@type': 'ContactPoint',
+          telephone: '+93792453030',
+          contactType: 'customer service',
+          availableLanguage: ['Dari', 'Pashto', 'English'],
+        },
       },
-      {
-        "@type": "Physician",
-        "name": "Dr. Nazir Ahmad Shekari",
-        "honorificPrefix": "Professor",
-        "medicalSpecialty": "Urology",
-        "award": "Afghanistan's Top Urologist Award",
-        "description": "Recognized as the nation's leading urological surgeon..."
-      },
-      {
-        "@type": "Physician",
-        "name": "Dr. Mansour Ahmad Wayar",
-        "honorificPrefix": "Assistant Professor",
-        "medicalSpecialty": "Andrology",
-        "award": "Excellence in Andrology Award",
-        "description": "Premier andrologist with groundbreaking success rates..."
-      }
-    ]
+    ],
   };
 
   return (
     <Script
-    defer
       id="medical-schema"
       type="application/ld+json"
+      strategy="afterInteractive"
       dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
     />
   );

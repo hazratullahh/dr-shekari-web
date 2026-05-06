@@ -1,6 +1,8 @@
 import { Suspense } from 'react';
 import FAQSection from '@/components/contact/FAQSection';
 import LoadingFallback from '@/components/ui/LoadingFallback';
+import PageHero from '@/components/ui/PageHero';
+import { HelpCircle } from 'lucide-react';
 
 export const metadata = {
   title: 'FAQ – Dr. Shekari Urology Clinic',
@@ -41,12 +43,11 @@ export default function FAQPage() {
   return (
     <>
       <Suspense fallback={<LoadingFallback type="hero" />}>
-        {/* we may want a simple heading here or reuse hero from other pages */}
-        <div className="py-32 px-4 md:px-8 lg:px-16 text-center">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900">
-            Frequently Asked Questions
-          </h1>
-        </div>
+        <PageHero
+          badge={<><HelpCircle size={13} /> Help center</>}
+          title="Frequently asked questions"
+          subtitle="Quick answers about appointments, treatments, emergency care, and what to expect at Dr. Shekari's clinic."
+        />
       </Suspense>
 
       <Suspense fallback={<LoadingFallback type="section" />}>

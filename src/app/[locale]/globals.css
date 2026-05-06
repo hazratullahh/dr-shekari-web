@@ -5,6 +5,78 @@
   --color-coral: #E9756D;
   --color-peach: #F6CA97;
   --color-bg-light: #FDF5EE;
+  --color-primary: #E9756D;
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
+}
+
+/* ============ PWA / Mobile-app behavior ============ */
+
+/* Disable iOS text-size adjust quirks and tap highlight for app feel */
+html {
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+  text-size-adjust: 100%;
+}
+
+/* Disable rubber-band overscroll inside the app shell */
+html, body {
+  overscroll-behavior-y: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* When running standalone (PWA), behave more like a native app */
+@media all and (display-mode: standalone) {
+  html, body {
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  /* Allow selection inside text-heavy regions (forms, articles) */
+  input, textarea, [contenteditable], article, p, h1, h2, h3, h4, h5, h6, blockquote {
+    -webkit-user-select: text;
+    user-select: text;
+  }
+  /* Disable browser context menu on long-press (more app-like) */
+  img, button, a, .no-callout {
+    -webkit-touch-callout: none;
+  }
+}
+
+/* Touch-friendly default — ensure tappable controls are at least 44px */
+button, a[role="button"], .touch-target {
+  touch-action: manipulation;
+}
+
+/* Unified card hover: lifts slightly + grows shadow. Applied to feature/service
+   cards across the site. Pure transform + box-shadow (GPU friendly). */
+.card-hover {
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+              border-color 0.25s ease;
+  will-change: transform;
+}
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -16px rgba(233, 117, 109, 0.22),
+              0 4px 12px -2px rgba(233, 117, 109, 0.08);
+}
+@media (prefers-reduced-motion: reduce) {
+  .card-hover { transition: none; }
+  .card-hover:hover { transform: none; }
+}
+
+/* Bottom-tab safe-area aware spacing */
+.has-bottom-tabs main {
+  /* Make space for the floating bottom bar on small screens */
+  scroll-padding-bottom: 80px;
+}
+
+/* iOS PWA status-bar tweak — body pulls up to background under status bar */
+@supports (padding: max(0px)) {
+  .safe-top { padding-top: max(env(safe-area-inset-top, 0px), 0px); }
+  .safe-bottom { padding-bottom: max(env(safe-area-inset-bottom, 0px), 0px); }
 }
 
 body {

@@ -5,143 +5,150 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { motion } from 'framer-motion';
-import { Send, CheckCircle, Loader2, AlertCircle } from 'lucide-react';
-import { useTranslations } from 'next-intl';
+import { Send, CheckCircle, Loader2, AlertCircle, User, Mail, Phone, MessageSquare } from 'lucide-react';
+import { useLocale, useTranslations } from 'next-intl';
 
-// Yup validation schema
+const phoneRegex = /^\+?[0-9\s()\-]{7,20}$/;
+
 const ContactForm = () => {
   const t = useTranslations('contact');
+  const locale = useLocale();
 
-  // Yup validation schema
-  const schema = yup.object().shape({
-    fullName: yup.string().required(t('full_name_required')).min(3, t('name_min_length')),
-    email: yup.string().email(t('invalid_email')),
-    mobileNumber: yup.string()
-      .required(t('mobile_required'))
-      .matches(/^[0-9]{9}$/, t('afghan_mobile_format')),
-    message: yup.string().required(t('message_required')).min(10, t('message_min_length'))
+  const schema = yup.object({
+    fullName: yup.string().trim().required(t('full_name_required')).min(2, t('name_min_length')).max(120),
+    email: yup.string().trim().email(t('invalid_email')).max(200).optional(),
+    phone: yup.string().trim().required(t('mobile_required')).matches(phoneRegex, t('afghan_mobile_format')),
+    message: yup.string().trim().required(t('message_required')).min(10, t('message_min_length')).max(2000),
+    website: yup.string().max(0),
   });
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [error, setError] = useState('');
 
-  const { register, handleSubmit, reset, formState: { errors } } = useForm({
+  const { register, handleSubmit, reset, formState: { errors }, setError: setFieldError } = useForm({
     resolver: yupResolver(schema),
-    defaultValues: {
-      fullName: '',
-      email: '',
-      mobileNumber: '',
-      message: ''
-    }
+    defaultValues: { fullName: '', email: '', phone: '', message: '', website: '' },
   });
 
   const onSubmit = async (data) => {
     setIsSubmitting(true);
     setError('');
-
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      console.log('Form submitted:', data);
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept-Language': locale },
+        body: JSON.stringify({ ...data, locale }),
+      });
+
+      const json = await res.json().catch(() => ({}));
+
+      if (!res.ok) {
+        if (json?.fieldErrors) {
+          for (const [field, message] of Object.entries(json.fieldErrors)) {
+            setFieldError(field, { type: 'server', message });
+          }
+        }
+        throw new Error(json?.error || t('failed_to_submit'));
+      }
+
       setIsSubmitted(true);
       reset();
-
-      setTimeout(() => setIsSubmitted(false), 5000);
+      setTimeout(() => setIsSubmitted(false), 6000);
     } catch (err) {
-      setError('Failed to submit form. Please try again.');
+      setError(err.message || t('failed_to_submit'));
     } finally {
       setIsSubmitting(false);
     }
   };
 
+  const fieldClass = (hasError) =>
+    `w-full pl-11 pr-4 py-3 rounded-xl border bg-white/80 ${
+      hasError ? 'border-red-400 focus:border-red-500' : 'border-gray-200 focus:border-[#E9756D]'
+    } focus:outline-none focus:ring-4 focus:ring-[#E9756D]/10 transition-all`;
+
   return (
-    <div className="glass-card rounded-3xl p-8 shadow-2xl border border-white/20">
+    <div className="rounded-3xl bg-white/80 backdrop-blur-xl p-6 md:p-10 shadow-[0_20px_60px_-15px_rgba(233,117,109,0.18)] border border-white/60">
       <div className="mb-8">
-        <h2 className="text-3xl font-bold text-gray-900 mb-3">
-          {t('send_us_a_message')}
-        </h2>
-        <p className="text-gray-600">
-          {t('form_description')}
-        </p>
+        <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E9756D]/10 text-[#E9756D] text-xs font-semibold tracking-wide uppercase mb-3">
+          <MessageSquare size={14} /> {t('get_in_touch')}
+        </span>
+        <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">{t('send_us_a_message')}</h2>
+        <p className="text-gray-600 text-sm md:text-base">{t('form_description')}</p>
       </div>
 
-      {/* Success Message */}
       {isSubmitted && (
-        <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="mb-6 p-4 bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200 rounded-xl">
-          <div className="flex items-center">
-            <CheckCircle className="text-green-600 mx-3" size={24} />
-            <div>
-              <h4 className="font-semibold text-green-800">{t('message_sent_successfully')}</h4>
-              <p className="text-green-700 text-sm mt-1">{t('success_message')}</p>
-            </div>
+        <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} className="mb-6 p-4 bg-emerald-50 border border-emerald-200 rounded-xl flex items-start gap-3">
+          <CheckCircle className="text-emerald-600 shrink-0 mt-0.5" size={22} />
+          <div>
+            <h4 className="font-semibold text-emerald-800">{t('message_sent_successfully')}</h4>
+            <p className="text-emerald-700 text-sm mt-0.5">{t('success_message')}</p>
           </div>
         </motion.div>
       )}
 
-      {/* Error Message */}
       {error && (
-        <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="mb-6 p-4 bg-gradient-to-r from-red-50 to-rose-50 border border-red-200 rounded-xl">
-          <div className="flex items-center">
-            <AlertCircle className="text-red-600 mx-3" size={24} />
-            <div>
-              <h4 className="font-semibold text-red-800">{t('error_submitting_form')}</h4>
-              <p className="text-red-700 text-sm mt-1">{error}</p>
-            </div>
+        <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} className="mb-6 p-4 bg-rose-50 border border-rose-200 rounded-xl flex items-start gap-3">
+          <AlertCircle className="text-rose-600 shrink-0 mt-0.5" size={22} />
+          <div>
+            <h4 className="font-semibold text-rose-800">{t('error_submitting_form')}</h4>
+            <p className="text-rose-700 text-sm mt-0.5">{error}</p>
           </div>
         </motion.div>
       )}
 
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-2 space-y-4">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-5" noValidate>
+        <input type="text" tabIndex={-1} autoComplete="off" {...register('website')} className="hidden" aria-hidden="true" />
 
-
-          {/* Full Name */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           <div>
-            <label className="block text-sm font-medium text-gray-900 mb-2">
-              {t('full_name')} <span className="text-[#E9756D]">*</span>
-            </label>
-            <input type="text" {...register('fullName')} className={`w-full px-4 py-3 rounded-xl border ${errors.fullName ? 'border-red-500' : 'border-gray-300'} focus:outline-none focus:ring-2 focus:ring-[#E9756D]/20 focus:border-[#E9756D] transition-all`} placeholder={t('enter_full_name')} />
-            {errors.fullName && <p className="mt-2 text-sm text-red-600">{errors.fullName.message}</p>}
-          </div>
-
-          {/* Email */}
-          <div>
-            <label className="block text-sm font-medium text-gray-900 mb-2">{t('email_address')}</label>
-            <input type="email" {...register('email')} className={`w-full px-4 py-3 rounded-xl border ${errors.email ? 'border-red-500' : 'border-gray-300'} focus:outline-none focus:ring-2 focus:ring-[#E9756D]/20 focus:border-[#E9756D] transition-all`} placeholder={t('email_placeholder')} />
-            {errors.email && <p className="mt-2 text-sm text-red-600">{errors.email.message}</p>}
-          </div>
-
-          {/* Mobile Number with +93 addon */}
-          <div>
-            <label className="block text-sm font-medium text-gray-900 mb-2">{t('mobile_number')} <span className="text-[#E9756D]">*</span></label>
+            <label className="block text-sm font-semibold text-gray-800 mb-2">{t('full_name')} <span className="text-[#E9756D]">*</span></label>
             <div className="relative">
-              {/* <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">+93</div> */}
-              <input
-                type="tel"
-                dir='ltr'
-                {...register('mobileNumber')}
-                className={`w-full px-4 py-3 rounded-xl border
-               ${errors.mobileNumber ? 'border-red-500' : 'border-gray-300'} focus:outline-none focus:ring-2 focus:ring-[#E9756D]/20 focus:border-[#E9756D] transition-all`}
-                placeholder={t('mobile_placeholder')} />
+              <User size={18} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400" />
+              <input type="text" {...register('fullName')} className={fieldClass(!!errors.fullName)} placeholder={t('enter_full_name')} />
             </div>
-            {errors.mobileNumber && <p className="mt-2 text-sm text-red-600">{errors.mobileNumber.message}</p>}
-            {/* <p className="mt-1 text-xs text-gray-500">{t('mobile_format_hint')}</p> */}
+            {errors.fullName && <p className="mt-1.5 text-xs text-rose-600">{errors.fullName.message}</p>}
           </div>
 
-        </div>
-        {/* Message */}
-        <div>
-          <label className="block text-sm font-medium text-gray-900 mb-2">{t('message')} <span className="text-[#E9756D]">*</span></label>
-          <textarea rows={4} {...register('message')} className={`w-full px-4 py-3 rounded-xl border ${errors.message ? 'border-red-500' : 'border-gray-300'} focus:outline-none focus:ring-2 focus:ring-[#E9756D]/20 focus:border-[#E9756D] transition-all resize-none`} placeholder={t('message_placeholder')}></textarea>
-          {errors.message && <p className="mt-2 text-sm text-red-600">{errors.message.message}</p>}
+          <div>
+            <label className="block text-sm font-semibold text-gray-800 mb-2">{t('email_address')}</label>
+            <div className="relative">
+              <Mail size={18} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400" />
+              <input type="email" dir="ltr" {...register('email')} className={fieldClass(!!errors.email)} placeholder={t('email_placeholder')} />
+            </div>
+            {errors.email && <p className="mt-1.5 text-xs text-rose-600">{errors.email.message}</p>}
+          </div>
+
+          <div>
+            <label className="block text-sm font-semibold text-gray-800 mb-2">{t('mobile_number')} <span className="text-[#E9756D]">*</span></label>
+            <div className="relative">
+              <Phone size={18} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400" />
+              <input type="tel" dir="ltr" {...register('phone')} className={fieldClass(!!errors.phone)} placeholder={t('mobile_placeholder')} />
+            </div>
+            {errors.phone && <p className="mt-1.5 text-xs text-rose-600">{errors.phone.message}</p>}
+          </div>
         </div>
 
-        {/* Submit Button */}
-        <motion.button type="submit" disabled={isSubmitting} whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="w-full py-4 cursor-pointer mt-3 bg-gradient-to-r from-[#E9756D] to-[#F6CA97] text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center">
-          {isSubmitting ? (<><Loader2 className="animate-spin mx-2" size={20} />{t('sending_message')}</>) : (<><Send className="mr-2" size={20} />{t('send_message')}</>)}
+        <div>
+          <label className="block text-sm font-semibold text-gray-800 mb-2">{t('message')} <span className="text-[#E9756D]">*</span></label>
+          <div className="relative">
+            <MessageSquare size={18} className="absolute left-3.5 top-3.5 text-gray-400" />
+            <textarea rows={5} {...register('message')} className={`${fieldClass(!!errors.message)} pl-11 pt-3 resize-none`} placeholder={t('message_placeholder')} />
+          </div>
+          {errors.message && <p className="mt-1.5 text-xs text-rose-600">{errors.message.message}</p>}
+        </div>
+
+        <motion.button
+          type="submit"
+          disabled={isSubmitting}
+          whileHover={{ scale: 1.01 }}
+          whileTap={{ scale: 0.99 }}
+          className="w-full py-4 bg-linear-to-r from-[#E9756D] to-[#F6CA97] text-white font-semibold rounded-xl shadow-lg shadow-[#E9756D]/25 hover:shadow-xl hover:shadow-[#E9756D]/35 transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+        >
+          {isSubmitting ? (<><Loader2 className="animate-spin" size={20} />{t('sending_message')}</>) : (<><Send size={18} />{t('send_message')}</>)}
         </motion.button>
 
-        {/* <p className="text-center text-sm text-gray-600 mt-4">{t('emergency_call_text')}</p> */}
+        <p className="text-center text-xs text-gray-500">{t('emergency_call_text')}</p>
       </form>
     </div>
   );

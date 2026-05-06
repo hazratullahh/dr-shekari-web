@@ -8,7 +8,7 @@ import { useTranslations } from 'next-intl';
 const ContactHero = () => {
   const t = useTranslations('contact');
   return (
-    <section className="relative pt-32 pb-20 px-4 md:px-8 lg:px-16 overflow-hidden">
+    <section className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
       {/* Animated Background */}
       <div className="absolute inset-0 bg-linear-to-br from-[#FDF5EE] via-white to-[#F9F0E8]" />
 

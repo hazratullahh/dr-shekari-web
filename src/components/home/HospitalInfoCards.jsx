@@ -58,7 +58,7 @@ const HospitalInfoCards = () => {
   const theme = getThemeColors();
 
   return (
-    <section className="py-24 px-4 md:px-8 lg:px-16 relative overflow-hidden">
+    <section className="py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
       {/* Animated Background based on mode */}
       <div className={`absolute inset-0 bg-gradient-to-br from-gray-50 to-white transition-all duration-1000`}>
         {/* Animated particles */}

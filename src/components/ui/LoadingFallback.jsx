@@ -9,7 +9,7 @@ const LoadingFallback = ({ type = 'section' }) => {
       </div>
     ),
     'hero': (
-      <div className="min-h-screen pt-20 px-4 md:px-8 lg:px-16">
+      <div className="min-h-screen pt-20 px-4 sm:px-6 lg:px-8">
         <div className="container mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <div>
@@ -35,7 +35,7 @@ const LoadingFallback = ({ type = 'section' }) => {
       </div>
     ),
     'section': (
-      <div className="py-20 px-4 md:px-8 lg:px-16">
+      <div className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="container mx-auto">
           <div className="text-center mb-16">
             <div className="h-8 w-48 bg-gradient-to-r from-[#F6CA97]/20 to-[#E9756D]/20 rounded-full mx-auto mb-6 animate-pulse"></div>

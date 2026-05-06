@@ -4,132 +4,98 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { Award, Star, Heart, Users } from 'lucide-react';
 import { useTranslations } from 'next-intl';
+import Container from '@/components/ui/Container';
 
-const AboutHero = () => {
+export default function AboutHero() {
   const t = useTranslations();
 
+  const stats = [
+    { value: '20+', label: t('home.endourology'), icon: Award },
+    { value: '8500+', label: t('home.andrology'), icon: Users },
+    { value: '98%', label: t('about.stone_disease'), icon: Star },
+    { value: '24/7', label: t('about.prostate_disorder'), icon: Heart },
+  ];
+
   return (
-    <section className="relative pt-32 pb-20 px-4 md:px-8 lg:px-16 overflow-hidden">
-      {/* Animated Background */}
-      <div className="absolute inset-0 bg-linear-to-br from-[#FDF5EE] via-white to-[#F9F0E8]" />
+    <section className="relative overflow-hidden bg-linear-to-br from-[#FDF5EE] via-white to-[#FDF5EE]">
+      <div
+        className="absolute inset-0 opacity-[0.05] pointer-events-none"
+        style={{
+          backgroundImage: 'radial-gradient(circle at 1px 1px, #E9756D 1px, transparent 0)',
+          backgroundSize: '32px 32px',
+        }}
+        aria-hidden="true"
+      />
+      <div className="absolute -top-32 -right-24 w-96 h-96 rounded-full bg-[#E9756D]/10 blur-3xl pointer-events-none" aria-hidden="true" />
 
-      {/* Floating Medical Icons */}
-      <div className="absolute inset-0 overflow-hidden">
-        {[...Array(12)].map((_, i) => (
+      <Container className="relative py-12 md:py-20 lg:py-24">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
           <motion.div
-            key={i}
-            className="absolute text-4xl opacity-5"
-            style={{
-              left: `${(i * 10)}%`,
-              top: `${10 + Math.random() * 80}%`,
-            }}
-            animate={{
-              y: [0, -30, 0],
-              rotate: [0, 180, 360]
-            }}
-            transition={{
-              duration: 8 + Math.random() * 4,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="lg:col-span-7"
           >
-            {i % 4 === 0 ? '🫀' : i % 4 === 1 ? '⚕️' : i % 4 === 2 ? '🔬' : '🏥'}
-          </motion.div>
-        ))}
-      </div>
-
-      <div className="max-w-7xl mx-auto relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-
-          {/* Left Content */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <div className="inline-flex items-center px-4 py-2 bg-linear-to-r from-[#E9756D]/10 to-[#F6CA97]/10 rounded-full mb-6">
-              <Star size={16} className="text-[#E9756D] mr-2" />
-              <span className="text-[#E9756D] font-semibold">{t("about.about_doctor")}</span>
-            </div>
-
-            {/* <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
-              <span className="block text-transparent bg-clip-text bg-linear-to-r from-[#E9756D] to-[#F6CA97]">
-                {t("about.about_doctor")}
-              </span>
-            </h1> */}
-
-            <p className="text-xl text-gray-700 mb-8 leading-relaxed">
-              {t("about.bio")}
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-[#E9756D]/20 shadow-sm text-[#E9756D] text-xs font-semibold tracking-wide uppercase mb-5">
+              <Star size={13} />
+              {t('about.about_doctor')}
+            </span>
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-gray-900 leading-[1.1]">
+              {t('home.dr_name')}
+            </h1>
+            <h2 className="mt-3 text-lg md:text-xl font-semibold text-[#E9756D]">
+              {t('home.slogan')}
+            </h2>
+            <p className="mt-5 text-base md:text-lg text-gray-600 leading-relaxed max-w-2xl">
+              {t('about.bio')}
             </p>
 
-            {/* Stats */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
-              {[
-                { value: '20+', label: t("home.endourology"), icon: <Award className="text-[#E9756D]" /> },
-                { value: '8500+', label: t("home.andrology"), icon: <Users className="text-[#E9756D]" /> },
-                { value: '98%', label: t("about.stone_disease"), icon: <Star className="text-[#E9756D]" /> },
-                { value: '24/7', label: t("about.prostate_disorder"), icon: <Heart className="text-[#E9756D]" /> },
-              ].map((stat, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                  className="text-center p-4 bg-white rounded-xl shadow-lg border border-gray-100"
-                >
-                  <div className="inline-flex p-2 rounded-lg bg-linear-to-r from-[#E9756D]/10 to-[#F6CA97]/10 mb-2">
-                    {stat.icon}
+            <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-3">
+              {stats.map((s) => {
+                const Icon = s.icon;
+                return (
+                  <div key={s.label} className="rounded-2xl bg-white border border-gray-100 p-4 text-center">
+                    <div className="mx-auto w-9 h-9 rounded-lg bg-[#E9756D]/10 text-[#E9756D] flex items-center justify-center mb-2">
+                      <Icon size={16} />
+                    </div>
+                    <div className="text-base font-bold text-gray-900">{s.value}</div>
+                    <div className="text-[11px] text-gray-500 leading-tight mt-0.5">{s.label}</div>
                   </div>
-                  {/* <div className="text-2xl font-bold text-gray-900">{stat.value}</div> */}
-                  <div className="text-sm text-gray-600">{stat.label}</div>
-                </motion.div>
-              ))}
+                );
+              })}
             </div>
-
-            {/* <motion.a
-              href="#contact"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="inline-flex items-center px-8 py-4 bg-linear-to-r from-[#E9756D] to-[#F6CA97] text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
-            >
-              Schedule Consultation
-              <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-              </svg>
-            </motion.a> */}
           </motion.div>
 
-          {/* Right Image */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
+            initial={{ opacity: 0, scale: 0.97 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1 }}
-            className="relative h-125 rounded-3xl overflow-hidden shadow-2xl"
+            transition={{ duration: 0.7, delay: 0.1 }}
+            className="lg:col-span-5"
           >
-            <Image
-              src="/images/about/clinic-exterior.jpg"
-              alt="Dr. Shekari Urology Clinic at Jami Hospital, Herat"
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, 50vw"
-              priority
-            />
-            <div className="absolute bottom-0 left-0 right-0 bg-linear-to-t from-black/70 to-transparent p-6">
-              <div className="flex items-center">
-                <div className="w-12 h-12 rounded-full bg-linear-to-r from-[#E9756D] to-[#F6CA97] flex items-center justify-center mr-4">
-                  <span className="text-white font-bold text-lg">JS</span>
-                </div>
-                <div>
-                  <h3 className="text-white font-bold text-xl">Jami Hospital</h3>
-                  <p className="text-[#F6CA97]">Herat, Afghanistan</p>
+            <div className="relative rounded-3xl overflow-hidden shadow-xl shadow-[#E9756D]/15 border border-white/80 aspect-[4/5]">
+              <Image
+                src="/images/about/clinic-exterior.jpg"
+                alt="Dr. Shekari Urology Clinic at Jami Hospital, Herat"
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 90vw, 40vw"
+                priority
+              />
+              <div className="absolute inset-x-0 bottom-0 bg-linear-to-t from-black/70 via-black/20 to-transparent p-5">
+                <div className="flex items-center gap-3">
+                  <div className="w-11 h-11 rounded-xl bg-linear-to-r from-[#E9756D] to-[#F6CA97] flex items-center justify-center shadow-md">
+                    <span className="text-white font-bold text-sm">JH</span>
+                  </div>
+                  <div>
+                    <div className="text-white font-bold text-base">Jami Hospital</div>
+                    <div className="text-[#F6CA97] text-xs">Herat, Afghanistan</div>
+                  </div>
                 </div>
               </div>
             </div>
           </motion.div>
         </div>
-      </div>
+      </Container>
     </section>
   );
-};
-
-export default AboutHero;
+}

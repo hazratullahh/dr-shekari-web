@@ -1,567 +1,232 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
-import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
-import {
-  Menu, X, Phone, MapPin, Calendar,
-  Stethoscope, ChevronRight, Sparkles,
-  Zap, Heart, ArrowRight, User
-} from 'lucide-react';
+import { Menu, X, Phone, Calendar, MapPin, ChevronRight, ChevronLeft } from 'lucide-react';
 import LocaleSwitcher from './LocaleSwitcher';
 import { useLocale, useTranslations } from 'next-intl';
-import { useAppointmentModal } from '@/components/appointment/AppointmentModal';
+import { useStandalone } from '@/lib/hooks/usePWA';
 
 const Header = () => {
   const t = useTranslations();
-
   const locale = useLocale();
-  const isRTL = locale !== 'en';
+  const isRTL = locale === 'fa' || locale === 'ps';
+  const standalone = useStandalone();
 
-  const { setIsOpen } = useAppointmentModal();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeHover, setActiveHover] = useState(null);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const headerRef = useRef(null);
   const pathname = usePathname();
 
-  // Use scroll progress for animations
-  const { scrollY } = useScroll();
-  const headerHeight = useTransform(scrollY, [0, 100], [120, 80]);
-  const headerOpacity = useTransform(scrollY, [0, 50], [1, 0.95]);
-  const logoScale = useTransform(scrollY, [0, 100], [1, 0.9]);
-  const headerBlur = useTransform(scrollY, [0, 50], [0, 10]);
-  const headerElevation = useTransform(scrollY, [0, 100], [0, 20]);
+  useEffect(() => {
+    const onScroll = () => setIsScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
-  // Spring animations for smoothness
-  const springHeaderHeight = useSpring(headerHeight, {
-    stiffness: 100,
-    damping: 30
-  });
-  const springLogoScale = useSpring(logoScale, {
-    stiffness: 100,
-    damping: 30
-  });
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [pathname]);
 
-  // Navigation items
+  useEffect(() => {
+    document.body.style.overflow = isMobileMenuOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [isMobileMenuOpen]);
+
   const navItems = [
-    {
-      label: t("header.home"),
-      href: '/',
-      exact: true,
-      icon: '🏠'
-    },
-    {
-      label: t("header.about"),
-      href: '/about',
-      icon: '👨‍⚕️'
-    },
-    {
-      label: t("header.services"),
-      href: '/services',
-      icon: '🩺'
-    },
-    {
-      label: t("header.research"),
-      href: '/research',
-      icon: '📚'
-    },
-    {
-      label: t("header.faq"),
-      href: '/faq',
-      icon: '❓'
-    },
-    {
-      label: t("header.appointment"),
-      href: '/appointment',
-      icon: '📅'
-    },
-    {
-      label: t("header.team"),
-      href: '/team',
-      icon: '👥'
-    },
-    {
-      label: t("header.contact"),
-      href: '/contact',
-      icon: '📞'
-    }
+    { label: t('header.home'), href: '/', exact: true },
+    { label: t('header.about'), href: '/about' },
+    { label: t('header.services'), href: '/services' },
+    { label: t('header.research'), href: '/research' },
+    { label: t('header.team'), href: '/team' },
+    { label: t('header.contact'), href: '/contact' },
   ];
 
-  // Mouse move effect for sexy parallax
-  useEffect(() => {
-    const handleMouseMove = (e) => {
-      if (headerRef.current) {
-        const rect = headerRef.current.getBoundingClientRect();
-        const x = (e.clientX - rect.left) / rect.width;
-        const y = (e.clientY - rect.top) / rect.height;
-        setMousePosition({ x, y });
-      }
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
-
-  // Scroll effect
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
+  const stripLocale = (path) => path.replace(/^\/(en|fa|ps)(?=\/|$)/, '') || '/';
   const isActive = (href, exact = false) => {
-    if (exact) return pathname === href;
-    return pathname.startsWith(href);
+    const current = stripLocale(pathname);
+    if (exact) return current === href;
+    return current.startsWith(href);
   };
 
-  // Calculate parallax transform based on mouse position
-  const parallaxX = mousePosition.x * 10 - 5;
-  const parallaxY = mousePosition.y * 5 - 2.5;
+  // In standalone PWA mode, BottomTabBar handles all primary nav, so we
+  // collapse the desktop-style links and CTA on mobile and skip the utility strip.
+  const compactMobile = standalone;
 
   return (
     <>
-      {/* Floating Emergency Alert */}
-      <motion.div
-        initial={{ y: -50, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ delay: 0.3 }}
-        className="fixed top-0 left-0 right-0 z-50 bg-linear-to-r from-[#E9756D] via-[#FF9A8B] to-[#F6CA97] text-white py-2 shadow-lg"
-        style={{
-          clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%, 0% 50%)'
-        }}
-      >
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex flex-col sm:flex-row justify-between items-center">
-            <div className="flex items-center mb-2 sm:mb-0">
-              <motion.div
-                animate={{ scale: [1, 1.2, 1] }}
-                transition={{ duration: 2, repeat: Infinity }}
-                className="mr-3"
-              >
-                <Zap size={16} className="text-white mx-1" />
-              </motion.div>
-              <span className="font-bold">{t("header.emergency")}</span>
-              <a
-                href="tel:+93792453030"
-                dir={"ltr"}
-                className={`${isRTL ? 'mr-2' : 'ml-2'} font-black hover:underline`}
-              >
-                +93 79 245 3030
-              </a>
-            </div>
-            <div className="flex items-center text-sm">
-              <MapPin size={14} className="mx-2" />
-              <span>{t("header.hospital_name")}</span>
-            </div>
+      {/* Top utility bar — desktop only; hidden in standalone for an app-shell feel */}
+      <div className={`${standalone ? 'hidden' : 'hidden md:block'} bg-[#E9756D] text-white text-xs`}>
+        <div className="max-w-7xl mx-auto px-6 h-9 flex items-center justify-between">
+          <div className="flex items-center gap-5">
+            <span className="inline-flex items-center gap-1.5">
+              <MapPin size={13} className="opacity-80" />
+              <span className="opacity-90">{t('header.hospital_name')}</span>
+            </span>
+            <span className="opacity-60">·</span>
+            <span className="opacity-90">{t('contact.regular_hours')}</span>
           </div>
+          <a href="tel:+93792453030" dir="ltr" className="inline-flex items-center gap-1.5 font-semibold hover:text-[#F6CA97] transition-colors">
+            <Phone size={13} />
+            {t('header.emergency')}: +93 79 245 3030
+          </a>
         </div>
-      </motion.div>
+      </div>
 
-      {/* Main Header with sexy animations */}
-      <motion.header
-        ref={headerRef}
-        style={{
-          height: springHeaderHeight,
-          opacity: headerOpacity,
-          backdropFilter: `blur(${useTransform(scrollY, [0, 50], [0, 8])}px)`,
-          boxShadow: `0 4px ${headerElevation}px rgba(0, 0, 0, 0.1)`
-        }}
-        className="fixed top-16 md:top-8 left-0 right-0 z-40 bg-white/90 backdrop-blur-md border-b border-white/20"
-        animate={{
-          y: isScrolled ? 0 : 0,
-          backgroundColor: isScrolled ? 'rgba(255, 255, 255, 0.95)' : 'rgba(255, 255, 255, 0.98)'
-        }}
-        transition={{ duration: 0.3 }}
+      {/* Main navbar */}
+      <header
+        className={`sticky top-0 z-40 w-full transition-all duration-300 ${
+          isScrolled
+            ? 'bg-white/95 backdrop-blur-lg shadow-[0_4px_24px_-12px_rgba(233,117,109,0.18)] border-b border-gray-100'
+            : 'bg-white/85 backdrop-blur-md border-b border-transparent'
+        }`}
+        style={{ paddingTop: standalone ? 'env(safe-area-inset-top, 0px)' : undefined }}
       >
-        {/* Animated background particles */}
-        <div className="absolute inset-0 overflow-hidden">
-          {[...Array(15)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute w-1 h-1 rounded-full bg-linear-to-r from-[#E9756D] to-[#F6CA97]"
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-              }}
-              animate={{
-                y: [0, -10, 0],
-                x: [0, Math.random() * 10 - 5, 0],
-                opacity: [0.3, 0.8, 0.3]
-              }}
-              transition={{
-                duration: 2 + Math.random() * 3,
-                repeat: Infinity,
-                delay: Math.random() * 2
-              }}
-            />
-          ))}
-        </div>
-
-        <div className="max-w-360 mx-auto px-4 h-full">
-          <div className="flex items-center justify-between h-full">
-
-            {/* Logo with sexy animations */}
-            <motion.div
-              style={{ scale: springLogoScale }}
-              whileHover={{ scale: 1.05 }}
-              className="flex items-center relative group"
-            >
-              <Link href="/" className="flex items-center gap-4">
-                {/* Logo Container with sexy effects */}
-                <motion.div
-                  animate={{
-                    rotate: [0, 5, -5, 0],
-                    scale: [1, 1.05, 1]
-                  }}
-                  transition={{
-                    duration: 4,
-                    repeat: Infinity,
-                    repeatDelay: 3
-                  }}
-                  className="relative"
-                >
-                  {/* Glow effect */}
-                  <motion.div
-                    className="absolute -inset-2 bg-linear-to-r from-[#E9756D] to-[#F6CA97] rounded-2xl blur opacity-20 group-hover:opacity-40"
-                    animate={{
-                      rotate: [0, 180, 360],
-                      scale: [1, 1.1, 1]
-                    }}
-                    transition={{
-                      duration: 8,
-                      repeat: Infinity,
-                      ease: "linear"
-                    }}
-                  />
-
-                  {/* Logo Image */}
-                  <div className="relative w-16 h-16 rounded-xl bg-linear-to-br from-[#E9756D] to-[#F6CA97] flex items-center justify-center shadow-2xl overflow-hidden border-2 border-white">
-                    <Image
-                      src="/logo.png"
-                      alt="Dr. Shekari Logo"
-                      width={500}
-                      height={500}
-                      className="object-contain"
-                      onError={(e) => {
-                        e.target.style.display = 'none';
-                        e.target.nextElementSibling.style.display = 'flex';
-                      }}
-                    />
-                    {/* Fallback icon */}
-                    <div className="hidden w-full h-full items-center justify-center">
-                      <Stethoscope size={28} className="text-white mx-1" />
-                    </div>
-                  </div>
-
-                  {/* Floating particles around logo */}
-                  {[...Array(3)].map((_, i) => (
-                    <motion.div
-                      key={i}
-                      className="absolute w-2 h-2 rounded-full bg-linear-to-r from-[#E9756D] to-[#F6CA97]"
-                      animate={{
-                        x: [0, Math.sin(i) * 20, 0],
-                        y: [0, Math.cos(i) * 20, 0],
-                        scale: [1, 0.5, 1]
-                      }}
-                      transition={{
-                        duration: 3,
-                        repeat: Infinity,
-                        delay: i * 0.5
-                      }}
-                      style={{
-                        left: i === 0 ? '-5px' : i === 1 ? '60px' : '30px',
-                        top: i === 0 ? '30px' : i === 1 ? '-5px' : '60px'
-                      }}
-                    />
-                  ))}
-                </motion.div>
-
-                {/* Clinic Name with sexy typography */}
-                <motion.div
-                  className="ml-4"
-                  style={{
-                    transform: `translate(${parallaxX * 0.3}px, ${parallaxY * 0.3}px)`
-                  }}
-                >
-                  <motion.h1
-                    className="text-sm md:text-lg font-black text-gray-900 leading-tight"
-                  // animate={isScrolled ? { fontSize: "1.5rem" } : { fontSize: "1.7rem" }}
-                  >
-                    {t("home.dr_name")}
-                    <motion.span
-                      animate={{ opacity: [0.5, 1, 0.5] }}
-                      transition={{ duration: 2, repeat: Infinity }}
-                      className="hidden md:inline ml-2"
-                    >
-                      <Sparkles size={16} className="inline mx-1 text-[#E9756D]" />
-                    </motion.span>
-                  </motion.h1>
-                  <motion.p
-                    className="text-xs md:text-sm font-medium text-transparent bg-clip-text bg-linear-to-r from-[#E9756D] to-[#F6CA97]"
-                    animate={isScrolled ? { opacity: 0.8 } : { opacity: 1 }}
-                  >
-                    {t("home.slogan")}
-                  </motion.p>
-                </motion.div>
-              </Link>
-            </motion.div>
-
-            {/* Desktop Navigation - Sexy hover effects */}
-            <nav className="hidden lg:flex items-center space-x-1">
-              {navItems.map((item) => (
-                <motion.div
-                  key={item.label}
-                  className="relative"
-                  onMouseEnter={() => setActiveHover(item.label)}
-                  onMouseLeave={() => setActiveHover(null)}
-                >
-                  <Link
-                    href={item.href}
-                    className={`flex items-center px-5 py-3 rounded-xl transition-all duration-300 ${isActive(item.href, item.exact)
-                      ? 'text-white'
-                      : 'text-gray-700 hover:text-white'
-                      }`}
-                  >
-                    {/* Icon */}
-                    {/* <motion.span
-                      className="text-xl mr-2"
-                      animate={isActive(item.href, item.exact) ? { rotate: 360 } : {}}
-                      transition={{ duration: 0.5 }}
-                    >
-                      {item.icon}
-                    </motion.span> */}
-
-                    {/* Text */}
-                    <span className="font-semibold relative z-10">
-                      {item.label}
-                    </span>
-
-                    {/* Active/Hover Indicator */}
-                    <motion.div
-                      className="absolute inset-0 rounded-xl"
-                      initial={false}
-                      animate={{
-                        scale: isActive(item.href, item.exact) || activeHover === item.label ? 1 : 0,
-                        opacity: isActive(item.href, item.exact) || activeHover === item.label ? 1 : 0
-                      }}
-                      transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                    >
-                      <div className="absolute inset-0 bg-linear-to-r from-[#E9756D] to-[#F6CA97] rounded-xl shadow-lg" />
-                    </motion.div>
-
-                    {/* Active Arrow */}
-                    {/* {isActive(item.href, item.exact) && (
-                      <motion.div
-                        initial={{ x: 10, opacity: 0 }}
-                        animate={{ x: 0, opacity: 1 }}
-                        className="ml-2"
-                      >
-                        <ChevronRight size={16} />
-                      </motion.div>
-                    )} */}
-                  </Link>
-
-                  {/* Glow effect on hover */}
-                  {activeHover === item.label && !isActive(item.href, item.exact) && (
-                    <motion.div
-                      initial={{ scale: 0, opacity: 0 }}
-                      animate={{ scale: 1, opacity: 0.3 }}
-                      exit={{ scale: 0, opacity: 0 }}
-                      className="absolute inset-0 bg-linear-to-r from-[#E9756D] to-[#F6CA97] blur-xl rounded-xl"
-                    />
-                  )}
-                </motion.div>
-              ))}
-              <div className="ml-3">
-                <LocaleSwitcher />
+        <div className="max-w-7xl mx-auto px-4 md:px-6">
+          <div className={`flex items-center justify-between gap-4 transition-all duration-300 ${isScrolled ? 'h-16' : 'h-20'}`}>
+            {/* Logo + identity */}
+            <Link href="/" className="flex items-center gap-3 shrink-0 group" aria-label="Dr. Shekari home">
+              <div className="relative w-11 h-11 md:w-12 md:h-12 rounded-xl bg-linear-to-br from-[#E9756D] to-[#F6CA97] flex items-center justify-center shadow-md shadow-[#E9756D]/20 overflow-hidden">
+                <Image
+                  src="/logo.png"
+                  alt="Dr. Shekari logo"
+                  width={48}
+                  height={48}
+                  className="object-contain p-1.5"
+                  priority
+                />
               </div>
-
-              {/*  Appointment Button */}
-              <motion.button
-                type='button'
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => setIsOpen(true)}
-                className="ml-4 relative group cursor-pointer"
-              >
-                {/* Button background with  effects */}
-                <motion.div
-                  type="button"
-                  className="absolute inset-0 cursor-pointer bg-linear-to-r  from-[#E9756D] to-[#F6CA97] rounded-xl shadow-xl"
-                  animate={{
-                    boxShadow: [
-                      '0 10px 30px rgba(233, 117, 109, 0.3)',
-                      '0 15px 40px rgba(233, 117, 109, 0.5)',
-                      '0 10px 30px rgba(233, 117, 109, 0.3)'
-                    ]
-                  }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                />
-
-                {/* Button content */}
-                <div className="relative px-6 py-3 rounded-xl cursor-pointer bg-linear-to-r from-[#E9756D] to-[#F6CA97] flex items-center">
-                  <Calendar size={18} className="mx-2 text-white" />
-                  <span className="font-bold text-white">{t("home.book_appointment")}</span>
-
-                  {/* Animated arrow */}
-                  {/* <motion.div
-                    animate={{ x: [0, 5, 0] }}
-                    transition={{ duration: 1.5, repeat: Infinity }}
-                    className="ml-2"
-                  >
-                    <ArrowRight size={18} className="text-white" />
-                  </motion.div> */}
-
-                  {/* Floating hearts on hover */}
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    whileHover={{ opacity: 1 }}
-                    className="absolute -top-3 -right-3"
-                  >
-                    <Heart size={16} className="mx-1 text-[#FF9A8B] animate-pulse" />
-                  </motion.div>
+              <div className="leading-tight">
+                <div className="text-[15px] md:text-[16px] font-bold text-gray-900 tracking-tight">
+                  {t('home.dr_name')}
                 </div>
+                <div className="text-[11px] md:text-[12px] font-medium text-[#E9756D] hidden sm:block">
+                  {t('home.slogan')}
+                </div>
+              </div>
+            </Link>
 
-                {/* Glow effect */}
-                <motion.div
-                  className="absolute -inset-1 bg-linear-to-r from-[#E9756D] to-[#F6CA97] blur opacity-30 rounded-xl"
-                  animate={{ opacity: [0.2, 0.4, 0.2] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                />
-              </motion.button>
+            {/* Desktop nav */}
+            <nav className="hidden lg:flex items-center gap-1" aria-label="Primary">
+              {navItems.map((item) => {
+                const active = isActive(item.href, item.exact);
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className={`relative px-3.5 py-2 text-sm font-medium rounded-lg transition-colors ${
+                      active
+                        ? 'text-[#E9756D]'
+                        : 'text-gray-700 hover:text-[#E9756D]'
+                    }`}
+                  >
+                    {item.label}
+                    {active && (
+                      <motion.span
+                        layoutId="nav-active"
+                        className="absolute inset-x-2 -bottom-0.5 h-0.5 rounded-full bg-linear-to-r from-[#E9756D] to-[#F6CA97]"
+                        transition={{ type: 'spring', stiffness: 400, damping: 32 }}
+                      />
+                    )}
+                  </Link>
+                );
+              })}
             </nav>
 
-            {/* Mobile Menu Button - Sexy animation */}
-            <motion.button
-              type='button'
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden relative cursor-pointer"
-            >
-              <div className="w-12 h-12 rounded-xl bg-linear-to-r from-[#E9756D]/10 to-[#F6CA97]/10 flex items-center justify-center">
-                {isMobileMenuOpen ? (
-                  <motion.div
-                    initial={{ rotate: -180 }}
-                    animate={{ rotate: 0 }}
-                  >
-                    <X size={24} className="text-[#E9756D]" />
-                  </motion.div>
-                ) : (
-                  <motion.div
-                    animate={{ scale: [1, 1.2, 1] }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                  >
-                    <Menu size={24} className="text-[#E9756D]" />
-                  </motion.div>
-                )}
-              </div>
-
-              {/* Pulsing dot */}
-              {!isMobileMenuOpen && (
-                <motion.div
-                  className="hidden md:absolute -top-1 -right-1 w-3 h-3 rounded-full bg-linear-to-r from-[#E9756D] to-[#F6CA97]"
-                  animate={{ scale: [1, 1.5, 1] }}
-                  transition={{ duration: 1.5, repeat: Infinity }}
-                />
-              )}
-            </motion.button>
-          </div>
-        </div>
-
-        {/* Sexy Mobile Menu */}
-        {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="lg:hidden absolute top-full left-0 right-0 bg-white/95 backdrop-blur-xl shadow-2xl border-t border-white/20"
-            style={{
-              backdropFilter: 'blur(20px)'
-            }}
-          >
-            <div className="max-w-7xl mx-auto px-4 py-6">
-              <div className="mb-6 flex justify-center">
+            {/* Right cluster */}
+            <div className="flex items-center gap-2 md:gap-3 shrink-0">
+              <div className="hidden md:block">
                 <LocaleSwitcher />
               </div>
 
-              {navItems.map((item) => (
-                <motion.div
-                  key={item.label}
-                  whileTap={{ scale: 0.98 }}
-                  className="mb-2"
-                >
-                  <Link
-                    href={item.href}
-                    className={`flex items-center p-4 rounded-xl ${isActive(item.href)
-                      ? 'bg-linear-to-r from-[#E9756D] to-[#F6CA97] text-white shadow-lg'
-                      : 'hover:bg-linear-to-r hover:from-[#E9756D]/10 hover:to-[#F6CA97]/10'
-                      }`}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    {/* <span className="text-2xl mr-4">{item.icon}</span> */}
-                    <span className="font-semibold text-lg">{item.label}</span>
-                    {/* {isActive(item.href) && (
-                      <motion.div
-                        initial={{ x: -10 }}
-                        animate={{ x: 0 }}
-                        className="ml-auto"
-                      >
-                        <ChevronRight size={20} />
-                      </motion.div>
-                    )} */}
-                  </Link>
-                </motion.div>
-              ))}
-
-              {/* Mobile Appointment Button */}
-              <motion.button
-                type='button'
-                whileTap={{ scale: 0.95 }}
-                onClick={() => {
-                  setIsOpen(true);
-                  setIsMobileMenuOpen(false);
-                }}
-                className="w-full mt-6 p-4 cursor-pointer bg-linear-to-r from-[#E9756D] to-[#F6CA97] text-white font-bold rounded-xl shadow-xl flex items-center justify-center"
+              <Link
+                href="/appointment"
+                className={`${
+                  compactMobile
+                    ? 'hidden lg:inline-flex'
+                    : 'hidden sm:inline-flex'
+                } items-center gap-2 px-4 md:px-5 py-2.5 rounded-xl bg-linear-to-r from-[#E9756D] to-[#F6CA97] text-white text-sm font-semibold shadow-md shadow-[#E9756D]/25 hover:shadow-lg hover:shadow-[#E9756D]/35 hover:scale-[1.02] active:scale-[0.98] transition-all`}
               >
-                <Calendar size={20} className="mx-3" />
-                {t("home.book_appointment")}
-                <motion.div
-                  animate={{ x: [0, 5, 0] }}
-                  transition={{ duration: 1.5, repeat: Infinity }}
-                  className="ml-3"
-                >
-                  {/* <ArrowRight size={20} /> */}
-                </motion.div>
-              </motion.button>
+                <Calendar size={16} />
+                <span>{t('home.book_appointment')}</span>
+              </Link>
 
-              {/* Emergency Contact in Mobile Menu */}
-              <div className="mt-6 p-4 bg-linear-to-r from-[#E9756D]/10 to-[#F6CA97]/10 rounded-xl">
-                <div className="flex items-center text-sm text-gray-700">
-                  <Phone size={16} className="text-[#E9756D] mx-2" />
-                  <span>{t("header.emergency")}</span>
-                  <a href="tel:+93792453030" className="ml-2 font-bold text-[#E9756D]">
-                    +93 79 245 3030
-                  </a>
+              {!compactMobile && (
+                <button
+                  type="button"
+                  onClick={() => setIsMobileMenuOpen((v) => !v)}
+                  aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+                  aria-expanded={isMobileMenuOpen}
+                  className="lg:hidden inline-flex w-10 h-10 items-center justify-center rounded-xl bg-[#E9756D]/10 text-[#E9756D] hover:bg-[#E9756D]/15 transition-colors"
+                >
+                  {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+                </button>
+              )}
+            </div>
+          </div>
+        </div>
+
+        {/* Mobile dropdown */}
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.18 }}
+              className="lg:hidden absolute inset-x-0 top-full bg-white border-b border-gray-100 shadow-lg"
+            >
+              <div className="max-w-7xl mx-auto px-4 py-4">
+                <nav className="flex flex-col" aria-label="Mobile primary">
+                  {navItems.map((item) => {
+                    const active = isActive(item.href, item.exact);
+                    return (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        className={`flex items-center justify-between px-3 py-3 rounded-xl text-[15px] font-medium transition-colors ${
+                          active
+                            ? 'bg-[#E9756D]/10 text-[#E9756D]'
+                            : 'text-gray-800 hover:bg-gray-50'
+                        }`}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        <span>{item.label}</span>
+                        <ChevronRight size={16} className={`opacity-40 ${isRTL ? 'rotate-180' : ''}`} />
+                      </Link>
+                    );
+                  })}
+                </nav>
+
+                <div className="mt-4 pt-4 border-t border-gray-100 flex flex-col gap-3">
+                  <div className="flex items-center justify-between gap-3">
+                    <LocaleSwitcher />
+                    <a
+                      href="tel:+93792453030"
+                      dir="ltr"
+                      className="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-[#E9756D]/10 text-[#E9756D] text-sm font-semibold"
+                    >
+                      <Phone size={14} /> +93 79 245 3030
+                    </a>
+                  </div>
+
+                  <Link
+                    href="/appointment"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="inline-flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-linear-to-r from-[#E9756D] to-[#F6CA97] text-white text-sm font-semibold shadow-md shadow-[#E9756D]/25"
+                  >
+                    <Calendar size={16} />
+                    {t('home.book_appointment')}
+                  </Link>
                 </div>
               </div>
-            </div>
-          </motion.div>
-        )}
-      </motion.header>
-
-      {/* Space for fixed header */}
-      <motion.div
-        style={{ height: springHeaderHeight }}
-        className="pointer-events-none"
-      />
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </header>
     </>
   );
 };

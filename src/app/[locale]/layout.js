@@ -4,131 +4,143 @@ import { Suspense } from 'react';
 import { Inter } from 'next/font/google';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import BottomTabBar from '@/components/layout/BottomTabBar';
 import LoadingFallback from '@/components/ui/LoadingFallback';
-import InstallAppBanner from '@/components/InstallAppBanner';
 import MedicalSchema from '@/components/MedicalSchema';
-import { AppointmentModalProvider } from '@/components/appointment/AppointmentModal';
+
+import ServiceWorkerRegister from '@/components/pwa/ServiceWorkerRegister';
+import InstallPrompt from '@/components/pwa/InstallPrompt';
+import OfflineBanner from '@/components/pwa/OfflineBanner';
+import PageTransition from '@/components/pwa/PageTransition';
+import SmoothScroll from '@/components/scroll/SmoothScroll';
+import ScrollProgress from '@/components/scroll/ScrollProgress';
 
 import { NextIntlClientProvider, hasLocale } from 'next-intl';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
-// import Navbar from '@/components/Navbar';
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-inter',
+});
+
+const SITE = 'https://dr-shekari.com';
 
 export const metadata = {
-  metadataBase: new URL('https://dr-shekari.com'),
+  metadataBase: new URL(SITE),
   title: {
-    default: 'Dr. Nazir Ahmad Shekari & Dr. Mansour Wayar | Afghanistan\'s Top Urologists & Andrologists',
-    template: '%s | #1 Urology Center in Afghanistan'
+    default:
+      'Dr. Nazir Ahmad Shekari — Urological Surgeon · Endourology & Andrology Specialist',
+    template: '%s | Dr. Shekari Urology Clinic',
   },
   description:
-    'Recognized as Afghanistan\'s foremost medical experts, Dr. Nazir Ahmad Shekari and Professor Dr. Mansour Ahmad Wayar provide world-class urological, andrological, and endourological care.',
+    'Dr. Nazir Ahmad Shekari is a leading urological surgeon in Afghanistan specializing in endourology and andrology. Advanced minimally-invasive treatment for kidney stones, prostate disease, urinary tract conditions, and male infertility.',
+  applicationName: 'Dr. Shekari Clinic',
+  appleWebApp: {
+    capable: true,
+    title: 'Dr. Shekari',
+    statusBarStyle: 'default',
+  },
   keywords: [
-    // ===== EXISTING KEYWORDS (KEEP AS IS) =====
-    'Best Urologist in Afghanistan',
-    'Top Andrologist Herat',
-    '#1 Doctor Afghanistan',
     'Dr. Nazir Ahmad Shekari',
-    'Dr. Mansour Ahmad Wayar',
-    'Dr. Shekari Urologist',
-    'Dr. Mansoor Ahmad Weyar',
-    'Dr. Nazer Ahmad Shekari',
-    'Kidney Stone Specialist Afghanistan',
-    'Best Prostate Treatment Herat',
-    'Male Fertility Expert Afghanistan',
-    'Endourology Surgery Specialist',
-    'Best Urology Clinic Herat',
-    'Afghanistan Kidney Hospital',
-    'Top Medical Center Herat',
-    'Advanced Laparoscopic Urology',
-    'Minimally Invasive Surgery Afghanistan',
-    'Pediatric Urology Specialist',
-    'Erectile Dysfunction Treatment Herat',
-    'Urinary Tract Surgery Expert',
-
-    // ===== BRAND & NAME VARIATIONS (VERY IMPORTANT) =====
+    'Urological Surgeon Afghanistan',
+    'Endourology Specialist',
+    'Andrology Specialist',
+    'Best Urologist Herat',
+    'Kidney Stone Surgery',
+    'Prostate Treatment Afghanistan',
+    'Male Infertility Specialist',
+    'Laser Stone Treatment',
+    'Urology Clinic Herat',
+    'Jami Hospital Urologist',
     'Dr Shekari',
-    'Dr Nazir Shekari',
-    'Dr Nazir Ahmad Shekari Kabul',
-    'Dr Mansour Wayar',
-    'Dr Mansoor Ahmad Wayar Kabul',
-    'Shekari Urology Center',
-    'Shekari Medical Center',
-    'Wayar Urology Specialist',
-
-    // ===== GOOGLE SITELINK INTENT =====
-    'Dr Shekari about',
-    'Dr Shekari team',
-    'Dr Shekari doctors',
-    'Dr Shekari contact',
-    'Dr Shekari clinic contact',
-    'Dr Mansour Ahmad Wayar clinic contact',
-    'Dr Mansour Wayar clinic contact',
-    'Dr Shekari blog',
-    'Dr Shekari medical articles',
-
-    // ===== LOCATION-BASED SEO =====
-    'Best urologist Kabul',
-    'Best andrologist Kabul',
-    'Urology clinic Kabul Afghanistan',
-    'Private urology clinic Kabul',
-    'Top doctor in Herat Afghanistan',
-    'Best hospital for kidney stones Herat',
-
-    // ===== SERVICE-BASED SEARCH =====
-    'Kidney stone surgery Afghanistan',
-    'Laser kidney stone treatment Herat',
-    'Prostate surgery Afghanistan',
-    'Male infertility treatment Herat',
-    'Erectile dysfunction doctor Afghanistan',
-    'Urinary infection specialist Herat',
-    'Bladder stone treatment Afghanistan',
-
-    // ===== TRUST & AUTHORITY SIGNALS =====
-    'Experienced urologist Afghanistan',
-    'Certified urologist Herat',
-    'Best rated urology clinic Afghanistan',
-    'Modern urology center Herat',
-    'Advanced medical clinic Afghanistan',
-
-    // ===== MULTILINGUAL SEARCH (HIGH VALUE) =====
-    'دکتر شیكری',
     'دکتر نذیر احمد شیكری',
-    'دکتر منصور ویار',
     'بهترین داکتر یورولوژی در افغانستان',
-    'بهترین داکتر کابل',
-    'کلینیک یورولوژی کابل',
-
-    // ===== USER INTENT =====
-    'Book appointment Dr Shekari',
-    'Contact Dr Shekari clinic',
-    'Dr Shekari phone number',
-    'Dr Shekari address Kabul',
-    'Dr Shekari address herat'
   ],
-  authors: [
-    { name: 'Dr. Nazir Ahmad Shekari' },
-    { name: 'Professor Dr. Mansour Ahmad Wayar' }
-  ],
+  authors: [{ name: 'Dr. Nazir Ahmad Shekari', url: SITE }],
+  creator: 'Dr. Nazir Ahmad Shekari',
+  publisher: 'Dr. Shekari Urology Clinic',
+  category: 'Healthcare',
+  formatDetection: { telephone: true, email: true, address: true },
   robots: {
     index: true,
-    follow: true
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
   openGraph: {
     type: 'website',
-    url: 'https://dr-shekari.com',
-    siteName: 'Dr Shekari',
-    title: 'Dr Shekari | Urology Clinic in Afghanistan',
-    images: ['/images/og-premium.jpg']
+    url: SITE,
+    siteName: 'Dr. Shekari Urology Clinic',
+    title:
+      'Dr. Nazir Ahmad Shekari — Urological Surgeon · Endourology & Andrology Specialist',
+    description:
+      'Leading urological surgeon in Afghanistan. Advanced minimally-invasive care for kidney stones, prostate, andrology, and endourology.',
+    images: [
+      {
+        url: '/images/og-premium.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Dr. Nazir Ahmad Shekari — Urological Surgeon',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Dr. Nazir Ahmad Shekari — Urological Surgeon',
+    description:
+      'Endourology & Andrology specialist in Afghanistan. Book your consultation.',
+    images: ['/images/og-premium.jpg'],
   },
   alternates: {
-    canonical: 'https://dr-shekari.com'
-  }
+    canonical: SITE,
+    languages: {
+      'en-US': `${SITE}/en`,
+      'fa-AF': `${SITE}/fa`,
+      'ps-AF': `${SITE}/ps`,
+    },
+  },
+  icons: {
+    icon: [
+      { url: '/favicon.ico' },
+      { url: '/icons/icon-192x192.png', sizes: '192x192', type: 'image/png' },
+      { url: '/icons/icon-512x512.png', sizes: '512x512', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+      { url: '/icons/icon-152x152.png', sizes: '152x152', type: 'image/png' },
+    ],
+  },
+  manifest: '/manifest.json',
+  other: {
+    'mobile-web-app-capable': 'yes',
+    'apple-mobile-web-app-capable': 'yes',
+    'apple-mobile-web-app-status-bar-style': 'default',
+    'apple-mobile-web-app-title': 'Dr. Shekari',
+    'msapplication-TileColor': '#E9756D',
+    'msapplication-tap-highlight': 'no',
+  },
+};
+
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  viewportFit: 'cover',
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#E9756D' },
+    { media: '(prefers-color-scheme: dark)', color: '#D55A52' },
+  ],
 };
 
 export default async function RootLayout({ children, params }) {
@@ -139,93 +151,52 @@ export default async function RootLayout({ children, params }) {
 
   const isRTL = locale === 'fa' || locale === 'ps';
 
+  const websiteSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'Dr. Shekari Urology Clinic',
+    url: SITE,
+    inLanguage: ['en', 'fa', 'ps'],
+    publisher: { '@type': 'Person', name: 'Dr. Nazir Ahmad Shekari' },
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: `${SITE}/search?q={search_term_string}`,
+      'query-input': 'required name=search_term_string',
+    },
+  };
+
   return (
-    <html lang={locale} dir={isRTL ? 'rtl' : 'ltr'} className="scroll-smooth">
-      <head>
-        {/* ===== PWA REQUIRED TAGS ===== */}
-        <link rel="manifest" href="/manifest.json" />
-        <meta name="theme-color" content="#E9756D" />
-
-        {/* ===== ICONS ===== */}
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
-
-        {/* ===== VIEWPORT ===== */}
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-
-        {/* ===== FIX 1: BRAND + SITELINKS SCHEMA IN HEAD ===== */}
-        <script
-          defer
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "WebSite",
-              name: "Dr Shekari",
-              url: "https://dr-shekari.com",
-              potentialAction: {
-                "@type": "SearchAction",
-                target: "https://dr-shekari.com/search?q={search_term_string}",
-                "query-input": "required name=search_term_string"
-              }
-            })
-          }}
-        />
-
-        {/* ===== FIX 2: MEDICAL ORGANIZATION ENTITY ===== */}
-        <script
-          defer
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "MedicalOrganization",
-              name: "Dr Shekari Urology Clinic",
-              url: "https://dr-shekari.com",
-              logo: "https://dr-shekari.com/images/logo.png",
-              medicalSpecialty: "Urology",
-              founder: [
-                {
-                  "@type": "Physician",
-                  name: "Dr. Nazir Ahmad Shekari"
-                },
-                {
-                  "@type": "Physician",
-                  name: "Dr. Mansour Ahmad Wayar"
-                }
-              ]
-            })
-          }}
-        />
-
-        {/* ===== FIX 3: CSP SAFE FOR SEO + AI ===== */}
-        <meta
-          httpEquiv="Content-Security-Policy"
-          content="
-            default-src 'self';
-            script-src 'self' 'unsafe-inline' https://www.googletagmanager.com;
-            style-src 'self' 'unsafe-inline';
-            img-src 'self' data: https:;
-          "
-        />
-      </head>
-
-      <body className={`${inter.className} bg-[#FDF5EE] antialiased`}>
+    <html lang={locale} dir={isRTL ? 'rtl' : 'ltr'} className={`scroll-smooth ${inter.variable}`}>
+      <body className={`${inter.className} bg-white text-gray-900 antialiased`}>
         <NextIntlClientProvider locale={locale}>
-          {/* Existing structured data (kept) */}
+          <a
+            href="#main"
+            className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-100 focus:px-3 focus:py-2 focus:rounded-md focus:bg-[#E9756D] focus:text-white"
+          >
+            Skip to main content
+          </a>
+
           <MedicalSchema />
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+          />
 
-          <AppointmentModalProvider>
+          <ServiceWorkerRegister />
+          <SmoothScroll />
+          <ScrollProgress />
+          <OfflineBanner />
+
+          <Header />
+          <main id="main" className="min-h-screen pb-20 lg:pb-0">
             <Suspense fallback={<LoadingFallback type="full-page" />}>
-              <Header />
-              <main className="min-h-screen">
-                {children}
-              </main>
-              <Footer />
+              <PageTransition>{children}</PageTransition>
             </Suspense>
-          </AppointmentModalProvider>
+          </main>
+          <Footer />
+          <BottomTabBar />
 
-          <InstallAppBanner />
+          <InstallPrompt />
         </NextIntlClientProvider>
       </body>
     </html>

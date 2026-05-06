@@ -6,6 +6,11 @@ const nextConfig = {
   compress: true,
   poweredByHeader: false,
 
+  // Native Node modules — keep them external so Turbopack/webpack don't
+  // bundle them and (on Windows) don't try to create symlinks that require
+  // Developer Mode. Each is only used in server runtime (API routes).
+  serverExternalPackages: ['mongoose', 'mongodb', 'nodemailer', 'bson'],
+
   images: {
     remotePatterns: [
       { protocol: 'https', hostname: 'dr-shekari.com' },

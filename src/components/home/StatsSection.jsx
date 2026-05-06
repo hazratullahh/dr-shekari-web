@@ -90,7 +90,7 @@ const StatsSection = () => {
   }, []);
 
   return (
-    <section className="relative py-24 px-4 md:px-8 lg:px-16 overflow-hidden">
+    <section className="relative py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
 
       <div className="container max-w-7xl mx-auto relative z-10">
         {/* Header */}
@@ -108,16 +108,17 @@ const StatsSection = () => {
 
         {/* Stats Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {stats.map(stat => (
+          {stats.map((stat, i) => (
             <motion.div
               key={stat.id}
-              initial={{ opacity: 0, y: 60 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.2, delay: stat.delay }}
-              viewport={{ once: true }}
+              initial={{ opacity: 0, y: 24, scale: 0.96 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.55, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
+              viewport={{ once: true, margin: '-50px' }}
+              style={{ willChange: 'transform, opacity' }}
               className="relative group"
             >
-              <div className="glass-card p-8 rounded-3xl shadow-xl border border-white/20 relative">
+              <div className="bg-white/95 backdrop-blur-sm p-8 rounded-3xl shadow-md shadow-[#E9756D]/8 border border-gray-100 relative card-hover">
 
                 {/* Icon */}
                 <div className={`w-16 h-16 rounded-2xl bg-linear-to-r ${stat.color} flex items-center justify-center mb-6`}>

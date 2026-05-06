@@ -47,7 +47,7 @@ export default function Specialties() {
   const [hoveredIndex, setHoveredIndex] = useState(null);
   
   return (
-    <section className="py-20 px-4 md:px-8 lg:px-16 relative">
+    <section className="py-20 px-4 sm:px-6 lg:px-8 relative">
       {/* Background pattern */}
       <div className="absolute inset-0 overflow-hidden opacity-5">
         <div className="absolute top-0 left-0 w-64 h-64 rounded-full bg-[#E9756D] blur-3xl"></div>

@@ -1,130 +1,71 @@
-// components/services/ServicesList.jsx
 'use client';
 
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
 import {
-  Zap,
-  Webhook,
-  Users,
-  Activity,
-  Heart,
-  Stethoscope,
-  MonitorCheck,
-  Slice,
+  Activity, Pill, Microscope, HeartPulse, Stethoscope, Scissors, ArrowRight,
 } from 'lucide-react';
+import { Section, SectionHeader } from '@/components/ui/Container';
 
-const ServicesList = () => {
+const SERVICES = [
+  { slug: 'kidney-stones',         keyBase: 'kidney_stones',         detailBase: 'kidney',                   icon: Activity },
+  { slug: 'prostate-diseases',     keyBase: 'prostate_diseases',     detailBase: 'prostate',                 icon: Pill },
+  { slug: 'urinary-infections',    keyBase: 'urinary_infections',    detailBase: 'urinary_infections',       icon: Microscope },
+  { slug: 'male-infertility',      keyBase: 'male_infertility',      detailBase: 'male_infertility',         icon: HeartPulse },
+  { slug: 'sexual-disorders',      keyBase: 'sexual_disorders',      detailBase: 'sexual_disorders',         icon: Stethoscope },
+  { slug: 'endourology-surgeries', keyBase: 'endourology_surgeries', detailBase: 'endourology_surgeries',    icon: Scissors },
+];
+
+export default function ServicesList() {
   const t = useTranslations('services_page');
 
-  const servicesData = [
-    {
-      id: 'kidney-stones',
-      icon: <Zap size={24} className="text-[#E9756D] mx-2" />,
-      titleKey: 'kidney_stones',
-      description: t('kidney_stones_desc')
-    },
-    {
-      id: 'prostate-diseases',
-      icon: <Activity size={24} className="text-[#E9756D] mx-2" />,
-      titleKey: 'prostate_diseases',
-      description: t('prostate_diseases_desc')
-    },
-    {
-      id: 'urinary-infections',
-      icon: <Webhook size={24} className="text-[#E9756D] mx-2" />,
-      titleKey: 'urinary_infections',
-      description: t('urinary_infections_desc')
-    },
-    {
-      id: 'male-infertility',
-      icon: <Users size={24} className="text-[#E9756D] mx-2" />,
-      titleKey: 'male_infertility',
-      description: t('male_infertility_desc')
-    },
-    {
-      id: 'sexual-disorders',
-      icon: <MonitorCheck size={24} className="text-[#E9756D] mx-2" />,
-      titleKey: 'sexual_disorders',
-      description: t('sexual_disorders_desc')
-    },
-    {
-      id: 'endourology-surgeries',
-      icon: <Slice size={24} className="text-[#E9756D] mx-2" />,
-      titleKey: 'endourology_surgeries',
-      description: t('endourology_surgeries_desc')
-    }
-  ];
-
   return (
-    <section className="py-20 px-4 md:px-8 lg:px-16">
-      <div className="max-w-7xl mx-auto">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-3xl font-bold text-gray-900 text-center mb-12"
-        >
-          {t('main_services')}
-        </motion.h2>
+    <>
+      {/* Cards grid — each card links to its detail page */}
+      <Section size="md" background="soft">
+        <SectionHeader
+          badge={t('main_services')}
+          title={t('hero_title')}
+          subtitle={t('hero_subtitle')}
+        />
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {servicesData.map((service) => (
-            <motion.a
-              key={service.id}
-              href={`#${service.id}`}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
-              className="glass-card p-6 rounded-2xl shadow-lg border border-white/20 hover:shadow-xl transition-all cursor-pointer"
-            >
-              <div className="flex items-center mb-4">
-                {service.icon}
-                <h3 className="ml-3 font-semibold text-gray-900">
-                  {t(service.titleKey)}
-                </h3>
-              </div>
-              <p className="text-gray-600 leading-relaxed">{service.description}</p>
-              <span className="mt-4 inline-block text-[#E9756D] font-medium hover:underline">
-                {t('learn_more')}
-              </span>
-            </motion.a>
-          ))}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
+          {SERVICES.map((s, i) => {
+            const Icon = s.icon;
+            return (
+              <motion.div
+                key={s.slug}
+                initial={{ opacity: 0, y: 18, scale: 0.96 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true, margin: '-50px' }}
+                transition={{ duration: 0.5, delay: i * 0.06, ease: [0.22, 1, 0.36, 1] }}
+                style={{ willChange: 'transform, opacity' }}
+              >
+                <Link
+                  href={`/services/${s.slug}`}
+                  className="group block h-full rounded-2xl bg-white p-6 border border-gray-100 hover:border-[#E9756D]/40 card-hover"
+                  aria-label={t(s.keyBase)}
+                >
+                  <div className="w-12 h-12 rounded-xl bg-linear-to-br from-[#E9756D] to-[#F6CA97] text-white flex items-center justify-center shadow-md mb-5">
+                    <Icon size={22} />
+                  </div>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-[#E9756D] transition-colors">
+                    {t(s.keyBase)}
+                  </h3>
+                  <p className="text-sm text-gray-600 leading-relaxed line-clamp-3">
+                    {t(`${s.detailBase}_what_desc`)}
+                  </p>
+                  <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-[#E9756D] group-hover:gap-2 transition-all">
+                    {t('learn_more')}
+                    <ArrowRight size={14} className="rtl:rotate-180" />
+                  </span>
+                </Link>
+              </motion.div>
+            );
+          })}
         </div>
-
-        {/* Detail sections */}
-        <div className="mt-20 space-y-16">
-          {servicesData.map((service) => (
-            <motion.div
-              key={service.id}
-              id={service.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-              className="prose max-w-none"
-            >
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">
-                {t(service.titleKey)}
-              </h2>
-              <h3 className="font-semibold">{t(`${service.id.replace(/-/g, '_')}_what`)}</h3>
-              <p>{t(`${service.id.replace(/-/g, '_')}_what_desc`)}</p>
-              <h3 className="font-semibold">{t(`${service.id.replace(/-/g, '_')}_symptoms`)}</h3>
-              <p>{t(`${service.id.replace(/-/g, '_')}_symptoms_desc`)}</p>
-              <h3 className="font-semibold">{t(`${service.id.replace(/-/g, '_')}_diagnosis`)}</h3>
-              <p>{t(`${service.id.replace(/-/g, '_')}_diagnosis_desc`)}</p>
-              <h3 className="font-semibold">{t(`${service.id.replace(/-/g, '_')}_treatment`)}</h3>
-              <p>{t(`${service.id.replace(/-/g, '_')}_treatment_desc`)}</p>
-              <h3 className="font-semibold">{t(`${service.id.replace(/-/g, '_')}_when`)}</h3>
-              <p>{t(`${service.id.replace(/-/g, '_')}_when_desc`)}</p>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </section>
+      </Section>
+    </>
   );
-};
-
-export default ServicesList;
+}

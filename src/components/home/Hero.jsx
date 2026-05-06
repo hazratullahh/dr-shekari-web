@@ -1,172 +1,201 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { useRef } from 'react';
+import dynamic from 'next/dynamic';
+import Link from 'next/link';
+import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
-import Image from 'next/image';
+import { Calendar, Phone, ShieldCheck, Award, Stethoscope } from 'lucide-react';
+import Container from '@/components/ui/Container';
+
+// Floating cards module is heavy (lots of motion components). Defer it so the
+// hero text + CTA paint instantly; cards stream in after.
+const HeroFloatingCards = dynamic(() => import('./HeroFloatingCards'), {
+  ssr: false,
+  loading: () => <div className="w-full aspect-square max-w-md mx-auto" aria-hidden="true" />,
+});
+
+const easeOut = [0.22, 1, 0.36, 1];
 
 export default function Hero() {
-    const t = useTranslations("home");
+  const t = useTranslations('home');
+  const sectionRef = useRef(null);
+  const reduce = useReducedMotion();
 
-    return (
-        <section className="relative min-h-screen flex items-center px-1 md:px-8 lg:px-16 mx-auto overflow-hidden">
-            {/* Background Image with semantic markup */}
-            <div
-                className="absolute inset-0"
-                style={{
-                    backgroundImage: 'url(/images/hero-bg.jpg)',
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                    backgroundRepeat: 'no-repeat',
-                }}
-                aria-hidden="true"
-            />
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start start', 'end start'],
+  });
 
-            {/* Dark overlay for better text readability */}
-            {/* <div className="absolute inset-0 bg-linear-to-r from-black/50 via-black/30 to-transparent" aria-hidden="true" /> */}
+  // Subtle parallax on copy + background. transform/opacity only.
+  const copyY = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : -40]);
+  const copyOpacity = useTransform(scrollYProgress, [0, 0.7], [1, reduce ? 1 : 0.3]);
+  const orbAY = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : -120]);
+  const orbBY = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : 80]);
+  const cardsY = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : -90]);
+  const cardsScale = useTransform(scrollYProgress, [0, 1], [1, reduce ? 1 : 0.94]);
 
-            {/* Content Container */}
-            <div className="relative z-10 w-full max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between min-h-[85vh]">
-                {/* Left Card - Main Content */}
-                <motion.article
-                    initial={{ opacity: 0, x: -30 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.8 }}
-                    className="w-full md:max-w-2/4 flex flex-col justify-center"
+  return (
+    <section
+      ref={sectionRef}
+      className="relative overflow-hidden bg-linear-to-br from-[#FDF5EE] via-white to-[#FDF5EE]"
+    >
+      <div
+        className="absolute inset-0 opacity-[0.05] pointer-events-none"
+        style={{
+          backgroundImage: 'radial-gradient(circle at 1px 1px, #E9756D 1px, transparent 0)',
+          backgroundSize: '32px 32px',
+        }}
+        aria-hidden="true"
+      />
+      <motion.div
+        style={{ y: orbAY, willChange: 'transform' }}
+        className="absolute -top-40 -end-40 w-120 h-120 rounded-full bg-[#E9756D]/15 blur-3xl pointer-events-none"
+        aria-hidden="true"
+      />
+      <motion.div
+        style={{ y: orbBY, willChange: 'transform' }}
+        className="absolute -bottom-32 -start-20 w-105 h-105 rounded-full bg-[#F6CA97]/25 blur-3xl pointer-events-none"
+        aria-hidden="true"
+      />
+
+      <Container className="relative py-12 md:py-20 lg:py-24">
+        <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+          <motion.div
+            style={{ y: copyY, opacity: copyOpacity, willChange: 'transform, opacity' }}
+            className="lg:col-span-7"
+          >
+            <motion.span
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.45, ease: easeOut }}
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-[#E9756D]/20 shadow-sm text-[#E9756D] text-xs font-semibold tracking-wide uppercase mb-6"
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-linear-to-br from-[#E9756D] to-[#F6CA97] animate-pulse" />
+              {t('leading')} {t('urology')} · {t('andrology')} · {t('endourology')}
+            </motion.span>
+
+            <motion.h1
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.05, ease: easeOut }}
+              className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.05] text-gray-900"
+            >
+              {t('dr_name')}
+            </motion.h1>
+
+            <motion.h2
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.55, delay: 0.15, ease: easeOut }}
+              className="mt-4 text-lg md:text-xl font-semibold bg-clip-text text-transparent bg-linear-to-br from-[#E9756D] to-[#F6CA97] inline-block"
+            >
+              {t('slogan')}
+            </motion.h2>
+
+            <motion.p
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.55, delay: 0.22, ease: easeOut }}
+              className="mt-5 text-base md:text-lg text-gray-600 leading-relaxed max-w-2xl"
+            >
+              {t('intro')}
+            </motion.p>
+
+            <motion.div
+              initial="hidden"
+              animate="show"
+              variants={{
+                hidden: {},
+                show: { transition: { staggerChildren: 0.08, delayChildren: 0.32 } },
+              }}
+              className="mt-8 flex flex-wrap gap-3"
+            >
+              <motion.div variants={ctaItem} whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
+                <Link
+                  href="/appointment"
+                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-linear-to-br from-[#E9756D] to-[#F6CA97] text-white font-semibold shadow-lg shadow-[#E9756D]/30 hover:shadow-xl hover:shadow-[#E9756D]/40 transition-shadow"
+                  aria-label={t('book_appointment')}
                 >
-                    <header className="
-                        relative 
-bg-white/10
+                  <Calendar size={18} />
+                  {t('book_appointment')}
+                </Link>
+              </motion.div>
+              <motion.a
+                href="tel:+93792453030"
+                dir="ltr"
+                variants={ctaItem}
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-white border border-gray-200 text-gray-800 font-semibold hover:border-[#E9756D]/40 hover:text-[#E9756D] transition-colors"
+              >
+                <Phone size={18} />
+                {t('call')}
+              </motion.a>
+            </motion.div>
 
-                        backdrop-blur-xl
-                        p-2 pt-24 md:p-10
-                        rounded-3xl
-                        shadow-2xl 
-                    ">
-                        {/* Specialist Badge */}
-                        <div className="inline-flex items-center px-4 py-2 bg-linear-to-r from-[#E9756D] to-[#F6CA97] rounded-full mb-6">
-                            <div className="w-2 h-2 bg-white rounded-full mr-2" aria-hidden="true"></div>
-                            <span className="text-white text-sm font-semibold flex items-center gap-2">
-                                <span className='hidden md:flex'>{t("leading")}</span>
-                                {t("urology")}
-                                <span
-                                    className="inline-block w-1.5 h-1.5 bg-white rounded-full animate-pulse"
-                                    aria-hidden="true"
-                                />
-                                {t("andrology")}
-                                <span
-                                    className="inline-block w-1.5 h-1.5 bg-white rounded-full animate-pulse"
-                                    aria-hidden="true"
-                                />
-                                {t("endourology")}
-                            </span>
-                        </div>
+            <motion.div
+              initial="hidden"
+              animate="show"
+              variants={{
+                hidden: {},
+                show: { transition: { staggerChildren: 0.07, delayChildren: 0.5 } },
+              }}
+              className="mt-10 grid grid-cols-3 gap-4 max-w-md"
+            >
+              <Stat value="15+" label={t('year_expr')} />
+              <Stat value="1000+" label={t('successful_surgeries')} />
+              <Stat value="98%" label={t('patient_satisfaction')} />
+            </motion.div>
 
-                        {/* Main Heading */}
-                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
-                            {t("dr_name")}
-                            {/* <span className="block text-transparent bg-clip-text bg-linear-to-r from-[#E9756D] to-[#F6CA97]">
-                                Shekari
-                            </span> */}
-                        </h1>
+            <motion.div
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.45, delay: 0.7, ease: easeOut }}
+              className="mt-8 flex flex-wrap items-center gap-4 text-xs text-gray-500"
+            >
+              <Trust icon={ShieldCheck}>{t('urology')}</Trust>
+              <Trust icon={Award}>{t('endourology')}</Trust>
+              <Trust icon={Stethoscope}>{t('andrology')}</Trust>
+            </motion.div>
+          </motion.div>
 
-                        <h2 className="text-lg md:text-xl font-semibold text-white/90 mb-6">
-                            {t("slogan")}
-                        </h2>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.94 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.7, delay: 0.2, ease: easeOut }}
+            style={{ y: cardsY, scale: cardsScale, willChange: 'transform' }}
+            className="lg:col-span-5"
+          >
+            <HeroFloatingCards />
+          </motion.div>
+        </div>
+      </Container>
+    </section>
+  );
+}
 
-                        {/* Description */}
-                        <p className="text-lg md:text-xl text-white mb-8 leading-relaxed">
-                            {t("intro")}
-                        </p>
+const ctaItem = {
+  hidden: { opacity: 0, y: 12 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: easeOut } },
+};
 
-                        {/* Call to Action Buttons */}
-                        <div className="flex flex-wrap gap-4 mb-10">
-                            <motion.button
-                                type='button'
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                                className="px-8 py-4 cursor-pointer bg-linear-to-r from-[#E9756D] to-[#F6CA97] text-white font-semibold rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 group"
-                                aria-label="Book an appointment with Dr. Nazir Ahmad Shekari"
-                            >
-                                <span className="flex items-center">
-                                    {t("book_appointment")}
-                                </span>
-                            </motion.button>
-                            <motion.button
-                                type='button'
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                                className="px-8 py-4 cursor-pointer bg-white/20 backdrop-blur-sm border border-white/30 text-white font-semibold rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300"
-                                aria-label="View medical services offered by Dr. Nazir Ahmad Shekari"
-                            >
-                                {t("call")}
-                            </motion.button>
-                        </div>
+function Stat({ value, label }) {
+  return (
+    <motion.div variants={ctaItem}>
+      <div className="text-2xl md:text-3xl font-extrabold bg-clip-text text-transparent bg-linear-to-br from-[#E9756D] to-[#F6CA97]">
+        {value}
+      </div>
+      <div className="text-[11px] md:text-xs text-gray-500 leading-snug mt-1">{label}</div>
+    </motion.div>
+  );
+}
 
-                        {/* Statistics */}
-                        <div className="flex flex-col sm:flex-row items-center justify-between space-y-6 sm:space-y-0">
-                            <div className="text-center sm:text-left">
-                                <div className="text-3xl font-bold text-[#E9756D]">15+</div>
-                                <p className="text-white font-medium">{t("year_expr")}</p>
-                            </div>
-                            <div className="h-12 w-px bg-linear-to-b from-transparent via-[#F6CA97] to-transparent hidden sm:block" aria-hidden="true"></div>
-                            <div className="text-center sm:text-left">
-                                <div className="text-3xl font-bold text-[#E9756D]">1000+</div>
-                                <p className="text-white font-medium">{t("successful_surgeries")}</p>
-                            </div>
-                            <div className="h-12 w-px bg-linear-to-b from-transparent via-[#F6CA97] to-transparent hidden sm:block" aria-hidden="true"></div>
-                            <div className="text-center sm:text-left">
-                                <div className="text-3xl font-bold text-[#E9756D]">98%</div>
-                                <p className="text-white font-medium">{t("patient_satisfaction")}</p>
-                            </div>
-                        </div>
-                    </header>
-                </motion.article>
-
-                {/* Right Image - Connected to bottom */}
-                <motion.figure
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.2 }}
-                    className="relative w-full md:w-5/12 lg:w-2/5 flex items-end justify-center md:justify-end mt-8 md:mt-0 h-75 md:h-auto"
-                >
-                    <div className="hidden md:flex absolute w-80 max-w-full h-auto" style={{ top: "-9rem" }}>
-                        <Image
-                            src="/images/hero-doctorss.png"
-                            alt="Dr. Nazir Ahmad Shekari - Urology and Andrology Specialist"
-                            width={400}
-                            height={500}
-                            className="w-full h-auto max-h-full object-contain object-bottom"
-                            priority
-                            quality={90}
-                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        />
-
-                        {/* SEO-friendly decorative elements */}
-                        {/* <div className="absolute -top-4 -right-4 w-20 h-20 border-t-2 border-r-2 border-[#E9756D]/30 rounded-tr-3xl sr-only" aria-hidden="true"></div>
-                        <div className="absolute -bottom-4 -left-4 w-20 h-20 border-b-2 border-l-2 border-[#F6CA97]/30 rounded-bl-3xl sr-only" aria-hidden="true"></div> */}
-                    </div>
-
-                    <div className="w-72 max-w-full h-52 flex items-end md:hidden pt-6 md:pt-0">
-                        <Image
-                            src="/images/hero-doctorss.png"
-                            alt="Dr. Nazir Ahmad Shekari - Urology and Andrology Specialist"
-                            width={400}
-                            height={500}
-                            className="w-full h-auto max-h-full object-contain object-bottom"
-                            priority
-                            quality={90}
-                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        />
-
-                        {/* SEO-friendly decorative elements */}
-                        {/* <div className="absolute -top-4 -right-4 w-20 h-20 border-t-2 border-r-2 border-[#E9756D]/30 rounded-tr-3xl sr-only" aria-hidden="true"></div>
-                        <div className="absolute -bottom-4 -left-4 w-20 h-20 border-b-2 border-l-2 border-[#F6CA97]/30 rounded-bl-3xl sr-only" aria-hidden="true"></div> */}
-                    </div>
-                </motion.figure>
-            </div>
-
-            {/* Bottom Decorative linear */}
-            <div className="absolute bottom-0 left-0 right-0 h-24 bg-linear-to-t from-black/40 to-transparent pointer-events-none" aria-hidden="true"></div>
-        </section>
-    );
+function Trust({ icon: Icon, children }) {
+  return (
+    <span className="inline-flex items-center gap-1.5">
+      <Icon size={14} className="text-[#E9756D]" />
+      {children}
+    </span>
+  );
 }

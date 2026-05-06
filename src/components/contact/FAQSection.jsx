@@ -11,6 +11,7 @@ import { useTranslations } from 'next-intl';
 
 const FAQSection = () => {
   const t = useTranslations('contact');
+  const tFaq = useTranslations('faq_page');
   const [activeIndex, setActiveIndex] = useState(null);
   const [activeCategory, setActiveCategory] = useState('all');
 
@@ -152,20 +153,20 @@ const FAQSection = () => {
     {
       id: 17,
       category: 'services',
-      question: t('faq_page.q_kidney_stone'),
-      answer: t('faq_page.a_kidney_stone')
+      question: tFaq('q_kidney_stone'),
+      answer: tFaq('a_kidney_stone')
     },
     {
       id: 18,
       category: 'services',
-      question: t('faq_page.q_prostate_care'),
-      answer: t('faq_page.a_prostate_care')
+      question: tFaq('q_prostate_care'),
+      answer: tFaq('a_prostate_care')
     },
     {
       id: 19,
       category: 'services',
-      question: t('faq_page.q_male_infertility'),
-      answer: t('faq_page.a_male_infertility')
+      question: tFaq('q_male_infertility'),
+      answer: tFaq('a_male_infertility')
     }
   ];
 
@@ -184,7 +185,7 @@ const FAQSection = () => {
   };
 
   return (
-    <section className="py-24 px-4 md:px-8 lg:px-16 bg-linear-to-b from-gray-50 to-white relative overflow-hidden">
+    <section className="py-24 px-4 sm:px-6 lg:px-8 bg-linear-to-b from-gray-50 to-white relative overflow-hidden">
       {/* Decorative Background */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-linear-to-r from-[#E9756D] to-[#F6CA97] blur-3xl" />

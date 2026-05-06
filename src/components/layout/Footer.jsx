@@ -10,9 +10,11 @@ import {
   Award, Shield, ArrowUp, Stethoscope, Heart
 } from 'lucide-react';
 import { useTranslations } from 'use-intl';
+import { SERVICE_CATALOG } from '@/content/services';
 
 const Footer = () => {
   const t = useTranslations();
+  const tServices = useTranslations('services_page');
 
   const [email, setEmail] = useState('');
 
@@ -45,19 +47,19 @@ const Footer = () => {
   const quickLinks = [
     { label: t('header.home'), href: '/' },
     { label: t('header.about'), href: '/about' },
-    // { label: 'Services', href: '/services' },
+    { label: t('header.services'), href: '/services' },
     { label: t('header.team'), href: '/team' },
+    { label: t('header.research'), href: '/research' },
+    { label: t('header.faq'), href: '/faq' },
     { label: t('header.contact'), href: '/contact' },
   ];
 
-  const services = [
-    { label: 'Urology Treatment', href: '/services/urology' },
-    { label: 'Andrology Care', href: '/services/andrology' },
-    { label: 'Endourology', href: '/services/endourology' },
-    { label: 'Prostate Health', href: '/services/prostate' },
-    { label: 'Kidney Stone Treatment', href: '/services/kidney-stones' },
-    { label: 'Men\'s Health', href: '/services/mens-health' },
-  ];
+  // Pull from the canonical catalog so footer slugs always match real routes,
+  // and labels are translated.
+  const services = SERVICE_CATALOG.map((s) => ({
+    label: tServices(s.titleKey),
+    href: `/services/${s.slug}`,
+  }));
 
   const socialLinks = [
     { icon: <Facebook size={20} />, href: '#', label: t('footer.facebook'), },
@@ -71,13 +73,25 @@ const Footer = () => {
 
   return (
     <footer className="bg-linear-to-b from-white to-gray-50 border-t border-gray-100">
-      <div className="max-w-360 mx-auto px-4 py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
         {/* Main Footer Content */}
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-10 mb-12">
+        <motion.div
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.1 }}
+          variants={{
+            hidden: {},
+            show: { transition: { staggerChildren: 0.08, delayChildren: 0.05 } },
+          }}
+          className="grid grid-cols-1 lg:grid-cols-4 gap-10 mb-12"
+        >
 
           {/* Logo and Clinic Info */}
-          <div className="lg:col-span-2">
+          <motion.div
+            variants={{ hidden: { opacity: 0, y: 18 }, show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } } }}
+            className="lg:col-span-2"
+          >
             <div className="mb-8">
               <Link href="/" className="flex items-start mb-6">
                 <div className="relative w-20 h-2w-20 rounded-xl bg-linear-to-br from-[#E9756D] to-[#F6CA97] flex items-center justify-center shadow-xl mr-4 overflow-hidden">
@@ -195,10 +209,12 @@ const Footer = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Quick Links */}
-          <div>
+          <motion.div
+            variants={{ hidden: { opacity: 0, y: 18 }, show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } } }}
+          >
             <h4 className="text-lg font-bold text-gray-900 mb-6 pb-2 border-b border-gray-200">
               {t("footer.quick_links")}
             </h4>
@@ -239,10 +255,12 @@ const Footer = () => {
                 {t("footer.subscribe_text")}
               </p>
             </div>
-          </div>
+          </motion.div>
 
           {/* Services & Social */}
-          <div>
+          <motion.div
+            variants={{ hidden: { opacity: 0, y: 18 }, show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } } }}
+          >
             <h4 className="text-lg font-bold text-gray-900 mb-6 pb-2 border-b border-gray-200">
               {t("footer.our_services")}
             </h4>
@@ -278,8 +296,8 @@ const Footer = () => {
                 ))}
               </div>
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-gray-200">

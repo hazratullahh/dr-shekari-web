@@ -1,30 +1,41 @@
-import MedicalHeroBackground from '@/components/animations/MedicalAnimationProvider';
-import Facilities from '@/components/home/Facilities';
-import HeroSection from '@/components/home/Hero';
-import HospitalInfoCards from '@/components/home/HospitalInfoCards';
-import Specialties from '@/components/home/Specialties';
-import SpecialtiesGrid from '@/components/home/SpecialtiesGrid';
-import StatsSection from '@/components/home/StatsSection';
-import Testimonials from '@/components/home/Testimonials';
-import LoadingFallback from '@/components/ui/LoadingFallback';
 import { Suspense } from 'react';
+import Hero from '@/components/home/Hero';
+import StatsSection from '@/components/home/StatsSection';
+import ServicesGrid from '@/components/home/ServicesGrid';
+import WhyChoose from '@/components/home/WhyChoose';
+import ProcessFlow from '@/components/home/ProcessFlow';
+import Testimonials from '@/components/home/Testimonials';
+import HomeFAQ from '@/components/home/HomeFAQ';
+import CTABanner from '@/components/home/CTABanner';
+import HomeStructuredData from '@/components/home/HomeStructuredData';
+import LoadingFallback from '@/components/ui/LoadingFallback';
 
-// export const metadata = {
-//   title: 'Advanced Urology, Andrology & Endourology Specialist',
-//   description: 'Comprehensive urological care with state-of-the-art technology. Expert treatment for kidney stones, prostate conditions, and male reproductive health.',
-// };
+const SITE = 'https://dr-shekari.com';
 
 export const metadata = {
-  metadataBase: new URL('https://dr-shekari.com'),
-  title: {
-    default: 'Dr. Nazir Ahmad Shekari Top Urologist, Andrologist and Endouroiogist in Afghanistan',
-    template: '%s | Dr Shekari Urologist, Andrologist and Endouroiogist '
-  },
-  description: 'Dr. Nazir Ahmad Shekari and Professor Assistant Dr. Mansour Ahmad Wayar provides advanced urological care, andrology, and endoUrologist, Andrologist and Endouroiogist treatments. Expert in kidney stones, prostate health, and male fertility.',
-  keywords: ['Urologist, Andrologist and Endouroiogist specialist', 'andrology', 'endoUrologist, Andrologist and Endouroiogist', 'kidney stones', 'prostate treatment', 'male fertility', 'Dr. Nazir Ahmad Shekari', 'urologist near me'],
-  authors: [{ name: 'Dr. Nazir Ahmad Shekari' }],
-  creator: 'Dr. Nazir Ahmad Shekari Urologist, Andrologist and Endouroiogist',
-  publisher: 'Dr. Nazir Ahmad Shekari Urologist, Andrologist and Endouroiogist',
+  metadataBase: new URL(SITE),
+  title:
+    'Dr. Nazir Ahmad Shekari — Urological Surgeon · Endourology & Andrology Specialist',
+  description:
+    'Dr. Nazir Ahmad Shekari is a leading urological surgeon in Afghanistan specializing in endourology and andrology. Advanced minimally-invasive treatment for kidney stones, prostate disease, urinary tract conditions, and male infertility. Book your consultation in Herat.',
+  keywords: [
+    'Dr. Nazir Ahmad Shekari',
+    'Urological Surgeon Afghanistan',
+    'Endourology Specialist',
+    'Andrology Specialist',
+    'Best Urologist Herat',
+    'Kidney Stone Surgery Afghanistan',
+    'Prostate Treatment Herat',
+    'Male Infertility Specialist',
+    'Laser Stone Treatment Afghanistan',
+    'Urology Clinic Herat',
+    'Jami Hospital Urologist',
+    'دکتر نذیر احمد شیكری',
+  ],
+  authors: [{ name: 'Dr. Nazir Ahmad Shekari', url: SITE }],
+  creator: 'Dr. Nazir Ahmad Shekari',
+  publisher: 'Dr. Shekari Urology Clinic',
+  category: 'Healthcare',
   robots: {
     index: true,
     follow: true,
@@ -39,65 +50,66 @@ export const metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://dr-shekari.com',
-    siteName: 'Dr. Shekari Urologist, Andrologist and Endouroiogist Clinic',
-    title: 'Dr. Nazir Ahmad Shekari | Urologist, Andrologist and Endouroiogist Specialist',
-    description: 'Advanced urological care with cutting-edge technology and compassionate approach',
+    url: SITE,
+    siteName: 'Dr. Shekari Urology Clinic',
+    title:
+      'Dr. Nazir Ahmad Shekari — Urological Surgeon, Endourology & Andrology Specialist',
+    description:
+      'Leading urological surgeon in Afghanistan. Advanced minimally-invasive care for kidney stones, prostate, andrology, and endourology.',
     images: [
       {
-        url: '/og-image.jpg',
+        url: '/images/og-premium.jpg',
         width: 1200,
         height: 630,
-        alt: 'Dr. Nazir Ahmad Shekari - Urologist, Andrologist and Endouroiogist Specialist',
+        alt: 'Dr. Nazir Ahmad Shekari — Urological Surgeon',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Dr. Nazir Ahmad Shekari | Urologist, Andrologist and Endouroiogist Specialist',
-    description: 'Advanced urological care with cutting-edge technology',
-    images: ['/twitter-image.jpg'],
-    creator: '@DrShekariUro',
-  },
-  verification: {
-    google: 'your-google-verification-code',
-    yandex: 'your-yandex-verification-code',
-    yahoo: 'your-yahoo-verification-code',
+    title: 'Dr. Nazir Ahmad Shekari — Urological Surgeon',
+    description:
+      'Endourology & Andrology specialist in Afghanistan. Book your consultation.',
+    images: ['/images/og-premium.jpg'],
   },
   alternates: {
-    canonical: 'https://dr-shekari.com',
+    canonical: SITE,
     languages: {
-      'en-US': 'https://dr-shekari.com/en',
+      'en-US': `${SITE}/en`,
+      'fa-AF': `${SITE}/fa`,
+      'ps-AF': `${SITE}/ps`,
     },
   },
-  category: 'healthcare',
 };
 
 export default function Home() {
   return (
     <>
-      {/* <MedicalHeroBackground type="homes" /> */}
       <Suspense fallback={<LoadingFallback type="hero" />}>
-        <HeroSection />
-        <MedicalHeroBackground
-          overlayDarkness={0.4} // Darker overlay
-          bloodIntensity={1.5} // More intense blood
-          animationSpeed={1.2} // Faster rotation
-          positionVertical="top" // Force top position
-        />
+        <Hero />
       </Suspense>
       <Suspense fallback={<LoadingFallback type="card" />}>
         <StatsSection />
       </Suspense>
-      {/* <Suspense fallback={<LoadingFallback type="section" />}>
-        <SpecialtiesGrid />
-      </Suspense> */}
-      {/* <Suspense fallback={<LoadingFallback type="section" />}>
-        <Facilities />
-      </Suspense> */}
-      {/* <Suspense fallback={<LoadingFallback type="section" />}>
-        <HospitalInfoCards />
-      </Suspense> */}
+      <Suspense fallback={<LoadingFallback type="section" />}>
+        <ServicesGrid />
+      </Suspense>
+      <Suspense fallback={<LoadingFallback type="section" />}>
+        <WhyChoose />
+      </Suspense>
+      <Suspense fallback={<LoadingFallback type="section" />}>
+        <ProcessFlow />
+      </Suspense>
+      <Suspense fallback={<LoadingFallback type="section" />}>
+        <Testimonials />
+      </Suspense>
+      <Suspense fallback={<LoadingFallback type="section" />}>
+        <HomeFAQ />
+      </Suspense>
+      <Suspense fallback={<LoadingFallback type="section" />}>
+        <CTABanner />
+      </Suspense>
+      <HomeStructuredData />
     </>
   );
 }

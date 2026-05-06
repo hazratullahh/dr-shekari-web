@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install *)",
+      "Bash(npx next *)",
+      "Bash(grep -ril \"proxy.ts\\\\|proxy.js\\\\|MIDDLEWARE_FILENAME\\\\|middleware\\\\\\\\.ts\" node_modules/next/dist/lib/)",
+      "Bash(python -c \"import json; d=json.load\\(open\\('messages/fa.json',encoding='utf-8'\\)\\); print\\(list\\(d.keys\\(\\)\\)\\)\")",
+      "Bash(python -c \"import json; d=json.load\\(open\\('messages/fa.json',encoding='utf-8'\\)\\); print\\(list\\(d['header'].keys\\(\\)\\)\\); print\\('---'\\); print\\(list\\(d['contact'].keys\\(\\)\\)[:20]\\)\")",
+      "Bash(python -c ' *)",
+      "Bash(rm -rf .next/dev .next/server .next/cache)",
+      "Bash(rm -rf .next)",
+      "Bash(npm run *)",
+      "Bash(grep -n \"initial={{ opacity: 0, y: 14\" e:/projects/dr-shekari-web/src/components/services/ServicesList.jsx)"
+    ]
+  }
+}
