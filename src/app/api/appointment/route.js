@@ -126,17 +126,20 @@ export async function POST(req) {
       ps: `د ملاقات نوې غوښتنه — ${data.fullName} (${data.preferredDate} ${data.slot})`,
     };
 
-    // Fire-and-forget — never block the API response on SMTP. Slot is already
-    // persisted to MongoDB above, so the booking is never lost.
-    void sendMail({
-      to: recipient,
-      subject: adminSubjects[locale] || adminSubjects.en,
-      html: appointmentNotificationEmail(data, locale),
-      replyTo: data.email,
-    }).catch((err) =>
+    // Must await — on serverless the function is suspended as soon as the
+    // response flushes, killing any in-flight SMTP handshake. Slot is already
+    // persisted, so swallow SMTP errors and still return ok.
+    try {
+      await sendMail({
+        to: recipient,
+        subject: adminSubjects[locale] || adminSubjects.en,
+        html: appointmentNotificationEmail(data, locale),
+        replyTo: data.email,
+      });
+    } catch (err) {
       console.error('[appointment] admin notification failed:',
-        err?.code || '', err?.message || err)
-    );
+        err?.code || '', err?.message || err);
+    }
 
     return NextResponse.json(
       { ok: true, id: String(doc._id), preferredDate: data.preferredDate, slot: data.slot },
