@@ -10,7 +10,11 @@
       "Bash(rm -rf .next/dev .next/server .next/cache)",
       "Bash(rm -rf .next)",
       "Bash(npm run *)",
-      "Bash(grep -n \"initial={{ opacity: 0, y: 14\" e:/projects/dr-shekari-web/src/components/services/ServicesList.jsx)"
+      "Bash(grep -n \"initial={{ opacity: 0, y: 14\" e:/projects/dr-shekari-web/src/components/services/ServicesList.jsx)",
+      "Bash(rm -r \"e:/dr-shekari-web/src/app/[locale]/offline\")"
+    ],
+    "additionalDirectories": [
+      "e:\\dr-shekari-web\\src\\app\\[locale]\\offline"
     ]
   }
 }
