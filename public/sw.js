@@ -9,15 +9,17 @@
  *  - Anything else → network passthrough
  */
 
-const VERSION = 'dr-shekari-v3';
+const VERSION = 'dr-shekari-v4';
 const STATIC_CACHE = `static-${VERSION}`;
 const RUNTIME_CACHE = `runtime-${VERSION}`;
 const HTML_CACHE = `html-${VERSION}`;
 const API_CACHE = `api-${VERSION}`;
 const ALL_CACHES = new Set([STATIC_CACHE, RUNTIME_CACHE, HTML_CACHE, API_CACHE]);
 
+// Note: '/' is intentionally excluded — it always 30x-redirects to a locale,
+// and Cache.add() rejects redirected responses (and serving one for a
+// navigation would trigger ERR_FAILED in Chrome).
 const PRECACHE_URLS = [
-  '/',
   '/en',
   '/en/offline',
   '/fa/offline',
@@ -116,6 +118,13 @@ async function handleNavigation(event) {
     const preload = event.preloadResponse ? await event.preloadResponse : null;
     const network = preload || (await fetch(req));
 
+    // A SW cannot return a redirected response for a navigation — Chrome
+    // rejects it with ERR_FAILED. Hand the redirect back to the browser
+    // so it does a fresh navigation to the final URL.
+    if (network && network.redirected) {
+      return Response.redirect(network.url, 302);
+    }
+
     if (network && network.ok) {
       const cache = await caches.open(HTML_CACHE);
       cache.put(req, network.clone()).catch(() => {});
@@ -125,11 +134,7 @@ async function handleNavigation(event) {
     throw new Error(`bad status ${network && network.status}`);
   } catch {
     const cached = await caches.match(req);
-    if (cached) {
-      const entryAgeOk = isFresh(cached, HTML_CACHE_MAX_AGE_MS);
-      if (entryAgeOk) return cached;
-      return cached; // serve stale rather than offline page
-    }
+    if (cached) return cached; // freshness already enforced by HTML_CACHE_MAX_AGE_MS via trim
     const url = new URL(req.url);
     const localeMatch = url.pathname.match(/^\/(en|fa|ps)(\/|$)/);
     const localeKey = localeMatch ? localeMatch[1] : 'en';
