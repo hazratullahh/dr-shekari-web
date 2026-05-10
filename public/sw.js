@@ -9,7 +9,7 @@
  *  - Anything else → network passthrough
  */
 
-const VERSION = 'dr-shekari-v4';
+const VERSION = 'dr-shekari-v5';
 const STATIC_CACHE = `static-${VERSION}`;
 const RUNTIME_CACHE = `runtime-${VERSION}`;
 const HTML_CACHE = `html-${VERSION}`;
@@ -116,11 +116,21 @@ async function handleNavigation(event) {
   const req = event.request;
   try {
     const preload = event.preloadResponse ? await event.preloadResponse : null;
-    const network = preload || (await fetch(req));
+    let network = preload || (await fetch(req));
 
-    // A SW cannot return a redirected response for a navigation — Chrome
-    // rejects it with ERR_FAILED. Hand the redirect back to the browser
-    // so it does a fresh navigation to the final URL.
+    // Navigation preload requests use redirect:'manual', so a server-side
+    // redirect (e.g. '/' → '/en' from next-intl) comes back as an
+    // opaqueredirect response: status 0, no body, no usable URL. We can't
+    // return that for a navigation — re-issue the request with the default
+    // redirect:'follow' so we get a real response we can act on.
+    if (network && network.type === 'opaqueredirect') {
+      network = await fetch(req.url, { credentials: 'same-origin' });
+    }
+
+    // A SW also cannot return a *followed* redirect response for a
+    // navigation — Chrome rejects it with ERR_FAILED. Hand a clean
+    // redirect back to the browser so it does a fresh navigation to the
+    // final URL (which we'll then serve normally on the next pass).
     if (network && network.redirected) {
       return Response.redirect(network.url, 302);
     }
