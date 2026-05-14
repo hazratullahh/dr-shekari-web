@@ -523,9 +523,9 @@ export default function GallerySection() {
               aria-hidden="true"
               className="absolute z-30 flex items-center justify-center pointer-events-none"
             >
-              <div className="relative w-44 h-44 sm:w-52 sm:h-52 lg:w-60 lg:h-60 flex items-center justify-center">
+              <div className="relative w-28 h-28 sm:w-32 sm:h-32 lg:w-36 lg:h-36 flex items-center justify-center">
                 {/* Soft glow behind everything */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 sm:w-52 sm:h-52 rounded-full bg-linear-to-br from-[#E9756D]/25 to-[#F6CA97]/25 blur-2xl animate-pulse" />
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-28 h-28 sm:w-32 sm:h-32 rounded-full bg-linear-to-br from-[#E9756D]/25 to-[#F6CA97]/25 blur-2xl animate-pulse" />
 
                 {/* Rotating circular hint text -pauses while user hovers the gallery */}
                 <svg
@@ -539,15 +539,15 @@ export default function GallerySection() {
                   <defs>
                     <path
                       id="gallery-hint-circle"
-                      d="M 100,100 m -82,0 a 82,82 0 1,1 164,0 a 82,82 0 1,1 -164,0"
+                      d="M 100,100 m -78,0 a 78,78 0 1,1 156,0 a 78,78 0 1,1 -156,0"
                       fill="none"
                     />
                   </defs>
                   <text
                     className="fill-current"
                     style={{
-                      fontSize: '13px',
-                      letterSpacing: '0.15em',
+                      fontSize: '11px',
+                      letterSpacing: '0.12em',
                       textTransform: 'uppercase',
                       fontWeight: 600,
                     }}
@@ -559,11 +559,11 @@ export default function GallerySection() {
                 </svg>
 
                 {/* Medallion */}
-                <div className="relative w-24 h-24 sm:w-28 sm:h-28 lg:w-32 lg:h-32 rounded-full bg-white shadow-2xl shadow-[#E9756D]/30 ring-1 ring-[#E9756D]/15 flex items-center justify-center">
-                  <div className="absolute inset-1.5 rounded-full bg-linear-to-br from-[#FDF5EE] to-white" />
+                <div className="relative w-16 h-16 sm:w-18 sm:h-18 lg:w-20 lg:h-20 rounded-full bg-white shadow-xl shadow-[#E9756D]/30 ring-1 ring-[#E9756D]/15 flex items-center justify-center">
+                  <div className="absolute inset-1 rounded-full bg-linear-to-br from-[#FDF5EE] to-white" />
                   <Camera
                     className="relative text-[#E9756D]"
-                    size={34}
+                    size={22}
                     strokeWidth={1.75}
                   />
                 </div>
