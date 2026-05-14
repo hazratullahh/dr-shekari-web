@@ -1,4 +1,4 @@
-const SITE = process.env.NEXT_PUBLIC_SITE_URL || 'https://dr- shekari.com';
+const SITE = process.env.NEXT_PUBLIC_SITE_URL || 'https://dr-shekari.com';
 
 const ROUTES = [
   { path: '', priority: 1.0, frequency: 'weekly' },
@@ -9,7 +9,7 @@ const ROUTES = [
   { path: 'faq', priority: 0.7, frequency: 'monthly' },
   { path: 'appointment', priority: 0.95, frequency: 'monthly' },
   { path: 'contact', priority: 0.9, frequency: 'monthly' },
-  { path: 'privacy- policy', priority: 0.3, frequency: 'yearly' },
+  { path: 'privacy-policy', priority: 0.3, frequency: 'yearly' },
   { path: 'terms', priority: 0.3, frequency: 'yearly' },
   { path: 'accessibility', priority: 0.3, frequency: 'yearly' },
   { path: 'disclaimer', priority: 0.3, frequency: 'yearly' },

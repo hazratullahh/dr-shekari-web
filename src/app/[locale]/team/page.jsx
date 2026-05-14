@@ -1,12 +1,12 @@
 import { Suspense } from 'react';
-import { getTranslations } from 'next- intl/server';
+import { getTranslations } from 'next-intl/server';
 import TeamHero from '@/components/team/TeamHero';
 import InternationalTeam from '@/components/team/InternationalTeam';
 import MedicalDirectors from '@/components/team/MedicalDirectors';
 import ConsultationCTA from '@/components/team/ConsultationCTA';
 import LoadingFallback from '@/components/ui/LoadingFallback';
 
-const SITE = 'https://dr- shekari.com';
+const SITE = 'https://dr-shekari.com';
 const OG_LOCALE = { en: 'en_US', fa: 'fa_AF', ps: 'ps_AF' };
 
 export async function generateMetadata({ params }) {
@@ -32,10 +32,10 @@ export async function generateMetadata({ params }) {
       description,
       images: [
         {
-          url: '/images/android- chrome- 512x512.png',
+          url: '/images/android-chrome-512x512.png',
           width: 1200,
           height: 630,
-          alt: 'Medical Team - Dr. Shekari Urology Clinic',
+          alt: 'Medical Team -Dr. Shekari Urology Clinic',
         },
       ],
     },
@@ -43,10 +43,10 @@ export async function generateMetadata({ params }) {
     alternates: {
       canonical: url,
       languages: {
-        'en- US': `${SITE}/en/team`,
-        'fa- AF': `${SITE}/fa/team`,
-        'ps- AF': `${SITE}/ps/team`,
-        'x- default': `${SITE}/en/team`,
+        'en-US': `${SITE}/en/team`,
+        'fa-AF': `${SITE}/fa/team`,
+        'ps-AF': `${SITE}/ps/team`,
+        'x-default': `${SITE}/en/team`,
       },
     },
     robots: { index: true, follow: true },
@@ -61,21 +61,21 @@ export default async function TeamPage({ params }) {
   const teamSchema = {
     '@context': 'https://schema.org',
     '@type': 'MedicalOrganization',
-    name: 'Dr. Shekari Urology Clinic - Urology Department of Jami Hospital',
+    name: 'Dr. Shekari Urology Clinic -Urology Department of Jami Hospital',
     url,
     logo: `${SITE}/logo.png`,
     description:
-      'Urology leadership at Jami Hospital, Herat - Dr. Nazir Ahmad Shekari (Chief, Urology Department) with Dr. Mansour Ahmad Wayar (Professor Assistant & Patients Arranger).',
+      'Urology leadership at Jami Hospital, Herat -Dr. Nazir Ahmad Shekari (Chief, Urology Department) with Dr. Mansour Ahmad Wayar (Professor Assistant & Patients Arranger).',
     address: {
       '@type': 'PostalAddress',
-      streetAddress: 'Chahar- e- rahi- Badmorghan, Jami Hospital',
+      streetAddress: 'Chahar-e-rahi-Badmorghan, Jami Hospital',
       addressLocality: 'Herat',
       addressCountry: 'AF',
     },
     employee: [
       {
         '@type': 'Physician',
-        '@id': `${SITE}/#dr- shekari`,
+        '@id': `${SITE}/#dr-shekari`,
         name: 'Dr. Nazir Ahmad Shekari',
         jobTitle: 'Chief, Urology Department of Jami Hospital',
         nationality: 'Afghanistan',
@@ -97,9 +97,9 @@ export default async function TeamPage({ params }) {
       },
       {
         '@type': 'Physician',
-        '@id': `${SITE}/#dr- wayar`,
+        '@id': `${SITE}/#dr-wayar`,
         name: 'Dr. Mansour Ahmad Wayar',
-        jobTitle: 'Surgical Assistant - Urology Department, Jami Hospital',
+        jobTitle: 'Surgical Assistant -Urology Department, Jami Hospital',
         nationality: 'Afghanistan',
         medicalSpecialty: ['Urology', 'Surgical Assistance'],
         knowsLanguage: ['Dari', 'Pashto', 'English'],
@@ -125,7 +125,7 @@ export default async function TeamPage({ params }) {
         <MedicalDirectors />
       </Suspense>
 
-      {/* Global Expertise Local Care section hidden - kept for future re- enable
+      {/* Global Expertise Local Care section hidden -kept for future re-enable
       <Suspense fallback={<LoadingFallback type="section" />}>
         <InternationalTeam />
       </Suspense>

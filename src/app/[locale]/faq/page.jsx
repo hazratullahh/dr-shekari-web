@@ -2,7 +2,7 @@ import { Suspense } from 'react';
 import FAQSection from '@/components/contact/FAQSection';
 import LoadingFallback from '@/components/ui/LoadingFallback';
 import PageHero from '@/components/ui/PageHero';
-import { HelpCircle } from 'lucide- react';
+import { HelpCircle } from 'lucide-react';
 
 export const metadata = {
   title: 'FAQ – Dr. Shekari Urology Clinic',
@@ -31,7 +31,7 @@ export const metadata = {
     description: 'Frequently asked questions about urology services and patient care.'
   },
   alternates: {
-    canonical: 'https://dr- shekari.com/faq'
+    canonical: 'https://dr-shekari.com/faq'
   },
   robots: {
     index: true,

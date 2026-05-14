@@ -6,7 +6,7 @@ const nextConfig = {
     remotePatterns: [ 
       {
         protocol: 'https',
-        hostname: 'dr- shekari.com',
+        hostname: 'dr-shekari.com',
         pathname: '/**',
       },
       {
@@ -32,37 +32,37 @@ const nextConfig = {
         source: '/:path*',
         headers: [
           {
-            key: 'X- DNS- Prefetch- Control',
+            key: 'X-DNS-Prefetch-Control',
             value: 'on'
           },
           {
-            key: 'Strict- Transport- Security',
-            value: 'max- age=63072000; includeSubDomains; preload'
+            key: 'Strict-Transport-Security',
+            value: 'max-age=63072000; includeSubDomains; preload'
           },
           {
-            key: 'X- Content- Type- Options',
+            key: 'X-Content-Type-Options',
             value: 'nosniff'
           },
           {
-            key: 'X- Frame- Options',
+            key: 'X-Frame-Options',
             value: 'SAMEORIGIN'
           },
           {
-            key: 'X- XSS- Protection',
+            key: 'X-XSS-Protection',
             value: '1; mode=block'
           },
           {
-            key: 'Referrer- Policy',
-            value: 'origin- when- cross- origin'
+            key: 'Referrer-Policy',
+            value: 'origin-when-cross-origin'
           },
           {
-            key: 'Permissions- Policy',
+            key: 'Permissions-Policy',
             value: 'camera=(), microphone=(), geolocation=()'
           },
           // PWA headers
           {
-            key: 'Content- Security- Policy',
-            value: "script- src 'self' 'unsafe- inline' 'unsafe- eval'"
+            key: 'Content-Security-Policy',
+            value: "script-src 'self' 'unsafe-inline' 'unsafe-eval'"
           }
         ]
       },
@@ -70,7 +70,7 @@ const nextConfig = {
         source: '/manifest.json',
         headers: [
           {
-            key: 'Content- Type',
+            key: 'Content-Type',
             value: 'application/manifest+json'
           }
         ]

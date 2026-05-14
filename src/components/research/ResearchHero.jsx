@@ -1,7 +1,7 @@
 'use client';
 
-import { useTranslations } from 'next- intl';
-import { BookOpen } from 'lucide- react';
+import { useTranslations } from 'next-intl';
+import { BookOpen } from 'lucide-react';
 import PageHero from '@/components/ui/PageHero';
 
 export default function ResearchHero() {

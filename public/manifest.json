@@ -1,13 +1,13 @@
 {
   "name": "Dr. Shekari Urology Clinic",
   "short_name": "Dr. Shekari",
-  "description": "Urology, Endourology & Andrology specialist - book appointments, view services, and access patient information from Dr. Nazir Ahmad Shekari's clinic.",
+  "description": "Urology, Endourology & Andrology specialist -book appointments, view services, and access patient information from Dr. Nazir Ahmad Shekari's clinic.",
   "start_url": "/?source=pwa",
   "id": "/?source=pwa",
   "scope": "/",
   "display": "standalone",
-  "display_override": ["window- controls- overlay", "standalone", "minimal- ui", "browser"],
-  "orientation": "portrait- primary",
+  "display_override": ["window-controls-overlay", "standalone", "minimal-ui", "browser"],
+  "orientation": "portrait-primary",
   "background_color": "#FDF5EE",
   "theme_color": "#0E7C8A",
   "lang": "en",
@@ -15,54 +15,54 @@
   "categories": ["medical", "health", "lifestyle"],
   "prefer_related_applications": false,
   "icons": [
-    { "src": "/icons/icon- 72x72.png",   "sizes": "72x72",   "type": "image/png", "purpose": "any" },
-    { "src": "/icons/icon- 96x96.png",   "sizes": "96x96",   "type": "image/png", "purpose": "any" },
-    { "src": "/icons/icon- 128x128.png", "sizes": "128x128", "type": "image/png", "purpose": "any" },
-    { "src": "/icons/icon- 144x144.png", "sizes": "144x144", "type": "image/png", "purpose": "any" },
-    { "src": "/icons/icon- 152x152.png", "sizes": "152x152", "type": "image/png", "purpose": "any" },
-    { "src": "/icons/icon- 192x192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
-    { "src": "/icons/icon- 192x192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
-    { "src": "/icons/icon- 384x384.png", "sizes": "384x384", "type": "image/png", "purpose": "any" },
-    { "src": "/icons/icon- 512x512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
-    { "src": "/icons/icon- 512x512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+    { "src": "/icons/icon-72x72.png",   "sizes": "72x72",   "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-96x96.png",   "sizes": "96x96",   "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-128x128.png", "sizes": "128x128", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-144x144.png", "sizes": "144x144", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-152x152.png", "sizes": "152x152", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-192x192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-192x192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "/icons/icon-384x384.png", "sizes": "384x384", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-512x512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-512x512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
   ],
   "shortcuts": [
     {
       "name": "Book Appointment",
       "short_name": "Book",
       "description": "Schedule a consultation with Dr. Shekari",
-      "url": "/appointment?source=pwa- shortcut",
-      "icons": [{ "src": "/icons/calendar- icon.png", "sizes": "192x192", "type": "image/png" }]
+      "url": "/appointment?source=pwa-shortcut",
+      "icons": [{ "src": "/icons/calendar-icon.png", "sizes": "192x192", "type": "image/png" }]
     },
     {
       "name": "Services",
       "short_name": "Services",
       "description": "Browse urology and andrology services",
-      "url": "/services?source=pwa- shortcut",
-      "icons": [{ "src": "/icons/icon- 192x192.png", "sizes": "192x192", "type": "image/png" }]
+      "url": "/services?source=pwa-shortcut",
+      "icons": [{ "src": "/icons/icon-192x192.png", "sizes": "192x192", "type": "image/png" }]
     },
     {
       "name": "Contact Clinic",
       "short_name": "Contact",
       "description": "Reach our team",
-      "url": "/contact?source=pwa- shortcut",
-      "icons": [{ "src": "/icons/about- icon.png", "sizes": "192x192", "type": "image/png" }]
+      "url": "/contact?source=pwa-shortcut",
+      "icons": [{ "src": "/icons/about-icon.png", "sizes": "192x192", "type": "image/png" }]
     }
   ],
   "screenshots": [
     {
-      "src": "/screenshots/home- mobile.png",
+      "src": "/screenshots/home-mobile.png",
       "sizes": "720x1280",
       "type": "image/png",
       "form_factor": "narrow",
-      "label": "Dr. Shekari Clinic - mobile home"
+      "label": "Dr. Shekari Clinic -mobile home"
     },
     {
-      "src": "/screenshots/home- desktop.png",
+      "src": "/screenshots/home-desktop.png",
       "sizes": "1280x720",
       "type": "image/png",
       "form_factor": "wide",
-      "label": "Dr. Shekari Clinic - desktop home"
+      "label": "Dr. Shekari Clinic -desktop home"
     }
   ]
 }

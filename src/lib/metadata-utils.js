@@ -1,7 +1,7 @@
 export function generatePageMetadata(pageType, additionalData = {}) {
   const baseMetadata = {
-    title: `Dr. Shekari & Dr. Wayar -  ${additionalData.title || 'Afghanistan\'s Top Urologists'}`,
-    description: `${additionalData.description || 'World- class urological care from Afghanistan\'s foremost experts.'}`,
+    title: `Dr. Shekari & Dr. Wayar - ${additionalData.title || 'Afghanistan\'s Top Urologists'}`,
+    description: `${additionalData.description || 'World-class urological care from Afghanistan\'s foremost experts.'}`,
   };
 
   const pageTemplates = {

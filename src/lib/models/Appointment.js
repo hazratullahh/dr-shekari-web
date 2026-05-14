@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const dateRegex = /^\d{4}- \d{2}- \d{2}$/;
+const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
 const slotRegex = /^\d{2}:\d{2}$/;
 
 const AppointmentSchema = new mongoose.Schema(
@@ -8,13 +8,13 @@ const AppointmentSchema = new mongoose.Schema(
     fullName: { type: String, required: true, trim: true, minlength: 2, maxlength: 120 },
     email: { type: String, required: false, default: '', trim: true, lowercase: true, maxlength: 200 },
     phone: { type: String, required: true, trim: true, maxlength: 32 },
-    // YYYY- MM- DD - clinic- local date, no timezone ambiguity
+    // YYYY-MM-DD -clinic-local date, no timezone ambiguity
     preferredDate: {
       type: String,
       required: true,
-      match: [dateRegex, 'preferredDate must be YYYY- MM- DD'],
+      match: [dateRegex, 'preferredDate must be YYYY-MM-DD'],
     },
-    // HH:MM 24h - discrete clinic slot
+    // HH:MM 24h -discrete clinic slot
     slot: {
       type: String,
       required: true,
@@ -32,9 +32,9 @@ const AppointmentSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-AppointmentSchema.index({ createdAt: - 1 });
+AppointmentSchema.index({ createdAt: -1 });
 
-// Prevent double- booking the same date+slot for an active appointment.
+// Prevent double-booking the same date+slot for an active appointment.
 // Cancelled slots are released so the partial filter excludes them.
 AppointmentSchema.index(
   { preferredDate: 1, slot: 1 },

@@ -11,7 +11,7 @@ import {
 } from '@/lib/slots';
 
 export const runtime = 'nodejs';
-export const dynamic = 'force- dynamic';
+export const dynamic = 'force-dynamic';
 
 function shape(date, { closed, slots }) {
   return {
@@ -29,26 +29,26 @@ export async function GET(req) {
 
   if (!isValidDateString(date)) {
     return NextResponse.json(
-      { ok: false, error: 'Invalid or missing date (expected YYYY- MM- DD)', code: 'BAD_DATE' },
+      { ok: false, error: 'Invalid or missing date (expected YYYY-MM-DD)', code: 'BAD_DATE' },
       { status: 400 }
     );
   }
 
-  // Closed days short- circuit before any DB call.
+  // Closed days short-circuit before any DB call.
   if (isClosedDay(date)) {
     return NextResponse.json(shape(date, { closed: true, slots: [] }));
   }
 
   const all = generateSlots(date);
 
-  // Past dates: no DB call needed - every slot is unavailable.
+  // Past dates: no DB call needed -every slot is unavailable.
   if (isPastDate(date)) {
     const slots = all.map((slot) => ({ slot, available: false, reserved: false, past: true }));
     return NextResponse.json(shape(date, { closed: false, slots }));
   }
 
   // Future / today: query Mongo. If the DB is unreachable, degrade gracefully —
-  // return slots as all- available so the user can still pick a time, and the
+  // return slots as all-available so the user can still pick a time, and the
   // POST will catch any duplicate slot via its unique index.
   let reservedSet = new Set();
   let dbError = null;

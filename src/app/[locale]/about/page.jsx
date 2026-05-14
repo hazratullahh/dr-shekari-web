@@ -1,5 +1,5 @@
 import { Suspense } from 'react';
-import { getTranslations } from 'next- intl/server';
+import { getTranslations } from 'next-intl/server';
 import AboutHero from '@/components/about/AboutHero';
 import VisionMission from '@/components/about/VisionMission';
 import History from '@/components/about/History';
@@ -7,7 +7,7 @@ import Philosophy from '@/components/about/Philosophy';
 import Equipment from '@/components/about/Equipment';
 import LoadingFallback from '@/components/ui/LoadingFallback';
 
-const SITE = 'https://dr- shekari.com';
+const SITE = 'https://dr-shekari.com';
 const OG_LOCALE = { en: 'en_US', fa: 'fa_AF', ps: 'ps_AF' };
 
 export async function generateMetadata({ params }) {
@@ -33,10 +33,10 @@ export async function generateMetadata({ params }) {
       description,
       images: [
         {
-          url: '/images/about/clinic- exterior.jpg',
+          url: '/images/about/clinic-exterior.jpg',
           width: 1200,
           height: 630,
-          alt: 'Dr. Nazir Ahmad Shekari - Chief of Urology Department, Jami Hospital',
+          alt: 'Dr. Nazir Ahmad Shekari -Chief of Urology Department, Jami Hospital',
         },
       ],
     },
@@ -48,10 +48,10 @@ export async function generateMetadata({ params }) {
     alternates: {
       canonical: url,
       languages: {
-        'en- US': `${SITE}/en/about`,
-        'fa- AF': `${SITE}/fa/about`,
-        'ps- AF': `${SITE}/ps/about`,
-        'x- default': `${SITE}/en/about`,
+        'en-US': `${SITE}/en/about`,
+        'fa-AF': `${SITE}/fa/about`,
+        'ps-AF': `${SITE}/ps/about`,
+        'x-default': `${SITE}/en/about`,
       },
     },
     robots: { index: true, follow: true },
@@ -66,16 +66,16 @@ export default async function AboutPage({ params }) {
   const physicianSchema = {
     '@context': 'https://schema.org',
     '@type': 'Physician',
-    '@id': `${SITE}/#dr- shekari`,
+    '@id': `${SITE}/#dr-shekari`,
     name: 'Dr. Nazir Ahmad Shekari',
     alternateName: ['Nazir Ahmad Shekari', 'Dr. Shekari', 'دکتر نذیر احمد شکاری', 'ډاکټر نذیر احمد شکاري'],
     jobTitle: 'Chief, Urology Department of Jami Hospital',
     description:
       'Dr. Nazir Ahmad Shekari is the Chief of the Urology Department at Jami Hospital, Herat. MD Urologist with a Fellowship in Endourology from Kazakhstan, former Chief of Stone Diseases, Endourology and Lithotripsy at the Scientific Center of Urology (Almaty). Member of the European Association of Urology (EAU).',
-    image: `${SITE}/images/dr- shekari.jpg`,
+    image: `${SITE}/images/dr-shekari.jpg`,
     url,
     telephone: '+93796040915',
-    email: 'urology@dr- shekari.com',
+    email: 'urology@dr-shekari.com',
     medicalSpecialty: ['Urology', 'Endourology', 'Andrology'],
     nationality: 'Afghanistan',
     knowsLanguage: ['Dari', 'Pashto', 'English'],
@@ -106,7 +106,7 @@ export default async function AboutPage({ params }) {
       name: 'Jami Hospital, Herat',
       address: {
         '@type': 'PostalAddress',
-        streetAddress: 'Chahar- e- rahi- Badmorghan',
+        streetAddress: 'Chahar-e-rahi-Badmorghan',
         addressLocality: 'Herat',
         addressCountry: 'AF',
       },
@@ -129,15 +129,15 @@ export default async function AboutPage({ params }) {
       'Advanced urology, andrology, and endourology clinic at Jami Hospital, Herat, led by Dr. Nazir Ahmad Shekari.',
     address: {
       '@type': 'PostalAddress',
-      streetAddress: 'Chahar- e- rahi- Badmorghan',
+      streetAddress: 'Chahar-e-rahi-Badmorghan',
       addressLocality: 'Herat',
       addressRegion: 'Herat',
       addressCountry: 'AF',
     },
     telephone: '+93796040915',
-    openingHours: 'Mo- Sa 08:00- 20:00',
+    openingHours: 'Mo-Sa 08:00-20:00',
     medicalSpecialty: ['Urology', 'Andrology', 'Endourology'],
-    employee: { '@id': `${SITE}/#dr- shekari` },
+    employee: { '@id': `${SITE}/#dr-shekari` },
   };
 
   return (

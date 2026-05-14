@@ -1,10 +1,10 @@
 import { Suspense } from 'react';
-import { getTranslations } from 'next- intl/server';
+import { getTranslations } from 'next-intl/server';
 import ResearchHero from '@/components/research/ResearchHero';
 import ResearchContent from '@/components/research/ResearchContent';
 import LoadingFallback from '@/components/ui/LoadingFallback';
 
-const SITE = 'https://dr- shekari.com';
+const SITE = 'https://dr-shekari.com';
 const OG_LOCALE = { en: 'en_US', fa: 'fa_AF', ps: 'ps_AF' };
 
 export async function generateMetadata({ params }) {
@@ -34,10 +34,10 @@ export async function generateMetadata({ params }) {
     alternates: {
       canonical: url,
       languages: {
-        'en- US': `${SITE}/en/research`,
-        'fa- AF': `${SITE}/fa/research`,
-        'ps- AF': `${SITE}/ps/research`,
-        'x- default': `${SITE}/en/research`,
+        'en-US': `${SITE}/en/research`,
+        'fa-AF': `${SITE}/fa/research`,
+        'ps-AF': `${SITE}/ps/research`,
+        'x-default': `${SITE}/en/research`,
       },
     },
     robots: { index: true, follow: true },
@@ -63,7 +63,7 @@ export default async function ResearchPage({ params }) {
     url,
     description:
       'Academic contributions, case reports, and scientific collaborations in urology, endourology, and andrology.',
-    author: { '@id': `${SITE}/#dr- shekari` },
+    author: { '@id': `${SITE}/#dr-shekari` },
     mainEntity: articles.map((headline) => ({
       '@type': 'ScholarlyArticle',
       headline,

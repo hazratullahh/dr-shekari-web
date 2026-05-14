@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 
 // Service worker disabled. This component now actively cleans up any SW
 // that was installed by previous deploys (v3/v4/v5) so users stop hitting
-// the offline page / ERR_FAILED. The kill- switch /sw.js will also clean
+// the offline page / ERR_FAILED. The kill-switch /sw.js will also clean
 // up cache storage when it activates.
 export default function ServiceWorkerRegister() {
   useEffect(() => {
@@ -16,7 +16,7 @@ export default function ServiceWorkerRegister() {
     const cleanup = async () => {
       try {
         const regs = await navigator.serviceWorker.getRegistrations();
-        // Trigger an update check so the kill- switch /sw.js installs and
+        // Trigger an update check so the kill-switch /sw.js installs and
         // deletes its caches via its activate handler.
         await Promise.all(regs.map((r) => r.update().catch(() => null)));
         // Then unregister everything outright.
@@ -31,12 +31,12 @@ export default function ServiceWorkerRegister() {
       } catch {}
     };
 
-    // When the kill- switch SW takes control or unregisters, the controller
-    // changes - reload once so the page is rendered without any SW in the
+    // When the kill-switch SW takes control or unregisters, the controller
+    // changes -reload once so the page is rendered without any SW in the
     // way. sessionStorage guards against a refresh loop.
     const onControllerChange = () => {
-      if (sessionStorage.getItem('sw- cleanup- done') === '1') return;
-      sessionStorage.setItem('sw- cleanup- done', '1');
+      if (sessionStorage.getItem('sw-cleanup-done') === '1') return;
+      sessionStorage.setItem('sw-cleanup-done', '1');
       window.location.reload();
     };
 

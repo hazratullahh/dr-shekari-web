@@ -1,9 +1,9 @@
 'use client';
 
-import { motion } from 'framer- motion';
+import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
-import { Users, Award, Clock, Heart, TrendingUp, Star } from 'lucide- react';
-import { useTranslations } from 'next- intl';
+import { Users, Award, Clock, Heart, TrendingUp, Star } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 const StatsSection = () => {
   const t = useTranslations("stats");
@@ -29,8 +29,8 @@ const StatsSection = () => {
       value: counters.patients,
       suffix: '+',
       description: t("patients_treated_desc"),
-      icon: <Users className="text- [#E9756D]" size={24} />,
-      color: 'from- [#E9756D] to- [#FF9A8B]',
+      icon: <Users className="text-[#E9756D]" size={24} />,
+      color: 'from-[#E9756D] to-[#FF9A8B]',
       delay: 0
     },
     {
@@ -39,8 +39,8 @@ const StatsSection = () => {
       value: counters.surgeries,
       suffix: '+',
       description: t("surgeries_performed_desc"),
-      icon: <Award className="text- [#F6CA97]" size={24} />,
-      color: 'from- [#F6CA97] to- [#FFB347]',
+      icon: <Award className="text-[#F6CA97]" size={24} />,
+      color: 'from-[#F6CA97] to-[#FFB347]',
       delay: 0.15
     },
     {
@@ -49,8 +49,8 @@ const StatsSection = () => {
       value: counters.experience,
       suffix: '+',
       description: t("years_excellence_desc"),
-      icon: <Clock className="text- [#E9756D]" size={24} />,
-      color: 'from- [#E9756D] to- [#F6CA97]',
+      icon: <Clock className="text-[#E9756D]" size={24} />,
+      color: 'from-[#E9756D] to-[#F6CA97]',
       delay: 0.3
     },
     {
@@ -59,8 +59,8 @@ const StatsSection = () => {
       value: counters.satisfaction,
       suffix: '%',
       description: t("patient_satisfaction_desc"),
-      icon: <Heart className="text- [#FF9A8B]" size={24} />,
-      color: 'from- [#FF9A8B] to- [#E9756D]',
+      icon: <Heart className="text-[#FF9A8B]" size={24} />,
+      color: 'from-[#FF9A8B] to-[#E9756D]',
       delay: 0.45
     }
   ];
@@ -71,7 +71,7 @@ const StatsSection = () => {
     const startTime = Date.now();
 
     const animateCounters = () => {
-      const elapsed = Date.now() -  startTime;
+      const elapsed = Date.now() - startTime;
       const progress = Math.min(elapsed / duration, 1);
 
       setCounters({
@@ -90,57 +90,57 @@ const StatsSection = () => {
   }, []);
 
   return (
-    <section className="relative py- 24 px- 4 sm:px- 6 lg:px- 8 overflow- hidden">
+    <section className="relative py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
 
-      <div className="container max- w- 7xl mx- auto relative z- 10">
+      <div className="container max-w-7xl mx-auto relative z-10">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.5 }}
           viewport={{ once: true }}
-          className="text- center mb- 16"
+          className="text-center mb-16"
         >
-          <span className="text- [#E9756D] font- semibold tracking- wider">
+          <span className="text-[#E9756D] font-semibold tracking-wider">
             {t("header")}
           </span>
         </motion.div>
 
         {/* Stats Grid */}
-        <div className="grid grid- cols- 1 sm:grid- cols- 2 lg:grid- cols- 4 gap- 8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {stats.map((stat, i) => (
             <motion.div
               key={stat.id}
               initial={{ opacity: 0, y: 24, scale: 0.96 }}
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ duration: 0.55, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
-              viewport={{ once: true, margin: '- 50px' }}
+              viewport={{ once: true, margin: '-50px' }}
               style={{ willChange: 'transform, opacity' }}
               className="relative group"
             >
-              <div className="bg- white/95 backdrop- blur- sm p- 8 rounded- 3xl shadow- md shadow- [#E9756D]/8 border border- gray- 100 relative card- hover">
+              <div className="bg-white/95 backdrop-blur-sm p-8 rounded-3xl shadow-md shadow-[#E9756D]/8 border border-gray-100 relative card-hover">
 
                 {/* Icon */}
-                <div className={`w- 16 h- 16 rounded- 2xl bg- linear- to- r ${stat.color} flex items- center justify- center mb- 6`}>
+                <div className={`w-16 h-16 rounded-2xl bg-linear-to-r ${stat.color} flex items-center justify-center mb-6`}>
                   {stat.icon}
                 </div>
 
                 {/* Counter */}
-                <div className="flex items- baseline mb- 2">
-                  <span className="text- 5xl font- bold text- gray- 900">
+                <div className="flex items-baseline mb-2">
+                  <span className="text-5xl font-bold text-gray-900">
                     {stat.value}
                   </span>
-                  <span className="text- 3xl font- bold text- transparent bg- clip- text bg- linear- to- r from- [#E9756D] to- [#F6CA97] ml- 2">
+                  <span className="text-3xl font-bold text-transparent bg-clip-text bg-linear-to-r from-[#E9756D] to-[#F6CA97] ml-2">
                     {stat.suffix}
                   </span>
                 </div>
 
-                <h3 className="text- xl font- bold mb- 2">{stat.title}</h3>
-                <p className="text- gray- 600">{stat.description}</p>
+                <h3 className="text-xl font-bold mb-2">{stat.title}</h3>
+                <p className="text-gray-600">{stat.description}</p>
 
-                <div className="mt- 6 flex justify- between text- sm text- gray- 600">
+                <div className="mt-6 flex justify-between text-sm text-gray-600">
                   <span>{t("achievement_label")}</span>
-                  <TrendingUp size={16} className="text- green- 500" />
+                  <TrendingUp size={16} className="text-green-500" />
                 </div>
 
               </div>
@@ -149,10 +149,10 @@ const StatsSection = () => {
         </div>
 
         {/* Footer Badge */}
-        <div className="mt- 16 text- center">
-          <div className="inline- flex items- center bg- linear- to- r from- [#E9756D]/10 to- [#F6CA97]/10 px- 6 py- 3 rounded- full border border- white/20 backdrop- blur- sm">
-            <Star className="text- [#E9756D] mr- 2" size={18} />
-            <span className="text- gray- 700 font- medium">
+        <div className="mt-16 text-center">
+          <div className="inline-flex items-center bg-linear-to-r from-[#E9756D]/10 to-[#F6CA97]/10 px-6 py-3 rounded-full border border-white/20 backdrop-blur-sm">
+            <Star className="text-[#E9756D] mr-2" size={18} />
+            <span className="text-gray-700 font-medium">
               {t("accreditation_badge")}
             </span>
           </div>

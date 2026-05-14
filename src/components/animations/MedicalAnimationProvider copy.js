@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useMemo } from 'react';
-import { motion } from 'framer- motion';
+import { motion } from 'framer-motion';
 
 const MedicalAnimationProvider = ({ type = 'home' }) => {
   const canvasRef = useRef(null);
@@ -64,11 +64,11 @@ const MedicalAnimationProvider = ({ type = 'home' }) => {
 
       reset() {
         this.x = Math.random() * canvas.width;
-        this.y = - 50;
+        this.y = -50;
         this.size = 30 + Math.random() * 40;
         this.speed = 0.5 + Math.random() * 0.8;
         this.rotation = Math.random() * Math.PI * 2;
-        this.rotationSpeed = (Math.random() -  0.5) * 0.01;
+        this.rotationSpeed = (Math.random() - 0.5) * 0.01;
         this.pulse = 0;
         this.pulseSpeed = 0.03 + Math.random() * 0.02;
         this.color = Math.random() > 0.5 ? '#E9756D' : '#F6CA97';
@@ -107,8 +107,8 @@ const MedicalAnimationProvider = ({ type = 'home' }) => {
         ctx.beginPath();
         ctx.strokeStyle = `${this.color}${Math.floor((0.3 + Math.sin(this.pulse) * 0.1) * 255).toString(16).padStart(2, '0')}`;
         ctx.lineWidth = 2;
-        ctx.moveTo(0, - this.size * 0.3);
-        ctx.lineTo(0, - this.size * 0.8);
+        ctx.moveTo(0, -this.size * 0.3);
+        ctx.lineTo(0, -this.size * 0.8);
         ctx.stroke();
 
         ctx.restore();
@@ -124,8 +124,8 @@ const MedicalAnimationProvider = ({ type = 'home' }) => {
         this.x = Math.random() * canvas.width;
         this.y = Math.random() * canvas.height;
         this.size = 4 + Math.random() * 6;
-        this.speedX = (Math.random() -  0.5) * 2;
-        this.speedY = (Math.random() -  0.5) * 2;
+        this.speedX = (Math.random() - 0.5) * 2;
+        this.speedY = (Math.random() - 0.5) * 2;
         this.angle = Math.random() * Math.PI * 2;
         this.wiggle = 0;
         this.wiggleSpeed = 0.1 + Math.random() * 0.1;
@@ -139,10 +139,10 @@ const MedicalAnimationProvider = ({ type = 'home' }) => {
         this.angle = Math.atan2(this.speedY, this.speedX);
 
         // Boundary check
-        if (this.x > canvas.width + 20) this.x = - 20;
-        if (this.x < - 20) this.x = canvas.width + 20;
-        if (this.y > canvas.height + 20) this.y = - 20;
-        if (this.y < - 20) this.y = canvas.height + 20;
+        if (this.x > canvas.width + 20) this.x = -20;
+        if (this.x < -20) this.x = canvas.width + 20;
+        if (this.y > canvas.height + 20) this.y = -20;
+        if (this.y < -20) this.y = canvas.height + 20;
       }
 
       draw() {
@@ -166,7 +166,7 @@ const MedicalAnimationProvider = ({ type = 'home' }) => {
         let prevY = 0;
         
         for (let i = 0; i < this.tailLength; i++) {
-          const segmentX = - i * 2;
+          const segmentX = -i * 2;
           const segmentY = Math.sin(this.wiggle + i * 0.3) * 3;
           
           if (i === 0) {
@@ -228,7 +228,7 @@ const MedicalAnimationProvider = ({ type = 'home' }) => {
         for (let i = 0; i < this.segments; i++) {
           const pos = (i / this.segments) * this.length;
           ctx.beginPath();
-          ctx.moveTo(pos, - 2);
+          ctx.moveTo(pos, -2);
           ctx.lineTo(pos, 2);
           ctx.stroke();
         }
@@ -283,7 +283,7 @@ const MedicalAnimationProvider = ({ type = 'home' }) => {
           const offset = strand * Math.PI;
           
           for (let i = 0; i < this.basePairs; i++) {
-            const y = (i / (this.basePairs -  1)) * this.height -  this.height / 2;
+            const y = (i / (this.basePairs - 1)) * this.height - this.height / 2;
             const x = Math.cos((i * 2 + this.rotation * 10 + offset) * 2) * this.width;
             
             if (i === 0) ctx.moveTo(x, y);
@@ -294,7 +294,7 @@ const MedicalAnimationProvider = ({ type = 'home' }) => {
 
         // Base pairs (rungs)
         for (let i = 0; i < this.basePairs; i++) {
-          const y = (i / (this.basePairs -  1)) * this.height -  this.height / 2;
+          const y = (i / (this.basePairs - 1)) * this.height - this.height / 2;
           const x1 = Math.cos((i * 2 + this.rotation * 10) * 2) * this.width;
           const x2 = Math.cos((i * 2 + this.rotation * 10 + Math.PI) * 2) * this.width;
           
@@ -331,7 +331,7 @@ const MedicalAnimationProvider = ({ type = 'home' }) => {
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      // Draw connecting network (micro- level interactions)
+      // Draw connecting network (micro-level interactions)
       ctx.strokeStyle = 'rgba(233, 117, 109, 0.02)';
       ctx.lineWidth = 0.3;
       
@@ -339,8 +339,8 @@ const MedicalAnimationProvider = ({ type = 'home' }) => {
         for (let j = i + 1; j < allAnimations.length; j++) {
           const a1 = allAnimations[i];
           const a2 = allAnimations[j];
-          const dx = a1.x -  a2.x;
-          const dy = a1.y -  a2.y;
+          const dx = a1.x - a2.x;
+          const dy = a1.y - a2.y;
           const distance = Math.sqrt(dx * dx + dy * dy);
           
           if (distance < 100) {
@@ -372,7 +372,7 @@ const MedicalAnimationProvider = ({ type = 'home' }) => {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset- 0 - z- 10 pointer- events- none"
+      className="fixed inset-0 -z-10 pointer-events-none"
       style={{ opacity: type === 'home' ? 1 : 0.5 }}
     />
   );

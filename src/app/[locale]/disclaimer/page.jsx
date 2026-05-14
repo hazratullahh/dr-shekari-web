@@ -2,7 +2,7 @@ import LegalPage from '@/components/legal/LegalPage';
 
 export const metadata = {
   title: 'Medical Disclaimer · Dr. Shekari Clinic',
-  alternates: { canonical: 'https://dr- shekari.com/disclaimer' },
+  alternates: { canonical: 'https://dr-shekari.com/disclaimer' },
   robots: { index: true, follow: true },
 };
 

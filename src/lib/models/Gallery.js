@@ -3,10 +3,10 @@ import mongoose from 'mongoose';
 /**
  * Gallery image record.
  *
- * The binary lives in Cloudinary (folder: dr- shkari- glarry); this
+ * The binary lives in Cloudinary (folder: dr-shkari-glarry); this
  * document stores the canonical reference + display metadata so the
- * frontend can render responsive variants without re- querying
- * Cloudinary. `publicId` is the source of truth - `url` is denormalized
+ * frontend can render responsive variants without re-querying
+ * Cloudinary. `publicId` is the source of truth -`url` is denormalized
  * for fast list rendering when the client doesn't want to recompute it.
  */
 const GallerySchema = new mongoose.Schema(
@@ -22,7 +22,7 @@ const GallerySchema = new mongoose.Schema(
     height: { type: Number, default: 0 },
     bytes: { type: Number, default: 0 },
 
-    // Ordering / visibility - `order` is small- first; `featured` lets a
+    // Ordering / visibility -`order` is small-first; `featured` lets a
     // few images jump to the hero band on the home page.
     order: { type: Number, default: 0, index: true },
     featured: { type: Boolean, default: false },
@@ -33,6 +33,6 @@ const GallerySchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-GallerySchema.index({ published: 1, order: 1, createdAt: - 1 });
+GallerySchema.index({ published: 1, order: 1, createdAt: -1 });
 
 export default mongoose.models.Gallery || mongoose.model('Gallery', GallerySchema);

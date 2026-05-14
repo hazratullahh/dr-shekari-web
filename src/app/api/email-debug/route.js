@@ -3,10 +3,10 @@ import nodemailer from 'nodemailer';
 import { sendMail } from '@/lib/email';
 
 export const runtime = 'nodejs';
-export const dynamic = 'force- dynamic';
+export const dynamic = 'force-dynamic';
 export const maxDuration = 30;
 
-// Hit:   https://www.dr- shekari.com/api/email- debug?token=<EMAIL_DEBUG_TOKEN>
+// Hit:   https://www.dr-shekari.com/api/email-debug?token=<EMAIL_DEBUG_TOKEN>
 // Optional: &send=1   (also attempts a real send to CONTACT_RECIPIENT)
 // Set EMAIL_DEBUG_TOKEN in Vercel env to enable. Leave unset to disable.
 export async function GET(req) {
@@ -52,7 +52,7 @@ export async function GET(req) {
       greetingTimeout: 8_000,
       socketTimeout: 12_000,
       requireTLS: !secure,
-      name: 'dr- shekari.com',
+      name: 'dr-shekari.com',
       tls: { rejectUnauthorized: false },
     });
 
@@ -60,12 +60,12 @@ export async function GET(req) {
     const t0 = Date.now();
     try {
       await transport.verify();
-      return { label, ok: true, ms: Date.now() -  t0 };
+      return { label, ok: true, ms: Date.now() - t0 };
     } catch (err) {
       return {
         label,
         ok: false,
-        ms: Date.now() -  t0,
+        ms: Date.now() - t0,
         code: err?.code || null,
         command: err?.command || null,
         responseCode: err?.responseCode || null,
@@ -85,12 +85,12 @@ export async function GET(req) {
     try {
       const info = await sendMail({
         to: recipient,
-        subject: `Dr. Shekari email- debug ping ${new Date().toISOString()}`,
-        html: `<p>This is a diagnostic message from <code>/api/email- debug</code>.</p>`,
+        subject: `Dr. Shekari email-debug ping ${new Date().toISOString()}`,
+        html: `<p>This is a diagnostic message from <code>/api/email-debug</code>.</p>`,
       });
       sendResult = {
         ok: true,
-        ms: Date.now() -  t0,
+        ms: Date.now() - t0,
         accepted: info?.accepted || null,
         rejected: info?.rejected || null,
         response: info?.response || null,
@@ -99,7 +99,7 @@ export async function GET(req) {
     } catch (err) {
       sendResult = {
         ok: false,
-        ms: Date.now() -  t0,
+        ms: Date.now() - t0,
         code: err?.code || null,
         command: err?.command || null,
         responseCode: err?.responseCode || null,

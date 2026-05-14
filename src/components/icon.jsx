@@ -1,4 +1,4 @@
-// app/icon.tsx -  Practical solution with fallback
+// app/icon.tsx - Practical solution with fallback
 import { ImageResponse } from 'next/og';
 
 export const size = {
@@ -10,23 +10,23 @@ export const contentType = 'image/png';
 
 export const runtime = 'edge';
 
-// Pre- defined SVG for the logo (you can replace this with your actual logo SVG)
+// Pre-defined SVG for the logo (you can replace this with your actual logo SVG)
 const logoSVG = `
 <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <!- -  Background gradient - - >
+  <!-- Background gradient -->
   <rect width="32" height="32" rx="8" fill="url(#gradient)"/>
   
-  <!- -  Medical cross - - >
+  <!-- Medical cross -->
   <rect x="13" y="8" width="6" height="16" rx="1" fill="white"/>
   <rect x="8" y="13" width="16" height="6" rx="1" fill="white"/>
   
-  <!- -  DR text (subtle) - - >
-  <text x="16" y="22" text- anchor="middle" fill="white" font- family="Arial, sans- serif" font- size="10" font- weight="bold" opacity="0.9">DR</text>
+  <!-- DR text (subtle) -->
+  <text x="16" y="22" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="10" font-weight="bold" opacity="0.9">DR</text>
   
   <defs>
     <linearGradient id="gradient" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop- color="#E9756D"/>
-      <stop offset="100%" stop- color="#F6CA97"/>
+      <stop offset="0%" stop-color="#E9756D"/>
+      <stop offset="100%" stop-color="#F6CA97"/>
     </linearGradient>
   </defs>
 </svg>
@@ -37,7 +37,7 @@ export default async function Icon() {
     // In production, you would check if logo.png exists
     // For now, we'll use a smart approach
 
-    // Check environment -  in dev we might not have the logo
+    // Check environment - in dev we might not have the logo
     const hasLogo = process.env.NODE_ENV === 'production';
 
     if (hasLogo) {
@@ -51,7 +51,7 @@ export default async function Icon() {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              background: 'linear- gradient(135deg, #E9756D 0%, #F6CA97 100%)',
+              background: 'linear-gradient(135deg, #E9756D 0%, #F6CA97 100%)',
               borderRadius: '8px',
               fontSize: '14px',
               fontWeight: 'bold',
@@ -96,7 +96,7 @@ export default async function Icon() {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          background: 'linear- gradient(135deg, #E9756D 0%, #F6CA97 100%)',
+          background: 'linear-gradient(135deg, #E9756D 0%, #F6CA97 100%)',
           borderRadius: '8px',
           position: 'relative',
           overflow: 'hidden',
@@ -108,8 +108,8 @@ export default async function Icon() {
             position: 'absolute',
             width: '200%',
             height: '200%',
-            background: 'linear- gradient(45deg, transparent 30%, rgba(255,255,255,0.2) 50%, transparent 70%)',
-            animation: 'shine 3s ease- in- out infinite',
+            background: 'linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.2) 50%, transparent 70%)',
+            animation: 'shine 3s ease-in-out infinite',
           }}
         />
 
@@ -137,7 +137,7 @@ export default async function Icon() {
                 position: 'absolute',
                 top: '50%',
                 left: '50%',
-                transform: 'translate(- 50%, - 50%)',
+                transform: 'translate(-50%, -50%)',
                 width: '12px',
                 height: '3px',
                 background: 'white',
@@ -149,7 +149,7 @@ export default async function Icon() {
                 position: 'absolute',
                 top: '50%',
                 left: '50%',
-                transform: 'translate(- 50%, - 50%)',
+                transform: 'translate(-50%, -50%)',
                 width: '3px',
                 height: '12px',
                 background: 'white',
@@ -202,7 +202,7 @@ export default async function Icon() {
 //           display: 'flex',
 //           alignItems: 'center',
 //           justifyContent: 'center',
-//           background: 'linear- gradient(135deg, #E9756D 0%, #F6CA97 100%)',
+//           background: 'linear-gradient(135deg, #E9756D 0%, #F6CA97 100%)',
 //           borderRadius: '6px',
 //           fontSize: '18px',
 //           fontWeight: 'bold',

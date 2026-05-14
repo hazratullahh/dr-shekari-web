@@ -41,7 +41,7 @@ const MedicalHeroBackground = ({
     const scene = new THREE.Scene();
     scene.background = null;
 
-    // Camera setup -  positioned to show kidneys at top
+    // Camera setup - positioned to show kidneys at top
     const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
     camera.position.set(0, 8, 25); // Increased Y to show kidneys higher
     camera.lookAt(0, 8, 0); // Look at higher position
@@ -51,7 +51,7 @@ const MedicalHeroBackground = ({
       canvas: canvasRef.current,
       alpha: true,
       antialias: true,
-      powerPreference: "high- performance"
+      powerPreference: "high-performance"
     });
     renderer.setSize(width, height);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
@@ -61,7 +61,7 @@ const MedicalHeroBackground = ({
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
     renderer.toneMappingExposure = 1.2;
 
-    // Post- processing
+    // Post-processing
     const composer = new EffectComposer(renderer);
     const renderPass = new RenderPass(scene, camera);
     composer.addPass(renderPass);
@@ -87,7 +87,7 @@ const MedicalHeroBackground = ({
     scene.add(keyLight);
 
     const rimLight = new THREE.DirectionalLight(0x4466ff, 0.5);
-    rimLight.position.set(- 10, 15, - 10);
+    rimLight.position.set(-10, 15, -10);
     scene.add(rimLight);
 
     const bloodLight = new THREE.PointLight(0xff0000, 2.0 * bloodIntensity, 30);
@@ -97,7 +97,7 @@ const MedicalHeroBackground = ({
     // Create kidney at higher position
     const createKidney = (side = 'right') => {
       const kidneyGroup = new THREE.Group();
-      const sideMultiplier = side === 'right' ? 1 : - 1;
+      const sideMultiplier = side === 'right' ? 1 : -1;
       const verticalOffset = 11; // Position kidneys higher
 
       // Main kidney shape
@@ -111,13 +111,13 @@ const MedicalHeroBackground = ({
         const z = positions.getZ(i) / 0.8;
 
         if (x > 0.4 && Math.abs(y) < 0.8) {
-          const indent = 0.6 * Math.exp(- (y * y) / 0.4);
-          positions.setX(i, (x -  indent) * 1.2);
+          const indent = 0.6 * Math.exp(-(y * y) / 0.4);
+          positions.setX(i, (x - indent) * 1.2);
         }
         
-        if (x < - 0.4) {
-          const bulge = 0.25 * Math.exp(- (y * y) / 0.6);
-          positions.setX(i, (x -  bulge) * 1.2);
+        if (x < -0.4) {
+          const bulge = 0.25 * Math.exp(-(y * y) / 0.6);
+          positions.setX(i, (x - bulge) * 1.2);
         }
       }
       geometry.computeVertexNormals();
@@ -144,15 +144,15 @@ const MedicalHeroBackground = ({
     // Create blood vessels at higher position
     const createBloodVessels = (side = 'right') => {
       const vesselsGroup = new THREE.Group();
-      const sideMultiplier = side === 'right' ? 1 : - 1;
+      const sideMultiplier = side === 'right' ? 1 : -1;
       const verticalOffset = 11; // Match kidney vertical position
 
       // ARTERY
       const arteryCurve = new THREE.CatmullRomCurve3([
-        new THREE.Vector3(sideMultiplier * - 10, verticalOffset + 4, 0.5),
-        new THREE.Vector3(sideMultiplier * - 8, verticalOffset + 2, 0),
-        new THREE.Vector3(sideMultiplier * - 6, verticalOffset + 1, - 0.3),
-        new THREE.Vector3(sideMultiplier * - 4, verticalOffset, 0),
+        new THREE.Vector3(sideMultiplier * -10, verticalOffset + 4, 0.5),
+        new THREE.Vector3(sideMultiplier * -8, verticalOffset + 2, 0),
+        new THREE.Vector3(sideMultiplier * -6, verticalOffset + 1, -0.3),
+        new THREE.Vector3(sideMultiplier * -4, verticalOffset, 0),
       ]);
 
       const arteryGeometry = new THREE.TubeGeometry(arteryCurve, 32, 0.25, 12, false);
@@ -171,10 +171,10 @@ const MedicalHeroBackground = ({
 
       // VEIN
       const veinCurve = new THREE.CatmullRomCurve3([
-        new THREE.Vector3(sideMultiplier * - 4, verticalOffset, 0),
-        new THREE.Vector3(sideMultiplier * - 6, verticalOffset -  1, 0.3),
-        new THREE.Vector3(sideMultiplier * - 8, verticalOffset -  2, 0),
-        new THREE.Vector3(sideMultiplier * - 10, verticalOffset -  4, - 0.5),
+        new THREE.Vector3(sideMultiplier * -4, verticalOffset, 0),
+        new THREE.Vector3(sideMultiplier * -6, verticalOffset - 1, 0.3),
+        new THREE.Vector3(sideMultiplier * -8, verticalOffset - 2, 0),
+        new THREE.Vector3(sideMultiplier * -10, verticalOffset - 4, -0.5),
       ]);
 
       const veinGeometry = new THREE.TubeGeometry(veinCurve, 32, 0.3, 12, false);
@@ -202,9 +202,9 @@ const MedicalHeroBackground = ({
           const curve = Math.random() > 0.3 ? arteryCurve : veinCurve;
           const point = curve.getPoint(t);
           const offset = new THREE.Vector3(
-            (Math.random() -  0.5) * 0.8,
-            (Math.random() -  0.5) * 0.8,
-            (Math.random() -  0.5) * 0.8
+            (Math.random() - 0.5) * 0.8,
+            (Math.random() - 0.5) * 0.8,
+            (Math.random() - 0.5) * 0.8
           );
 
           positions[i * 3] = point.x + offset.x;
@@ -240,14 +240,14 @@ const MedicalHeroBackground = ({
     // Create medical stent at higher position
     const createStent = (side = 'right') => {
       const stentGroup = new THREE.Group();
-      const sideMultiplier = side === 'right' ? 1 : - 1;
+      const sideMultiplier = side === 'right' ? 1 : -1;
       const verticalOffset = 11;
 
       const ureterCurve = new THREE.CatmullRomCurve3([
         new THREE.Vector3(sideMultiplier * 4, verticalOffset, 0),
-        new THREE.Vector3(sideMultiplier * 2, verticalOffset -  3, 0.3),
-        new THREE.Vector3(sideMultiplier * 1, verticalOffset -  6, 0),
-        new THREE.Vector3(0, verticalOffset -  9, - 0.2),
+        new THREE.Vector3(sideMultiplier * 2, verticalOffset - 3, 0.3),
+        new THREE.Vector3(sideMultiplier * 1, verticalOffset - 6, 0),
+        new THREE.Vector3(0, verticalOffset - 9, -0.2),
       ]);
 
       // Stent coils
@@ -324,9 +324,9 @@ const MedicalHeroBackground = ({
         const cell = new THREE.Mesh(geometry, material);
         
         cell.position.set(
-          (Math.random() -  0.5) * 25,
-          verticalOffset + (Math.random() -  0.5) * 10,
-          (Math.random() -  0.5) * 8
+          (Math.random() - 0.5) * 25,
+          verticalOffset + (Math.random() - 0.5) * 10,
+          (Math.random() - 0.5) * 8
         );
         
         cell.userData = { speed: 0.001 + Math.random() * 0.002 };
@@ -381,7 +381,7 @@ const MedicalHeroBackground = ({
       const delta = clock.getDelta();
       const time = clock.getElapsedTime() * animationSpeed;
 
-      // SLOW CIRCULAR ROTATION -  Everything rotates together
+      // SLOW CIRCULAR ROTATION - Everything rotates together
       rotationGroup.rotation.y += 0.003 * animationSpeed;
       rotationGroup.rotation.x += 0.001 * animationSpeed;
 
@@ -393,7 +393,7 @@ const MedicalHeroBackground = ({
             const positions = object.geometry?.attributes?.position?.array;
             if (positions) {
               for (let i = 0; i < positions.length; i += 3) {
-                positions[i + 1] - = object.userData.flowSpeed;
+                positions[i + 1] -= object.userData.flowSpeed;
                 if (positions[i + 1] < 2) positions[i + 1] = 12;
               }
               object.geometry.attributes.position.needsUpdate = true;
@@ -411,7 +411,7 @@ const MedicalHeroBackground = ({
             object.rotation.x += object.userData.speed * 0.5;
             object.rotation.y += object.userData.speed * 0.3;
             
-            if (object.position.x > 15) object.position.x = - 15;
+            if (object.position.x > 15) object.position.x = -15;
           }
         }
 
@@ -466,7 +466,7 @@ const MedicalHeroBackground = ({
   return (
     <div
       ref={containerRef}
-      className={`relative overflow- hidden ${className}`}
+      className={`relative overflow-hidden ${className}`}
       style={{
         width,
         height,
@@ -474,20 +474,20 @@ const MedicalHeroBackground = ({
       }}
     >
       {/* Gradient background */}
-      <div className="absolute inset- 0 bg- gradient- to- br from- [#FDF5EE] via- white to- [#F9F0E8]" />
+      <div className="absolute inset-0 bg-gradient-to-br from-[#FDF5EE] via-white to-[#F9F0E8]" />
       
       {/* Canvas Background */}
       <canvas
         ref={canvasRef}
-        className="absolute inset- 0 w- full h- full"
+        className="absolute inset-0 w-full h-full"
       />
 
       {/* Loading State */}
       {!isLoaded && (
-        <div className="absolute inset- 0 z- 20 flex items- center justify- center bg- black/10">
-          <div className="text- center">
-            <div className="w- 16 h- 16 border- 4 border- t- transparent border- red- 500 rounded- full animate- spin mx- auto mb- 4"></div>
-            <p className="text- gray- 700 font- light">
+        <div className="absolute inset-0 z-20 flex items-center justify-center bg-black/10">
+          <div className="text-center">
+            <div className="w-16 h-16 border-4 border-t-transparent border-red-500 rounded-full animate-spin mx-auto mb-4"></div>
+            <p className="text-gray-700 font-light">
               Loading Medical Visualization...
             </p>
           </div>
@@ -496,10 +496,10 @@ const MedicalHeroBackground = ({
 
       {/* 🎨 Configurable Dark Overlay */}
       <div 
-        className="absolute inset- 0 pointer- events- none"
+        className="absolute inset-0 pointer-events-none"
         style={{
           backgroundColor: `rgba(0, 0, 0, ${"s"})`,
-          // backgroundImage: `linear- gradient(to bottom, 
+          // backgroundImage: `linear-gradient(to bottom, 
           //   rgba(0, 0, 0, ${overlayDarkness * 0.8}), 
           //   rgba(0, 0, 0, ${overlayDarkness * 0.4}), 
           //   rgba(0, 0, 0, ${overlayDarkness * 0.8})
@@ -508,15 +508,15 @@ const MedicalHeroBackground = ({
       />
 
       {/* 🧩 Children / Content Layer */}
-      <div className="relative h- full min- h- screen">
+      <div className="relative h-full min-h-screen">
         {children}
       </div>
 
       {/* ✨ Accent Gradient Blobs */}
-      <div className="absolute inset- 0 pointer- events- none">
-        <div className="absolute top- 0 right- 0 w- 96 h- 96 bg- gradient- to- bl from- red- 500/5 to- transparent rounded- full blur- 3xl"></div>
-        <div className="absolute bottom- 0 left- 0 w- 96 h- 96 bg- gradient- to- tr from- blue- 500/5 to- transparent rounded- full blur- 3xl"></div>
-        <div className="absolute top- 1/2 left- 1/2 transform - translate- x- 1/2 - translate- y- 1/2 w- 64 h- 64 bg- gradient- to- r from- cyan- 500/3 to- pink- 500/3 rounded- full blur- 3xl"></div>
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-red-500/5 to-transparent rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-tr from-blue-500/5 to-transparent rounded-full blur-3xl"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-r from-cyan-500/3 to-pink-500/3 rounded-full blur-3xl"></div>
       </div>
     </div>
   );

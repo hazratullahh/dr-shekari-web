@@ -2,7 +2,7 @@ import LegalPage from '@/components/legal/LegalPage';
 
 export const metadata = {
   title: 'Accessibility Statement · Dr. Shekari Clinic',
-  alternates: { canonical: 'https://dr- shekari.com/accessibility' },
+  alternates: { canonical: 'https://dr-shekari.com/accessibility' },
   robots: { index: true, follow: true },
 };
 

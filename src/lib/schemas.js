@@ -1,8 +1,8 @@
 import { z } from 'zod';
 
-const phoneRegex = /^\+?[0- 9\s()\- ]{7,20}$/;
+const phoneRegex = /^\+?[0-9\s()\-]{7,20}$/;
 
-const dateRegex = /^\d{4}- \d{2}- \d{2}$/;
+const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
 const slotRegex = /^\d{2}:\d{2}$/;
 
 export const appointmentSchema = z.object({
@@ -25,12 +25,12 @@ export const appointmentSchema = z.object({
     .regex(phoneRegex, 'Please enter a valid phone number'),
   preferredDate: z
     .string({ required_error: 'Preferred date is required' })
-    .regex(dateRegex, 'Date must be YYYY- MM- DD'),
+    .regex(dateRegex, 'Date must be YYYY-MM-DD'),
   slot: z
     .string({ required_error: 'Time slot is required' })
     .regex(slotRegex, 'Slot must be HH:MM'),
   message: z.string().trim().max(2000, 'Message is too long').optional().default(''),
-  // Honeypot anti- spam field. Bots tend to fill it; humans never see it.
+  // Honeypot anti-spam field. Bots tend to fill it; humans never see it.
   website: z.string().max(0, 'Spam detected').optional(),
 });
 

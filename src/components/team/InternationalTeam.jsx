@@ -1,10 +1,10 @@
 // components/team/InternationalTeam.js
 'use client';
 
-import { motion } from 'framer- motion';
+import { motion } from 'framer-motion';
 import { useState } from 'react';
 import Image from 'next/image';
-import { Globe, Award, GraduationCap, Users, MapPin, Clock, Star } from 'lucide- react';
+import { Globe, Award, GraduationCap, Users, MapPin, Clock, Star } from 'lucide-react';
 
 const InternationalTeam = () => {
   const [activeTab, setActiveTab] = useState('all');
@@ -18,7 +18,7 @@ const InternationalTeam = () => {
       experience: "18+ Years",
       specialty: "Robotic Urology & Laparoscopic Surgery",
       education: "MCh Urology (AIIMS), Robotic Surgery Fellowship (USA)",
-      image: "/images/team/dr- rajesh- india.jpg",
+      image: "/images/team/dr-rajesh-india.jpg",
       location: "Visiting Consultant from New Delhi, India",
       schedule: "Monthly: 1st Week of Every Month",
       expertise: [
@@ -40,8 +40,8 @@ const InternationalTeam = () => {
       flag: "🇺🇸",
       experience: "20+ Years",
       specialty: "Endourology & Minimally Invasive Surgery",
-      education: "MD, FACS -  Johns Hopkins Hospital Fellowship",
-      image: "/images/team/dr- michael- usa.jpg",
+      education: "MD, FACS - Johns Hopkins Hospital Fellowship",
+      image: "/images/team/dr-michael-usa.jpg",
       location: "Visiting Professor from Boston, USA",
       schedule: "Quarterly: 2 Weeks Every 3 Months",
       expertise: [
@@ -64,9 +64,9 @@ const InternationalTeam = () => {
       experience: "12+ Years",
       specialty: "Male Reproductive Health & Fertility",
       education: "MD, Andrology Fellowship (India)",
-      image: "/images/team/dr- fatima- afg.jpg",
+      image: "/images/team/dr-fatima-afg.jpg",
       location: "Resident Specialist, Jami Hospital",
-      schedule: "Sun- Thu: 8AM- 4PM",
+      schedule: "Sun-Thu: 8AM-4PM",
       expertise: [
         "Male Infertility Treatment",
         "Hormonal Disorders",
@@ -87,9 +87,9 @@ const InternationalTeam = () => {
       experience: "10+ Years",
       specialty: "Children's Urological Disorders",
       education: "MD, Pediatric Urology Fellowship (Turkey)",
-      image: "/images/team/dr- ahmed- afg.jpg",
+      image: "/images/team/dr-ahmed-afg.jpg",
       location: "Resident Specialist, Jami Hospital",
-      schedule: "Mon- Sat: 9AM- 5PM",
+      schedule: "Mon-Sat: 9AM-5PM",
       expertise: [
         "Congenital Abnormalities",
         "Pediatric Stone Disease",
@@ -99,7 +99,7 @@ const InternationalTeam = () => {
       achievements: [
         "Trained at Ankara University, Turkey",
         "Specialized in Pediatric Care",
-        "Child- Friendly Approach"
+        "Child-Friendly Approach"
       ]
     }
   ];
@@ -116,30 +116,30 @@ const InternationalTeam = () => {
     : internationalDoctors.filter(doc => doc.nationality.toLowerCase().includes(activeTab));
 
   return (
-    <section id="international- team" className="py- 20 px- 4 sm:px- 6 lg:px- 8">
-      <div className="max- w- 7xl mx- auto">
+    <section id="international-team" className="py-20 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text- center mb- 12"
+          className="text-center mb-12"
         >
-          <div className="inline- flex items- center mb- 4">
-            <Globe className="text- [#E9756D] mr- 3" size={24} />
-            <span className="text- [#E9756D] font- semibold text- lg">International Specialists</span>
+          <div className="inline-flex items-center mb-4">
+            <Globe className="text-[#E9756D] mr-3" size={24} />
+            <span className="text-[#E9756D] font-semibold text-lg">International Specialists</span>
           </div>
           
-          <h2 className="text- 4xl md:text- 5xl font- bold text- gray- 900 mb- 6">
-            Global <span className="text- transparent bg- clip- text bg- gradient- to- r from- [#E9756D] to- [#F6CA97]">Expertise</span> Local Care
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            Global <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#E9756D] to-[#F6CA97]">Expertise</span> Local Care
           </h2>
-          <p className="text- xl text- gray- 700 max- w- 3xl mx- auto">
-            Our international team brings world- class urological expertise to Afghanistan
+          <p className="text-xl text-gray-700 max-w-3xl mx-auto">
+            Our international team brings world-class urological expertise to Afghanistan
           </p>
         </motion.div>
 
         {/* Filter Tabs */}
-        <div className="flex flex- wrap justify- center gap- 3 mb- 12">
+        <div className="flex flex-wrap justify-center gap-3 mb-12">
           {tabs.map((tab) => (
             <motion.button
             type='button'
@@ -147,15 +147,15 @@ const InternationalTeam = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => setActiveTab(tab.id)}
-              className={`px- 5 py- 2.5 cursor- pointer rounded- full font- medium transition- all ${
+              className={`px-5 py-2.5 cursor-pointer rounded-full font-medium transition-all ${
                 activeTab === tab.id
-                  ? 'bg- gradient- to- r from- [#E9756D] to- [#F6CA97] text- white shadow- lg'
-                  : 'bg- white text- gray- 700 hover:bg- gray- 50 border border- gray- 200'
+                  ? 'bg-gradient-to-r from-[#E9756D] to-[#F6CA97] text-white shadow-lg'
+                  : 'bg-white text-gray-700 hover:bg-gray-50 border border-gray-200'
               }`}
             >
               {tab.label}
-              <span className={`ml- 2 px- 2 py- 0.5 text- xs rounded- full ${
-                activeTab === tab.id ? 'bg- white/20' : 'bg- gray- 100'
+              <span className={`ml-2 px-2 py-0.5 text-xs rounded-full ${
+                activeTab === tab.id ? 'bg-white/20' : 'bg-gray-100'
               }`}>
                 {tab.count}
               </span>
@@ -164,7 +164,7 @@ const InternationalTeam = () => {
         </div>
 
         {/* Doctors Grid */}
-        <div className="grid grid- cols- 1 md:grid- cols- 2 gap- 8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {filteredDoctors.map((doctor, index) => (
             <motion.div
               key={index}
@@ -172,69 +172,69 @@ const InternationalTeam = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
-              whileHover={{ y: - 10 }}
+              whileHover={{ y: -10 }}
               className="group"
             >
-              <div className="glass- card rounded- 3xl overflow- hidden shadow- xl border border- white/20 h- full">
+              <div className="glass-card rounded-3xl overflow-hidden shadow-xl border border-white/20 h-full">
                 {/* Doctor Header */}
-                <div className="p- 6 border- b border- gray- 100">
-                  <div className="flex items- start justify- between mb- 4">
+                <div className="p-6 border-b border-gray-100">
+                  <div className="flex items-start justify-between mb-4">
                     <div>
-                      <div className="flex items- center mb- 2">
-                        <div className="w- 10 h- 10 rounded- full bg- gradient- to- r from- [#E9756D]/10 to- [#F6CA97]/10 flex items- center justify- center mr- 3">
-                          <span className="text- 2xl">{doctor.flag}</span>
+                      <div className="flex items-center mb-2">
+                        <div className="w-10 h-10 rounded-full bg-gradient-to-r from-[#E9756D]/10 to-[#F6CA97]/10 flex items-center justify-center mr-3">
+                          <span className="text-2xl">{doctor.flag}</span>
                         </div>
                         <div>
-                          <h3 className="text- xl font- bold text- gray- 900">{doctor.name}</h3>
-                          <p className="text- sm text- [#E9756D] font- medium">{doctor.nationality}</p>
+                          <h3 className="text-xl font-bold text-gray-900">{doctor.name}</h3>
+                          <p className="text-sm text-[#E9756D] font-medium">{doctor.nationality}</p>
                         </div>
                       </div>
                     </div>
-                    <div className="text- right">
-                      <div className="inline- flex items- center px- 3 py- 1 bg- gradient- to- r from- [#E9756D]/10 to- [#F6CA97]/10 rounded- full">
-                        <Star size={12} className="text- [#E9756D] mr- 1" />
-                        <span className="text- sm font- medium text- [#E9756D]">{doctor.experience}</span>
+                    <div className="text-right">
+                      <div className="inline-flex items-center px-3 py-1 bg-gradient-to-r from-[#E9756D]/10 to-[#F6CA97]/10 rounded-full">
+                        <Star size={12} className="text-[#E9756D] mr-1" />
+                        <span className="text-sm font-medium text-[#E9756D]">{doctor.experience}</span>
                       </div>
                     </div>
                   </div>
                   
-                  <h4 className="text- lg font- semibold text- gray- 900 mb- 2">{doctor.position}</h4>
-                  <p className="text- gray- 600">{doctor.specialty}</p>
+                  <h4 className="text-lg font-semibold text-gray-900 mb-2">{doctor.position}</h4>
+                  <p className="text-gray-600">{doctor.specialty}</p>
                 </div>
 
                 {/* Doctor Details */}
-                <div className="p- 6">
+                <div className="p-6">
                   {/* Education & Location */}
-                  <div className="space- y- 4 mb- 6">
-                    <div className="flex items- start">
-                      <GraduationCap size={18} className="text- [#F6CA97] mt- 1 mr- 3 flex- shrink- 0" />
+                  <div className="space-y-4 mb-6">
+                    <div className="flex items-start">
+                      <GraduationCap size={18} className="text-[#F6CA97] mt-1 mr-3 flex-shrink-0" />
                       <div>
-                        <p className="font- medium text- gray- 900 text- sm">Education</p>
-                        <p className="text- gray- 700 text- sm">{doctor.education}</p>
+                        <p className="font-medium text-gray-900 text-sm">Education</p>
+                        <p className="text-gray-700 text-sm">{doctor.education}</p>
                       </div>
                     </div>
                     
-                    <div className="flex items- start">
-                      <MapPin size={18} className="text- [#E9756D] mt- 1 mr- 3 flex- shrink- 0" />
+                    <div className="flex items-start">
+                      <MapPin size={18} className="text-[#E9756D] mt-1 mr-3 flex-shrink-0" />
                       <div>
-                        <p className="font- medium text- gray- 900 text- sm">Location & Schedule</p>
-                        <p className="text- gray- 700 text- sm">{doctor.location}</p>
-                        <p className="text- gray- 600 text- sm mt- 1">{doctor.schedule}</p>
+                        <p className="font-medium text-gray-900 text-sm">Location & Schedule</p>
+                        <p className="text-gray-700 text-sm">{doctor.location}</p>
+                        <p className="text-gray-600 text-sm mt-1">{doctor.schedule}</p>
                       </div>
                     </div>
                   </div>
 
                   {/* Expertise */}
-                  <div className="mb- 6">
-                    <h5 className="font- semibold text- gray- 900 mb- 3 flex items- center">
-                      <Award size={16} className="text- [#E9756D] mr- 2" />
+                  <div className="mb-6">
+                    <h5 className="font-semibold text-gray-900 mb-3 flex items-center">
+                      <Award size={16} className="text-[#E9756D] mr-2" />
                       Areas of Expertise
                     </h5>
-                    <div className="flex flex- wrap gap- 2">
+                    <div className="flex flex-wrap gap-2">
                       {doctor.expertise.map((skill, idx) => (
                         <span
                           key={idx}
-                          className="px- 3 py- 1.5 bg- gradient- to- r from- [#E9756D]/5 to- [#F6CA97]/5 border border- [#F6CA97]/20 rounded- full text- xs text- gray- 700"
+                          className="px-3 py-1.5 bg-gradient-to-r from-[#E9756D]/5 to-[#F6CA97]/5 border border-[#F6CA97]/20 rounded-full text-xs text-gray-700"
                         >
                           {skill}
                         </span>
@@ -244,15 +244,15 @@ const InternationalTeam = () => {
 
                   {/* Achievements */}
                   <div>
-                    <h5 className="font- semibold text- gray- 900 mb- 3 flex items- center">
-                      <Users size={16} className="text- [#F6CA97] mr- 2" />
+                    <h5 className="font-semibold text-gray-900 mb-3 flex items-center">
+                      <Users size={16} className="text-[#F6CA97] mr-2" />
                       Notable Achievements
                     </h5>
-                    <ul className="space- y- 2">
+                    <ul className="space-y-2">
                       {doctor.achievements.map((achievement, idx) => (
-                        <li key={idx} className="flex items- start">
-                          <div className="w- 1.5 h- 1.5 rounded- full bg- [#E9756D] mt- 1.5 mr- 3 flex- shrink- 0" />
-                          <span className="text- sm text- gray- 700">{achievement}</span>
+                        <li key={idx} className="flex items-start">
+                          <div className="w-1.5 h-1.5 rounded-full bg-[#E9756D] mt-1.5 mr-3 flex-shrink-0" />
+                          <span className="text-sm text-gray-700">{achievement}</span>
                         </li>
                       ))}
                     </ul>
@@ -260,12 +260,12 @@ const InternationalTeam = () => {
                 </div>
 
                 {/* Action Button */}
-                <div className="p- 6 pt- 0">
+                <div className="p-6 pt-0">
                   <motion.button
                   type='button'
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className="w- full py- 3 cursor- pointer bg- gradient- to- r from- [#E9756D]/5 to- [#F6CA97]/5 text- [#E9756D] font- medium rounded- xl border border- [#F6CA97]/30 hover:border- [#E9756D] transition- all group- hover:from- [#E9756D]/10 group- hover:to- [#F6CA97]/10"
+                    className="w-full py-3 cursor-pointer bg-gradient-to-r from-[#E9756D]/5 to-[#F6CA97]/5 text-[#E9756D] font-medium rounded-xl border border-[#F6CA97]/30 hover:border-[#E9756D] transition-all group-hover:from-[#E9756D]/10 group-hover:to-[#F6CA97]/10"
                   >
                     Schedule Consultation with {doctor.name.split(' ')[1]}
                   </motion.button>
