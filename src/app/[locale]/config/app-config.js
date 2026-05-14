@@ -1,4 +1,4 @@
-// config/app-config.js
+// config/app- config.js
 // Configuration for Dr. Nazir Shekari & Dr. Mansour Wayar Urology Clinic
 
 export const APP_CONFIG = {
@@ -7,8 +7,8 @@ export const APP_CONFIG = {
         name: "Dr. Shekari & Dr. Wayar Advanced Urology Center",
         shortName: "Dr. Shekari Clinic",
         description: "Afghanistan's Premier Urology, Andrology & Kidney Care Center",
-        url: process.env.NEXT_PUBLIC_SITE_URL || "https://dr-shekari.com",
-        email: "urology@dr-shekari.com",
+        url: process.env.NEXT_PUBLIC_SITE_URL || "https://dr- shekari.com",
+        email: "urology@dr- shekari.com",
         phone: "+93 79 604 0915",
         address: {
             street: "Medical District, Street 15",
@@ -30,7 +30,7 @@ export const APP_CONFIG = {
     // Doctors Information
     doctors: {
         primary: {
-            id: "dr-nazir-shekari",
+            id: "dr- nazir- shekari",
             name: "Dr. Nazir Ahmad Shekari",
 
             // Name variations for SEO
@@ -70,10 +70,10 @@ export const APP_CONFIG = {
 
             // Qualifications
             qualifications: [
-                "MBBS - Herat Jami Medical University",
-                "MS Urology - India",
-                "Fellowship in Endourology - Germany",
-                "Diploma in Laparoscopic Surgery - Turkey"
+                "MBBS -  Herat Jami Medical University",
+                "MS Urology -  India",
+                "Fellowship in Endourology -  Germany",
+                "Diploma in Laparoscopic Surgery -  Turkey"
             ],
 
             // Experience
@@ -85,9 +85,9 @@ export const APP_CONFIG = {
 
             // Awards
             awards: [
-                "Best Urologist Award - Afghan Medical Association 2023",
-                "Excellence in Surgery - Ministry of Public Health 2022",
-                "Patient Choice Award - 5 consecutive years"
+                "Best Urologist Award -  Afghan Medical Association 2023",
+                "Excellence in Surgery -  Ministry of Public Health 2022",
+                "Patient Choice Award -  5 consecutive years"
             ],
 
             // Languages spoken
@@ -95,11 +95,11 @@ export const APP_CONFIG = {
 
             // Consultation
             consultationFee: "1500 AFN",
-            availability: "Mon-Sat: 9 AM - 5 PM"
+            availability: "Mon- Sat: 9 AM -  5 PM"
         },
 
         secondary: {
-            id: "dr-mansour-wayar",
+            id: "dr- mansour- wayar",
             name: "Dr. Mansour Ahmad Wayar",
 
             // Name variations for SEO
@@ -139,10 +139,10 @@ export const APP_CONFIG = {
 
             // Qualifications
             qualifications: [
-                "MBBS - Nangarhar Medical University",
-                "MD Andrology - Pakistan",
-                "Fellowship in Reproductive Medicine - Iran",
-                "Training in Microsurgery - India"
+                "MBBS -  Nangarhar Medical University",
+                "MD Andrology -  Pakistan",
+                "Fellowship in Reproductive Medicine -  Iran",
+                "Training in Microsurgery -  India"
             ],
 
             // Experience
@@ -155,8 +155,8 @@ export const APP_CONFIG = {
             // Awards
             awards: [
                 "Excellence in Andrology Award 2023",
-                "Best Research Paper - Asian Andrology Conference 2022",
-                "Young Achiever Award - Medical Sciences 2021"
+                "Best Research Paper -  Asian Andrology Conference 2022",
+                "Young Achiever Award -  Medical Sciences 2021"
             ],
 
             // Languages spoken
@@ -164,7 +164,7 @@ export const APP_CONFIG = {
 
             // Consultation
             consultationFee: "1200 AFN",
-            availability: "Sun-Fri: 10 AM - 6 PM"
+            availability: "Sun- Fri: 10 AM -  6 PM"
         }
     },
 
@@ -207,7 +207,7 @@ export const APP_CONFIG = {
             "Modern Pathology Laboratory",
             "Laparoscopic Surgery Unit",
             "Laser Treatment Center",
-            "In-patient Private Rooms",
+            "In- patient Private Rooms",
             "ICU with Ventilator Support",
             "Pharmacy on Premises",
             "Ambulance Service"
@@ -215,13 +215,13 @@ export const APP_CONFIG = {
 
         // Equipment
         equipment: [
-            "Digital C-Arm for Stone Surgery",
+            "Digital C- Arm for Stone Surgery",
             "Holmium Laser for Prostate",
             "Laparoscopic Tower",
             "Flexible & Rigid Ureteroscopes",
             "USG with Doppler",
-            "Digital X-Ray Machine",
-            "CT Scan 128-Slice",
+            "Digital X- Ray Machine",
+            "CT Scan 128- Slice",
             "Fully Automated Lab Analyzers"
         ],
 
@@ -244,17 +244,17 @@ export const APP_CONFIG = {
                 name: "Kidney Treatments",
                 services: [
                     {
-                        id: "kidney-stones",
+                        id: "kidney- stones",
                         name: "Kidney Stone Treatment",
                         procedures: ["PCNL", "RIRS", "ESWL", "URS", "Laparoscopic Stone Surgery"],
-                        recoveryTime: "2-7 days",
+                        recoveryTime: "2- 7 days",
                         successRate: "98%"
                     },
                     {
-                        id: "kidney-transplant",
+                        id: "kidney- transplant",
                         name: "Kidney Transplant",
-                        procedures: ["Live Donor Transplant", "Cadaver Transplant", "Pre-transplant Evaluation"],
-                        recoveryTime: "2-4 weeks",
+                        procedures: ["Live Donor Transplant", "Cadaver Transplant", "Pre- transplant Evaluation"],
+                        recoveryTime: "2- 4 weeks",
                         successRate: "95%"
                     }
                 ]
@@ -264,17 +264,17 @@ export const APP_CONFIG = {
                 name: "Prostate Treatments",
                 services: [
                     {
-                        id: "prostate-cancer",
+                        id: "prostate- cancer",
                         name: "Prostate Cancer Treatment",
                         procedures: ["Radical Prostatectomy", "HIFU", "Brachytherapy", "Hormone Therapy"],
-                        recoveryTime: "2-6 weeks",
+                        recoveryTime: "2- 6 weeks",
                         successRate: "92%"
                     },
                     {
                         id: "bph",
                         name: "BPH/Enlarged Prostate",
                         procedures: ["TURP", "HoLEP", "GreenLight Laser", "UroLift"],
-                        recoveryTime: "3-10 days",
+                        recoveryTime: "3- 10 days",
                         successRate: "96%"
                     }
                 ]
@@ -286,15 +286,15 @@ export const APP_CONFIG = {
                     {
                         id: "infertility",
                         name: "Male Infertility Treatment",
-                        procedures: ["Micro-TESE", "Varicocelectomy", "Sperm Retrieval", "IVF/ICSI Support"],
-                        recoveryTime: "3-7 days",
+                        procedures: ["Micro- TESE", "Varicocelectomy", "Sperm Retrieval", "IVF/ICSI Support"],
+                        recoveryTime: "3- 7 days",
                         successRate: "78%"
                     },
                     {
-                        id: "erectile-dysfunction",
+                        id: "erectile- dysfunction",
                         name: "Erectile Dysfunction",
                         procedures: ["Penile Implants", "Shockwave Therapy", "PRP Injections", "Medication"],
-                        recoveryTime: "1-4 weeks",
+                        recoveryTime: "1- 4 weeks",
                         successRate: "88%"
                     }
                 ]
@@ -333,11 +333,11 @@ export const APP_CONFIG = {
         locations: {
             primary: [
                 "Kabul", "Kabul Afghanistan", "Kabul City", "Kabul Medical District",
-                "Wazir Akbar Khan", "Shahr-e-Naw", "Macroyan", "Karte Se", "Karte Char"
+                "Wazir Akbar Khan", "Shahr- e- Naw", "Macroyan", "Karte Se", "Karte Char"
             ],
             secondary: [
                 "Herat", "Herat Afghanistan", "Western Afghanistan",
-                "Mazar-e-Sharif", "Mazar", "Balkh Province", "Northern Afghanistan",
+                "Mazar- e- Sharif", "Mazar", "Balkh Province", "Northern Afghanistan",
                 "Kandahar", "Kandahar Afghanistan", "Southern Afghanistan",
                 "Jalalabad", "Nangarhar", "Eastern Afghanistan"
             ],
@@ -392,7 +392,7 @@ export const APP_CONFIG = {
         },
         consultationDuration: 30, // minutes
         emergencyTimings: "24/7 Available",
-        bookingMethods: ["Phone", "WhatsApp", "Website", "In-person"],
+        bookingMethods: ["Phone", "WhatsApp", "Website", "In- person"],
         cancellationPolicy: "24 hours notice required"
     },
 
@@ -403,9 +403,9 @@ export const APP_CONFIG = {
         emergencyPhone: "+93 79 604 0915",
         whatsapp: "+93 79 604 0915",
         email: {
-            general: "urology@dr-shekari.com",
-            appointments: "urology@dr-shekari.com",
-            emergency: "urology@dr-shekari.com"
+            general: "urology@dr- shekari.com",
+            appointments: "urology@dr- shekari.com",
+            emergency: "urology@dr- shekari.com"
         },
         socialMedia: {
             facebook: "https://facebook.com/drshekari",
@@ -418,8 +418,8 @@ export const APP_CONFIG = {
 
     // Analytics & Tracking
     analytics: {
-        googleAnalyticsId: process.env.NEXT_PUBLIC_GA_ID || "G-XXXXXXXXXX",
-        googleTagManagerId: process.env.NEXT_PUBLIC_GTM_ID || "GTM-XXXXXX",
+        googleAnalyticsId: process.env.NEXT_PUBLIC_GA_ID || "G- XXXXXXXXXX",
+        googleTagManagerId: process.env.NEXT_PUBLIC_GTM_ID || "GTM- XXXXXX",
         facebookPixelId: process.env.NEXT_PUBLIC_FB_PIXEL_ID || "XXXXXXXXXXXXXXX",
         hotjarId: process.env.NEXT_PUBLIC_HOTJAR_ID || "XXXXXX"
     },
@@ -429,17 +429,17 @@ export const APP_CONFIG = {
         imageOptimization: true,
         lazyLoading: true,
         prefetchLinks: true,
-        cacheStrategy: "stale-while-revalidate",
+        cacheStrategy: "stale- while- revalidate",
         cdnEnabled: false
     },
 
     // Legal Information
     legal: {
         companyName: "Shekari Medical Services LLC",
-        licenseNumber: "MED-2023-AFG-7854",
-        taxId: "TIN-789456123",
+        licenseNumber: "MED- 2023- AFG- 7854",
+        taxId: "TIN- 789456123",
         registration: "Ministry of Commerce #456789",
-        medicalLicense: "Afghan Medical Council #AMC-456-2023"
+        medicalLicense: "Afghan Medical Council #AMC- 456- 2023"
     },
 
     // International Patients
@@ -454,7 +454,7 @@ export const APP_CONFIG = {
     },
 
     // Updates
-    lastUpdated: "2024-01-15",
+    lastUpdated: "2024- 01- 15",
     version: "2.0.0"
 };
 
@@ -479,7 +479,7 @@ export const SEO_HELPERS = {
         return Array.from(names);
     },
 
-    // Generate location-based keywords
+    // Generate location- based keywords
     getLocationKeywords() {
         const keywords = [];
 
@@ -497,7 +497,7 @@ export const SEO_HELPERS = {
         return keywords;
     },
 
-    // Generate service-based keywords
+    // Generate service- based keywords
     getServiceKeywords() {
         const keywords = [];
 
@@ -558,7 +558,7 @@ export const SCHEMA_GENERATORS = {
                 "Nephrology",
                 "Endourology"
             ],
-            "openingHours": "Mo-Su 00:00-24:00",
+            "openingHours": "Mo- Su 00:00- 24:00",
             "priceRange": "$$",
             "currenciesAccepted": "AFN, USD",
             "paymentAccepted": "Cash, Credit Card",
@@ -574,7 +574,7 @@ export const SCHEMA_GENERATORS = {
             "@type": "Physician",
             "name": doctor.name,
             "medicalSpecialty": doctor.titles,
-            "description": `${doctor.name} - ${doctor.titles.join(', ')} with ${doctor.experience.years} years experience`,
+            "description": `${doctor.name} -  ${doctor.titles.join(', ')} with ${doctor.experience.years} years experience`,
             "url": `${APP_CONFIG.site.url}/doctors/${doctor.id}`,
             "telephone": APP_CONFIG.contact.primaryPhone,
             "image": `${APP_CONFIG.site.url}/images/doctors/${doctor.id}.jpg`,

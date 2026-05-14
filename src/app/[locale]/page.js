@@ -1,5 +1,5 @@
 import { Suspense } from 'react';
-import { getTranslations } from 'next-intl/server';
+import { getTranslations } from 'next- intl/server';
 import Hero from '@/components/home/Hero';
 import GallerySection from '@/components/home/GallerySection';
 import StatsSection from '@/components/home/StatsSection';
@@ -12,7 +12,7 @@ import CTABanner from '@/components/home/CTABanner';
 import HomeStructuredData from '@/components/home/HomeStructuredData';
 import LoadingFallback from '@/components/ui/LoadingFallback';
 
-const SITE = 'https://dr-shekari.com';
+const SITE = 'https://dr- shekari.com';
 
 const OG_LOCALE = { en: 'en_US', fa: 'fa_AF', ps: 'ps_AF' };
 
@@ -40,9 +40,9 @@ export async function generateMetadata({ params }) {
       googleBot: {
         index: true,
         follow: true,
-        'max-video-preview': -1,
-        'max-image-preview': 'large',
-        'max-snippet': -1,
+        'max- video- preview': - 1,
+        'max- image- preview': 'large',
+        'max- snippet': - 1,
       },
     },
     openGraph: {
@@ -55,10 +55,10 @@ export async function generateMetadata({ params }) {
       description,
       images: [
         {
-          url: '/images/og-premium.jpg',
+          url: '/images/og- premium.jpg',
           width: 1200,
           height: 630,
-          alt: 'Dr. Nazir Ahmad Shekari -Urological Surgeon',
+          alt: 'Dr. Nazir Ahmad Shekari - Urological Surgeon',
         },
       ],
     },
@@ -66,15 +66,15 @@ export async function generateMetadata({ params }) {
       card: 'summary_large_image',
       title,
       description,
-      images: ['/images/og-premium.jpg'],
+      images: ['/images/og- premium.jpg'],
     },
     alternates: {
       canonical: url,
       languages: {
-        'en-US': `${SITE}/en`,
-        'fa-AF': `${SITE}/fa`,
-        'ps-AF': `${SITE}/ps`,
-        'x-default': `${SITE}/en`,
+        'en- US': `${SITE}/en`,
+        'fa- AF': `${SITE}/fa`,
+        'ps- AF': `${SITE}/ps`,
+        'x- default': `${SITE}/en`,
       },
     },
   };

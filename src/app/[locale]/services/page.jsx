@@ -1,10 +1,10 @@
 import { Suspense } from 'react';
-import { getTranslations } from 'next-intl/server';
+import { getTranslations } from 'next- intl/server';
 import ServicesHero from '@/components/services/ServicesHero';
 import ServicesList from '@/components/services/ServicesList';
 import LoadingFallback from '@/components/ui/LoadingFallback';
 
-const SITE = 'https://dr-shekari.com';
+const SITE = 'https://dr- shekari.com';
 const OG_LOCALE = { en: 'en_US', fa: 'fa_AF', ps: 'ps_AF' };
 
 export async function generateMetadata({ params }) {
@@ -38,10 +38,10 @@ export async function generateMetadata({ params }) {
     alternates: {
       canonical: url,
       languages: {
-        'en-US': `${SITE}/en/services`,
-        'fa-AF': `${SITE}/fa/services`,
-        'ps-AF': `${SITE}/ps/services`,
-        'x-default': `${SITE}/en/services`,
+        'en- US': `${SITE}/en/services`,
+        'fa- AF': `${SITE}/fa/services`,
+        'ps- AF': `${SITE}/ps/services`,
+        'x- default': `${SITE}/en/services`,
       },
     },
     robots: { index: true, follow: true },
@@ -57,33 +57,33 @@ export default async function ServicesPage({ params }) {
     {
       name: 'Kidney & Ureteric Stone Treatment',
       description:
-        'Modern, minimally-invasive treatment for kidney and ureteric stones including PCNL, RIRS, and laser lithotripsy.',
-      slug: 'kidney-stones',
+        'Modern, minimally- invasive treatment for kidney and ureteric stones including PCNL, RIRS, and laser lithotripsy.',
+      slug: 'kidney- stones',
     },
     {
       name: 'Prostate Disease Care',
       description: 'BPH evaluation, TURP, laser prostate procedures, and prostate cancer screening.',
-      slug: 'prostate-diseases',
+      slug: 'prostate- diseases',
     },
     {
       name: 'Urinary Tract Infections',
       description: 'Diagnosis and antibiotic management of acute and recurrent urinary tract infections.',
-      slug: 'urinary-infections',
+      slug: 'urinary- infections',
     },
     {
       name: 'Male Infertility',
       description: 'Comprehensive evaluation and treatment of male factor infertility.',
-      slug: 'male-infertility',
+      slug: 'male- infertility',
     },
     {
       name: 'Sexual Disorders',
       description: 'Andrology consultations for erectile dysfunction and other sexual health concerns.',
-      slug: 'sexual-disorders',
+      slug: 'sexual- disorders',
     },
     {
       name: 'Endourology Surgeries',
       description: 'Advanced minimally invasive procedures inside the urinary tract.',
-      slug: 'endourology-surgeries',
+      slug: 'endourology- surgeries',
     },
   ];
 
@@ -107,7 +107,7 @@ export default async function ServicesPage({ params }) {
     description: s.description,
     procedureType: 'NoninvasiveProcedure',
     bodyLocation: 'Urinary system',
-    performer: { '@id': `${SITE}/#dr-shekari` },
+    performer: { '@id': `${SITE}/#dr- shekari` },
     url: `${SITE}/${locale}/services/${s.slug}`,
   }));
 

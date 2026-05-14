@@ -7,7 +7,7 @@ export function useStandalone() {
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
-    const mq = window.matchMedia('(display-mode: standalone)');
+    const mq = window.matchMedia('(display- mode: standalone)');
     const update = () => {
       const isStandalone =
         mq.matches ||

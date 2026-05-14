@@ -10,7 +10,7 @@ import {
 import { sendMail, appointmentNotificationEmail } from '@/lib/email';
 
 export const runtime = 'nodejs';
-export const dynamic = 'force-dynamic';
+export const dynamic = 'force- dynamic';
 export const maxDuration = 30;
 
 const RATE_LIMIT_WINDOW_MS = 60_000;
@@ -19,15 +19,15 @@ const requestLog = new Map();
 
 function getClientIp(req) {
   return (
-    req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
-    req.headers.get('x-real-ip') ||
+    req.headers.get('x- forwarded- for')?.split(',')[0]?.trim() ||
+    req.headers.get('x- real- ip') ||
     'unknown'
   );
 }
 
 function isRateLimited(ip) {
   const now = Date.now();
-  const arr = (requestLog.get(ip) || []).filter((t) => now - t < RATE_LIMIT_WINDOW_MS);
+  const arr = (requestLog.get(ip) || []).filter((t) => now -  t < RATE_LIMIT_WINDOW_MS);
   arr.push(now);
   requestLog.set(ip, arr);
   return arr.length > RATE_LIMIT_MAX;
@@ -62,7 +62,7 @@ export async function POST(req) {
     }
 
     const data = parsed.data;
-    const localeHeader = (req.headers.get('accept-language') || '').toLowerCase();
+    const localeHeader = (req.headers.get('accept- language') || '').toLowerCase();
     const bodyLocale = (body.locale || '').toLowerCase();
     const locale = ['fa', 'ps', 'en'].includes(bodyLocale)
       ? bodyLocale
@@ -104,7 +104,7 @@ export async function POST(req) {
         message: data.message || '',
       });
     } catch (err) {
-      // E11000 -duplicate key from the unique partial index → slot already booked.
+      // E11000 - duplicate key from the unique partial index → slot already booked.
       if (err && err.code === 11000) {
         return NextResponse.json(
           {
@@ -118,17 +118,17 @@ export async function POST(req) {
       throw err;
     }
 
-    // Notify clinic staff only -the patient gets an auto-downloaded PNG card
+    // Notify clinic staff only - the patient gets an auto- downloaded PNG card
     // on the success screen instead of an email confirmation.
     const recipient = process.env.CONTACT_RECIPIENT || process.env.SMTP_EMAIL;
     const adminSubjects = {
-      en: `New Appointment Request -${data.fullName} (${data.preferredDate} ${data.slot})`,
-      fa: `درخواست جدید وقت ملاقات -${data.fullName} (${data.preferredDate} ${data.slot})`,
-      ps: `د ملاقات نوې غوښتنه -${data.fullName} (${data.preferredDate} ${data.slot})`,
+      en: `New Appointment Request - ${data.fullName} (${data.preferredDate} ${data.slot})`,
+      fa: `درخواست جدید وقت ملاقات - ${data.fullName} (${data.preferredDate} ${data.slot})`,
+      ps: `د ملاقات نوې غوښتنه - ${data.fullName} (${data.preferredDate} ${data.slot})`,
     };
 
-    // Must await -on serverless the function is suspended as soon as the
-    // response flushes, killing any in-flight SMTP handshake. Slot is already
+    // Must await - on serverless the function is suspended as soon as the
+    // response flushes, killing any in- flight SMTP handshake. Slot is already
     // persisted, so swallow SMTP errors and still return ok.
     try {
       await sendMail({

@@ -3,7 +3,7 @@ import { connectDB } from '@/lib/db';
 import Gallery from '@/lib/models/Gallery';
 
 export const runtime = 'nodejs';
-// Revalidate every 5 minutes -gallery rarely changes, but stays warm.
+// Revalidate every 5 minutes - gallery rarely changes, but stays warm.
 export const revalidate = 300;
 
 /**
@@ -29,7 +29,7 @@ export async function GET(req) {
     if (featuredOnly) query.featured = true;
 
     const docs = await Gallery.find(query)
-      .sort({ featured: -1, order: 1, createdAt: -1 })
+      .sort({ featured: - 1, order: 1, createdAt: - 1 })
       .limit(limit)
       .select('title description publicId url format width height order featured createdAt')
       .lean();
@@ -53,8 +53,8 @@ export async function GET(req) {
       {
         status: 200,
         headers: {
-          // CDN-friendly: stale-while-revalidate keeps it instant for users
-          'Cache-Control': 'public, s-maxage=300, stale-while-revalidate=86400',
+          // CDN- friendly: stale- while- revalidate keeps it instant for users
+          'Cache- Control': 'public, s- maxage=300, stale- while- revalidate=86400',
         },
       }
     );

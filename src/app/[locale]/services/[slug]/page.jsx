@@ -1,12 +1,12 @@
 import { notFound } from 'next/navigation';
-import { getTranslations } from 'next-intl/server';
+import { getTranslations } from 'next- intl/server';
 import ServiceDetail from '@/components/services/ServiceDetail';
 import { SERVICE_SLUGS, getService } from '@/content/services';
 import { routing } from '@/i18n/routing';
 
-const SITE = 'https://dr-shekari.com';
+const SITE = 'https://dr- shekari.com';
 
-// Pre-render every (locale, slug) pair at build time.
+// Pre- render every (locale, slug) pair at build time.
 export function generateStaticParams() {
   return routing.locales.flatMap((locale) =>
     SERVICE_SLUGS.map((slug) => ({ locale, slug }))
@@ -37,7 +37,7 @@ export async function generateMetadata({ params }) {
       url,
       title,
       description,
-      images: [{ url: '/images/og-premium.jpg', width: 1200, height: 630, alt: title }],
+      images: [{ url: '/images/og- premium.jpg', width: 1200, height: 630, alt: title }],
     },
     twitter: {
       card: 'summary_large_image',
@@ -58,7 +58,7 @@ export default async function Page({ params }) {
   const description = t(`${service.detailBase}_what_desc`);
   const url = `${SITE}/${locale}/services/${slug}`;
 
-  // Schema.org -MedicalCondition embedded inside the page so AI search engines
+  // Schema.org - MedicalCondition embedded inside the page so AI search engines
   // can recognise it as a structured medical resource.
   const schema = {
     '@context': 'https://schema.org',

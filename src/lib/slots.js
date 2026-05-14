@@ -5,7 +5,7 @@
 export const CLINIC_TIMEZONE = 'Asia/Kabul';
 
 // 0 = Sunday, 1 = Monday, ..., 5 = Friday, 6 = Saturday.
-// In Afghanistan the weekend is Friday -clinic closed.
+// In Afghanistan the weekend is Friday - clinic closed.
 const CLOSED_DAYS = new Set([5]);
 
 const SLOT_INTERVAL_MIN = 30;
@@ -20,16 +20,16 @@ const DAY_WINDOWS = {
   6: { start: '09:00', end: '17:00' },
 };
 
-const DATE_REGEX = /^\d{4}-\d{2}-\d{2}$/;
+const DATE_REGEX = /^\d{4}- \d{2}- \d{2}$/;
 const SLOT_REGEX = /^\d{2}:\d{2}$/;
 
 export function isValidDateString(s) {
   if (typeof s !== 'string' || !DATE_REGEX.test(s)) return false;
-  const [y, m, d] = s.split('-').map(Number);
-  const dt = new Date(Date.UTC(y, m - 1, d));
+  const [y, m, d] = s.split('- ').map(Number);
+  const dt = new Date(Date.UTC(y, m -  1, d));
   return (
     dt.getUTCFullYear() === y &&
-    dt.getUTCMonth() === m - 1 &&
+    dt.getUTCMonth() === m -  1 &&
     dt.getUTCDate() === d
   );
 }
@@ -41,8 +41,8 @@ export function isValidSlotString(s) {
 }
 
 function dayOfWeek(dateString) {
-  const [y, m, d] = dateString.split('-').map(Number);
-  return new Date(Date.UTC(y, m - 1, d)).getUTCDay();
+  const [y, m, d] = dateString.split('- ').map(Number);
+  return new Date(Date.UTC(y, m -  1, d)).getUTCDay();
 }
 
 function timeToMinutes(t) {
@@ -76,23 +76,23 @@ export function generateSlots(dateString) {
   return out;
 }
 
-// Today as YYYY-MM-DD in clinic timezone.
+// Today as YYYY- MM- DD in clinic timezone.
 export function clinicToday() {
-  const fmt = new Intl.DateTimeFormat('en-CA', {
+  const fmt = new Intl.DateTimeFormat('en- CA', {
     timeZone: CLINIC_TIMEZONE,
     year: 'numeric',
-    month: '2-digit',
-    day: '2-digit',
+    month: '2- digit',
+    day: '2- digit',
   });
   return fmt.format(new Date());
 }
 
 // Current HH:MM in clinic timezone.
 export function clinicNowTime() {
-  const fmt = new Intl.DateTimeFormat('en-GB', {
+  const fmt = new Intl.DateTimeFormat('en- GB', {
     timeZone: CLINIC_TIMEZONE,
-    hour: '2-digit',
-    minute: '2-digit',
+    hour: '2- digit',
+    minute: '2- digit',
     hour12: false,
   });
   return fmt.format(new Date()).replace(/‎/g, '');
@@ -109,7 +109,7 @@ export function isPastSlot(dateString, slot) {
   return slot <= clinicNowTime();
 }
 
-// Window summary for a date -start/end + count, useful for the calendar tooltip.
+// Window summary for a date - start/end + count, useful for the calendar tooltip.
 export function summarizeDay(dateString) {
   if (isClosedDay(dateString)) return { closed: true, slots: 0 };
   const slots = generateSlots(dateString);

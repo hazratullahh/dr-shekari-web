@@ -15,7 +15,7 @@ import PageTransition from '@/components/pwa/PageTransition';
 import SmoothScroll from '@/components/scroll/SmoothScroll';
 import ScrollProgress from '@/components/scroll/ScrollProgress';
 
-import { NextIntlClientProvider, hasLocale } from 'next-intl';
+import { NextIntlClientProvider, hasLocale } from 'next- intl';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 
@@ -26,20 +26,20 @@ export function generateStaticParams() {
 const inter = Inter({
   subsets: ['latin'],
   display: 'swap',
-  variable: '--font-inter',
+  variable: '- - font- inter',
 });
 
-const SITE = 'https://dr-shekari.com';
+const SITE = 'https://dr- shekari.com';
 
 export const metadata = {
   metadataBase: new URL(SITE),
   title: {
     default:
-      'Dr. Nazir Ahmad Shekari -Urological Surgeon · Endourology & Andrology Specialist',
+      'Dr. Nazir Ahmad Shekari - Urological Surgeon · Endourology & Andrology Specialist',
     template: '%s | Dr. Shekari Urology Clinic',
   },
   description:
-    'Dr. Nazir Ahmad Shekari is a leading urological surgeon in Afghanistan specializing in endourology and andrology. Advanced minimally-invasive treatment for kidney stones, prostate disease, urinary tract conditions, and male infertility.',
+    'Dr. Nazir Ahmad Shekari is a leading urological surgeon in Afghanistan specializing in endourology and andrology. Advanced minimally- invasive treatment for kidney stones, prostate disease, urinary tract conditions, and male infertility.',
   applicationName: 'Dr. Shekari Clinic',
   appleWebApp: {
     capable: true,
@@ -73,9 +73,9 @@ export const metadata = {
     googleBot: {
       index: true,
       follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
+      'max- video- preview': - 1,
+      'max- image- preview': 'large',
+      'max- snippet': - 1,
     },
   },
   openGraph: {
@@ -83,63 +83,63 @@ export const metadata = {
     url: SITE,
     siteName: 'Dr. Shekari Urology Clinic',
     title:
-      'Dr. Nazir Ahmad Shekari -Urological Surgeon · Endourology & Andrology Specialist',
+      'Dr. Nazir Ahmad Shekari - Urological Surgeon · Endourology & Andrology Specialist',
     description:
-      'Leading urological surgeon in Afghanistan. Advanced minimally-invasive care for kidney stones, prostate, andrology, and endourology.',
+      'Leading urological surgeon in Afghanistan. Advanced minimally- invasive care for kidney stones, prostate, andrology, and endourology.',
     images: [
       {
-        url: '/images/og-premium.jpg',
+        url: '/images/og- premium.jpg',
         width: 1200,
         height: 630,
-        alt: 'Dr. Nazir Ahmad Shekari -Urological Surgeon',
+        alt: 'Dr. Nazir Ahmad Shekari - Urological Surgeon',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Dr. Nazir Ahmad Shekari -Urological Surgeon',
+    title: 'Dr. Nazir Ahmad Shekari - Urological Surgeon',
     description:
       'Endourology & Andrology specialist in Afghanistan. Book your consultation.',
-    images: ['/images/og-premium.jpg'],
+    images: ['/images/og- premium.jpg'],
   },
   alternates: {
     canonical: SITE,
     languages: {
-      'en-US': `${SITE}/en`,
-      'fa-AF': `${SITE}/fa`,
-      'ps-AF': `${SITE}/ps`,
+      'en- US': `${SITE}/en`,
+      'fa- AF': `${SITE}/fa`,
+      'ps- AF': `${SITE}/ps`,
     },
   },
   icons: {
     icon: [
       { url: '/favicon.ico' },
-      { url: '/icons/icon-192x192.png', sizes: '192x192', type: 'image/png' },
-      { url: '/icons/icon-512x512.png', sizes: '512x512', type: 'image/png' },
+      { url: '/icons/icon- 192x192.png', sizes: '192x192', type: 'image/png' },
+      { url: '/icons/icon- 512x512.png', sizes: '512x512', type: 'image/png' },
     ],
     apple: [
-      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
-      { url: '/icons/icon-152x152.png', sizes: '152x152', type: 'image/png' },
+      { url: '/apple- touch- icon.png', sizes: '180x180', type: 'image/png' },
+      { url: '/icons/icon- 152x152.png', sizes: '152x152', type: 'image/png' },
     ],
   },
   manifest: '/manifest.json',
   other: {
-    'mobile-web-app-capable': 'yes',
-    'apple-mobile-web-app-capable': 'yes',
-    'apple-mobile-web-app-status-bar-style': 'default',
-    'apple-mobile-web-app-title': 'Dr. Shekari',
-    'msapplication-TileColor': '#E9756D',
-    'msapplication-tap-highlight': 'no',
+    'mobile- web- app- capable': 'yes',
+    'apple- mobile- web- app- capable': 'yes',
+    'apple- mobile- web- app- status- bar- style': 'default',
+    'apple- mobile- web- app- title': 'Dr. Shekari',
+    'msapplication- TileColor': '#E9756D',
+    'msapplication- tap- highlight': 'no',
   },
 };
 
 export const viewport = {
-  width: 'device-width',
+  width: 'device- width',
   initialScale: 1,
   maximumScale: 5,
   viewportFit: 'cover',
   themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#E9756D' },
-    { media: '(prefers-color-scheme: dark)', color: '#D55A52' },
+    { media: '(prefers- color- scheme: light)', color: '#E9756D' },
+    { media: '(prefers- color- scheme: dark)', color: '#D55A52' },
   ],
 };
 
@@ -161,17 +161,17 @@ export default async function RootLayout({ children, params }) {
     potentialAction: {
       '@type': 'SearchAction',
       target: `${SITE}/search?q={search_term_string}`,
-      'query-input': 'required name=search_term_string',
+      'query- input': 'required name=search_term_string',
     },
   };
 
   return (
-    <html lang={locale} dir={isRTL ? 'rtl' : 'ltr'} className={`scroll-smooth ${inter.variable}`}>
-      <body className={`${inter.className} bg-white text-gray-900 antialiased`}>
+    <html lang={locale} dir={isRTL ? 'rtl' : 'ltr'} className={`scroll- smooth ${inter.variable}`}>
+      <body className={`${inter.className} bg- white text- gray- 900 antialiased`}>
         <NextIntlClientProvider locale={locale}>
           <a
             href="#main"
-            className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-100 focus:px-3 focus:py-2 focus:rounded-md focus:bg-[#E9756D] focus:text-white"
+            className="sr- only focus:not- sr- only focus:fixed focus:top- 2 focus:left- 2 focus:z- 100 focus:px- 3 focus:py- 2 focus:rounded- md focus:bg- [#E9756D] focus:text- white"
           >
             Skip to main content
           </a>
@@ -188,8 +188,8 @@ export default async function RootLayout({ children, params }) {
           <OfflineBanner />
 
           <Header />
-          <main id="main" className="min-h-screen pb-20 lg:pb-0">
-            <Suspense fallback={<LoadingFallback type="full-page" />}>
+          <main id="main" className="min- h- screen pb- 20 lg:pb- 0">
+            <Suspense fallback={<LoadingFallback type="full- page" />}>
               <PageTransition>{children}</PageTransition>
             </Suspense>
           </main>

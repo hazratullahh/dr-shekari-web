@@ -1,8 +1,8 @@
 import { NextResponse } from 'next/server';
-import createMiddleware from 'next-intl/middleware';
+import createMiddleware from 'next- intl/middleware';
 import { routing } from './i18n/routing';
 
-// next-intl handles locale-based routing (en / ps / fa).
+// next- intl handles locale- based routing (en / ps / fa).
 const intlProxy = createMiddleware(routing);
 
 const SPELLING_REDIRECTS = {
@@ -11,18 +11,18 @@ const SPELLING_REDIRECTS = {
   '/kidny': '/kidney',
   '/prostat': '/prostate',
   '/doktor': '/doctors',
-  '/dr-nazer': '/doctors/dr-nazir-shekari',
-  '/dr-mansoor': '/doctors/dr-mansour-wayar',
-  '/kabul-urologist': '/location/kabul',
+  '/dr- nazer': '/doctors/dr- nazir- shekari',
+  '/dr- mansoor': '/doctors/dr- mansour- wayar',
+  '/kabul- urologist': '/location/kabul',
 };
 
 const SECURITY_HEADERS = {
-  'X-Content-Type-Options': 'nosniff',
-  'X-Frame-Options': 'SAMEORIGIN',
-  'X-XSS-Protection': '1; mode=block',
-  'Referrer-Policy': 'strict-origin-when-cross-origin',
-  'Permissions-Policy':
-    'camera=(), microphone=(), geolocation=(), interest-cohort=()',
+  'X- Content- Type- Options': 'nosniff',
+  'X- Frame- Options': 'SAMEORIGIN',
+  'X- XSS- Protection': '1; mode=block',
+  'Referrer- Policy': 'strict- origin- when- cross- origin',
+  'Permissions- Policy':
+    'camera=(), microphone=(), geolocation=(), interest- cohort=()',
 };
 
 function applySecurityHeaders(response) {
@@ -43,7 +43,7 @@ export default async function proxy(request) {
 
   if (
     process.env.NODE_ENV === 'production' &&
-    request.headers.get('x-forwarded-proto') === 'http'
+    request.headers.get('x- forwarded- proto') === 'http'
   ) {
     const httpsUrl = new URL(request.url);
     httpsUrl.protocol = 'https:';

@@ -1,5 +1,5 @@
 import { Suspense } from 'react';
-import { getTranslations } from 'next-intl/server';
+import { getTranslations } from 'next- intl/server';
 import ContactHero from '@/components/contact/ContactHero';
 import ContactForm from '@/components/contact/ContactForm';
 import ContactInfo from '@/components/contact/ContactInfo';
@@ -8,7 +8,7 @@ import MapSection from '@/components/contact/MapSection';
 import FAQSection from '@/components/contact/FAQSection';
 import LoadingFallback from '@/components/ui/LoadingFallback';
 
-const SITE = 'https://dr-shekari.com';
+const SITE = 'https://dr- shekari.com';
 const OG_LOCALE = { en: 'en_US', fa: 'fa_AF', ps: 'ps_AF' };
 
 export async function generateMetadata({ params }) {
@@ -34,7 +34,7 @@ export async function generateMetadata({ params }) {
       description,
       images: [
         {
-          url: '/images/contact/clinic-contact.jpg',
+          url: '/images/contact/clinic- contact.jpg',
           width: 1200,
           height: 630,
           alt: 'Dr. Shekari Urology Clinic Contact',
@@ -45,10 +45,10 @@ export async function generateMetadata({ params }) {
     alternates: {
       canonical: url,
       languages: {
-        'en-US': `${SITE}/en/contact`,
-        'fa-AF': `${SITE}/fa/contact`,
-        'ps-AF': `${SITE}/ps/contact`,
-        'x-default': `${SITE}/en/contact`,
+        'en- US': `${SITE}/en/contact`,
+        'fa- AF': `${SITE}/fa/contact`,
+        'ps- AF': `${SITE}/ps/contact`,
+        'x- default': `${SITE}/en/contact`,
       },
     },
     robots: { index: true, follow: true },
@@ -69,14 +69,14 @@ export default async function ContactPage({ params }) {
     description: 'Urology clinic at Jami Hospital in Herat, Afghanistan',
     address: {
       '@type': 'PostalAddress',
-      streetAddress: 'Chahar-e-rahi-Badmorghan, Jami Hospital',
+      streetAddress: 'Chahar- e- rahi- Badmorghan, Jami Hospital',
       addressLocality: 'Herat',
       addressRegion: 'Herat',
       addressCountry: 'AF',
       postalCode: '3001',
     },
     telephone: '+93796040915',
-    email: 'urology@dr-shekari.com',
+    email: 'urology@dr- shekari.com',
     openingHoursSpecification: [
       {
         '@type': 'OpeningHoursSpecification',
@@ -106,7 +106,7 @@ export default async function ContactPage({ params }) {
         hoursAvailable: { '@type': 'OpeningHoursSpecification', opens: '00:00', closes: '23:59' },
       },
     ],
-    employee: { '@id': `${SITE}/#dr-shekari` },
+    employee: { '@id': `${SITE}/#dr- shekari` },
   };
 
   return (
@@ -115,8 +115,8 @@ export default async function ContactPage({ params }) {
         <ContactHero />
       </Suspense>
       <Suspense fallback={<LoadingFallback type="section" />}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-          <div className="grid grid-cols-1 lg:grid-cols-1 gap-1">
+        <div className="max- w- 7xl mx- auto px- 4 sm:px- 6 lg:px- 8 py- 20">
+          <div className="grid grid- cols- 1 lg:grid- cols- 1 gap- 1">
             <ContactForm />
           </div>
         </div>

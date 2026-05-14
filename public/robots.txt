@@ -1,9 +1,9 @@
 # ===============================
-# Robots.txt for dr-shekari.com
+# Robots.txt for dr- shekari.com
 # Optimized for Search Engines & AI Crawlers
 # ===============================
 
-User-agent: *
+User- agent: *
 Allow: /
 
 # Block internal / technical paths
@@ -30,34 +30,34 @@ Allow: /uploads/
 # AI & LLM Crawlers (Explicit Allow)
 # ===============================
 
-User-agent: GPTBot
+User- agent: GPTBot
 Allow: /
 
-User-agent: ChatGPT-User
+User- agent: ChatGPT- User
 Allow: /
 
-User-agent: CCBot
+User- agent: CCBot
 Allow: /
 
-User-agent: PerplexityBot
+User- agent: PerplexityBot
 Allow: /
 
-User-agent: ClaudeBot
+User- agent: ClaudeBot
 Allow: /
 
-User-agent: Anthropic
+User- agent: Anthropic
 Allow: /
 
-User-agent: Google-Extended
+User- agent: Google- Extended
 Allow: /
 
 # ===============================
 # Sitemaps
 # ===============================
 
-Sitemap: https://dr-shekari.com/sitemap-index.xml
-Sitemap: https://dr-shekari.com/sitemap.xml
-Sitemap: https://dr-shekari.com/sitemap-doctors.xml
-Sitemap: https://dr-shekari.com/sitemap-services.xml
-Sitemap: https://dr-shekari.com/sitemap-locations.xml
-Sitemap: https://dr-shekari.com/sitemap-blog.xml
+Sitemap: https://dr- shekari.com/sitemap- index.xml
+Sitemap: https://dr- shekari.com/sitemap.xml
+Sitemap: https://dr- shekari.com/sitemap- doctors.xml
+Sitemap: https://dr- shekari.com/sitemap- services.xml
+Sitemap: https://dr- shekari.com/sitemap- locations.xml
+Sitemap: https://dr- shekari.com/sitemap- blog.xml

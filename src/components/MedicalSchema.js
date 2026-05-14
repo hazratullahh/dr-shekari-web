@@ -1,21 +1,21 @@
 import Script from 'next/script';
 
 export default function MedicalSchema() {
-  const SITE = 'https://dr-shekari.com';
+  const SITE = 'https://dr- shekari.com';
 
   const schemaData = {
     '@context': 'https://schema.org',
     '@graph': [
       {
         '@type': 'Physician',
-        '@id': `${SITE}/#dr-shekari`,
+        '@id': `${SITE}/#dr- shekari`,
         name: 'Dr. Nazir Ahmad Shekari',
         alternateName: ['Dr. Nazir Shekari', 'Dr. Shekari', 'Nazir Ahmad Shekari'],
         honorificPrefix: 'Dr.',
         jobTitle: 'Urological Surgeon · Endourology Specialist · Andrology Specialist',
         description:
           "Dr. Nazir Ahmad Shekari is one of Afghanistan's leading urological surgeons, specializing in endourology and andrology. He provides advanced minimally invasive treatment for kidney stones, prostate disease, urinary tract conditions and male infertility.",
-        image: `${SITE}/images/dr-shekari.jpg`,
+        image: `${SITE}/images/dr- shekari.jpg`,
         url: SITE,
         medicalSpecialty: ['Urology', 'Endourology', 'Andrology'],
         knowsAbout: [
@@ -43,14 +43,14 @@ export default function MedicalSchema() {
         name: 'Dr. Shekari Urology Clinic',
         url: SITE,
         logo: `${SITE}/logo.png`,
-        image: `${SITE}/images/og-premium.jpg`,
+        image: `${SITE}/images/og- premium.jpg`,
         medicalSpecialty: ['Urology', 'Andrology', 'Endourology'],
         priceRange: '$$',
         telephone: '+93796040915',
-        email: 'urology@dr-shekari.com',
+        email: 'urology@dr- shekari.com',
         address: {
           '@type': 'PostalAddress',
-          streetAddress: 'Chahar-e-rahi-Badmorghan, Jami Hospital',
+          streetAddress: 'Chahar- e- rahi- Badmorghan, Jami Hospital',
           addressLocality: 'Herat',
           addressRegion: 'Herat',
           addressCountry: 'AF',
@@ -69,7 +69,7 @@ export default function MedicalSchema() {
             closes: '14:00',
           },
         ],
-        physician: { '@id': `${SITE}/#dr-shekari` },
+        physician: { '@id': `${SITE}/#dr- shekari` },
         contactPoint: {
           '@type': 'ContactPoint',
           telephone: '+93796040915',
@@ -82,7 +82,7 @@ export default function MedicalSchema() {
 
   return (
     <Script
-      id="medical-schema"
+      id="medical- schema"
       type="application/ld+json"
       strategy="afterInteractive"
       dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}

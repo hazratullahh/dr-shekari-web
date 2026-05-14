@@ -1,5 +1,5 @@
 // Generates a premium appointment confirmation card as a PNG using the Canvas
-// API only -zero extra dependencies. Returns a Blob and triggers a download.
+// API only - zero extra dependencies. Returns a Blob and triggers a download.
 
 const W = 1200;
 const H = 1600;
@@ -17,16 +17,16 @@ const COLORS = {
 };
 
 function localeBcp47(locale) {
-  if (locale === 'fa') return 'fa-AF';
-  if (locale === 'ps') return 'ps-AF';
-  return 'en-GB';
+  if (locale === 'fa') return 'fa- AF';
+  if (locale === 'ps') return 'ps- AF';
+  return 'en- GB';
 }
 
 function formatDate(yyyyMmDd, locale = 'en') {
   if (!yyyyMmDd) return '—';
-  const [y, m, d] = yyyyMmDd.split('-').map(Number);
+  const [y, m, d] = yyyyMmDd.split('- ').map(Number);
   try {
-    return new Date(Date.UTC(y, m - 1, d)).toLocaleDateString(localeBcp47(locale), {
+    return new Date(Date.UTC(y, m -  1, d)).toLocaleDateString(localeBcp47(locale), {
       weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC',
     });
   } catch {
@@ -39,7 +39,7 @@ function formatSlot(slot, locale = 'en') {
   const [h, m] = slot.split(':').map(Number);
   try {
     return new Intl.DateTimeFormat(localeBcp47(locale), {
-      hour: '2-digit', minute: '2-digit', hour12: locale === 'en',
+      hour: '2- digit', minute: '2- digit', hour12: locale === 'en',
     }).format(new Date(2000, 0, 1, h, m));
   } catch {
     return slot;
@@ -57,7 +57,7 @@ function roundRect(ctx, x, y, w, h, r) {
 }
 
 function fontStack(weight = 400) {
-  return `${weight} ${weight}px "system-ui", "Segoe UI", "Roboto", "Inter", "Helvetica Neue", Arial, sans-serif`;
+  return `${weight} ${weight}px "system- ui", "Segoe UI", "Roboto", "Inter", "Helvetica Neue", Arial, sans- serif`;
 }
 
 // Build the card inline so we can tune everything precisely.
@@ -82,8 +82,8 @@ function drawCard(ctx, data, labels) {
   // 2. White ticket card
   const cardX = PADDING;
   const cardY = PADDING;
-  const cardW = W - PADDING * 2;
-  const cardH = H - PADDING * 2;
+  const cardW = W -  PADDING * 2;
+  const cardH = H -  PADDING * 2;
 
   ctx.save();
   ctx.shadowColor = 'rgba(0,0,0,0.14)';
@@ -94,7 +94,7 @@ function drawCard(ctx, data, labels) {
   ctx.fill();
   ctx.restore();
 
-  // 3. Header strip -gradient ribbon at top of card
+  // 3. Header strip - gradient ribbon at top of card
   ctx.save();
   roundRect(ctx, cardX, cardY, cardW, 220, 36);
   ctx.clip();
@@ -116,7 +116,7 @@ function drawCard(ctx, data, labels) {
   ctx.fillStyle = '#FFFFFF';
   ctx.fill();
   ctx.fillStyle = COLORS.accent;
-  ctx.font = 'bold 28px system-ui, "Segoe UI", sans-serif';
+  ctx.font = 'bold 28px system- ui, "Segoe UI", sans- serif';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
   ctx.fillText('DS', cardX + 90, cardY + 112);
@@ -126,23 +126,23 @@ function drawCard(ctx, data, labels) {
   ctx.fillStyle = '#FFFFFF';
   ctx.textAlign = 'left';
   ctx.textBaseline = 'alphabetic';
-  ctx.font = 'bold 28px system-ui, "Segoe UI", sans-serif';
+  ctx.font = 'bold 28px system- ui, "Segoe UI", sans- serif';
   ctx.fillText(labels.clinic, cardX + 162, cardY + 96);
-  ctx.font = '500 18px system-ui, "Segoe UI", sans-serif';
+  ctx.font = '500 18px system- ui, "Segoe UI", sans- serif';
   ctx.fillStyle = 'rgba(255,255,255,0.92)';
   ctx.fillText(labels.specialty, cardX + 162, cardY + 130);
 
   // Booking ID at top right
   if (data.id) {
-    const idLabel = `${labels.id_label} #${String(data.id).slice(-8).toUpperCase()}`;
-    ctx.font = '600 16px system-ui, "Segoe UI", sans-serif';
+    const idLabel = `${labels.id_label} #${String(data.id).slice(- 8).toUpperCase()}`;
+    ctx.font = '600 16px system- ui, "Segoe UI", sans- serif';
     ctx.textAlign = 'right';
     ctx.fillStyle = 'rgba(255,255,255,0.95)';
     const idMetrics = ctx.measureText(idLabel);
     const padX = 18, padY = 10;
     const boxW = idMetrics.width + padX * 2;
     const boxH = 36;
-    const boxX = cardX + cardW - 40 - boxW;
+    const boxX = cardX + cardW -  40 -  boxW;
     const boxY = cardY + 80;
     ctx.save();
     ctx.fillStyle = 'rgba(255,255,255,0.18)';
@@ -150,7 +150,7 @@ function drawCard(ctx, data, labels) {
     ctx.fill();
     ctx.fillStyle = '#FFFFFF';
     ctx.textBaseline = 'middle';
-    ctx.fillText(idLabel, boxX + boxW - padX, boxY + boxH / 2 + 1);
+    ctx.fillText(idLabel, boxX + boxW -  padX, boxY + boxH / 2 + 1);
     ctx.restore();
   }
 
@@ -158,18 +158,18 @@ function drawCard(ctx, data, labels) {
   let cursorY = cardY + 320;
   ctx.fillStyle = COLORS.accent;
   ctx.textAlign = 'left';
-  ctx.font = 'bold 14px system-ui, "Segoe UI", sans-serif';
+  ctx.font = 'bold 14px system- ui, "Segoe UI", sans- serif';
   ctx.fillText(labels.confirmation_eyebrow.toUpperCase(), cardX + 60, cursorY);
   cursorY += 22;
   ctx.fillStyle = COLORS.text;
-  ctx.font = 'bold 60px system-ui, "Segoe UI", sans-serif';
+  ctx.font = 'bold 60px system- ui, "Segoe UI", sans- serif';
   ctx.fillText(labels.title, cardX + 60, cursorY + 50);
   cursorY += 80;
 
-  // 5. Highlighted appointment block -gradient pill
+  // 5. Highlighted appointment block - gradient pill
   const blockX = cardX + 60;
   const blockY = cursorY + 30;
-  const blockW = cardW - 120;
+  const blockW = cardW -  120;
   const blockH = 220;
 
   ctx.save();
@@ -182,44 +182,44 @@ function drawCard(ctx, data, labels) {
   ctx.restore();
 
   ctx.fillStyle = 'rgba(255,255,255,0.85)';
-  ctx.font = '600 14px system-ui, "Segoe UI", sans-serif';
+  ctx.font = '600 14px system- ui, "Segoe UI", sans- serif';
   ctx.fillText(labels.date_label.toUpperCase(), blockX + 36, blockY + 50);
   ctx.fillText(labels.time_label.toUpperCase(), blockX + blockW / 2 + 36, blockY + 50);
 
   ctx.fillStyle = '#FFFFFF';
-  ctx.font = 'bold 32px system-ui, "Segoe UI", sans-serif';
+  ctx.font = 'bold 32px system- ui, "Segoe UI", sans- serif';
   // Clip date to fit
   const dateText = data.dateLabel;
-  const dateMaxWidth = blockW / 2 - 60;
+  const dateMaxWidth = blockW / 2 -  60;
   let trimmedDate = dateText;
   while (ctx.measureText(trimmedDate).width > dateMaxWidth && trimmedDate.length > 4) {
-    trimmedDate = trimmedDate.slice(0, -1);
+    trimmedDate = trimmedDate.slice(0, - 1);
   }
-  if (trimmedDate !== dateText) trimmedDate = trimmedDate.slice(0, -1) + '…';
+  if (trimmedDate !== dateText) trimmedDate = trimmedDate.slice(0, - 1) + '…';
   ctx.fillText(trimmedDate, blockX + 36, blockY + 110);
-  ctx.font = 'bold 44px system-ui, "Segoe UI", sans-serif';
+  ctx.font = 'bold 44px system- ui, "Segoe UI", sans- serif';
   ctx.fillText(data.slotLabel, blockX + blockW / 2 + 36, blockY + 116);
 
-  ctx.font = '500 18px system-ui, "Segoe UI", sans-serif';
+  ctx.font = '500 18px system- ui, "Segoe UI", sans- serif';
   ctx.fillStyle = 'rgba(255,255,255,0.85)';
-  ctx.fillText(labels.with_doctor, blockX + 36, blockY + blockH - 36);
+  ctx.fillText(labels.with_doctor, blockX + 36, blockY + blockH -  36);
 
   cursorY = blockY + blockH + 60;
 
   // 6. Patient details rows
   const drawRow = (label, value, y) => {
     ctx.fillStyle = COLORS.muted;
-    ctx.font = '600 14px system-ui, "Segoe UI", sans-serif';
+    ctx.font = '600 14px system- ui, "Segoe UI", sans- serif';
     ctx.fillText(label.toUpperCase(), cardX + 60, y);
     ctx.fillStyle = COLORS.text;
-    ctx.font = '600 22px system-ui, "Segoe UI", sans-serif';
+    ctx.font = '600 22px system- ui, "Segoe UI", sans- serif';
     ctx.fillText(value || '—', cardX + 60, y + 30);
     // hairline
     ctx.strokeStyle = COLORS.hairline;
     ctx.lineWidth = 1;
     ctx.beginPath();
     ctx.moveTo(cardX + 60, y + 60);
-    ctx.lineTo(cardX + cardW - 60, y + 60);
+    ctx.lineTo(cardX + cardW -  60, y + 60);
     ctx.stroke();
   };
 
@@ -231,27 +231,27 @@ function drawCard(ctx, data, labels) {
   cursorY += 110;
 
   // 7. Footer block
-  const footerY = cardY + cardH - 200;
+  const footerY = cardY + cardH -  200;
   ctx.fillStyle = COLORS.soft;
-  roundRect(ctx, cardX + 40, footerY, cardW - 80, 160, 20);
+  roundRect(ctx, cardX + 40, footerY, cardW -  80, 160, 20);
   ctx.fill();
 
   ctx.fillStyle = COLORS.accent;
-  ctx.font = '600 14px system-ui, "Segoe UI", sans-serif';
+  ctx.font = '600 14px system- ui, "Segoe UI", sans- serif';
   ctx.fillText(labels.location_label.toUpperCase(), cardX + 80, footerY + 40);
   ctx.fillStyle = COLORS.text;
-  ctx.font = '600 20px system-ui, "Segoe UI", sans-serif';
+  ctx.font = '600 20px system- ui, "Segoe UI", sans- serif';
   ctx.fillText(labels.address, cardX + 80, footerY + 70);
-  ctx.font = '500 18px system-ui, "Segoe UI", sans-serif';
+  ctx.font = '500 18px system- ui, "Segoe UI", sans- serif';
   ctx.fillStyle = COLORS.muted;
   ctx.fillText(`${labels.phone_label}: +93 79 604 0915`, cardX + 80, footerY + 105);
-  ctx.fillText(`${labels.email_label}: urology@dr-shekari.com`, cardX + 80, footerY + 130);
+  ctx.fillText(`${labels.email_label}: urology@dr- shekari.com`, cardX + 80, footerY + 130);
 
   // Tiny footer note bottom
   ctx.fillStyle = COLORS.muted;
-  ctx.font = '500 14px system-ui, "Segoe UI", sans-serif';
+  ctx.font = '500 14px system- ui, "Segoe UI", sans- serif';
   ctx.textAlign = 'center';
-  ctx.fillText(labels.footer_note, W / 2, cardY + cardH - 20);
+  ctx.fillText(labels.footer_note, W / 2, cardY + cardH -  20);
 }
 
 const DEFAULT_LABELS = {
@@ -267,7 +267,7 @@ const DEFAULT_LABELS = {
     phone_label: 'Phone',
     email_label: 'Email',
     location_label: 'Location',
-    address: 'Jami Hospital, Chahar-e-rahi-Badmorghan, Herat, Afghanistan',
+    address: 'Jami Hospital, Chahar- e- rahi- Badmorghan, Herat, Afghanistan',
     id_label: 'Booking',
     footer_note: 'Please arrive 15 minutes early. For emergencies call +93 79 604 0915 (24/7).',
   },
@@ -325,7 +325,7 @@ export async function downloadAppointmentCard(appointment, locale = 'en') {
     id: appointment.id,
   }, labels);
 
-  const filename = `appointment-${appointment.date || 'card'}-${(appointment.slot || '').replace(':', '')}.png`;
+  const filename = `appointment- ${appointment.date || 'card'}- ${(appointment.slot || '').replace(':', '')}.png`;
 
   return new Promise((resolve) => {
     canvas.toBlob((blob) => {

@@ -1,6 +1,6 @@
 import Script from 'next/script';
 
-const SITE = 'https://dr-shekari.com';
+const SITE = 'https://dr- shekari.com';
 
 const FAQ_ENTRIES = [
   {
@@ -9,15 +9,15 @@ const FAQ_ENTRIES = [
   },
   {
     q: "What are Dr. Shekari's specializations?",
-    a: 'Dr. Shekari specializes in three areas: Urological Surgery, Endourology (minimally-invasive surgery inside the urinary tract), and Andrology (men\'s reproductive and sexual health).',
+    a: 'Dr. Shekari specializes in three areas: Urological Surgery, Endourology (minimally- invasive surgery inside the urinary tract), and Andrology (men\'s reproductive and sexual health).',
   },
   {
     q: 'Where can I book an appointment with Dr. Shekari?',
-    a: 'You can book an appointment online at https://dr-shekari.com/appointment, by calling +93 79 604 0915, or by visiting the Urology Department at Jami Hospital in Herat, Afghanistan during clinic hours.',
+    a: 'You can book an appointment online at https://dr- shekari.com/appointment, by calling +93 79 604 0915, or by visiting the Urology Department at Jami Hospital in Herat, Afghanistan during clinic hours.',
   },
   {
     q: 'What conditions does Dr. Shekari treat?',
-    a: 'Dr. Shekari treats kidney and ureteric stones (PCNL, RIRS, lithotripsy), prostate disorders, urinary tract infections, male infertility, sexual dysfunction, and provides advanced endourological surgical procedures including laser stone treatment and minimally-invasive prostate surgery.',
+    a: 'Dr. Shekari treats kidney and ureteric stones (PCNL, RIRS, lithotripsy), prostate disorders, urinary tract infections, male infertility, sexual dysfunction, and provides advanced endourological surgical procedures including laser stone treatment and minimally- invasive prostate surgery.',
   },
   {
     q: 'Does Dr. Shekari offer 24/7 emergency urology care?',
@@ -33,21 +33,21 @@ export default function HomeStructuredData() {
   const physician = {
     '@context': 'https://schema.org',
     '@type': 'Physician',
-    '@id': `${SITE}/#dr-shekari`,
+    '@id': `${SITE}/#dr- shekari`,
     name: 'Dr. Nazir Ahmad Shekari',
     alternateName: ['Nazir Ahmad Shekari', 'Dr. Shekari', 'دکتر نذیر احمد شکاری', 'ډاکټر نذیر احمد شکاري'],
     jobTitle: 'Chief, Urology Department of Jami Hospital · Endourology & Andrology Specialist',
     description:
       'Dr. Nazir Ahmad Shekari is the Chief of the Urology Department at Jami Hospital in Herat, Afghanistan. MD Urologist with Fellowship in Endourology (Kazakhstan), former Chief of Stone Diseases, Endourology and Lithotripsy at the Scientific Center of Urology (Almaty), and a member of the European Association of Urology (EAU).',
-    image: `${SITE}/images/dr-shekari.jpg`,
+    image: `${SITE}/images/dr- shekari.jpg`,
     url: SITE,
     telephone: '+93796040915',
-    email: 'urology@dr-shekari.com',
+    email: 'urology@dr- shekari.com',
     nationality: 'Afghanistan',
     medicalSpecialty: ['Urology', 'Endourology', 'Andrology'],
     address: {
       '@type': 'PostalAddress',
-      streetAddress: 'Chahar-e-rahi-Badmorghan, Jami Hospital',
+      streetAddress: 'Chahar- e- rahi- Badmorghan, Jami Hospital',
       addressLocality: 'Herat',
       addressRegion: 'Herat',
       addressCountry: 'AF',
@@ -94,13 +94,13 @@ export default function HomeStructuredData() {
   return (
     <>
       <Script
-        id="home-physician-schema"
+        id="home- physician- schema"
         type="application/ld+json"
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(physician) }}
       />
       <Script
-        id="home-faq-schema"
+        id="home- faq- schema"
         type="application/ld+json"
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faq) }}

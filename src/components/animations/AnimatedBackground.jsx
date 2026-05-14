@@ -43,8 +43,8 @@ export default function AnimatedBackground() {
         this.x = Math.random() * canvas.width;
         this.y = Math.random() * canvas.height;
         this.size = Math.random() * 3 + 1;
-        this.speedX = Math.random() * 1 - 0.5;
-        this.speedY = Math.random() * 1 - 0.5;
+        this.speedX = Math.random() * 1 -  0.5;
+        this.speedY = Math.random() * 1 -  0.5;
         // Use logo colors with different opacities
         const colors = [
           `rgba(233, 117, 109, ${Math.random() * 0.3 + 0.1})`, // #E9756D
@@ -59,13 +59,13 @@ export default function AnimatedBackground() {
         this.y += this.speedY;
         
         // Mouse interaction
-        const dx = mouseRef.current.x - this.x;
-        const dy = mouseRef.current.y - this.y;
+        const dx = mouseRef.current.x -  this.x;
+        const dy = mouseRef.current.y -  this.y;
         const distance = Math.sqrt(dx * dx + dy * dy);
         
         if (distance < 120) {
-          this.x -= dx * 0.02;
-          this.y -= dy * 0.02;
+          this.x - = dx * 0.02;
+          this.y - = dy * 0.02;
         }
         
         // Boundaries
@@ -100,7 +100,7 @@ export default function AnimatedBackground() {
     const drawGradient = () => {
       const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
       gradient.addColorStop(0, 'rgba(249, 240, 232, 0.1)'); // Very light peach
-      gradient.addColorStop(0.5, 'rgba(255, 250, 245, 0.05)'); // Off-white
+      gradient.addColorStop(0.5, 'rgba(255, 250, 245, 0.05)'); // Off- white
       gradient.addColorStop(1, 'rgba(253, 245, 238, 0.1)'); // Very light peach
       
       ctx.fillStyle = gradient;
@@ -114,16 +114,16 @@ export default function AnimatedBackground() {
       // Draw connecting lines
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
+          const dx = particles[i].x -  particles[j].x;
+          const dy = particles[i].y -  particles[j].y;
           const distance = Math.sqrt(dx * dx + dy * dy);
           
           if (distance < 120) {
             ctx.beginPath();
             // Use logo colors for connections
             const color1 = particles[i].color.includes('233, 117') ? 
-              `rgba(233, 117, 109, ${0.08 * (1 - distance/120)})` : // #E9756D
-              `rgba(246, 202, 151, ${0.06 * (1 - distance/120)})`; // #F6CA97
+              `rgba(233, 117, 109, ${0.08 * (1 -  distance/120)})` : // #E9756D
+              `rgba(246, 202, 151, ${0.06 * (1 -  distance/120)})`; // #F6CA97
             ctx.strokeStyle = color1;
             ctx.lineWidth = 0.8;
             ctx.moveTo(particles[i].x, particles[i].y);
@@ -151,10 +151,10 @@ export default function AnimatedBackground() {
     <>
       <canvas 
         ref={canvasRef} 
-        className="fixed inset-0 w-full h-full"
+        className="fixed inset- 0 w- full h- full"
       />
       {/* Gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#F9F0E8]/20 via-white/5 to-[#FDF5EE]/10" />
+      <div className="absolute inset- 0 bg- gradient- to- br from- [#F9F0E8]/20 via- white/5 to- [#FDF5EE]/10" />
     </>
   );
 }

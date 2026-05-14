@@ -2,7 +2,7 @@ import nodemailer from 'nodemailer';
 
 // Two transports: primary uses the configured port (default 465 SSL),
 // fallback uses 587 with STARTTLS. Some hosting networks block 465 outbound
-// or have intermittent TLS issues -falling back to 587 typically clears it.
+// or have intermittent TLS issues - falling back to 587 typically clears it.
 const cache = { primary: null, fallback: null };
 
 function readSmtpEnv() {
@@ -22,16 +22,16 @@ function buildTransport({ host, user, pass, port, secure, label }) {
     port,
     secure,
     auth: { user, pass },
-    // No pool -for low-volume forms, pooling causes ECONNRESET when the
-    // remote closes idle sockets between sends. Open-and-close per send.
+    // No pool - for low- volume forms, pooling causes ECONNRESET when the
+    // remote closes idle sockets between sends. Open- and- close per send.
     pool: false,
     connectionTimeout: 8_000,   // TCP connect timeout
     greetingTimeout: 8_000,     // wait for SMTP greeting
     socketTimeout: 12_000,      // overall socket idle timeout
     requireTLS: !secure,        // require STARTTLS for 587
-    name: 'dr-shekari.com',
+    name: 'dr- shekari.com',
     tls: {
-      // Helps with a few hosts that have intermediate-cert issues.
+      // Helps with a few hosts that have intermediate- cert issues.
       // Set to true to require strict cert validation if you prefer.
       rejectUnauthorized: false,
     },
@@ -61,7 +61,7 @@ function getFallbackTransporter() {
   return cache.fallback;
 }
 
-// Backward-compat export.
+// Backward- compat export.
 export function getTransporter() {
   return getPrimaryTransporter();
 }
@@ -88,44 +88,44 @@ function shellEmail({ title, intro, rows, footer }) {
     .map(
       ([label, value]) => `
     <tr>
-      <td style="padding:10px 14px;background:#F9FAFB;border-bottom:1px solid #E5E7EB;font-size:13px;color:${BRAND.muted};font-weight:600;width:160px;vertical-align:top;">${escapeHtml(label)}</td>
-      <td style="padding:10px 14px;border-bottom:1px solid #E5E7EB;font-size:14px;color:${BRAND.text};vertical-align:top;">${value || '<em style="color:#9CA3AF;">—</em>'}</td>
+      <td style="padding:10px 14px;background:#F9FAFB;border- bottom:1px solid #E5E7EB;font- size:13px;color:${BRAND.muted};font- weight:600;width:160px;vertical- align:top;">${escapeHtml(label)}</td>
+      <td style="padding:10px 14px;border- bottom:1px solid #E5E7EB;font- size:14px;color:${BRAND.text};vertical- align:top;">${value || '<em style="color:#9CA3AF;">—</em>'}</td>
     </tr>`
     )
     .join('');
 
   return `<!doctype html>
-<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
-<body style="margin:0;padding:0;background:${BRAND.bg};font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
-  <div style="max-width:600px;margin:0 auto;background:#fff;">
-    <div style="background:linear-gradient(135deg,${BRAND.primary} 0%,${BRAND.accent} 100%);padding:28px 24px;color:#fff;">
-      <div style="font-size:14px;letter-spacing:1px;text-transform:uppercase;opacity:.9;">Dr. Shekari Urology Clinic</div>
-      <div style="font-size:22px;font-weight:700;margin-top:4px;">${escapeHtml(title)}</div>
+<html><head><meta charset="utf- 8"><meta name="viewport" content="width=device- width,initial- scale=1"></head>
+<body style="margin:0;padding:0;background:${BRAND.bg};font- family:- apple- system,BlinkMacSystemFont,'Segoe UI',Roboto,sans- serif;">
+  <div style="max- width:600px;margin:0 auto;background:#fff;">
+    <div style="background:linear- gradient(135deg,${BRAND.primary} 0%,${BRAND.accent} 100%);padding:28px 24px;color:#fff;">
+      <div style="font- size:14px;letter- spacing:1px;text- transform:uppercase;opacity:.9;">Dr. Shekari Urology Clinic</div>
+      <div style="font- size:22px;font- weight:700;margin- top:4px;">${escapeHtml(title)}</div>
     </div>
     <div style="padding:24px;">
-      <p style="font-size:15px;color:${BRAND.text};line-height:1.6;margin:0 0 18px;">${intro}</p>
-      <table style="width:100%;border-collapse:collapse;border:1px solid #E5E7EB;border-radius:8px;overflow:hidden;">${rowsHtml}</table>
-      ${footer ? `<p style="font-size:13px;color:${BRAND.muted};margin:18px 0 0;line-height:1.6;">${footer}</p>` : ''}
+      <p style="font- size:15px;color:${BRAND.text};line- height:1.6;margin:0 0 18px;">${intro}</p>
+      <table style="width:100%;border- collapse:collapse;border:1px solid #E5E7EB;border- radius:8px;overflow:hidden;">${rowsHtml}</table>
+      ${footer ? `<p style="font- size:13px;color:${BRAND.muted};margin:18px 0 0;line- height:1.6;">${footer}</p>` : ''}
     </div>
-    <div style="padding:18px 24px;background:#F3F4F6;color:${BRAND.muted};font-size:12px;text-align:center;">
+    <div style="padding:18px 24px;background:#F3F4F6;color:${BRAND.muted};font- size:12px;text- align:center;">
       Dr. Nazir Ahmad Shekari · Urological Surgeon · Jami Hospital, Herat, Afghanistan<br>
-      <a href="https://dr-shekari.com" style="color:${BRAND.primary};text-decoration:none;">dr-shekari.com</a> · <a href="tel:+93796040915" style="color:${BRAND.primary};text-decoration:none;">+93 79 604 0915</a>
+      <a href="https://dr- shekari.com" style="color:${BRAND.primary};text- decoration:none;">dr- shekari.com</a> · <a href="tel:+93796040915" style="color:${BRAND.primary};text- decoration:none;">+93 79 604 0915</a>
     </div>
   </div>
 </body></html>`;
 }
 
 function localeBcp47(locale) {
-  if (locale === 'fa') return 'fa-AF';
-  if (locale === 'ps') return 'ps-AF';
-  return 'en-GB';
+  if (locale === 'fa') return 'fa- AF';
+  if (locale === 'ps') return 'ps- AF';
+  return 'en- GB';
 }
 
 function formatDate(yyyyMmDd, locale = 'en') {
   if (!yyyyMmDd) return '—';
-  const [y, m, d] = yyyyMmDd.split('-').map(Number);
+  const [y, m, d] = yyyyMmDd.split('- ').map(Number);
   try {
-    return new Date(Date.UTC(y, m - 1, d)).toLocaleDateString(localeBcp47(locale), {
+    return new Date(Date.UTC(y, m -  1, d)).toLocaleDateString(localeBcp47(locale), {
       weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC',
     });
   } catch {
@@ -142,7 +142,7 @@ const STRINGS = {
     appt_admin_footer: 'Please contact the patient within 2 business hours to confirm the appointment.',
     appt_user_footer: 'For urgent matters, please call our 24/7 line at +93 79 604 0915.',
     contact_admin_title: 'New Contact Form Submission',
-    contact_admin_intro: 'A new message has been submitted via the contact form on dr-shekari.com.',
+    contact_admin_intro: 'A new message has been submitted via the contact form on dr- shekari.com.',
     contact_user_title: 'Thank you for contacting us',
     contact_user_intro: (name) => `Dear ${name},<br><br>We have received your message and will respond within 2 business hours during clinic hours.`,
     contact_user_footer: 'For emergencies, please call +93 79 604 0915 (available 24/7).',
@@ -165,7 +165,7 @@ const STRINGS = {
     appt_admin_footer: 'لطفاً در عرض ۲ ساعت کاری برای تأیید وقت ملاقات با بیمار تماس بگیرید.',
     appt_user_footer: 'برای موارد فوری، با خط ۲۴/۷ ما به شماره +۹۳ ۷۹ ۶۰۴ ۰۹۱۵ تماس بگیرید.',
     contact_admin_title: 'پیام جدید از فرم تماس',
-    contact_admin_intro: 'یک پیام جدید از طریق فرم تماس در dr-shekari.com ارسال شده است.',
+    contact_admin_intro: 'یک پیام جدید از طریق فرم تماس در dr- shekari.com ارسال شده است.',
     contact_user_title: 'از تماس شما متشکریم',
     contact_user_intro: (name) => `${name} عزیز،<br><br>پیام شما را دریافت کردیم و در ساعات کاری در عرض ۲ ساعت پاسخ خواهیم داد.`,
     contact_user_footer: 'در مواقع اورژانسی، با +۹۳ ۷۹ ۶۰۴ ۰۹۱۵ تماس بگیرید (۲۴/۷).',
@@ -188,7 +188,7 @@ const STRINGS = {
     appt_admin_footer: 'مهرباني وکړئ په ۲ کاري ساعتونو کې د ناروغ سره د تایید لپاره اړیکه ونیسئ.',
     appt_user_footer: 'د بیړنیو پېښو لپاره، زموږ د ۲۴/۷ کرښې +۹۳ ۷۹ ۶۰۴ ۰۹۱۵ ته زنګ ووهئ.',
     contact_admin_title: 'د اړیکې فورمې نوی پیغام',
-    contact_admin_intro: 'د dr-shekari.com په اړیکې فورمې له لارې یو نوی پیغام راغلی دی.',
+    contact_admin_intro: 'د dr- shekari.com په اړیکې فورمې له لارې یو نوی پیغام راغلی دی.',
     contact_user_title: 'ستاسو د اړیکې لپاره مننه',
     contact_user_intro: (name) => `ګرانه ${name}،<br><br>ستاسو پیغام مو ترلاسه کړ او د کلینیک د کاري ساعتونو په ۲ ساعتونو کې به ځواب درکړو.`,
     contact_user_footer: 'د بیړنیو پېښو لپاره، +۹۳ ۷۹ ۶۰۴ ۰۹۱۵ ته زنګ ووهئ (۲۴/۷ شتون لري).',
@@ -266,7 +266,7 @@ export function contactConfirmationEmail(data, locale = 'en') {
 }
 
 // Errors that mean "try the fallback transport". Anything else (e.g. auth
-// failures, recipient rejected) is surfaced as-is.
+// failures, recipient rejected) is surfaced as- is.
 const TRANSIENT_CODES = new Set([
   'ECONNRESET',
   'ETIMEDOUT',
@@ -300,7 +300,7 @@ export async function sendMail({ to, subject, html, replyTo }) {
     try {
       return await getFallbackTransporter().sendMail(payload);
     } catch (err2) {
-      // Reset cached transporters so the next request rebuilds them -sockets
+      // Reset cached transporters so the next request rebuilds them - sockets
       // may be in a bad state.
       cache.primary = null;
       cache.fallback = null;
