@@ -6,6 +6,7 @@ import { sendMail, contactNotificationEmail } from '@/lib/email';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
+export const maxDuration = 30;
 
 const RATE_LIMIT_WINDOW_MS = 60_000;
 const RATE_LIMIT_MAX = 5;
@@ -78,9 +79,11 @@ export async function POST(req) {
       ip,
     });
 
-    // Fire-and-forget email — runs in the background, never blocks the user
-    // response. Status is updated on the doc when it resolves.
-    void sendContactEmailAsync(doc, data, locale);
+    // Must await — on serverless (Vercel/Netlify), the function is suspended
+    // as soon as the response flushes, killing any in-flight SMTP handshake.
+    // Catch internally so a delivery failure still returns ok:true: the
+    // message is already persisted in MongoDB and visible to staff.
+    await sendContactEmailAsync(doc, data, locale);
 
     return NextResponse.json({ ok: true, id: String(doc._id) }, { status: 200 });
   } catch (err) {

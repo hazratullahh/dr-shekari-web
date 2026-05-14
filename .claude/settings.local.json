@@ -23,7 +23,13 @@
       "Bash(npx --no-install eslint src/lib/models/Gallery.js src/app/api/gallery/route.js src/components/home/GallerySection.jsx src/app/\\\\[locale\\\\]/page.js next.config.mjs)",
       "Bash(npx --no-install eslint src/components/home/GallerySection.jsx)",
       "Bash(npx --no-install eslint src/components/home/GallerySection.jsx src/lib/models/Gallery.js src/app/api/gallery/route.js src/app/\\\\[locale\\\\]/page.js next.config.mjs)",
-      "Bash(npx --no-install eslint next.config.mjs src/components/home/GallerySection.jsx)"
+      "Bash(npx --no-install eslint next.config.mjs src/components/home/GallerySection.jsx)",
+      "Bash(rm -r \"e:/dr-shekari-web/src/app/[locale]/offline\")",
+      "Bash(git rm *)",
+      "Bash(git add *)"
+    ],
+    "additionalDirectories": [
+      "e:\\dr-shekari-web\\src\\app\\[locale]\\offline"
     ]
   }
 }
