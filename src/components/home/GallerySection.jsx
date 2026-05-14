@@ -65,14 +65,14 @@ function useGallery() {
  * Responsive radius — bigger orbit on larger screens
  * ---------------------------------------------------------------- */
 function useOrbitRadius() {
-  const [radius, setRadius] = useState(180);
+  const [radius, setRadius] = useState(220);
   useEffect(() => {
     const compute = () => {
       const w = window.innerWidth;
-      if (w < 480) setRadius(110);
-      else if (w < 768) setRadius(150);
-      else if (w < 1024) setRadius(190);
-      else setRadius(230);
+      if (w < 480) setRadius(120);
+      else if (w < 768) setRadius(170);
+      else if (w < 1024) setRadius(210);
+      else setRadius(250);
     };
     compute();
     window.addEventListener('resize', compute);
@@ -99,7 +99,7 @@ function OrbitCard({
 
   const angleRad = (rotatingAngle || 0) * (Math.PI / 180);
   const x = Math.cos(angleRad) * radius;
-  const y = Math.sin(angleRad) * radius;
+  const y = Math.sin(angleRad) * radius * 1.1;
 
   return (
     <button
@@ -175,7 +175,12 @@ function OrbitCard({
  * ---------------------------------------------------------------- */
 function LightboxStage({ item, t }) {
   const [zoomed, setZoomed] = useState(false);
-  const [imgLoaded, setImgLoaded] = useState(false);
+  const [hiResLoaded, setHiResLoaded] = useState(false);
+
+  // Same low-res URL used by the orbit card — browser already has it cached,
+  // so it renders instantly while the high-res downloads in the background.
+  const previewSrc = cld(item.url, { w: 600 });
+  const hiResSrc = cld(item.url, { w: zoomed ? 2200 : 1400 });
 
   useEffect(() => {
     const onKey = (e) => {
@@ -196,11 +201,6 @@ function LightboxStage({ item, t }) {
       transition={{ duration: 0.25 }}
       className="relative w-full h-full max-w-7xl flex items-center justify-center"
     >
-      {!imgLoaded && (
-        <div className="absolute inset-0 flex items-center justify-center">
-          <Loader2 size={36} className="text-[#F6CA97] animate-spin" />
-        </div>
-      )}
       <button
         type="button"
         onClick={(e) => {
@@ -213,18 +213,42 @@ function LightboxStage({ item, t }) {
         ].join(' ')}
         aria-label={t('lightbox_zoom')}
       >
+        {/* Instant preview — already cached from the orbit thumbnail */}
         <Image
-          src={cld(item.url, { w: zoomed ? 2400 : 1600 })}
+          src={previewSrc}
+          alt=""
+          aria-hidden="true"
+          width={item.width || 1600}
+          height={item.height || 1200}
+          sizes="100vw"
+          className={[
+            'absolute object-contain transition-opacity duration-300',
+            zoomed ? 'scale-150 sm:scale-[1.75]' : 'max-h-[80vh] w-auto h-auto',
+            hiResLoaded ? 'opacity-0' : 'opacity-100',
+          ].join(' ')}
+          priority
+        />
+
+        {/* Subtle spinner overlay while the high-res streams in */}
+        {!hiResLoaded && (
+          <Loader2
+            size={28}
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white/80 animate-spin pointer-events-none"
+          />
+        )}
+
+        <Image
+          src={hiResSrc}
           alt={item.title || 'Gallery image'}
           width={item.width || 1600}
           height={item.height || 1200}
           sizes="100vw"
           className={[
-            'object-contain transition-transform duration-500',
-            imgLoaded ? 'opacity-100' : 'opacity-0',
+            'object-contain transition-opacity duration-300',
+            hiResLoaded ? 'opacity-100' : 'opacity-0',
             zoomed ? 'scale-150 sm:scale-[1.75]' : 'max-h-[80vh] w-auto h-auto',
           ].join(' ')}
-          onLoad={() => setImgLoaded(true)}
+          onLoad={() => setHiResLoaded(true)}
           priority
         />
       </button>
@@ -250,6 +274,18 @@ function Lightbox({ items, openIndex, onClose, onNavigate, t }) {
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
   }, [isOpen, onClose, onNavigate]);
+
+  // Preload the next/previous high-res images so arrow/swipe nav is instant
+  useEffect(() => {
+    if (!isOpen || total < 2) return;
+    const neighbours = [(openIndex + 1) % total, (openIndex - 1 + total) % total];
+    neighbours.forEach((i) => {
+      const url = items[i]?.url;
+      if (!url) return;
+      const img = new window.Image();
+      img.src = cld(url, { w: 1400 });
+    });
+  }, [isOpen, openIndex, items, total]);
 
   const touchStart = useRef(null);
   const onTouchStart = (e) => {
@@ -419,6 +455,10 @@ export default function GallerySection() {
           0%   { background-position: 200% 0; }
           100% { background-position: -200% 0; }
         }
+        @keyframes shekari-spin {
+          from { transform: rotate(0deg); }
+          to   { transform: rotate(360deg); }
+        }
         .shekari-perspective { perspective: 1200px; }
       `}</style>
 
@@ -432,19 +472,94 @@ export default function GallerySection() {
         className="absolute bottom-0 left-0 w-96 h-96 bg-linear-to-tr from-[#F6CA97]/12 to-transparent rounded-full blur-3xl animate-pulse pointer-events-none"
       />
 
-      <div className="relative max-w-6xl mx-auto flex flex-col items-center">
+      <div className="relative max-w-6xl mx-auto">
+        {/* Heading — above the gallery: badge centered, title + description start-aligned */}
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="relative z-20 mb-6 sm:mb-8 text-start"
+        >
+          <div className="flex justify-center mb-5">
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-[#E9756D]/20 shadow-sm text-[#E9756D] text-xs font-semibold tracking-wide uppercase">
+              <Camera size={13} />
+              {t('badge')}
+            </span>
+          </div>
+
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4 sm:mb-5 text-balance leading-[1.1] tracking-tight bg-linear-to-r from-[#E9756D] via-[#E9756D] to-[#F6CA97] bg-clip-text text-transparent">
+            {t('title')}
+          </h2>
+
+          {t('subtitle') && (
+            <p className="max-w-3xl text-base sm:text-lg text-gray-600 leading-relaxed lg:whitespace-nowrap">
+              {t('subtitle')}
+            </p>
+          )}
+        </motion.div>
+
         {/* Orbital carousel */}
         <div
-          className="relative w-full h-104 sm:h-128 lg:h-144 mb-10 sm:mb-12"
+          className="relative w-full h-104 sm:h-144 lg:h-[44rem]"
           onMouseMove={onMouseMove}
           onMouseLeave={onMouseLeave}
         >
           <div className="absolute inset-0 flex items-center justify-center shekari-perspective">
+            {/* Center anchor — camera medallion wrapped in a rotating circular text ring */}
+            <div
+              aria-hidden="true"
+              className="absolute z-0 flex items-center justify-center pointer-events-none"
+            >
+              <div className="relative w-40 h-40 sm:w-44 sm:h-44 lg:w-48 lg:h-48 flex items-center justify-center">
+                {/* Soft glow behind everything */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-36 h-36 sm:w-44 sm:h-44 rounded-full bg-linear-to-br from-[#E9756D]/20 to-[#F6CA97]/20 blur-2xl animate-pulse" />
+
+                {/* Rotating circular hint text */}
+                <svg
+                  viewBox="0 0 200 200"
+                  className="absolute inset-0 w-full h-full text-[#E9756D]/75"
+                  style={{ animation: 'shekari-spin 22s linear infinite' }}
+                >
+                  <defs>
+                    <path
+                      id="gallery-hint-circle"
+                      d="M 100,100 m -82,0 a 82,82 0 1,1 164,0 a 82,82 0 1,1 -164,0"
+                      fill="none"
+                    />
+                  </defs>
+                  <text
+                    className="fill-current"
+                    style={{
+                      fontSize: '13px',
+                      letterSpacing: '0.15em',
+                      textTransform: 'uppercase',
+                      fontWeight: 600,
+                    }}
+                  >
+                    <textPath href="#gallery-hint-circle" startOffset="0">
+                      {`${t('hint')}  •  `}
+                    </textPath>
+                  </text>
+                </svg>
+
+                {/* Medallion */}
+                <div className="relative w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 rounded-full bg-white shadow-2xl shadow-[#E9756D]/25 ring-1 ring-[#E9756D]/10 flex items-center justify-center">
+                  <div className="absolute inset-1.5 rounded-full bg-linear-to-br from-[#FDF5EE] to-white" />
+                  <Camera
+                    className="relative text-[#E9756D]"
+                    size={28}
+                    strokeWidth={1.75}
+                  />
+                </div>
+              </div>
+            </div>
+
             {isLoading &&
               Array.from({ length: 8 }).map((_, i) => {
                 const angle = (i * (360 / 8)) * (Math.PI / 180);
                 const x = Math.cos(angle) * radius;
-                const y = Math.sin(angle) * radius;
+                const y = Math.sin(angle) * radius * 1.1;
                 return (
                   <div
                     key={'sk-' + i}
@@ -479,29 +594,14 @@ export default function GallerySection() {
           </div>
         </div>
 
-        {/* Content under the carousel */}
+        {/* CTA under the carousel */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="relative z-20 text-center max-w-2xl mx-auto"
+          className="relative z-20 text-center max-w-2xl mx-auto mt-10 sm:mt-12"
         >
-          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-[#E9756D]/20 shadow-sm text-[#E9756D] text-xs font-semibold tracking-wide uppercase mb-4">
-            <Camera size={13} />
-            {t('badge')}
-          </span>
-
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 sm:mb-6 text-balance leading-tight tracking-tight">
-            {t('title')}
-          </h2>
-
-          {t('subtitle') && (
-            <p className="text-lg sm:text-xl text-gray-600 mb-8 text-balance leading-relaxed">
-              {t('subtitle')}
-            </p>
-          )}
-
           {!isEmpty && (
             <button
               type="button"
@@ -519,7 +619,7 @@ export default function GallerySection() {
           )}
 
           {isEmpty && (
-            <div className="mt-2 rounded-2xl border border-dashed border-[#F6CA97]/40 bg-white/60 p-8 text-center">
+            <div className="mt-6 rounded-2xl border border-dashed border-[#F6CA97]/40 bg-white/60 p-8 text-center">
               <div className="w-14 h-14 rounded-2xl bg-linear-to-br from-[#E9756D]/10 to-[#F6CA97]/10 text-[#E9756D] flex items-center justify-center mx-auto mb-3">
                 <Camera size={24} />
               </div>
