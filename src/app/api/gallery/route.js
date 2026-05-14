@@ -3,7 +3,7 @@ import { connectDB } from '@/lib/db';
 import Gallery from '@/lib/models/Gallery';
 
 export const runtime = 'nodejs';
-// Revalidate every 5 minutes — gallery rarely changes, but stays warm.
+// Revalidate every 5 minutes -gallery rarely changes, but stays warm.
 export const revalidate = 300;
 
 /**

@@ -58,7 +58,7 @@ export default async function Page({ params }) {
   const description = t(`${service.detailBase}_what_desc`);
   const url = `${SITE}/${locale}/services/${slug}`;
 
-  // Schema.org — MedicalCondition embedded inside the page so AI search engines
+  // Schema.org -MedicalCondition embedded inside the page so AI search engines
   // can recognise it as a structured medical resource.
   const schema = {
     '@context': 'https://schema.org',

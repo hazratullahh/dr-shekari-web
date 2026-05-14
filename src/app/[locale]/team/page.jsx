@@ -35,7 +35,7 @@ export async function generateMetadata({ params }) {
           url: '/images/android-chrome-512x512.png',
           width: 1200,
           height: 630,
-          alt: 'Medical Team — Dr. Shekari Urology Clinic',
+          alt: 'Medical Team -Dr. Shekari Urology Clinic',
         },
       ],
     },
@@ -61,11 +61,11 @@ export default async function TeamPage({ params }) {
   const teamSchema = {
     '@context': 'https://schema.org',
     '@type': 'MedicalOrganization',
-    name: 'Dr. Shekari Urology Clinic — Urology Department of Jami Hospital',
+    name: 'Dr. Shekari Urology Clinic -Urology Department of Jami Hospital',
     url,
     logo: `${SITE}/logo.png`,
     description:
-      'Urology leadership at Jami Hospital, Herat — Dr. Nazir Ahmad Shekari (Chief, Urology Department) with Dr. Mansour Ahmad Wayar (Professor Assistant & Patients Arranger).',
+      'Urology leadership at Jami Hospital, Herat -Dr. Nazir Ahmad Shekari (Chief, Urology Department) with Dr. Mansour Ahmad Wayar (Professor Assistant & Patients Arranger).',
     address: {
       '@type': 'PostalAddress',
       streetAddress: 'Chahar-e-rahi-Badmorghan, Jami Hospital',
@@ -99,7 +99,7 @@ export default async function TeamPage({ params }) {
         '@type': 'Physician',
         '@id': `${SITE}/#dr-wayar`,
         name: 'Dr. Mansour Ahmad Wayar',
-        jobTitle: 'Surgical Assistant — Urology Department, Jami Hospital',
+        jobTitle: 'Surgical Assistant -Urology Department, Jami Hospital',
         nationality: 'Afghanistan',
         medicalSpecialty: ['Urology', 'Surgical Assistance'],
         knowsLanguage: ['Dari', 'Pashto', 'English'],
@@ -125,7 +125,7 @@ export default async function TeamPage({ params }) {
         <MedicalDirectors />
       </Suspense>
 
-      {/* Global Expertise Local Care section hidden — kept for future re-enable
+      {/* Global Expertise Local Care section hidden -kept for future re-enable
       <Suspense fallback={<LoadingFallback type="section" />}>
         <InternationalTeam />
       </Suspense>

@@ -41,7 +41,7 @@ export async function GET(req) {
 
   const all = generateSlots(date);
 
-  // Past dates: no DB call needed — every slot is unavailable.
+  // Past dates: no DB call needed -every slot is unavailable.
   if (isPastDate(date)) {
     const slots = all.map((slot) => ({ slot, available: false, reserved: false, past: true }));
     return NextResponse.json(shape(date, { closed: false, slots }));

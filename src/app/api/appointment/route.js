@@ -104,7 +104,7 @@ export async function POST(req) {
         message: data.message || '',
       });
     } catch (err) {
-      // E11000 — duplicate key from the unique partial index → slot already booked.
+      // E11000 -duplicate key from the unique partial index → slot already booked.
       if (err && err.code === 11000) {
         return NextResponse.json(
           {
@@ -118,16 +118,16 @@ export async function POST(req) {
       throw err;
     }
 
-    // Notify clinic staff only — the patient gets an auto-downloaded PNG card
+    // Notify clinic staff only -the patient gets an auto-downloaded PNG card
     // on the success screen instead of an email confirmation.
     const recipient = process.env.CONTACT_RECIPIENT || process.env.SMTP_EMAIL;
     const adminSubjects = {
-      en: `New Appointment Request — ${data.fullName} (${data.preferredDate} ${data.slot})`,
-      fa: `درخواست جدید وقت ملاقات — ${data.fullName} (${data.preferredDate} ${data.slot})`,
-      ps: `د ملاقات نوې غوښتنه — ${data.fullName} (${data.preferredDate} ${data.slot})`,
+      en: `New Appointment Request -${data.fullName} (${data.preferredDate} ${data.slot})`,
+      fa: `درخواست جدید وقت ملاقات -${data.fullName} (${data.preferredDate} ${data.slot})`,
+      ps: `د ملاقات نوې غوښتنه -${data.fullName} (${data.preferredDate} ${data.slot})`,
     };
 
-    // Must await — on serverless the function is suspended as soon as the
+    // Must await -on serverless the function is suspended as soon as the
     // response flushes, killing any in-flight SMTP handshake. Slot is already
     // persisted, so swallow SMTP errors and still return ok.
     try {

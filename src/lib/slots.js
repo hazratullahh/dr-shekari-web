@@ -5,7 +5,7 @@
 export const CLINIC_TIMEZONE = 'Asia/Kabul';
 
 // 0 = Sunday, 1 = Monday, ..., 5 = Friday, 6 = Saturday.
-// In Afghanistan the weekend is Friday — clinic closed.
+// In Afghanistan the weekend is Friday -clinic closed.
 const CLOSED_DAYS = new Set([5]);
 
 const SLOT_INTERVAL_MIN = 30;
@@ -109,7 +109,7 @@ export function isPastSlot(dateString, slot) {
   return slot <= clinicNowTime();
 }
 
-// Window summary for a date — start/end + count, useful for the calendar tooltip.
+// Window summary for a date -start/end + count, useful for the calendar tooltip.
 export function summarizeDay(dateString) {
   if (isClosedDay(dateString)) return { closed: true, slots: 0 };
   const slots = generateSlots(dateString);

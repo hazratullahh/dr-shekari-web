@@ -2,7 +2,7 @@ import nodemailer from 'nodemailer';
 
 // Two transports: primary uses the configured port (default 465 SSL),
 // fallback uses 587 with STARTTLS. Some hosting networks block 465 outbound
-// or have intermittent TLS issues — falling back to 587 typically clears it.
+// or have intermittent TLS issues -falling back to 587 typically clears it.
 const cache = { primary: null, fallback: null };
 
 function readSmtpEnv() {
@@ -22,7 +22,7 @@ function buildTransport({ host, user, pass, port, secure, label }) {
     port,
     secure,
     auth: { user, pass },
-    // No pool — for low-volume forms, pooling causes ECONNRESET when the
+    // No pool -for low-volume forms, pooling causes ECONNRESET when the
     // remote closes idle sockets between sends. Open-and-close per send.
     pool: false,
     connectionTimeout: 8_000,   // TCP connect timeout
@@ -300,7 +300,7 @@ export async function sendMail({ to, subject, html, replyTo }) {
     try {
       return await getFallbackTransporter().sendMail(payload);
     } catch (err2) {
-      // Reset cached transporters so the next request rebuilds them — sockets
+      // Reset cached transporters so the next request rebuilds them -sockets
       // may be in a bad state.
       cache.primary = null;
       cache.fallback = null;

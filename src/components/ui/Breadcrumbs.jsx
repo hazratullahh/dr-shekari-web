@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { ChevronRight, Home } from 'lucide-react';
 
-// Breadcrumbs — { label, href? } items. The last item is rendered as text.
+// Breadcrumbs -{ label, href? } items. The last item is rendered as text.
 export default function Breadcrumbs({ items = [], className = '' }) {
   return (
     <nav aria-label="Breadcrumb" className={`text-xs md:text-sm ${className}`}>

@@ -8,13 +8,13 @@ const AppointmentSchema = new mongoose.Schema(
     fullName: { type: String, required: true, trim: true, minlength: 2, maxlength: 120 },
     email: { type: String, required: false, default: '', trim: true, lowercase: true, maxlength: 200 },
     phone: { type: String, required: true, trim: true, maxlength: 32 },
-    // YYYY-MM-DD — clinic-local date, no timezone ambiguity
+    // YYYY-MM-DD -clinic-local date, no timezone ambiguity
     preferredDate: {
       type: String,
       required: true,
       match: [dateRegex, 'preferredDate must be YYYY-MM-DD'],
     },
-    // HH:MM 24h — discrete clinic slot
+    // HH:MM 24h -discrete clinic slot
     slot: {
       type: String,
       required: true,

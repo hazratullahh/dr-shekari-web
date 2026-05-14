@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import Container from './Container';
 
-// Unified hero header for inner pages — keeps spacing, typography, and tone
+// Unified hero header for inner pages -keeps spacing, typography, and tone
 // identical across /about, /services, /research, /team, /faq, /contact, /appointment.
 export default function PageHero({ badge, title, subtitle, children }) {
   return (

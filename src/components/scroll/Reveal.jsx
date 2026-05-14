@@ -2,7 +2,7 @@
 
 import { motion, useReducedMotion } from 'framer-motion';
 
-// Reveal — fade + subtle slide as the element enters the viewport.
+// Reveal -fade + subtle slide as the element enters the viewport.
 // Animates only once. Pure transform/opacity (GPU friendly).
 //
 // <Reveal>...</Reveal>
@@ -50,7 +50,7 @@ export default function Reveal({
   );
 }
 
-// RevealStagger — for grids / lists. Children must be wrapped in <RevealItem>.
+// RevealStagger -for grids / lists. Children must be wrapped in <RevealItem>.
 export function RevealStagger({ as = 'div', className = '', stagger = 0.06, delayChildren = 0, children, ...rest }) {
   const reduce = useReducedMotion();
   const Tag = motion[as] || motion.div;

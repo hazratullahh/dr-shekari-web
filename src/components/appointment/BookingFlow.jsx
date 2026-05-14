@@ -532,7 +532,7 @@ function SuccessCard({ data, t, locale }) {
         {t('appointment_received_body', { name: data.fullName })}
       </motion.p>
 
-      {/* Premium 2026-style ticket card — full-width, ticket aesthetic with
+      {/* Premium 2026-style ticket card -full-width, ticket aesthetic with
           gradient hero header, perforated divider, and the booking ID. */}
       <motion.div
         initial={{ opacity: 0, y: 12 }}
@@ -601,7 +601,7 @@ function SuccessCard({ data, t, locale }) {
         </div>
       </motion.div>
 
-      {/* Primary action — download */}
+      {/* Primary action -download */}
       <motion.button
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}

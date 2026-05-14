@@ -35,7 +35,7 @@ export const metadata = {
   metadataBase: new URL(SITE),
   title: {
     default:
-      'Dr. Nazir Ahmad Shekari — Urological Surgeon · Endourology & Andrology Specialist',
+      'Dr. Nazir Ahmad Shekari -Urological Surgeon · Endourology & Andrology Specialist',
     template: '%s | Dr. Shekari Urology Clinic',
   },
   description:
@@ -83,7 +83,7 @@ export const metadata = {
     url: SITE,
     siteName: 'Dr. Shekari Urology Clinic',
     title:
-      'Dr. Nazir Ahmad Shekari — Urological Surgeon · Endourology & Andrology Specialist',
+      'Dr. Nazir Ahmad Shekari -Urological Surgeon · Endourology & Andrology Specialist',
     description:
       'Leading urological surgeon in Afghanistan. Advanced minimally-invasive care for kidney stones, prostate, andrology, and endourology.',
     images: [
@@ -91,13 +91,13 @@ export const metadata = {
         url: '/images/og-premium.jpg',
         width: 1200,
         height: 630,
-        alt: 'Dr. Nazir Ahmad Shekari — Urological Surgeon',
+        alt: 'Dr. Nazir Ahmad Shekari -Urological Surgeon',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Dr. Nazir Ahmad Shekari — Urological Surgeon',
+    title: 'Dr. Nazir Ahmad Shekari -Urological Surgeon',
     description:
       'Endourology & Andrology specialist in Afghanistan. Book your consultation.',
     images: ['/images/og-premium.jpg'],

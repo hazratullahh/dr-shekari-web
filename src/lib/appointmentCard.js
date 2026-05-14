@@ -1,5 +1,5 @@
 // Generates a premium appointment confirmation card as a PNG using the Canvas
-// API only — zero extra dependencies. Returns a Blob and triggers a download.
+// API only -zero extra dependencies. Returns a Blob and triggers a download.
 
 const W = 1200;
 const H = 1600;
@@ -94,7 +94,7 @@ function drawCard(ctx, data, labels) {
   ctx.fill();
   ctx.restore();
 
-  // 3. Header strip — gradient ribbon at top of card
+  // 3. Header strip -gradient ribbon at top of card
   ctx.save();
   roundRect(ctx, cardX, cardY, cardW, 220, 36);
   ctx.clip();
@@ -166,7 +166,7 @@ function drawCard(ctx, data, labels) {
   ctx.fillText(labels.title, cardX + 60, cursorY + 50);
   cursorY += 80;
 
-  // 5. Highlighted appointment block — gradient pill
+  // 5. Highlighted appointment block -gradient pill
   const blockX = cardX + 60;
   const blockY = cursorY + 30;
   const blockW = cardW - 120;

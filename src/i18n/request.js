@@ -33,7 +33,7 @@ export default getRequestConfig(async ({ requestLocale }) => {
     }
   }
 
-  // English fills in any keys the locale file is missing — prevents broken UI
+  // English fills in any keys the locale file is missing -prevents broken UI
   // when translators haven't backfilled new strings yet.
   const messages = deepMerge(fallback, localeMessages);
 

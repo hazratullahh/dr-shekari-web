@@ -16,7 +16,7 @@ import {
 } from 'lucide-react';
 
 /* ------------------------------------------------------------------
- * Cloudinary helper — splice transforms after `/upload/`
+ * Cloudinary helper -splice transforms after `/upload/`
  * ---------------------------------------------------------------- */
 function cld(url, opts = {}) {
   if (!url || typeof url !== 'string') return url;
@@ -62,7 +62,7 @@ function useGallery() {
 }
 
 /* ------------------------------------------------------------------
- * Responsive radius — bigger orbit on larger screens
+ * Responsive radius -bigger orbit on larger screens
  * ---------------------------------------------------------------- */
 function useOrbitRadius() {
   const [radius, setRadius] = useState(220);
@@ -122,7 +122,7 @@ function OrbitCard({
         className="group relative w-full h-full rounded-2xl overflow-hidden shadow-2xl shadow-[#E9756D]/15 ring-1 ring-white/60 cursor-zoom-in transition-all duration-300 hover:scale-110 hover:shadow-[0_30px_60px_-15px_rgba(233,117,109,0.35)]"
         style={{ transformStyle: 'preserve-3d' }}
       >
-        {/* Shimmer placeholder — Instagram-style */}
+        {/* Shimmer placeholder -Instagram-style */}
         {!loaded && (
           <div
             aria-hidden="true"
@@ -177,7 +177,7 @@ function LightboxStage({ item, t }) {
   const [zoomed, setZoomed] = useState(false);
   const [hiResLoaded, setHiResLoaded] = useState(false);
 
-  // Same low-res URL used by the orbit card — browser already has it cached,
+  // Same low-res URL used by the orbit card -browser already has it cached,
   // so it renders instantly while the high-res downloads in the background.
   const previewSrc = cld(item.url, { w: 600 });
   const hiResSrc = cld(item.url, { w: zoomed ? 2200 : 1400 });
@@ -213,7 +213,7 @@ function LightboxStage({ item, t }) {
         ].join(' ')}
         aria-label={t('lightbox_zoom')}
       >
-        {/* Instant preview — already cached from the orbit thumbnail */}
+        {/* Instant preview -already cached from the orbit thumbnail */}
         <Image
           src={previewSrc}
           alt=""
@@ -392,7 +392,7 @@ function Lightbox({ items, openIndex, onClose, onNavigate, t }) {
 }
 
 /* ------------------------------------------------------------------
- * Main section — orbital rotating gallery
+ * Main section -orbital rotating gallery
  * ---------------------------------------------------------------- */
 export default function GallerySection() {
   const t = useTranslations('home_gallery');
@@ -405,10 +405,10 @@ export default function GallerySection() {
   // Pick up to 8 images for the orbital carousel (featured first via API order)
   const orbitItems = !isEmpty && items ? items.slice(0, 8) : [];
 
-  // Static rotation per card — gives the photos a stylish hand-pinned look
+  // Static rotation per card -gives the photos a stylish hand-pinned look
   const cardRotations = [-15, -8, 5, 12, -12, 8, -6, 10];
 
-  // Continuous orbit rotation — single shared delta keeps the effect cheap
+  // Continuous orbit rotation -single shared delta keeps the effect cheap
   // and removes the need to seed an array from props (which would trigger
   // the React 19 "set-state-in-effect" lint).
   const [orbitDelta, setOrbitDelta] = useState(0);
@@ -473,7 +473,7 @@ export default function GallerySection() {
       />
 
       <div className="relative max-w-6xl mx-auto">
-        {/* Heading — above the gallery: badge centered, title + description start-aligned */}
+        {/* Heading -above the gallery: badge centered, title + description start-aligned */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -506,7 +506,7 @@ export default function GallerySection() {
           onMouseLeave={onMouseLeave}
         >
           <div className="absolute inset-0 flex items-center justify-center shekari-perspective">
-            {/* Center anchor — camera medallion wrapped in a rotating circular text ring */}
+            {/* Center anchor -camera medallion wrapped in a rotating circular text ring */}
             <div
               aria-hidden="true"
               className="absolute z-0 flex items-center justify-center pointer-events-none"

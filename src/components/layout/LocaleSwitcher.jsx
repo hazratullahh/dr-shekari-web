@@ -44,7 +44,7 @@ export default function LocaleSwitcher() {
   useEffect(() => setMounted(true), []);
 
   // Reposition the panel whenever it's open. Uses requestAnimationFrame to
-  // batch layout reads — no jank, no forced reflow loops.
+  // batch layout reads -no jank, no forced reflow loops.
   useIsoLayoutEffect(() => {
     if (!open || !triggerRef.current) return;
     let raf;

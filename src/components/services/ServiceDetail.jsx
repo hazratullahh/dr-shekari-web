@@ -74,7 +74,7 @@ export default async function ServiceDetail({ locale, slug }) {
 
       <Section size="md" background="white">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
-          {/* MAIN COLUMN — structured medical content */}
+          {/* MAIN COLUMN -structured medical content */}
           <article className="lg:col-span-8 space-y-10">
             {sections.map((s, i) => {
               const SIcon = s.icon;
@@ -120,7 +120,7 @@ export default async function ServiceDetail({ locale, slug }) {
               </div>
             </Reveal>
 
-            {/* Book CTA — gradient banner */}
+            {/* Book CTA -gradient banner */}
             <Reveal as="div" delay={0.05}>
               <div className="relative overflow-hidden rounded-2xl bg-linear-to-br from-[#E9756D] to-[#F6CA97] text-white p-6 md:p-8">
                 <div

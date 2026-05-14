@@ -1,7 +1,7 @@
 {
   "name": "Dr. Shekari Urology Clinic",
   "short_name": "Dr. Shekari",
-  "description": "Urology, Endourology & Andrology specialist — book appointments, view services, and access patient information from Dr. Nazir Ahmad Shekari's clinic.",
+  "description": "Urology, Endourology & Andrology specialist -book appointments, view services, and access patient information from Dr. Nazir Ahmad Shekari's clinic.",
   "start_url": "/?source=pwa",
   "id": "/?source=pwa",
   "scope": "/",
@@ -55,14 +55,14 @@
       "sizes": "720x1280",
       "type": "image/png",
       "form_factor": "narrow",
-      "label": "Dr. Shekari Clinic — mobile home"
+      "label": "Dr. Shekari Clinic -mobile home"
     },
     {
       "src": "/screenshots/home-desktop.png",
       "sizes": "1280x720",
       "type": "image/png",
       "form_factor": "wide",
-      "label": "Dr. Shekari Clinic — desktop home"
+      "label": "Dr. Shekari Clinic -desktop home"
     }
   ]
 }
