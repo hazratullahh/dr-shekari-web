@@ -26,7 +26,8 @@
       "Bash(npx --no-install eslint next.config.mjs src/components/home/GallerySection.jsx)",
       "Bash(rm -r \"e:/dr-shekari-web/src/app/[locale]/offline\")",
       "Bash(git rm *)",
-      "Bash(git add *)"
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)"
     ],
     "additionalDirectories": [
       "e:\\dr-shekari-web\\src\\app\\[locale]\\offline"
