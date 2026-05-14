@@ -11,27 +11,44 @@ const BookingFlow = dynamic(() => import('@/components/appointment/BookingFlow')
 
 const SITE = 'https://dr-shekari.com';
 
+const OG_LOCALE = { en: 'en_US', fa: 'fa_AF', ps: 'ps_AF' };
+
 export async function generateMetadata({ params }) {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: 'appointment_page' });
+  const tSeo = await getTranslations({ locale, namespace: 'seo' });
+
+  const url = `${SITE}/${locale}/appointment`;
+  const title = tSeo('appointment_title');
+  const description = tSeo('appointment_description');
+  const keywords = tSeo('appointment_keywords').split(',').map((s) => s.trim());
+
   return {
     metadataBase: new URL(SITE),
-    title: `${t('hero_title')} · Dr. Shekari Clinic`,
-    description: t('hero_subtitle'),
+    title,
+    description,
+    keywords,
     alternates: {
-      canonical: `${SITE}/${locale}/appointment`,
-      languages: { en: `${SITE}/en/appointment`, fa: `${SITE}/fa/appointment`, ps: `${SITE}/ps/appointment` },
+      canonical: url,
+      languages: {
+        'en-US': `${SITE}/en/appointment`,
+        'fa-AF': `${SITE}/fa/appointment`,
+        'ps-AF': `${SITE}/ps/appointment`,
+        'x-default': `${SITE}/en/appointment`,
+      },
     },
     openGraph: {
       type: 'website',
-      title: t('hero_title'),
-      description: t('hero_subtitle'),
-      images: [{ url: '/images/og-premium.jpg', width: 1200, height: 630, alt: t('hero_title') }],
+      locale: OG_LOCALE[locale] || 'en_US',
+      url,
+      siteName: tSeo('site_name'),
+      title,
+      description,
+      images: [{ url: '/images/og-premium.jpg', width: 1200, height: 630, alt: title }],
     },
     twitter: {
       card: 'summary_large_image',
-      title: t('hero_title'),
-      description: t('hero_subtitle'),
+      title,
+      description,
     },
     robots: { index: true, follow: true },
   };
@@ -78,7 +95,7 @@ export default async function AppointmentPage({ params }) {
               addressRegion: 'Herat',
               addressCountry: 'AF',
             },
-            telephone: '+93792453030',
+            telephone: '+93796040915',
             email: 'urology@dr-shekari.com',
             potentialAction: {
               '@type': 'ReserveAction',
@@ -136,9 +153,9 @@ async function ContactCard({ locale }) {
         {tC('quick_contact')}
       </div>
       <div className="space-y-2.5">
-        <ContactLine icon={Phone} href="tel:+93792453030" dir="ltr">+93 79 245 3030</ContactLine>
+        <ContactLine icon={Phone} href="tel:+93796040915" dir="ltr">+93 79 604 0915</ContactLine>
         <ContactLine icon={Mail} href="mailto:urology@dr-shekari.com">urology@dr-shekari.com</ContactLine>
-        <ContactLine icon={MessageCircle} href="https://wa.me/93792453030">WhatsApp</ContactLine>
+        <ContactLine icon={MessageCircle} href="https://wa.me/93796040915">WhatsApp</ContactLine>
       </div>
     </div>
   );

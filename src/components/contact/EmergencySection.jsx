@@ -83,12 +83,12 @@ const EmergencySection = () => {
                 </div>
 
                 <motion.a
-                  href="tel:+93792453030"
+                  href="tel:+93796040915"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   className="block w-full py-5 bg-gradient-to-r from-red-500 to-rose-500 text-white text-2xl font-bold rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 text-center mb-6"
                 >
-                  +93 79 245 3030
+                  +93 79 604 0915
                 </motion.a>
 
                 <div className="space-y-4">

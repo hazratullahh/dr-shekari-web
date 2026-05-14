@@ -1,4 +1,5 @@
 import { Suspense } from 'react';
+import { getTranslations } from 'next-intl/server';
 import ContactHero from '@/components/contact/ContactHero';
 import ContactForm from '@/components/contact/ContactForm';
 import ContactInfo from '@/components/contact/ContactInfo';
@@ -7,45 +8,107 @@ import MapSection from '@/components/contact/MapSection';
 import FAQSection from '@/components/contact/FAQSection';
 import LoadingFallback from '@/components/ui/LoadingFallback';
 
-export const metadata = {
-  title: 'Contact Dr. Shekari Urology Clinic - Book Appointment in Herat, Afghanistan',
-  description: 'Contact our urology clinic in Herat, Afghanistan. Book appointments online, emergency contact, location map, and get in touch with our medical team.',
-  keywords: [
-    'contact urologist Herat',
-    'book appointment Afghanistan',
-    'Dr. Shekari contact',
-    'emergency urology clinic',
-    'Jami Hospital contact',
-    'medical consultation Afghanistan'
-  ],
-  openGraph: {
-    title: 'Contact Us - Dr. Shekari Urology Clinic',
-    description: 'Get in touch with our urology specialists. Book appointments, emergency contact, and location information.',
-    images: [
+const SITE = 'https://dr-shekari.com';
+const OG_LOCALE = { en: 'en_US', fa: 'fa_AF', ps: 'ps_AF' };
+
+export async function generateMetadata({ params }) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'seo' });
+
+  const url = `${SITE}/${locale}/contact`;
+  const title = t('contact_title');
+  const description = t('contact_description');
+  const keywords = t('contact_keywords').split(',').map((s) => s.trim());
+
+  return {
+    metadataBase: new URL(SITE),
+    title,
+    description,
+    keywords,
+    openGraph: {
+      type: 'website',
+      locale: OG_LOCALE[locale] || 'en_US',
+      url,
+      siteName: t('site_name'),
+      title,
+      description,
+      images: [
+        {
+          url: '/images/contact/clinic-contact.jpg',
+          width: 1200,
+          height: 630,
+          alt: 'Dr. Shekari Urology Clinic Contact',
+        },
+      ],
+    },
+    twitter: { card: 'summary_large_image', title, description },
+    alternates: {
+      canonical: url,
+      languages: {
+        'en-US': `${SITE}/en/contact`,
+        'fa-AF': `${SITE}/fa/contact`,
+        'ps-AF': `${SITE}/ps/contact`,
+        'x-default': `${SITE}/en/contact`,
+      },
+    },
+    robots: { index: true, follow: true },
+    authors: [{ name: 'Dr. Nazir Ahmad Shekari' }],
+  };
+}
+
+export default async function ContactPage({ params }) {
+  const { locale } = await params;
+  const url = `${SITE}/${locale}/contact`;
+
+  const orgSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'MedicalOrganization',
+    name: 'Dr. Shekari Urology Clinic',
+    url,
+    logo: `${SITE}/logo.png`,
+    description: 'Urology clinic at Jami Hospital in Herat, Afghanistan',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: 'Chahar-e-rahi-Badmorghan, Jami Hospital',
+      addressLocality: 'Herat',
+      addressRegion: 'Herat',
+      addressCountry: 'AF',
+      postalCode: '3001',
+    },
+    telephone: '+93796040915',
+    email: 'urology@dr-shekari.com',
+    openingHoursSpecification: [
       {
-        url: '/images/contact/clinic-contact.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'Dr. Shekari Urology Clinic Contact',
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+        opens: '08:00',
+        closes: '20:00',
+      },
+      {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: 'Sunday',
+        opens: '09:00',
+        closes: '14:00',
       },
     ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Contact Dr. Shekari Urology Clinic',
-    description: 'Book appointments and contact our medical team in Herat, Afghanistan',
-  },
-  alternates: {
-    canonical: 'https://dr-shekari.com/contact',
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
-  authors: [{ name: 'Dr. Nazir Ahmad Shekari' }],
-};
+    contactPoint: [
+      {
+        '@type': 'ContactPoint',
+        telephone: '+93796040915',
+        contactType: 'customer service',
+        availableLanguage: ['Dari', 'Pashto', 'English', 'Hindi'],
+      },
+      {
+        '@type': 'ContactPoint',
+        telephone: '+93796040915',
+        contactType: 'emergency',
+        availableLanguage: ['Dari', 'Pashto', 'English'],
+        hoursAvailable: { '@type': 'OpeningHoursSpecification', opens: '00:00', closes: '23:59' },
+      },
+    ],
+    employee: { '@id': `${SITE}/#dr-shekari` },
+  };
 
-export default function ContactPage() {
   return (
     <>
       <Suspense fallback={<LoadingFallback type="hero" />}>
@@ -68,40 +131,9 @@ export default function ContactPage() {
         <FAQSection />
       </Suspense>
 
-      {/* Schema.org markup for SEO */}
       <script
-      defer
         type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "MedicalOrganization",
-            "name": "Dr. Shekari Urology Clinic",
-            "url": "https://dr-shekari.com/contact",
-            "logo": "https://dr-shekari.com/logo.png",
-            "description": "Urology clinic in Herat, Afghanistan",
-            "address": {
-              "@type": "PostalAddress",
-              "streetAddress": "Chahar-e-rahi- Badmorghan",
-              "addressLocality": "Herat",
-              "addressRegion": "Herat",
-              "addressCountry": "Afghanistan",
-              "postalCode": "3001"
-            },
-            "telephone": "+93792453030",
-            "email": "urology@dr-shekari.com",
-            "openingHours": [
-              "Mo-Sa 08:00-20:00",
-              "Su 09:00-14:00"
-            ],
-            "contactPoint": {
-              "@type": "ContactPoint",
-              "telephone": "+93792453030",
-              "contactType": "customer service",
-              "availableLanguage": ["Dari", "Pashto", "English", "Hindi"]
-            }
-          })
-        }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
       />
     </>
   );

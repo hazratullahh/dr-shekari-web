@@ -3,16 +3,19 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { Users, Globe, Award, Star } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import Container from '@/components/ui/Container';
 
-const STATS = [
-  { value: '15+', label: 'Specialist Doctors', icon: Users },
-  { value: '3',   label: 'Countries',          icon: Globe },
-  { value: '150+', label: 'Combined Years',    icon: Award },
-  { value: '98%', label: 'Success Rate',       icon: Star },
-];
-
 export default function TeamHero() {
+  const t = useTranslations('team_page');
+
+  const STATS = [
+    { value: '5+', label: t('stat_doctors'), icon: Users },
+    { value: '3', label: t('stat_countries'), icon: Globe },
+    { value: '150+', label: t('stat_years'), icon: Award },
+    { value: '98%', label: t('stat_success'), icon: Star },
+  ];
+
   return (
     <section className="relative overflow-hidden bg-linear-to-br from-[#FDF5EE] via-white to-[#FDF5EE]">
       <div
@@ -35,14 +38,13 @@ export default function TeamHero() {
           >
             <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-[#E9756D]/20 shadow-sm text-[#E9756D] text-xs font-semibold tracking-wide uppercase mb-5">
               <Globe size={13} />
-              International Medical Team
+              {t('hero_badge')}
             </span>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-gray-900 leading-[1.1]">
-              World-class medical excellence
+              {t('hero_title')}
             </h1>
             <p className="mt-5 text-base md:text-lg text-gray-600 leading-relaxed max-w-2xl">
-              Our team brings together the best urological expertise from Afghanistan, India,
-              and the United States — combining local understanding with global advancements.
+              {t('hero_subtitle')}
             </p>
 
             <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-3">
@@ -70,19 +72,19 @@ export default function TeamHero() {
             <div className="relative rounded-3xl overflow-hidden shadow-xl shadow-[#E9756D]/15 border border-white/80 aspect-4/5">
               <Image
                 src="/images/team/international-team.jpg"
-                alt="International medical team collaboration"
+                alt={t('hero_image_alt')}
                 fill
-                className="object-cover"
+                className="object-cover object-center"
                 sizes="(max-width: 1024px) 90vw, 40vw"
                 priority
               />
               <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent" />
               <div className="absolute bottom-5 left-5 right-5">
                 <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/95 text-[#E9756D] text-xs font-semibold mb-2">
-                  <Globe size={12} /> 3 Countries
+                  <Globe size={12} /> {t('hero_image_chip')}
                 </div>
-                <h3 className="text-lg font-bold text-white">International collaboration</h3>
-                <p className="text-[#F6CA97] text-sm">Bringing global expertise to Afghanistan</p>
+                <h3 className="text-lg font-bold text-white">{t('hero_image_caption_title')}</h3>
+                <p className="text-[#F6CA97] text-sm">{t('hero_image_caption_subtitle')}</p>
               </div>
             </div>
           </motion.div>

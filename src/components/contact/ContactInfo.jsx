@@ -11,10 +11,10 @@ const ContactInfo = () => {
       icon: <Phone className="text-[#E9756D]" size={24} />,
       title: t('phone_numbers'),
       items: [
-        { label: t('emergency'), value: "+93 79 245 3030", type: "tel" },
-        { label: t('appointments'), value: "070 445 3030", type: "tel" },
-        { label: t('administration'), value: "070 445 3031", type: "tel" },
-        { label: "WhatsApp", value: "+93 79 245 3030", type: "wa" }
+        { label: t('emergency'), value: "+93 79 604 0915", type: "tel" },
+        { label: t('appointments'), value: "079 604 0915", type: "tel" },
+        { label: t('administration'), value: "+93 79 604 0915", type: "tel" },
+        { label: "WhatsApp", value: "+93 79 604 0915", type: "wa" }
       ]
     },
 

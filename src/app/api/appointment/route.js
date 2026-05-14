@@ -132,7 +132,7 @@ export async function POST(req) {
       to: recipient,
       subject: adminSubjects[locale] || adminSubjects.en,
       html: appointmentNotificationEmail(data, locale),
-      replyTo: data.email,
+      ...(data.email ? { replyTo: data.email } : {}),
     }).catch((err) =>
       console.error('[appointment] admin notification failed:',
         err?.code || '', err?.message || err)

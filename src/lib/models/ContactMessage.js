@@ -5,7 +5,7 @@ const ContactMessageSchema = new mongoose.Schema(
     fullName: { type: String, required: true, trim: true, minlength: 2, maxlength: 120 },
     email: { type: String, trim: true, lowercase: true, maxlength: 200 },
     phone: { type: String, required: true, trim: true, maxlength: 32 },
-    message: { type: String, required: true, trim: true, maxlength: 2000 },
+    message: { type: String, required: false, default: '', trim: true, maxlength: 2000 },
     locale: { type: String, enum: ['en', 'fa', 'ps'], default: 'en' },
     emailDelivery: {
       type: String,

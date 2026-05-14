@@ -37,8 +37,7 @@ const Footer = () => {
     clinicSpecialty: t("home.slogan"),
     clinicTagline: t("footer.accurate_effective"),
     address: t("footer.address"),
-    phone1: "+93792453030",
-    phone2: "+93704453030",
+    phone1: "+93796040915",
     email: "urology@dr-shekari.com",
     website: "www.dr-shekari.com",
     hours: t("footer.hours")
@@ -174,12 +173,6 @@ const Footer = () => {
                         className="block text-gray-700 hover:text-[#E9756D] text-sm transition-colors"
                       >
                         {clinicInfo.phone1}
-                      </a>
-                      <a
-                        href={`tel:${clinicInfo.phone2}`}
-                        className="block text-gray-700 hover:text-[#E9756D] text-sm transition-colors"
-                      >
-                        {clinicInfo.phone2}
                       </a>
                     </div>
                   </div>
@@ -340,7 +333,7 @@ const Footer = () => {
 
       {/* Emergency Floating Button */}
       <motion.a
-        href="tel:+93792453030"
+        href="tel:+93796040915"
         whileHover={{ scale: 1.1, rotate: 5 }}
         whileTap={{ scale: 0.9 }}
         className="fixed bottom-6 right-6 w-16 h-16 rounded-full bg-linear-to-r from-[#E9756D] to-[#F6CA97] shadow-xl flex items-center justify-center z-40 group"

@@ -122,7 +122,7 @@ export default function Hero() {
                 </Link>
               </motion.div>
               <motion.a
-                href="tel:+93792453030"
+                href="tel:+93796040915"
                 dir="ltr"
                 variants={ctaItem}
                 whileHover={{ scale: 1.03 }}
@@ -143,7 +143,7 @@ export default function Hero() {
               }}
               className="mt-10 grid grid-cols-3 gap-4 max-w-md"
             >
-              <Stat value="15+" label={t('year_expr')} />
+              <Stat value="5+" label={t('year_expr')} />
               <Stat value="1000+" label={t('successful_surgeries')} />
               <Stat value="98%" label={t('patient_satisfaction')} />
             </motion.div>

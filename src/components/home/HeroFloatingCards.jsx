@@ -109,7 +109,7 @@ export default function HeroFloatingCards() {
               {tWc('wc_t1').split(' ').slice(-2).join(' ')}
             </div>
             <div className="flex items-baseline gap-1">
-              <span className="text-2xl font-extrabold bg-clip-text text-transparent bg-linear-to-br from-[#E9756D] to-[#F6CA97]">15+</span>
+              <span className="text-2xl font-extrabold bg-clip-text text-transparent bg-linear-to-br from-[#E9756D] to-[#F6CA97]">5+</span>
               <span className="text-[11px] font-semibold text-gray-700">{t('year_expr')}</span>
             </div>
           </Card>

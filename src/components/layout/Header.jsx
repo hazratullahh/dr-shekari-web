@@ -69,9 +69,9 @@ const Header = () => {
             <span className="opacity-60">·</span>
             <span className="opacity-90">{t('contact.regular_hours')}</span>
           </div>
-          <a href="tel:+93792453030" dir="ltr" className="inline-flex items-center gap-1.5 font-semibold hover:text-[#F6CA97] transition-colors">
+          <a href="tel:+93796040915" dir="ltr" className="inline-flex items-center gap-1.5 font-semibold hover:text-[#F6CA97] transition-colors">
             <Phone size={13} />
-            {t('header.emergency')}: +93 79 245 3030
+            {t('header.emergency')}: +93 79 604 0915
           </a>
         </div>
       </div>
@@ -205,11 +205,11 @@ const Header = () => {
                   <div className="flex items-center justify-between gap-3">
                     <LocaleSwitcher />
                     <a
-                      href="tel:+93792453030"
+                      href="tel:+93796040915"
                       dir="ltr"
                       className="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-[#E9756D]/10 text-[#E9756D] text-sm font-semibold"
                     >
-                      <Phone size={14} /> +93 79 245 3030
+                      <Phone size={14} /> +93 79 604 0915
                     </a>
                   </div>
 

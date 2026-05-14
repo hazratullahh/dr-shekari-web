@@ -46,7 +46,7 @@ export default function MedicalSchema() {
         image: `${SITE}/images/og-premium.jpg`,
         medicalSpecialty: ['Urology', 'Andrology', 'Endourology'],
         priceRange: '$$',
-        telephone: '+93792453030',
+        telephone: '+93796040915',
         email: 'urology@dr-shekari.com',
         address: {
           '@type': 'PostalAddress',
@@ -72,7 +72,7 @@ export default function MedicalSchema() {
         physician: { '@id': `${SITE}/#dr-shekari` },
         contactPoint: {
           '@type': 'ContactPoint',
-          telephone: '+93792453030',
+          telephone: '+93796040915',
           contactType: 'customer service',
           availableLanguage: ['Dari', 'Pashto', 'English'],
         },

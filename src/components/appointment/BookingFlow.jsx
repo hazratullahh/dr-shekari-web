@@ -65,7 +65,13 @@ export default function BookingFlow() {
 
   const detailsSchema = yup.object({
     fullName: yup.string().trim().required(t('validation_name_required')).min(2, t('validation_name_short')).max(120),
-    email: yup.string().trim().required(t('validation_email_required')).email(t('validation_email_invalid')).max(200),
+    email: yup
+      .string()
+      .trim()
+      .max(200)
+      .transform((value) => (value === '' ? undefined : value))
+      .email(t('validation_email_invalid'))
+      .notRequired(),
     phone: yup.string().trim().required(t('validation_phone_required')).matches(phoneRegex, t('validation_phone_invalid')),
     message: yup.string().trim().max(2000).default(''),
     website: yup.string().max(0),
@@ -380,7 +386,7 @@ function DetailsForm({ register, errors, t }) {
           <input type="text" {...register('fullName')} className={fieldClass(!!errors.fullName)} placeholder={t('full_name_ph')} />
           <FieldError msg={errors.fullName?.message} />
         </Field>
-        <Field label={t('email')} required>
+        <Field label={t('email')}>
           <Mail size={18} className="absolute start-3.5 top-1/2 -translate-y-1/2 text-gray-400" />
           <input type="email" dir="ltr" {...register('email')} className={fieldClass(!!errors.email)} placeholder={t('email_ph')} />
           <FieldError msg={errors.email?.message} />
@@ -699,12 +705,12 @@ function SuccessCard({ data, t, locale }) {
         </Link>
         <span aria-hidden="true" className="hidden sm:inline-block w-px h-4 bg-gray-200" />
         <a
-          href="tel:+93792453030"
+          href="tel:+93796040915"
           dir="ltr"
           className="cursor-pointer inline-flex items-center gap-1.5 text-sm font-medium text-gray-500 hover:text-[#E9756D] transition-colors"
         >
           <Phone size={14} />
-          +93 79 245 3030
+          +93 79 604 0915
         </a>
       </motion.div>
     </motion.div>

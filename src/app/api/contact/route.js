@@ -73,7 +73,7 @@ export async function POST(req) {
       fullName: data.fullName,
       email: data.email || null,
       phone: data.phone,
-      message: data.message,
+      message: data.message || '',
       locale,
       ip,
     });

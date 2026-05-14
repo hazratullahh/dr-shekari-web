@@ -9,7 +9,7 @@ export const APP_CONFIG = {
         description: "Afghanistan's Premier Urology, Andrology & Kidney Care Center",
         url: process.env.NEXT_PUBLIC_SITE_URL || "https://dr-shekari.com",
         email: "urology@dr-shekari.com",
-        phone: "+93 79 245 3030",
+        phone: "+93 79 604 0915",
         address: {
             street: "Medical District, Street 15",
             city: "Herat",
@@ -398,10 +398,10 @@ export const APP_CONFIG = {
 
     // Contact Information
     contact: {
-        primaryPhone: "+93 79 245 3030",
-        secondaryPhone: "+93 79 245 3030",
-        emergencyPhone: "+93 79 245 3030",
-        whatsapp: "+93 79 245 3030",
+        primaryPhone: "+93 79 604 0915",
+        secondaryPhone: "+93 79 604 0915",
+        emergencyPhone: "+93 79 604 0915",
+        whatsapp: "+93 79 604 0915",
         email: {
             general: "urology@dr-shekari.com",
             appointments: "urology@dr-shekari.com",

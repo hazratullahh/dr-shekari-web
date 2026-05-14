@@ -11,7 +11,7 @@ export default function AboutHero() {
 
   const stats = [
     { value: '20+', label: t('home.endourology'), icon: Award },
-    { value: '8500+', label: t('home.andrology'), icon: Users },
+    { value: '580+', label: t('home.andrology'), icon: Users },
     { value: '98%', label: t('about.stone_disease'), icon: Star },
     { value: '24/7', label: t('about.prostate_disorder'), icon: Heart },
   ];

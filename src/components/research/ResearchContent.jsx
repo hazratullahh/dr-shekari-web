@@ -31,7 +31,7 @@ export default function ResearchContent() {
       key: 'cases',
       title: t('case_reports'),
       tone: 'peach',
-      note: 'Patient identity and personal data are fully anonymized.',
+      note: t('case_note_anonymized'),
       items: [
         t('case_example1'),
         t('case_example2'),
@@ -67,9 +67,9 @@ export default function ResearchContent() {
   return (
     <Section size="md" background="soft">
       <SectionHeader
-        badge="Research highlights"
-        title="Continuing scientific contribution"
-        subtitle="Selected publications, case studies, and active research directions in urology, endourology, and andrology."
+        badge={t('section_badge')}
+        title={t('section_title')}
+        subtitle={t('section_subtitle')}
       />
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">

@@ -16,7 +16,7 @@ const Staff = () => {
       image: "/images/dr-shekari.jpg",
       achievements: [
         "Pioneer of Endourology in Afghanistan",
-        "Published 15+ Research Papers",
+        "Published 5+ Research Papers",
         "International Training: USA, Germany, India"
       ],
       availability: "Mon-Sat: 9AM-7PM"
@@ -25,7 +25,7 @@ const Staff = () => {
       name: "Dr. Mansour Ahmad Wayar",
       position: "Professor Assistant & Consultant",
       specialty: "Urology & Andrology",
-      experience: "15+ Years",
+      experience: "5+ Years",
       education: "MD, MSc in Urology",
       image: "/images/dr-wayar.jpg",
       achievements: [
@@ -196,7 +196,7 @@ const Staff = () => {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <motion.a
-                  href="tel:+93792453030"
+                  href="tel:+93796040915"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   className="px-8 py-3 bg-gradient-to-r from-[#E9756D] to-[#F6CA97] text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center"

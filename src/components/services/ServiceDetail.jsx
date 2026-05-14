@@ -150,12 +150,12 @@ export default async function ServiceDetail({ locale, slug }) {
                       {t('hero_title')}
                     </Link>
                     <a
-                      href="tel:+93792453030"
+                      href="tel:+93796040915"
                       dir="ltr"
                       className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-white/15 backdrop-blur-sm border border-white/30 text-white font-semibold hover:bg-white/25 transition-colors"
                     >
                       <Phone size={16} />
-                      +93 79 245 3030
+                      +93 79 604 0915
                     </a>
                   </div>
                 </div>

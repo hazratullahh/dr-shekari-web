@@ -16,6 +16,7 @@ const nextConfig = {
       { protocol: 'https', hostname: 'dr-shekari.com' },
       { protocol: 'https', hostname: 'www.dr-shekari.com' },
       { protocol: 'https', hostname: 'images.unsplash.com' },
+      { protocol: 'https', hostname: 'res.cloudinary.com' },
     ],
     formats: ['image/avif', 'image/webp'],
     dangerouslyAllowSVG: true,
@@ -52,6 +53,26 @@ const nextConfig = {
 
   experimental: {
     scrollRestoration: true,
+  },
+
+  // Silence a known harmless warning from next-intl's runtime locale loader.
+  // The dynamic `import(t)` inside next-intl/dist/.../format/index.js can't be
+  // statically analyzed for webpack's filesystem cache, but the import target
+  // is server-only and resolves correctly at runtime — no incorrect cache
+  // invalidation in practice. Suppress to keep the dev console clean.
+  webpack: (config) => {
+    config.ignoreWarnings = [
+      ...(config.ignoreWarnings || []),
+      {
+        module: /node_modules[\\/]next-intl[\\/]/,
+        message: /Parsing of .* for build dependencies failed at 'import\(/,
+      },
+      {
+        module: /node_modules[\\/]next-intl[\\/]/,
+        message: /Critical dependency: the request of a dependency is an expression/,
+      },
+    ];
+    return config;
   },
 };
 

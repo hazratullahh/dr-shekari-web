@@ -360,10 +360,10 @@ const FAQSection = () => {
                                           </span>
                                         </div>
                                         <a
-                                          href="tel:+93792453030"
+                                          href="tel:+93796040915"
                                           className="text-red-600 font-bold hover:text-red-700"
                                         >
-                                          +93 79 245 3030
+                                          +93 79 604 0915
                                         </a>
                                       </div>
                                     </div>
@@ -387,7 +387,7 @@ const FAQSection = () => {
                       {/* {faq.category === 'emergency' && activeIndex !== faq.id && (
                         <div className="px-6 pb-6 pt-2">
                           <a
-                            href="tel:+93792453030"
+                            href="tel:+93796040915"
                             className="inline-flex items-center text-sm font-medium text-red-600 hover:text-red-700"
                           >
                             <Phone size={14} className="mr-1" />
@@ -439,7 +439,7 @@ const FAQSection = () => {
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                 <motion.a
-                  href="tel:+93792453030"
+                  href="tel:+93796040915"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   className="px-8 py-4 bg-linear-to-r from-[#E9756D] to-[#F6CA97] text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 flex items-center"
@@ -447,7 +447,7 @@ const FAQSection = () => {
                   <Phone size={20} className="mr-3" />
                   <div className="text-left">
                     <div className="text-xs opacity-90">Emergency & Appointments</div>
-                    <div className="text-lg">+93 79 245 3030</div>
+                    <div className="text-lg">+93 79 604 0915</div>
                   </div>
                 </motion.a>
 

@@ -12,11 +12,13 @@ export const appointmentSchema = z.object({
     .min(2, 'Full name must be at least 2 characters')
     .max(120, 'Full name is too long'),
   email: z
-    .string({ required_error: 'Email is required' })
+    .string()
     .trim()
     .toLowerCase()
     .email('Please enter a valid email address')
-    .max(200),
+    .max(200)
+    .optional()
+    .or(z.literal('')),
   phone: z
     .string({ required_error: 'Phone is required' })
     .trim()
@@ -51,9 +53,10 @@ export const contactSchema = z.object({
     .trim()
     .regex(phoneRegex, 'Please enter a valid phone number'),
   message: z
-    .string({ required_error: 'Message is required' })
+    .string()
     .trim()
-    .min(10, 'Message must be at least 10 characters')
-    .max(2000, 'Message is too long'),
+    .max(2000, 'Message is too long')
+    .optional()
+    .or(z.literal('')),
   website: z.string().max(0, 'Spam detected').optional(),
 });

@@ -78,8 +78,8 @@ const ContactHero = () => {
               {
                 icon: <Phone className="text-[#E9756D]" size={24} />,
                 title: t('emergency_line'),
-                value: "+93 79 245 3030",
-                action: "tel:+93792453030",
+                value: "+93 79 604 0915",
+                action: "tel:+93796040915",
                 dir: "ltr"
               },
               {

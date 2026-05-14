@@ -16,9 +16,15 @@ const ContactForm = () => {
 
   const schema = yup.object({
     fullName: yup.string().trim().required(t('full_name_required')).min(2, t('name_min_length')).max(120),
-    email: yup.string().trim().email(t('invalid_email')).max(200).optional(),
+    email: yup
+      .string()
+      .trim()
+      .max(200)
+      .transform((value) => (value === '' ? undefined : value))
+      .email(t('invalid_email'))
+      .notRequired(),
     phone: yup.string().trim().required(t('mobile_required')).matches(phoneRegex, t('afghan_mobile_format')),
-    message: yup.string().trim().required(t('message_required')).min(10, t('message_min_length')).max(2000),
+    message: yup.string().trim().max(2000).default(''),
     website: yup.string().max(0),
   });
 
@@ -130,7 +136,7 @@ const ContactForm = () => {
         </div>
 
         <div>
-          <label className="block text-sm font-semibold text-gray-800 mb-2">{t('message')} <span className="text-[#E9756D]">*</span></label>
+          <label className="block text-sm font-semibold text-gray-800 mb-2">{t('message')}</label>
           <div className="relative">
             <MessageSquare size={18} className="absolute left-3.5 top-3.5 text-gray-400" />
             <textarea rows={5} {...register('message')} className={`${fieldClass(!!errors.message)} pl-11 pt-3 resize-none`} placeholder={t('message_placeholder')} />

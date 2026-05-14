@@ -59,12 +59,12 @@ export default function CTABanner() {
                 {t('book_appointment')}
               </Link>
               <a
-                href="tel:+93792453030"
+                href="tel:+93796040915"
                 dir="ltr"
                 className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 text-white font-semibold hover:bg-white/20 transition-colors"
               >
                 <Phone size={18} />
-                +93 79 245 3030
+                +93 79 604 0915
               </a>
             </div>
           </div>

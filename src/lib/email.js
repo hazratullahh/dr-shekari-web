@@ -109,7 +109,7 @@ function shellEmail({ title, intro, rows, footer }) {
     </div>
     <div style="padding:18px 24px;background:#F3F4F6;color:${BRAND.muted};font-size:12px;text-align:center;">
       Dr. Nazir Ahmad Shekari · Urological Surgeon · Jami Hospital, Herat, Afghanistan<br>
-      <a href="https://dr-shekari.com" style="color:${BRAND.primary};text-decoration:none;">dr-shekari.com</a> · <a href="tel:+93792453030" style="color:${BRAND.primary};text-decoration:none;">+93 79 245 3030</a>
+      <a href="https://dr-shekari.com" style="color:${BRAND.primary};text-decoration:none;">dr-shekari.com</a> · <a href="tel:+93796040915" style="color:${BRAND.primary};text-decoration:none;">+93 79 604 0915</a>
     </div>
   </div>
 </body></html>`;
@@ -140,12 +140,12 @@ const STRINGS = {
     appt_user_title: 'We received your appointment request',
     appt_user_intro: (name) => `Dear ${name},<br><br>Thank you for choosing Dr. Nazir Ahmad Shekari. We have received your appointment request and our team will contact you shortly to confirm.`,
     appt_admin_footer: 'Please contact the patient within 2 business hours to confirm the appointment.',
-    appt_user_footer: 'For urgent matters, please call our 24/7 line at +93 79 245 3030.',
+    appt_user_footer: 'For urgent matters, please call our 24/7 line at +93 79 604 0915.',
     contact_admin_title: 'New Contact Form Submission',
     contact_admin_intro: 'A new message has been submitted via the contact form on dr-shekari.com.',
     contact_user_title: 'Thank you for contacting us',
     contact_user_intro: (name) => `Dear ${name},<br><br>We have received your message and will respond within 2 business hours during clinic hours.`,
-    contact_user_footer: 'For emergencies, please call +93 79 245 3030 (available 24/7).',
+    contact_user_footer: 'For emergencies, please call +93 79 604 0915 (available 24/7).',
     full_name: 'Full Name',
     email: 'Email',
     phone: 'Phone',
@@ -163,12 +163,12 @@ const STRINGS = {
     appt_user_title: 'درخواست وقت ملاقات شما دریافت شد',
     appt_user_intro: (name) => `${name} عزیز،<br><br>از انتخاب دکتر نذیر احمد شکاری متشکریم. درخواست وقت ملاقات شما دریافت شد و تیم ما به‌زودی برای تأیید با شما تماس خواهد گرفت.`,
     appt_admin_footer: 'لطفاً در عرض ۲ ساعت کاری برای تأیید وقت ملاقات با بیمار تماس بگیرید.',
-    appt_user_footer: 'برای موارد فوری، با خط ۲۴/۷ ما به شماره +۹۳ ۷۹ ۲۴۵ ۳۰۳۰ تماس بگیرید.',
+    appt_user_footer: 'برای موارد فوری، با خط ۲۴/۷ ما به شماره +۹۳ ۷۹ ۶۰۴ ۰۹۱۵ تماس بگیرید.',
     contact_admin_title: 'پیام جدید از فرم تماس',
     contact_admin_intro: 'یک پیام جدید از طریق فرم تماس در dr-shekari.com ارسال شده است.',
     contact_user_title: 'از تماس شما متشکریم',
     contact_user_intro: (name) => `${name} عزیز،<br><br>پیام شما را دریافت کردیم و در ساعات کاری در عرض ۲ ساعت پاسخ خواهیم داد.`,
-    contact_user_footer: 'در مواقع اورژانسی، با +۹۳ ۷۹ ۲۴۵ ۳۰۳۰ تماس بگیرید (۲۴/۷).',
+    contact_user_footer: 'در مواقع اورژانسی، با +۹۳ ۷۹ ۶۰۴ ۰۹۱۵ تماس بگیرید (۲۴/۷).',
     full_name: 'نام کامل',
     email: 'ایمیل',
     phone: 'تلفن',
@@ -186,12 +186,12 @@ const STRINGS = {
     appt_user_title: 'ستاسو د ملاقات غوښتنه ترلاسه شوه',
     appt_user_intro: (name) => `ګرانه ${name}،<br><br>د ډاکټر نذیر احمد شکاري د غوره کولو لپاره مننه. ستاسو د ملاقات غوښتنه ترلاسه شوه او زموږ ټیم به ډېر ژر د تایید لپاره تاسو سره اړیکه ونیسي.`,
     appt_admin_footer: 'مهرباني وکړئ په ۲ کاري ساعتونو کې د ناروغ سره د تایید لپاره اړیکه ونیسئ.',
-    appt_user_footer: 'د بیړنیو پېښو لپاره، زموږ د ۲۴/۷ کرښې +۹۳ ۷۹ ۲۴۵ ۳۰۳۰ ته زنګ ووهئ.',
+    appt_user_footer: 'د بیړنیو پېښو لپاره، زموږ د ۲۴/۷ کرښې +۹۳ ۷۹ ۶۰۴ ۰۹۱۵ ته زنګ ووهئ.',
     contact_admin_title: 'د اړیکې فورمې نوی پیغام',
     contact_admin_intro: 'د dr-shekari.com په اړیکې فورمې له لارې یو نوی پیغام راغلی دی.',
     contact_user_title: 'ستاسو د اړیکې لپاره مننه',
     contact_user_intro: (name) => `ګرانه ${name}،<br><br>ستاسو پیغام مو ترلاسه کړ او د کلینیک د کاري ساعتونو په ۲ ساعتونو کې به ځواب درکړو.`,
-    contact_user_footer: 'د بیړنیو پېښو لپاره، +۹۳ ۷۹ ۲۴۵ ۳۰۳۰ ته زنګ ووهئ (۲۴/۷ شتون لري).',
+    contact_user_footer: 'د بیړنیو پېښو لپاره، +۹۳ ۷۹ ۶۰۴ ۰۹۱۵ ته زنګ ووهئ (۲۴/۷ شتون لري).',
     full_name: 'بشپړ نوم',
     email: 'بریښنالیک',
     phone: 'تلیفون',
@@ -216,7 +216,7 @@ export function appointmentNotificationEmail(data, locale = 'en') {
     intro: s.appt_admin_intro,
     rows: [
       [s.full_name, escapeHtml(data.fullName)],
-      [s.email, `<a href="mailto:${escapeHtml(data.email)}" style="color:${BRAND.primary};">${escapeHtml(data.email)}</a>`],
+      [s.email, data.email ? `<a href="mailto:${escapeHtml(data.email)}" style="color:${BRAND.primary};">${escapeHtml(data.email)}</a>` : '—'],
       [s.phone, `<a href="tel:${escapeHtml(data.phone)}" style="color:${BRAND.primary};">${escapeHtml(data.phone)}</a>`],
       [s.preferred_date, escapeHtml(formatDate(data.preferredDate, locale))],
       [s.time_slot, escapeHtml(data.slot || '—')],
@@ -250,7 +250,7 @@ export function contactNotificationEmail(data, locale = 'en') {
       [s.full_name, escapeHtml(data.fullName)],
       [s.email, data.email ? `<a href="mailto:${escapeHtml(data.email)}" style="color:${BRAND.primary};">${escapeHtml(data.email)}</a>` : '—'],
       [s.phone, `<a href="tel:${escapeHtml(data.phone)}" style="color:${BRAND.primary};">${escapeHtml(data.phone)}</a>`],
-      [s.message, escapeHtml(data.message).replace(/\n/g, '<br>')],
+      [s.message, data.message ? escapeHtml(data.message).replace(/\n/g, '<br>') : '—'],
     ],
   });
 }
@@ -260,7 +260,7 @@ export function contactConfirmationEmail(data, locale = 'en') {
   return shellEmail({
     title: s.contact_user_title,
     intro: s.contact_user_intro(escapeHtml(data.fullName)),
-    rows: [[s.your_message, escapeHtml(data.message).replace(/\n/g, '<br>')]],
+    rows: [[s.your_message, data.message ? escapeHtml(data.message).replace(/\n/g, '<br>') : '—']],
     footer: s.contact_user_footer,
   });
 }

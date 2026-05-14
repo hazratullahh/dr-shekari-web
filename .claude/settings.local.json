@@ -10,7 +10,20 @@
       "Bash(rm -rf .next/dev .next/server .next/cache)",
       "Bash(rm -rf .next)",
       "Bash(npm run *)",
-      "Bash(grep -n \"initial={{ opacity: 0, y: 14\" e:/projects/dr-shekari-web/src/components/services/ServicesList.jsx)"
+      "Bash(grep -n \"initial={{ opacity: 0, y: 14\" e:/projects/dr-shekari-web/src/components/services/ServicesList.jsx)",
+      "Bash(node -e \"JSON.parse\\(require\\('fs'\\).readFileSync\\('messages/en.json','utf8'\\)\\); JSON.parse\\(require\\('fs'\\).readFileSync\\('messages/fa.json','utf8'\\)\\); JSON.parse\\(require\\('fs'\\).readFileSync\\('messages/ps.json','utf8'\\)\\); console.log\\('ALL JSON OK'\\);\")",
+      "Bash(node --check src/components/team/MedicalDirectors.jsx)",
+      "Bash(npx --no-install eslint src/components/team/MedicalDirectors.jsx src/components/appointment/BookingFlow.jsx src/app/[locale]/page.js src/app/[locale]/team/page.jsx src/app/[locale]/about/page.jsx src/app/[locale]/services/page.jsx src/app/[locale]/research/page.jsx src/app/[locale]/contact/page.jsx src/app/[locale]/appointment/page.jsx)",
+      "Bash(node -e \"JSON.parse\\(require\\('fs'\\).readFileSync\\('messages/en.json','utf8'\\)\\); JSON.parse\\(require\\('fs'\\).readFileSync\\('messages/fa.json','utf8'\\)\\); JSON.parse\\(require\\('fs'\\).readFileSync\\('messages/ps.json','utf8'\\)\\); console.log\\('JSON OK'\\);\")",
+      "Bash(node -e ' *)",
+      "Bash(node scripts/replace-phone.mjs)",
+      "Bash(rm scripts/replace-phone.mjs)",
+      "Bash(rmdir scripts *)",
+      "Bash(npx --no-install eslint src/components/team/MedicalDirectors.jsx src/components/team/TeamHero.jsx src/components/team/ConsultationCTA.jsx)",
+      "Bash(npx --no-install eslint src/lib/models/Gallery.js src/app/api/gallery/route.js src/components/home/GallerySection.jsx src/app/\\\\[locale\\\\]/page.js next.config.mjs)",
+      "Bash(npx --no-install eslint src/components/home/GallerySection.jsx)",
+      "Bash(npx --no-install eslint src/components/home/GallerySection.jsx src/lib/models/Gallery.js src/app/api/gallery/route.js src/app/\\\\[locale\\\\]/page.js next.config.mjs)",
+      "Bash(npx --no-install eslint next.config.mjs src/components/home/GallerySection.jsx)"
     ]
   }
 }

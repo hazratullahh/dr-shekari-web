@@ -6,7 +6,7 @@ const slotRegex = /^\d{2}:\d{2}$/;
 const AppointmentSchema = new mongoose.Schema(
   {
     fullName: { type: String, required: true, trim: true, minlength: 2, maxlength: 120 },
-    email: { type: String, required: true, trim: true, lowercase: true, maxlength: 200 },
+    email: { type: String, required: false, default: '', trim: true, lowercase: true, maxlength: 200 },
     phone: { type: String, required: true, trim: true, maxlength: 32 },
     // YYYY-MM-DD — clinic-local date, no timezone ambiguity
     preferredDate: {

@@ -227,7 +227,7 @@ function drawCard(ctx, data, labels) {
   cursorY += 90;
   drawRow(labels.phone_label, data.phone, cursorY);
   cursorY += 90;
-  drawRow(labels.email_label, data.email, cursorY);
+  drawRow(labels.email_label, data.email || '—', cursorY);
   cursorY += 110;
 
   // 7. Footer block
@@ -244,7 +244,7 @@ function drawCard(ctx, data, labels) {
   ctx.fillText(labels.address, cardX + 80, footerY + 70);
   ctx.font = '500 18px system-ui, "Segoe UI", sans-serif';
   ctx.fillStyle = COLORS.muted;
-  ctx.fillText(`${labels.phone_label}: +93 79 245 3030`, cardX + 80, footerY + 105);
+  ctx.fillText(`${labels.phone_label}: +93 79 604 0915`, cardX + 80, footerY + 105);
   ctx.fillText(`${labels.email_label}: urology@dr-shekari.com`, cardX + 80, footerY + 130);
 
   // Tiny footer note bottom
@@ -269,7 +269,7 @@ const DEFAULT_LABELS = {
     location_label: 'Location',
     address: 'Jami Hospital, Chahar-e-rahi-Badmorghan, Herat, Afghanistan',
     id_label: 'Booking',
-    footer_note: 'Please arrive 15 minutes early. For emergencies call +93 79 245 3030 (24/7).',
+    footer_note: 'Please arrive 15 minutes early. For emergencies call +93 79 604 0915 (24/7).',
   },
   fa: {
     clinic: 'کلینیک اورولوژی دکتر شکاری',
@@ -285,7 +285,7 @@ const DEFAULT_LABELS = {
     location_label: 'مکان',
     address: 'بیمارستان جامی، چهارراه بادمرغان، هرات، افغانستان',
     id_label: 'کد رزرو',
-    footer_note: 'لطفاً ۱۵ دقیقه زودتر حضور یابید. در موارد اورژانسی با +۹۳ ۷۹ ۲۴۵ ۳۰۳۰ تماس بگیرید.',
+    footer_note: 'لطفاً ۱۵ دقیقه زودتر حضور یابید. در موارد اورژانسی با +۹۳ ۷۹ ۶۰۴ ۰۹۱۵ تماس بگیرید.',
   },
   ps: {
     clinic: 'د ډاکټر شکاري ادراري کلینیک',
@@ -301,7 +301,7 @@ const DEFAULT_LABELS = {
     location_label: 'ځای',
     address: 'جامي روغتون، څلورلار بادمرغان، هرات، افغانستان',
     id_label: 'د رزرو شمېره',
-    footer_note: 'مهرباني وکړئ ۱۵ دقیقې مخکې حاضر شئ. د بیړني حالت لپاره +۹۳ ۷۹ ۲۴۵ ۳۰۳۰ ته زنګ ووهئ.',
+    footer_note: 'مهرباني وکړئ ۱۵ دقیقې مخکې حاضر شئ. د بیړني حالت لپاره +۹۳ ۷۹ ۶۰۴ ۰۹۱۵ ته زنګ ووهئ.',
   },
 };
 

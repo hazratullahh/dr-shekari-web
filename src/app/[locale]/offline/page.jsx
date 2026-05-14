@@ -39,12 +39,12 @@ export default async function OfflinePage({ params }) {
             {t('offline_book')}
           </Link>
           <a
-            href="tel:+93792453030"
+            href="tel:+93796040915"
             dir="ltr"
             className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-[#E9756D]/10 text-[#E9756D] font-semibold hover:bg-[#E9756D]/15 transition-colors"
           >
             <Phone size={16} />
-            {t('offline_call')}: +93 79 245 3030
+            {t('offline_call')}: +93 79 604 0915
           </a>
         </div>
       </div>

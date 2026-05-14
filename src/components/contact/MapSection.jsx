@@ -103,23 +103,6 @@ const MapSection = () => {
               </div>
             </div>
 
-            <div className="glass-card p-6 rounded-2xl shadow-lg border border-white/20">
-              <h3 className="font-bold text-gray-900 mb-4">Public Transport</h3>
-              <div className="space-y-3">
-                <div className="flex justify-between items-center p-3 rounded-lg bg-gradient-to-r from-[#E9756D]/5 to-[#F6CA97]/5">
-                  <span className="font-medium text-gray-900">Bus Routes</span>
-                  <span className="font-bold text-[#E9756D]">4, 7, 12</span>
-                </div>
-                <div className="flex justify-between items-center p-3 rounded-lg bg-gradient-to-r from-[#E9756D]/5 to-[#F6CA97]/5">
-                  <span className="font-medium text-gray-900">Taxi Stand</span>
-                  <span className="font-bold text-[#E9756D]">50m Away</span>
-                </div>
-                <div className="flex justify-between items-center p-3 rounded-lg bg-gradient-to-r from-[#E9756D]/5 to-[#F6CA97]/5">
-                  <span className="font-medium text-gray-900">Parking</span>
-                  <span className="font-bold text-[#E9756D]">Free</span>
-                </div>
-              </div>
-            </div>
           </motion.div>
         </div>
       </div>
