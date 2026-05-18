@@ -22,7 +22,7 @@ export default function ServicesList() {
 
   return (
     <>
-      {/* Cards grid — each card links to its detail page */}
+      {/* Cards grid -each card links to its detail page */}
       <Section size="md" background="soft">
         <SectionHeader
           badge={t('main_services')}

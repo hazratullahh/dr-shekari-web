@@ -44,7 +44,7 @@ html, body {
   }
 }
 
-/* Touch-friendly default — ensure tappable controls are at least 44px */
+/* Touch-friendly default -ensure tappable controls are at least 44px */
 button, a[role="button"], .touch-target {
   touch-action: manipulation;
 }
@@ -73,7 +73,7 @@ button, a[role="button"], .touch-target {
   scroll-padding-bottom: 80px;
 }
 
-/* iOS PWA status-bar tweak — body pulls up to background under status bar */
+/* iOS PWA status-bar tweak -body pulls up to background under status bar */
 @supports (padding: max(0px)) {
   .safe-top { padding-top: max(env(safe-area-inset-top, 0px), 0px); }
   .safe-bottom { padding-bottom: max(env(safe-area-inset-bottom, 0px), 0px); }

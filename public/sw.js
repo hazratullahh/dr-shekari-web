@@ -34,4 +34,4 @@ self.addEventListener('activate', (event) => {
   })());
 });
 
-// No fetch handler — every request goes to the network.
+// No fetch handler -every request goes to the network.

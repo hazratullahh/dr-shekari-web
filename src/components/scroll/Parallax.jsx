@@ -23,7 +23,7 @@ export default function Parallax({
     offset: ['start end', 'end start'],
   });
 
-  // Travel range in px — modest by default, tuned for medical UI.
+  // Travel range in px -modest by default, tuned for medical UI.
   const travel = 120 * speed;
   const y = useTransform(scrollYProgress, [0, 1], [-travel, travel]);
 

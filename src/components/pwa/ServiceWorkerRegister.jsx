@@ -32,7 +32,7 @@ export default function ServiceWorkerRegister() {
     };
 
     // When the kill-switch SW takes control or unregisters, the controller
-    // changes — reload once so the page is rendered without any SW in the
+    // changes -reload once so the page is rendered without any SW in the
     // way. sessionStorage guards against a refresh loop.
     const onControllerChange = () => {
       if (sessionStorage.getItem('sw-cleanup-done') === '1') return;

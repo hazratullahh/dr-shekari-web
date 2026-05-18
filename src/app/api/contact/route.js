@@ -68,7 +68,7 @@ export async function POST(req) {
     const data = parsed.data;
     const locale = pickLocale(req, body);
 
-    // Persist first — message is never lost even if SMTP is down.
+    // Persist first -message is never lost even if SMTP is down.
     await connectDB();
     const doc = await ContactMessage.create({
       fullName: data.fullName,
@@ -79,7 +79,7 @@ export async function POST(req) {
       ip,
     });
 
-    // Must await — on serverless (Vercel/Netlify), the function is suspended
+    // Must await -on serverless (Vercel/Netlify), the function is suspended
     // as soon as the response flushes, killing any in-flight SMTP handshake.
     // Catch internally so a delivery failure still returns ok:true: the
     // message is already persisted in MongoDB and visible to staff.
@@ -98,9 +98,9 @@ export async function POST(req) {
 async function sendContactEmailAsync(doc, data, locale) {
   const recipient = process.env.CONTACT_RECIPIENT || process.env.SMTP_EMAIL;
   const subjects = {
-    en: `New Contact Form Message — ${data.fullName}`,
-    fa: `پیام جدید از فرم تماس — ${data.fullName}`,
-    ps: `د اړیکې فورمې نوی پیغام — ${data.fullName}`,
+    en: `New Contact Form Message -${data.fullName}`,
+    fa: `پیام جدید از فرم تماس -${data.fullName}`,
+    ps: `د اړیکې فورمې نوی پیغام -${data.fullName}`,
   };
 
   try {

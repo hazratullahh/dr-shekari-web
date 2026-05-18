@@ -36,7 +36,7 @@ export async function generateMetadata({ params }) {
           url: '/images/about/clinic-exterior.jpg',
           width: 1200,
           height: 630,
-          alt: 'Dr. Nazir Ahmad Shekari — Chief of Urology Department, Jami Hospital',
+          alt: 'Dr. Nazir Ahmad Shekari -Chief of Urology Department, Jami Hospital',
         },
       ],
     },

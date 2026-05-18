@@ -7,7 +7,7 @@ import {
 import { useTranslations } from 'next-intl';
 
 // Continuous gentle floating animation. Each card uses a slightly different
-// duration / delay so motion never lines up — feels alive instead of mechanical.
+// duration / delay so motion never lines up -feels alive instead of mechanical.
 const float = (offsetY = 14, duration = 6, delay = 0) => ({
   y: [0, -offsetY, 0, offsetY * 0.6, 0],
   transition: {
@@ -54,7 +54,7 @@ export default function HeroFloatingCards() {
 
       {/* Floating UI cards positioned around the medallion */}
 
-      {/* Top — Specialty badge */}
+      {/* Top -Specialty badge */}
       <motion.div
         initial={{ opacity: 0, y: -8 }}
         animate={{ opacity: 1, y: 0 }}
@@ -74,7 +74,7 @@ export default function HeroFloatingCards() {
         </motion.div>
       </motion.div>
 
-      {/* Right top — Available now */}
+      {/* Right top -Available now */}
       <motion.div
         initial={{ opacity: 0, x: 12 }}
         animate={{ opacity: 1, x: 0 }}
@@ -95,7 +95,7 @@ export default function HeroFloatingCards() {
         </motion.div>
       </motion.div>
 
-      {/* Right bottom — Years experience */}
+      {/* Right bottom -Years experience */}
       <motion.div
         initial={{ opacity: 0, x: 12 }}
         animate={{ opacity: 1, x: 0 }}
@@ -116,7 +116,7 @@ export default function HeroFloatingCards() {
         </motion.div>
       </motion.div>
 
-      {/* Left top — Patient satisfaction */}
+      {/* Left top -Patient satisfaction */}
       <motion.div
         initial={{ opacity: 0, x: -12 }}
         animate={{ opacity: 1, x: 0 }}
@@ -140,7 +140,7 @@ export default function HeroFloatingCards() {
         </motion.div>
       </motion.div>
 
-      {/* Left bottom — Verified specialist */}
+      {/* Left bottom -Verified specialist */}
       <motion.div
         initial={{ opacity: 0, x: -12 }}
         animate={{ opacity: 1, x: 0 }}
@@ -160,7 +160,7 @@ export default function HeroFloatingCards() {
         </motion.div>
       </motion.div>
 
-      {/* Bottom — Appointment confirmed */}
+      {/* Bottom -Appointment confirmed */}
       <motion.div
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}

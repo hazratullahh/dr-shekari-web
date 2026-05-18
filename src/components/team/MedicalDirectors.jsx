@@ -57,7 +57,7 @@ const MedicalDirectors = () => {
       itemScope
       itemType="https://schema.org/MedicalOrganization"
     >
-      <meta itemProp="name" content="Dr. Shekari Urology Clinic — Medical Leadership" />
+      <meta itemProp="name" content="Dr. Shekari Urology Clinic -Medical Leadership" />
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -81,7 +81,7 @@ const MedicalDirectors = () => {
           </p>
         </motion.div>
 
-        {/* === FEATURED LANDSCAPE CARD — Dr. Shekari === */}
+        {/* === FEATURED LANDSCAPE CARD -Dr. Shekari === */}
         <motion.article
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -110,12 +110,12 @@ const MedicalDirectors = () => {
           />
 
           <div className="relative grid grid-cols-1 lg:grid-cols-12 gap-0 items-stretch">
-            {/* Portrait — balanced 6/12 split, perfectly centered with object-top so face is visible */}
+            {/* Portrait -balanced 6/12 split, perfectly centered with object-top so face is visible */}
             <div className="lg:col-span-6 relative bg-linear-to-br from-[#FDF5EE] via-white to-[#F6CA97]/10">
               <div className="relative w-full h-80 sm:h-112 lg:h-full lg:min-h-140 overflow-hidden flex items-center justify-center">
                 <Image
                   src={drShekari.image}
-                  alt={`${drShekari.name} — ${drShekari.position}`}
+                  alt={`${drShekari.name} -${drShekari.position}`}
                   fill
                   itemProp="image"
                   className="object-cover object-[center_top] transition-transform duration-700 group-hover:scale-[1.04]"
@@ -240,7 +240,7 @@ const MedicalDirectors = () => {
           </div>
         </motion.article>
 
-        {/* === SUPPORTING CARD — Dr. Mansour Ahmad Wayar (Surgical Assistant) === */}
+        {/* === SUPPORTING CARD -Dr. Mansour Ahmad Wayar (Surgical Assistant) === */}
         <motion.article
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -250,7 +250,7 @@ const MedicalDirectors = () => {
           itemScope
           itemType="https://schema.org/Physician"
           className="group relative mt-6 overflow-hidden rounded-2xl border border-gray-100 bg-linear-to-r from-white via-white to-[#FDF5EE]/60 backdrop-blur-sm shadow-sm hover:shadow-xl hover:shadow-[#E9756D]/10 hover:border-[#F6CA97]/50 transition-all duration-500"
-          aria-label={`${drWayar.name} — ${drWayar.position}`}
+          aria-label={`${drWayar.name} -${drWayar.position}`}
         >
           {/* SEO microdata */}
           <meta itemProp="name" content={drWayar.name} />

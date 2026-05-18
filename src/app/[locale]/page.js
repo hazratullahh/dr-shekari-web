@@ -58,7 +58,7 @@ export async function generateMetadata({ params }) {
           url: '/images/og-premium.jpg',
           width: 1200,
           height: 630,
-          alt: 'Dr. Nazir Ahmad Shekari — Urological Surgeon',
+          alt: 'Dr. Nazir Ahmad Shekari -Urological Surgeon',
         },
       ],
     },

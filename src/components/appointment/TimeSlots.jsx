@@ -81,7 +81,7 @@ export default function TimeSlots({ date, value, onChange }) {
       setState({ loading: false, error: '', ...payload });
     } catch (err) {
       if (err.name === 'AbortError') return;
-      // Don't trash the cache on transient failures — keep last good payload.
+      // Don't trash the cache on transient failures -keep last good payload.
       setState({ loading: false, closed: false, slots: [], error: err.message || 'fetch_failed' });
     }
   }, [date, retryNonce]);
@@ -203,7 +203,7 @@ export default function TimeSlots({ date, value, onChange }) {
                       disabled={disabled}
                       onClick={() => onChange?.(s.slot)}
                       aria-pressed={selected}
-                      aria-label={`${formatLabel(s.slot, locale)}${reserved ? ' — ' + t('reserved') : past ? ' — ' + t('past') : ' — ' + t('available')}`}
+                      aria-label={`${formatLabel(s.slot, locale)}${reserved ? ' -' + t('reserved') : past ? ' -' + t('past') : ' -' + t('available')}`}
                       className={[
                         'relative px-2 py-2.5 rounded-xl text-sm font-semibold transition-all border',
                         selected

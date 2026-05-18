@@ -58,7 +58,7 @@ const Header = () => {
 
   return (
     <>
-      {/* Top utility bar — desktop only; hidden in standalone for an app-shell feel */}
+      {/* Top utility bar -desktop only; hidden in standalone for an app-shell feel */}
       <div className={`${standalone ? 'hidden' : 'hidden md:block'} bg-[#E9756D] text-white text-xs`}>
         <div className="max-w-7xl mx-auto px-6 h-9 flex items-center justify-between">
           <div className="flex items-center gap-5">

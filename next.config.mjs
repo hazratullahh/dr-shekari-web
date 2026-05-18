@@ -6,7 +6,7 @@ const nextConfig = {
   compress: true,
   poweredByHeader: false,
 
-  // Native Node modules — keep them external so Turbopack/webpack don't
+  // Native Node modules -keep them external so Turbopack/webpack don't
   // bundle them and (on Windows) don't try to create symlinks that require
   // Developer Mode. Each is only used in server runtime (API routes).
   serverExternalPackages: ['mongoose', 'mongodb', 'nodemailer', 'bson'],
@@ -58,7 +58,7 @@ const nextConfig = {
   // Silence a known harmless warning from next-intl's runtime locale loader.
   // The dynamic `import(t)` inside next-intl/dist/.../format/index.js can't be
   // statically analyzed for webpack's filesystem cache, but the import target
-  // is server-only and resolves correctly at runtime — no incorrect cache
+  // is server-only and resolves correctly at runtime -no incorrect cache
   // invalidation in practice. Suppress to keep the dev console clean.
   webpack: (config) => {
     config.ignoreWarnings = [
