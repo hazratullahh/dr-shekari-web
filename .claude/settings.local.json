@@ -35,7 +35,9 @@
       "Bash(node --env-file=.env.local -e \"const m=require\\('mongoose'\\);m.connect\\(process.env.MONGO_URI\\).then\\(async\\(\\)=>{const d=m.connection.db;const t=await d.collection\\('galleries'\\).countDocuments\\({}\\);const p=await d.collection\\('galleries'\\).countDocuments\\({published:true}\\);const f=await d.collection\\('galleries'\\).countDocuments\\({published:true,featured:true}\\);console.log\\('total='+t,'published='+p,'featured='+f\\);await m.disconnect\\(\\);}\\).catch\\(e=>{console.error\\('ERR:',e.message\\);process.exit\\(1\\);}\\);\")",
       "Bash(type \"C:\\\\Users\\\\MANZOO~1\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\e--dr-shekari-web\\\\cbdcabc9-848d-442d-a246-0a6fa3f4e940\\\\tasks\\\\bs5z8vnkq.output\" 2>nul; echo === END ===)",
       "Bash(powershell -Command \"Get-Content -Path 'C:\\\\Users\\\\MANZOO~1\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\e--dr-shekari-web\\\\cbdcabc9-848d-442d-a246-0a6fa3f4e940\\\\tasks\\\\bs5z8vnkq.output' -Wait -Tail 20\" -timeout 25)",
-      "Bash(powershell -Command \"Get-Content 'C:\\\\Users\\\\MANZOO~1\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\e--dr-shekari-web\\\\cbdcabc9-848d-442d-a246-0a6fa3f4e940\\\\tasks\\\\bs5z8vnkq.output' -Raw\")"
+      "Bash(powershell -Command \"Get-Content 'C:\\\\Users\\\\MANZOO~1\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\e--dr-shekari-web\\\\cbdcabc9-848d-442d-a246-0a6fa3f4e940\\\\tasks\\\\bs5z8vnkq.output' -Raw\")",
+      "Bash(node -e \"JSON.parse\\(require\\('fs'\\).readFileSync\\('messages/en.json','utf8'\\)\\); console.log\\('valid JSON'\\)\")",
+      "Bash(git commit *)"
     ],
     "additionalDirectories": [
       "e:\\dr-shekari-web\\src\\app\\[locale]\\offline",
