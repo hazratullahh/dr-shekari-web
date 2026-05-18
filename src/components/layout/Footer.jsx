@@ -9,6 +9,7 @@ import {
   Facebook, Twitter, Instagram,
   Award, Shield, ArrowUp, Stethoscope, Heart
 } from 'lucide-react';
+import { FaWhatsapp } from 'react-icons/fa';
 import { useTranslations } from 'use-intl';
 import { SERVICE_CATALOG } from '@/content/services';
 
@@ -331,15 +332,17 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Emergency Floating Button */}
+      {/* WhatsApp Floating Button */}
       <motion.a
-        href="tel:+93796040915"
+        href="https://wa.me/93706616120"
+        target="_blank"
+        rel="noopener noreferrer"
         whileHover={{ scale: 1.1, rotate: 5 }}
         whileTap={{ scale: 0.9 }}
         className="fixed bottom-6 right-6 w-16 h-16 rounded-full bg-linear-to-r from-[#E9756D] to-[#F6CA97] shadow-xl flex items-center justify-center z-40 group"
-        aria-label="Emergency Call"
+        aria-label="WhatsApp Chat"
       >
-        <Phone size={24} className="text-white" />
+        <FaWhatsapp size={28} className="text-white" />
         <motion.div
           className="absolute inset-0 border-2 border-[#E9756D] rounded-full"
           animate={{
@@ -353,7 +356,7 @@ const Footer = () => {
           }}
         />
         <div className="absolute -top-12 right-0 bg-gray-900 text-white text-xs px-3 py-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-          {t("footer.emergency")}: {clinicInfo.phone1}
+          WhatsApp: +93 70 661 6120
         </div>
       </motion.a>
 

@@ -74,8 +74,8 @@ export default function AboutHero() {
           >
             <div className="relative rounded-3xl overflow-hidden shadow-xl shadow-[#E9756D]/15 border border-white/80 aspect-[4/5]">
               <Image
-                src="/images/about/clinic-exterior.jpg"
-                alt="Dr. Shekari Urology Clinic at Jami Hospital, Herat"
+                src="/images/dr-shekari.jpg"
+                alt="Dr. Nazir Ahmad Shekari — Urologist, Jami Hospital, Herat"
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 90vw, 40vw"
